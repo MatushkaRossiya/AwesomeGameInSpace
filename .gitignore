@@ -1,0 +1,8 @@
+/Game/*.csproj
+/Game/*.sln
+/Game/*.suo
+*.sln
+*.suo
+*.csproj
+obj
+Library
