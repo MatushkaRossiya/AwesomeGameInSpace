@@ -15,8 +15,9 @@ public class WalkingGuyTest : MonoBehaviour {
                 _isRagdoll = true;
                 animator.enabled = false;
                 foreach (var bone in skeleton) {
-                    bone.velocity = Vector3.zero;
+                    bone.isKinematic = false;
                 }
+                agent.enabled = false;
             } else if (!value && _isRagdoll) {
                 _isRagdoll = false;
                 animator.enabled = true;
@@ -33,6 +34,9 @@ public class WalkingGuyTest : MonoBehaviour {
         player = FindObjectOfType<PlayerController>().gameObject;
         animator = GetComponent<Animator>();
         skeleton = GetComponentsInChildren<Rigidbody>();
+        foreach (var bone in skeleton) {
+            bone.isKinematic = true;
+        }
     }
 
     void FixedUpdate() {
