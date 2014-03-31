@@ -11,13 +11,18 @@ public class FirstPersonCameraController : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity;
-        verticalAngle += -Input.GetAxis("Mouse Y") * mouseSensitivity;
+        if (!Input.GetKey(KeyCode.Escape)) {
+            Screen.lockCursor = true;
+            horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity;
+            verticalAngle += -Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        if (horizontalAngle > 180) horizontalAngle -= 360;
-        else if (horizontalAngle < -180) horizontalAngle += 360;
-        if (verticalAngle > 90) verticalAngle = 90;
-        else if (verticalAngle < -90) verticalAngle = -90;
-        transform.localRotation = Quaternion.Euler(new Vector3(verticalAngle, 0, 0));
+            if (horizontalAngle > 180) horizontalAngle -= 360;
+            else if (horizontalAngle < -180) horizontalAngle += 360;
+            if (verticalAngle > 90) verticalAngle = 90;
+            else if (verticalAngle < -90) verticalAngle = -90;
+            transform.localRotation = Quaternion.Euler(new Vector3(verticalAngle, 0, 0));
+        } else {
+            Screen.lockCursor = false;
+        }
 	}
 }
