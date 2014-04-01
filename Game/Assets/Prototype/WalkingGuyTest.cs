@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class WalkingGuyTest : MonoBehaviour {
     NavMeshAgent agent;
@@ -7,6 +7,8 @@ public class WalkingGuyTest : MonoBehaviour {
     Animator animator;
     Rigidbody[] skeleton;
     bool _isRagdoll;
+    float deathTime;
+    float deathDelay = 5.0f;
 
     public bool isRagdoll{
         get { return _isRagdoll; }
@@ -18,6 +20,8 @@ public class WalkingGuyTest : MonoBehaviour {
                     bone.isKinematic = false;
                 }
                 agent.enabled = false;
+                deathTime = Time.fixedTime;
+                
             } else if (!value && _isRagdoll) {
                 _isRagdoll = false;
                 animator.enabled = true;
@@ -42,12 +46,21 @@ public class WalkingGuyTest : MonoBehaviour {
     void FixedUpdate() {
         if (!_isRagdoll) {
             agent.SetDestination(player.transform.position);
-            float speed = agent.velocity.magnitude / agent.speed;
-            if (speed < 0.1)
+            if (agent.remainingDistance > 5) {
+                agent.speed = 3;
+            } else {
+                agent.speed = 1.5f;
+            }
+            float speed = agent.velocity.magnitude / 1.513f;
+            if (speed < 0.1 || speed > 1.0f)
                 animator.speed = 1.0f;
             else
                 animator.speed = speed;
             animator.SetFloat("Speed", speed);
+        } else {
+            if (Time.fixedTime > deathTime + deathDelay) {
+                Destroy(this.gameObject);
+            } 
         }
     }
 }
