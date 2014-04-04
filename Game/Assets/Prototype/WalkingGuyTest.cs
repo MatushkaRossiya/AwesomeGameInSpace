@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 public class WalkingGuyTest : MonoBehaviour {
+    public GameObject stuffPrefab;
     NavMeshAgent agent;
     GameObject player;
     Animator animator;
@@ -59,8 +60,15 @@ public class WalkingGuyTest : MonoBehaviour {
             animator.SetFloat("Speed", speed);
         } else {
             if (Time.fixedTime > deathTime + deathDelay) {
-                Destroy(this.gameObject);
+                Die();
             } 
         }
+    }
+
+    void Die() {
+        foreach (var bone in skeleton) {
+            Instantiate(stuffPrefab, bone.transform.position, Quaternion.identity);
+        }
+        Destroy(this.gameObject);
     }
 }

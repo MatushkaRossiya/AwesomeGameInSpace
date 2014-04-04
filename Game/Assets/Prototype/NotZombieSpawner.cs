@@ -22,10 +22,10 @@ public class NotZombieSpawner : MonoBehaviour {
             Instantiate(notAZombie, transform.position, Quaternion.identity);
             ++notZombieCount;
         }
-    }
+    }/*
 
     void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 200, 50), "Not zombie count: " + notZombieCount);
-    }
+    }*/
 }

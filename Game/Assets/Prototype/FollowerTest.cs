@@ -4,7 +4,7 @@ using System.Collections;
 public class FollowerTest : MonoBehaviour {
     NavMeshAgent agent;
     GameObject player;
-    AudioSource audio;
+    AudioSource audioSource;
 
     float time;
 
@@ -12,9 +12,9 @@ public class FollowerTest : MonoBehaviour {
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         time = Time.fixedTime + Random.Range(1.0f, 5.0f);
-        audio.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
 	}
 
     void FixedUpdate()
@@ -22,7 +22,7 @@ public class FollowerTest : MonoBehaviour {
         agent.SetDestination(player.transform.position);
         if (Time.fixedTime > time)
         {
-            audio.Play();
+            audioSource.Play();
             time += Random.Range(10.0f, 20.0f);
         }
     }
