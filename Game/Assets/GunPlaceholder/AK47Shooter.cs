@@ -15,10 +15,9 @@ public class AK47Shooter : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             audio.PlayOneShot(pewSound);
             if (hit) {
-                Debug.Log("HIT");
-                WalkingGuyTest guy = hitInfo.collider.transform.root.GetComponent<WalkingGuyTest>();
-                if (guy != null) {
-                    guy.isRagdoll = true;
+                Damageable damagable = hitInfo.collider.GetComponent<Damageable>();
+                if (damagable != null) {
+                    damagable.DealDamage(transform.up * 11.0f);
                 }
             } 
         }
