@@ -1,72 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public sealed class RagdollCharacter : MonoBehaviour {
+public sealed class GuyAnimation : RagdollAnimation {
     Rigidbody[] skeleton;
-
-    public AICharacter aiCharacter;
-
-    public float maxHitPoints;
-    float _currentHitPoints;
-    float currentHitPoints {
-        get{ return _currentHitPoints; }
-        set {
-            _currentHitPoints = value;
-            if (_currentHitPoints <= 0.0f) {
-                this.Kill();
-            }
-        }
-    }
-
-    bool isDead = false;
+    Animator animator;
+    CharacterAI characterAI;
 
     bool _isRagdoll;
-    public bool isRagdoll {
+    public override bool isRagdoll {
         get { return _isRagdoll; }
         set {
             if (value && !_isRagdoll) {
                 _isRagdoll = true;
+                animator.enabled = false;
                 foreach (var bone in skeleton) {
                     bone.isKinematic = false;
                 }
 
             } else if (!value && _isRagdoll) {
                 _isRagdoll = false;
+                animator.enabled = true;
                 foreach (var bone in skeleton) {
                     bone.isKinematic = true;
                 }
             }
-            aiCharacter.isAnimatorActive = value;
         }
     }
 
+    private bool isDead { get { return characterAI.isDead;  } }
 
     void Start() {
-        currentHitPoints = maxHitPoints;
         skeleton = GetComponentsInChildren<Rigidbody>();
-        foreach (var bone in skeleton) {
-            bone.isKinematic = true;
-        }
+        animator = GetComponent<Animator>();
+        characterAI = GetComponent<CharacterAI>();
     }
 
-
-    IEnumerator DelayDie(float delay) {
-        yield return new WaitForSeconds(delay);
-        Destroy(this.gameObject);
-    }
-
-    void Kill() {
+    void FixedUpdate() {
         if (!isDead) {
-            Debug.Log("HIT");
-            isRagdoll = true;
-            isDead = true;
-            aiCharacter.isDead = true;
-            StartCoroutine(DelayDie(5.0f));
-            aiCharacter.Kill();
+            float speed = characterAI.velocity.magnitude / 1.513f;
+            if (speed < 0.1 || speed > 1.0f)
+                animator.speed = 1.0f;
+            else
+                animator.speed = speed;
+            animator.SetFloat("Speed", speed);
         }
     }
 
-    public void DealDamage(BodyPart bodyPart, float rawDamage) {
+    public override void DealDamage(BodyPart bodyPart, float rawDamage) {
         float damage;
         switch (bodyPart.type) {
             case BodyPart.Part.arm:
@@ -85,6 +65,6 @@ public sealed class RagdollCharacter : MonoBehaviour {
                 damage = 0;
                 break;
         }
-        currentHitPoints -= damage;
+        characterAI.DealDamage(damage);
     }
 }

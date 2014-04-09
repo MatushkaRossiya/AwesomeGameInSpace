@@ -45,12 +45,19 @@ public class PlayerController : MonoBehaviour {
         input = transform.forward * input.y + transform.right * input.x;
 
         // calculate difference between desired velocity and current velocity
-        Vector3 relativeDeltaVelocity = input - rigidbody.velocity / walkSpeed;
+        Vector3 deltaVelocity = input * walkSpeed - rigidbody.velocity;
+        Vector3 relativeDeltaVelocity = deltaVelocity / walkSpeed;
         // ignore vertical component (e.i. falling and jumping
         relativeDeltaVelocity.y = 0;
 
         // calculate final acceleration
         Vector3 acc = relativeDeltaVelocity.normalized * Mathf.Pow(relativeDeltaVelocity.magnitude, 0.1f) * acceleration;
+
+        float maxAcceleration = deltaVelocity.magnitude / Time.fixedDeltaTime;
+
+        if (acc.magnitude > maxAcceleration) {
+            acc = acc.normalized * maxAcceleration;
+        }
 
         // apply acceleration
         rigidbody.AddForce(acc, ForceMode.Acceleration);

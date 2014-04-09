@@ -2,36 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class WalkingGuyTest : AICharacter {
+public class WalkingGuyTest : CharacterAI {
     NavMeshAgent navMeshAgent;
-    Animator animator;
-
-    public GameObject stuffPrefab;
+    RagdollAnimation ragdollAnimation;
     GameObject player;
-    
+    public float maxHitPoints;
+    private float currentHitPoints;
+
+    //public GameObject stuffPrefab;
+
     public override bool isDead { get; set; }
-
-    private bool _isAnimatorActive = true;
-    public override bool isAnimatorActive {
-        get { return _isAnimatorActive; }
-        set {
-            if (value && !_isAnimatorActive) {
-                _isAnimatorActive = true;
-                animator.enabled = false;
-                navMeshAgent.enabled = false;
-
-            } else if (!value && _isAnimatorActive) {
-                _isAnimatorActive = false;
-                animator.enabled = true;
-            }
-        }
-    }
-
+    public override Vector3 velocity { get { return navMeshAgent.velocity; } }
 
     void Start() {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
-        animator = GetComponent<Animator>();
+        ragdollAnimation = GetComponent<RagdollAnimation>();
+        currentHitPoints = maxHitPoints;
     }
 
     void FixedUpdate() {
@@ -42,23 +29,26 @@ public class WalkingGuyTest : AICharacter {
             } else {
                 navMeshAgent.speed = 1.5f;
             }
-            float speed = navMeshAgent.velocity.magnitude / 1.513f;
-            if (speed < 0.1 || speed > 1.0f)
-                animator.speed = 1.0f;
-            else
-                animator.speed = speed;
-            animator.SetFloat("Speed", speed);
         }
     }
 
-    public override void DealDamage(BodyPart bodyPart, float rawDamage) {
-
-        //foreach(var rigidBody)
+    public void Kill() {
+        if (!isDead) {
+            isDead = true;
+            navMeshAgent.enabled = false;
+            ragdollAnimation.isRagdoll = true;
+            StartCoroutine(DelayDie(5.0f));
+        }
     }
 
 
-    public override void Kill() {
-        animator.enabled = false;
-        navMeshAgent.enabled = false;
+    IEnumerator DelayDie(float delay) {
+        yield return new WaitForSeconds(delay);
+        Destroy(this.gameObject);
+    }
+
+    public override void DealDamage(float damage) {
+        currentHitPoints -= damage;
+        if (currentHitPoints <= 0.0f) Kill();
     }
 }

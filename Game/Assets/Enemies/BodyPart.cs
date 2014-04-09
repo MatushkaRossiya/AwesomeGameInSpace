@@ -10,7 +10,7 @@ public class BodyPart : Damageable {
 
 
     public override void DealDamage(Vector3 damage) {
-        RagdollCharacter ragdoll = transform.root.GetComponent<RagdollCharacter>();
+        RagdollAnimation ragdoll = transform.root.GetComponent<RagdollAnimation>();
         ragdoll.DealDamage(this, damage.magnitude);
         rigidbody.AddForce(damage, ForceMode.Impulse);
     }
