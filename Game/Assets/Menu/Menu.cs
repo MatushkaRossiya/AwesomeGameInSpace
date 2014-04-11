@@ -82,6 +82,7 @@ public class Menu : MonoBehaviour {
 				break;
 			case MenuSelector.CREDITS:
 				GUI.DrawTexture(creditsRect,creditsIMG,ScaleMode.ScaleAndCrop);
+				if (GUI.Button (previousButtonRect, "BACK"))   		currentMenu = MenuSelector.MAIN;
 				break;
 			}	
 	}
