@@ -3,26 +3,31 @@ using System.Collections;
 
 public class Menu : MonoBehaviour {
 	enum MenuSelector {
-		PLAY,MAIN,OPTIONS,EXIT
+		PLAY,MAIN,OPTIONS,EXIT,CREDITS
 	}
 	float ScrHeight = Screen.height;
 	float ScrWidth = Screen.width;
 	float width = 0.3f*Screen.width;
 	float height = 0.2f*Screen.height;
+	MenuSelector currentMenu;	//enum do wyboru menu
 	//main menu rects
 	Rect startButtonRect;
 	Rect optionsButtonRect;
 	Rect exitButtonRect;
 	Rect previousButtonRect;
+	Rect creditsButtonRect;
 	//exit rects
 	Rect yesButtonRect;
 	Rect noButtonRect;
 	Rect doYouwantToExitRect;
-
-
+	//texture Rects
+	Rect creditsRect;
 	Rect guiTextureRect;
+
+
 	public Texture2D backgroundIMG;
-	MenuSelector currentMenu;
+	public Texture2D creditsIMG;
+
 
 
 	void Start () {
@@ -48,7 +53,9 @@ public class Menu : MonoBehaviour {
 		yesButtonRect = new Rect (horizontalButtonPos-0.5f*horizontallOffset,verticalButtonsPos,width,height);
 		noButtonRect = new Rect (horizontalButtonPos+0.5f*horizontallOffset,verticalButtonsPos,width,height);
 		doYouwantToExitRect = new Rect (horizontalButtonPos, verticalButtonsPos-0.4f*verticalOffset, width, 0.4f*height);
-		previousButtonRect = new Rect (horizontalButtonPos - 0.8f*horizontallOffset, verticalButtonsPos + verticalOffset, width, height);
+		previousButtonRect = new Rect (horizontalButtonPos - 0.8f*horizontallOffset, verticalButtonsPos + 1.6f*verticalOffset, width/2, height/2);
+		creditsButtonRect = new Rect (horizontalButtonPos + 1.2f*horizontallOffset, verticalButtonsPos + 1.6f*verticalOffset, width/2, height/2);
+		creditsRect = new Rect (Screen.width / 10, Screen.height / 10, Screen.width*0.8f, Screen.height * 0.8f);
 	}
 
 	void OnGUI()
@@ -56,20 +63,25 @@ public class Menu : MonoBehaviour {
 		GUI.DrawTexture (guiTextureRect, backgroundIMG, ScaleMode.ScaleAndCrop);
 		switch (currentMenu) {
 			case MenuSelector.MAIN:
-				if (GUI.Button (startButtonRect, "PLAY")) 	   currentMenu = MenuSelector.PLAY;		
-				if (GUI.Button (optionsButtonRect, "OPTIONS")) currentMenu = MenuSelector.OPTIONS;
-				if (GUI.Button (exitButtonRect, "EXIT"))	   currentMenu = MenuSelector.EXIT;
+				if (GUI.Button (startButtonRect, "PLAY")) 	  	    currentMenu = MenuSelector.PLAY;		
+				if (GUI.Button (optionsButtonRect, "OPTIONS")) 	    currentMenu = MenuSelector.OPTIONS;
+				if (GUI.Button (exitButtonRect, "EXIT"))	   	    currentMenu = MenuSelector.EXIT;
+				if (GUI.Button (creditsButtonRect, "CREDITS"))			currentMenu = MenuSelector.CREDITS;
 				break;
 			case MenuSelector.EXIT:
 				if(GUI.Button(yesButtonRect,"YES"))					Application.Quit ();
 				if(GUI.Button(noButtonRect,"NO"))					currentMenu = MenuSelector.MAIN;	
-				GUI.Box(doYouwantToExitRect,"DO YOU WANT TO EXIT");
+				GUI.Box(doYouwantToExitRect,"DO YOU WANT TO EXIT?");
 				break;
 			case MenuSelector.PLAY:
+				if (GUI.Button (startButtonRect, "TEST LEVEL"))     Application.LoadLevel(1);
 				if (GUI.Button (previousButtonRect, "BACK"))   		currentMenu = MenuSelector.MAIN;
 				break;
 			case MenuSelector.OPTIONS:
 				if (GUI.Button (previousButtonRect, "BACK"))   		currentMenu = MenuSelector.MAIN;
+				break;
+			case MenuSelector.CREDITS:
+				GUI.DrawTexture(creditsRect,creditsIMG,ScaleMode.ScaleAndCrop);
 				break;
 			}	
 	}
