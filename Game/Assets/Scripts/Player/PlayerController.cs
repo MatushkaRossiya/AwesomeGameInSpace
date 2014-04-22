@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
     public float stepLength;
 
     public List<AudioClip> walkOnMetalSounds;
+    public List<AudioClip> dropSounds;
+    public List<AudioClip> jumpSounds;
+    public List<AudioClip> breathSounds;
 
     private FirstPersonCameraController firstPersonCameraController;
 
@@ -20,6 +23,7 @@ public class PlayerController : MonoBehaviour {
     private bool isCrouching = false;
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
+    private bool canJump;
 
 
     CapsuleCollider playerCollider;
@@ -30,11 +34,18 @@ public class PlayerController : MonoBehaviour {
         playerCollider = GetComponent<CapsuleCollider>();
     }
 
+    void Update() {
+        canJump |= isTouchingGround && Time.fixedTime > nextJump && Input.GetAxis("Jump") > 0.5f;
+        Breathe();
+    }
+
     void FixedUpdate()
     {
         Crouch();
         Walk();
         Jump();
+
+        isTouchingGround = false;
     }
 
     void Walk() {
@@ -56,7 +67,7 @@ public class PlayerController : MonoBehaviour {
             input *= 0.5f;
         }else if (Input.GetAxis("Sprint") > 0.5f) {
             input.y = sprintSpeed / walkSpeed;
-            input.x *= 0.5f;
+            //input.x *= 0.5f;
             sprinting = true;
         }
 
@@ -85,23 +96,24 @@ public class PlayerController : MonoBehaviour {
             distance += Mathf.Sqrt(rigidbody.velocity.magnitude) * Time.fixedDeltaTime;
             if (distance > stepLength) {
                 distance = 0.0f;
-                audio.PlayOneShot(walkOnMetalSounds[Random.Range(0, walkOnMetalSounds.Count)]);
+                PlayRandomAudio(walkOnMetalSounds);
             }
         } else {
             distance = 0.0f;
         }
     }
 
+    int jumpPhase = 0;
+    private float nextJump = -10000.0f;
+
     void Jump() {
-        // check if jump button is pressed
-        if (isTouchingGround && Input.GetAxis("Jump") > 0.5f) {
-            // jump
-            rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.VelocityChange);
+        if (canJump) {
+            nextJump = Time.fixedTime + 0.5f;
+            canJump = false;
+            rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2.0f * 9.81f * jumpHeight), ForceMode.VelocityChange);
+            PlayRandomAudio(jumpSounds);
         }
-
-        isTouchingGround = false;
     }
-
 
     void Crouch() {
         if (crouchingTimeLeft < 0.0f) crouchingTimeLeft = 0.0f;
@@ -126,13 +138,46 @@ public class PlayerController : MonoBehaviour {
         crouchingTimeLeft -= Time.fixedDeltaTime;
     }
 
+    private float fatigue = 0.0f;
+    private float nextBreath;
+
+    void Breathe() {
+        // TODO make it better
+        float targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
+        fatigue = (fatigue - targetFatigue) * Mathf.Exp(-0.15f * Time.deltaTime) + targetFatigue;
+
+
+        if (Time.time > nextBreath) {
+            nextBreath = Time.time;
+            int index = Mathf.FloorToInt(fatigue * breathSounds.Count);
+            if (index >= breathSounds.Count) index = breathSounds.Count - 1;
+            else if (index < 0) index = 0;
+            AudioClip sound = breathSounds[index];
+            audio.PlayOneShot(sound, 0.5f);
+            nextBreath = Time.time + sound.length * 0.9f;
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         isTouchingGround = true;
     }
 
+    void OnCollisionEnter(Collision col) {
+        if (col.relativeVelocity.y > 4f) {
+            PlayRandomAudio(dropSounds);
+            PlayRandomAudio(walkOnMetalSounds);
+        }
+    }
+
     void OnTriggerStay(Collider other)
     {
         isTouchingGround = true;
+    }
+
+    void PlayRandomAudio(List<AudioClip> list) {
+        int count = list.Count;
+        if (count != 0)
+            audio.PlayOneShot(list[Random.Range(0, count)]);
     }
 }
