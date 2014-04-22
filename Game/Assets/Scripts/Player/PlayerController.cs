@@ -60,15 +60,12 @@ public class PlayerController : MonoBehaviour {
         // normalize if needed to avoid going faster diagonally
         if (input.sqrMagnitude > 1.0f) input.Normalize();
 
-        bool sprinting = false;
 
         // check if sprinting
         if (isCrouching) {
             input *= 0.5f;
         }else if (Input.GetAxis("Sprint") > 0.5f) {
             input.y = sprintSpeed / walkSpeed;
-            //input.x *= 0.5f;
-            sprinting = true;
         }
 
         // calculate desired velocity
@@ -103,7 +100,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    int jumpPhase = 0;
     private float nextJump = -10000.0f;
 
     void Jump() {
