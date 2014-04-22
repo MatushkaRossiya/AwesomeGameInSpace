@@ -9,6 +9,9 @@ public class WalkingGuyTest : CharacterAI {
     public float maxHitPoints;
     private float currentHitPoints;
 
+    public float attackCooldown;
+    private float nextAttack;
+
     //public GameObject stuffPrefab;
 
     public override bool isDead { get; set; }
@@ -29,6 +32,12 @@ public class WalkingGuyTest : CharacterAI {
             } else {
                 navMeshAgent.speed = 1.5f;
             }
+
+            if (navMeshAgent.remainingDistance < 1.5f) {
+                Attack();
+            } else if(navMeshAgent.velocity.magnitude < 1.0f){
+                Attack();
+            }
         }
     }
 
@@ -38,6 +47,21 @@ public class WalkingGuyTest : CharacterAI {
             navMeshAgent.enabled = false;
             ragdollAnimation.isRagdoll = true;
             StartCoroutine(DelayDie(5.0f));
+        }
+    }
+
+    void Attack() {
+        if (Time.fixedTime > nextAttack) {
+            nextAttack = Time.fixedTime + attackCooldown;
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position + new Vector3(0, 1.5f, 0), 0.5f, transform.forward, 0.5f, 1 << 10 | 1 << 11);
+            if (hits.Length > 0) {
+                foreach (var hit in hits) {
+                    Damageable obj = hit.collider.GetComponent<Damageable>();
+                    if (obj != null) {
+                        obj.DealDamage(transform.forward * 10.0f);
+                    }
+                }
+            }
         }
     }
 

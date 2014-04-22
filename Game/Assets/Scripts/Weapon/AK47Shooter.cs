@@ -31,7 +31,7 @@ public class AK47Shooter : MonoBehaviour {
                 if (hit) {
                     Damageable damagable = hitInfo.collider.GetComponent<Damageable>();
                     if (damagable != null) {
-                        damagable.DealDamage(transform.up * 11.0f);
+                        damagable.DealDamage(transform.forward * 11.0f);
                     }
                 }
             }

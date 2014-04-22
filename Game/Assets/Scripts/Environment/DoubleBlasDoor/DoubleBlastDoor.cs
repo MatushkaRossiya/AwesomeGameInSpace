@@ -3,9 +3,10 @@ using System.Collections;
 
 public class DoubleBlastDoor : RemoteActor {
     public float closingTime;
-    public GameObject left, right;
+    public DamagableBlastDoor left, right;
     public float openingWidth;
     public bool isOpen;
+    public float hitPoints;
     float direction;
     float phase;
 

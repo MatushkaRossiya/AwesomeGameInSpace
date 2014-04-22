@@ -9,7 +9,7 @@ public class InteractionHandler : MonoBehaviour {
     void Update() {
         RaycastHit hitInfo;
         message = null;
-        if (Physics.SphereCast(transform.position, touchRadius, transform.forward, out hitInfo, touchRange, 1 << 8)) {
+        if (Physics.SphereCast(transform.position, touchRadius, transform.forward, out hitInfo, touchRange)) {
             Interactive interactiveObject = hitInfo.collider.GetComponent<Interactive>();
             if (interactiveObject != null) {
                 message = interactiveObject.message;
