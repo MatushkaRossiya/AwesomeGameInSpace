@@ -49,6 +49,7 @@ public class WalkingGuyTest : CharacterAI {
             ragdollAnimation.isRagdoll = true;
             StartCoroutine(DelayDie(5.0f));
             audio.PlayOneShot(wilhelmScream, 10.0f);
+			GameMaster.instance.activeEnemies--;
         }
     }
 

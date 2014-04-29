@@ -21,6 +21,7 @@ public class AK47Shooter : MonoBehaviour {
     private float nextShot;
     private int currentClip;
 	private float spread;
+	private float knockBack;
 
     void Start() {
         shootingPhase = ShootingPhase.NotShooting;
@@ -48,7 +49,13 @@ public class AK47Shooter : MonoBehaviour {
     }
 
     void FixedUpdate() {
-		spread *= Mathf.Exp(-Time.fixedDeltaTime * handling);
+		float effectiveHandling = handling;
+		if (PlayerController.instance.isCrouching) {
+			effectiveHandling *= 4.0f;
+		}
+		spread += PlayerController.instance.speed * 0.001f;
+		knockBack *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
+		spread *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
 
         
         if (Time.fixedTime >= nextShot && shootingPhase != ShootingPhase.NotShooting) {
@@ -88,11 +95,12 @@ public class AK47Shooter : MonoBehaviour {
 					Debug.DrawRay(start, dir * 1000.0f, Color.red, 0.2f, true);
 				}
 				spread += recoil;
-				FirstPersonCameraController.instance.verticalAngle += spread * 10.0f;
+				knockBack += recoil;
+				FirstPersonCameraController.instance.verticalAngle += knockBack * 10.0f;
 				
             }
         }
-		transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * spread, 0, 0));
+		transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * knockBack, 0, 0));
     }
 
     void OnGUI() {

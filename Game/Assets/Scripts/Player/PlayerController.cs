@@ -20,7 +20,15 @@ public class PlayerController : MonoSingleton<PlayerController> {
     private FirstPersonCameraController firstPersonCameraController;
 
     private bool isTouchingGround = false;
-    private bool isCrouching = false;
+	public bool isCrouching {
+		get;
+		private set;
+	}
+	public float speed {
+		get {
+			return rigidbody.velocity.magnitude;
+		}
+	}
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
     private bool canJump;
