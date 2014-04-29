@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoSingleton<PlayerController> {
     public float acceleration = 10.0f;
     public float walkSpeed = 10.0f;
     public float sprintSpeed = 20.0f;

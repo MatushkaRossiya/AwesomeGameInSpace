@@ -55,7 +55,7 @@ public class WalkingGuyTest : CharacterAI {
     void Attack() {
         if (Time.fixedTime > nextAttack) {
             nextAttack = Time.fixedTime + attackCooldown;
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position + new Vector3(0, 1.5f, 0), 0.5f, transform.forward, 0.5f, 1 << 10 | 1 << 11);
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position + new Vector3(0, 1.5f, 0), 0.5f, transform.forward, 0.5f, Layers.enemyAttack);
             if (hits.Length > 0) {
                 foreach (var hit in hits) {
                     Damageable obj = hit.collider.GetComponent<Damageable>();

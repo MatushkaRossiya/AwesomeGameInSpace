@@ -3,13 +3,16 @@ using System.Collections;
 
 public class DamagableBlastDoor : Damageable {
     public DoubleBlastDoor door;
-
+	private bool destroyed = false;
+	private const float forceMultiplier = 100.0f;
 
     public override void DealDamage(Vector3 damage) {
-        if (door != null) {
+        if (!destroyed) {
             door.hitPoints -= damage.magnitude;
-            if (door.hitPoints < 0) {
-                damage *= 100;
+			if (door.hitPoints < 0) {
+				door.left.destroyed = true;
+				door.right.destroyed = true;
+				damage *= forceMultiplier;
                 Rigidbody temp = door.left.gameObject.AddComponent<Rigidbody>();
                 temp.mass = 100;
                 temp.AddForce(damage, ForceMode.Impulse);
@@ -21,10 +24,10 @@ public class DamagableBlastDoor : Damageable {
                 Destroy(door.left.transform.GetChild(0).gameObject);
                 Destroy(door.right.transform.GetChild(0).gameObject);
 
-                DestroyImmediate(door);
+                Destroy(door);
             }
         } else {
-            damage *= 100;
+			damage *= forceMultiplier;
             rigidbody.AddForce(damage, ForceMode.Impulse);
         }
     }

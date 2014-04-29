@@ -1,11 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FirstPersonCameraController : MonoBehaviour {
-    [HideInInspector]
-    public float horizontalAngle;
-    [HideInInspector]
-    public float verticalAngle;
+public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController> {
+	private float _horizontalAngle;
+	public float horizontalAngle {
+		get {
+			return _horizontalAngle;
+		}
+		set {
+			_horizontalAngle = Mathf.Repeat(value, 360);
+		}
+	}
+
+	private float _verticalAngle; 
+	public float verticalAngle {
+		get {
+			return _verticalAngle;
+		}
+		set {
+			_verticalAngle = Mathf.Clamp(value, -90, 90);
+			transform.localRotation = Quaternion.Euler(new Vector3(-_verticalAngle, 0, 0));
+		}
+	}
     public float acceleration = 1.0f;
 
     public float mouseSensitivity = 1.0f;
@@ -13,19 +29,16 @@ public class FirstPersonCameraController : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        // debug testing for esc
-        // TODO remove in final release
+#if UNITY_EDITOR
         if (!Input.GetKey(KeyCode.Escape)) {
+#endif
             // lock and hide cursor
             Screen.lockCursor = true;
 
             // read input
-            //horizontalAngle += Input.GetAxis("Mouse X") * mouseSensitivity;
-            //verticalAngle += -Input.GetAxis("Mouse Y") * mouseSensitivity;
-
             Vector2 input;
             input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-            input.y = -Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+            input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
             //input /= Screen.height;
 
             if (input != Vector2.zero) {
@@ -37,19 +50,12 @@ public class FirstPersonCameraController : MonoBehaviour {
 
                 horizontalAngle += input.x;
                 verticalAngle += input.y;
-
-                // normalize to proper ranges
-                if (horizontalAngle > 180) horizontalAngle -= 360;
-                else if (horizontalAngle < -180) horizontalAngle += 360;
-                if (verticalAngle > 90) verticalAngle = 90;
-                else if (verticalAngle < -90) verticalAngle = -90;
-
-                // apply only vertical component
-                // horizontal is applied in PlayerController because it makes walking easier
-                transform.localRotation = Quaternion.Euler(new Vector3(verticalAngle, 0, 0));
-            }
+			}
+			
+#if UNITY_EDITOR
         } else {
             Screen.lockCursor = false;
         }
+#endif
 	}
 }
