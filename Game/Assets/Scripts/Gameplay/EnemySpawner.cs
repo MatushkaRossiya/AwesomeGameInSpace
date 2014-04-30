@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class EnemySpawner : MonoBehaviour {
+	public float meanTimeBetweenSpawns;
 	public GameObject enemyPrefab;
 
 	void Start() {
@@ -13,7 +14,7 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	private IEnumerator Spawn() {
-		yield return new WaitForSeconds(Random.Range(5.0f, 15.0f));
+		yield return new WaitForSeconds(Random.Range(0.5f * meanTimeBetweenSpawns, 1.5f * meanTimeBetweenSpawns));
 		if (GameMaster.instance.spawnPool > 0) {
 			GameMaster.instance.spawnPool--;
 			GameMaster.instance.activeEnemies++;

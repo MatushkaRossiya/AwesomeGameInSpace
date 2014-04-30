@@ -16,9 +16,23 @@ public class LightManager : MonoSingleton<LightManager> {
 				l.color = color;
 			}
 			RenderSettings.ambientLight = color * 0.1f + new Color(0.01f, 0.01f, 0.01f);
+			_dayPhase = value;
 		}
 	}
+	private float _dayPhase;
 
+	void Update() {
+		if (_dayPhase != 0) {
+			foreach (Light l in lights) {
+				if (l.intensity != 1 && Random.Range(0, 60) == 0){
+					l.intensity = 1;
+				}
+				else if(_dayPhase != 0 && Random.Range(0, 60) == 0){
+					l.intensity = Random.Range(0.0f, 1.0f);
+				}
+			}
+		}
+	}
 
 	public void FindLights() {
 		var temp = GameObject.FindGameObjectsWithTag("Light");

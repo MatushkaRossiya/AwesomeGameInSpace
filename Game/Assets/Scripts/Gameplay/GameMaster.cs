@@ -7,6 +7,7 @@ public class GameMaster : MonoSingleton<GameMaster> {
 	public float dayLenght;
 	public float changeDuration;
 	public int waveSize;
+	public int spawnRate;
 
 	private delegate void Phase();
 	private Phase phase;
@@ -38,7 +39,9 @@ public class GameMaster : MonoSingleton<GameMaster> {
 		} else {
 			phase = Night;
 			spawnPool = waveSize;
+			float meanTimeBetweenSpawns = spawners.Count / spawnRate;
 			foreach (EnemySpawner spawner in spawners) {
+				spawner.meanTimeBetweenSpawns = meanTimeBetweenSpawns;
 				spawner.Activate();
 			}
 		}
@@ -57,6 +60,8 @@ public class GameMaster : MonoSingleton<GameMaster> {
 			LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
 		} else {
 			phase = Day;
+			dayPhase = 0;
+			LightManager.instance.dayPhase = 0;
 		}
 	}
 
