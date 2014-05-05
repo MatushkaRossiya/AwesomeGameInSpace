@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayLenght: 10
   changeDuration: 15
-  waveSize: 200
+  waveSize: 50
   spawnRate: 5
 --- !u!1 &232055381
 GameObject:
@@ -10818,6 +10818,10 @@ Prefab:
     - target: {fileID: 100124, guid: 52d54211d7fc08a4b9c1acbc28e549dc, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400018, guid: 52d54211d7fc08a4b9c1acbc28e549dc, type: 2}
+      propertyPath: waveSize
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52d54211d7fc08a4b9c1acbc28e549dc, type: 2}
