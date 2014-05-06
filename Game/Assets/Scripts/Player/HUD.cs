@@ -47,7 +47,7 @@ public class HUD : MonoBehaviour {
 	//INIT
 	void Start(){
 		initView ();
-		updateSyf (10);
+		updateSyf (99);
 		updateHealth (1.0f);
 	}
 	void initView(){
@@ -62,7 +62,7 @@ public class HUD : MonoBehaviour {
 		timeBackgroundRect =    new Rect (0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
 		hintRect =  			new Rect (0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
 		syfTextRect = syfRect;
-		syfTextRect.x += 0.075f * w;
+		syfTextRect.x += 0.082f * w;
 		syfTextRect.y -= 0.02f * h;
 	}
 	public void setHintvisible(string stringToDisplay,float secondsToBeVisible){
