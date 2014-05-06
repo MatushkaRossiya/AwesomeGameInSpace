@@ -183,7 +183,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: cc0dff6bd4dd4ee4589876d6a36a53f5, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 105f26ac05059b14f955f39903cd7701, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -290,7 +290,7 @@ MonoBehaviour:
   granadeLauncher: {fileID: 0}
   granadePrefab: {fileID: 0}
   granadeSpeed: 0
-  pewSound: {fileID: 8300000, guid: cc0dff6bd4dd4ee4589876d6a36a53f5, type: 3}
+  pewSound: {fileID: 8300000, guid: 105f26ac05059b14f955f39903cd7701, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 10544dfdd743f61469b617892b167107, type: 3}
   shotPeriod: .100000001
   clipSize: 30

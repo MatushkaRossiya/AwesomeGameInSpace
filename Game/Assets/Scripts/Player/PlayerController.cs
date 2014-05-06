@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using XInputDotNetPure;
 
 public class PlayerController : MonoSingleton<PlayerController> {
     public float acceleration = 10.0f;
@@ -8,7 +9,7 @@ public class PlayerController : MonoSingleton<PlayerController> {
     public float jumpHeight = 1.0f;
 
     public float standingViewHeight = 0.75f;
-    public float crouchingViewHeight = -0.25f;
+	public float crouchingViewHeight = -0.25f;
     public float crouchingDelay = 0.3f;
     public float stepLength;
 
@@ -33,6 +34,10 @@ public class PlayerController : MonoSingleton<PlayerController> {
     private float distance = 0.0f;
     private bool canJump;
 
+	bool playerIndexSet = false;
+	PlayerIndex playerIndex;
+	GamePadState state;
+	GamePadState prevState;
 
     CapsuleCollider playerCollider;
 
@@ -43,12 +48,30 @@ public class PlayerController : MonoSingleton<PlayerController> {
     }
 
     void Update() {
-        canJump |= isTouchingGround && Time.fixedTime > nextJump && Input.GetAxis("Jump") > 0.5f;
+		canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || (state.Buttons.A == ButtonState.Pressed));
         Breathe();
     }
 
     void FixedUpdate()
     {
+		if (!playerIndexSet || !prevState.IsConnected)
+		{
+			for (int i = 0; i < 4; ++i)
+			{
+				PlayerIndex testPlayerIndex = (PlayerIndex)i;
+				GamePadState testState = GamePad.GetState(testPlayerIndex);
+				if (testState.IsConnected)
+				{
+					Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+					playerIndex = testPlayerIndex;
+					playerIndexSet = true;
+				}
+			}
+		}
+		
+		prevState = state;
+		state = GamePad.GetState(playerIndex);
+
         Crouch();
         Walk();
         Jump();
@@ -62,17 +85,16 @@ public class PlayerController : MonoSingleton<PlayerController> {
 
         // read input
         Vector3 input = new Vector3();
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+		input.x = Input.GetAxis ("Horizontal") + state.ThumbSticks.Left.X;
+		input.y = Input.GetAxis ("Vertical") + state.ThumbSticks.Left.Y;
 
         // normalize if needed to avoid going faster diagonally
         if (input.sqrMagnitude > 1.0f) input.Normalize();
 
-
         // check if sprinting
         if (isCrouching) {
             input *= 0.5f;
-        }else if (Input.GetAxis("Sprint") > 0.5f) {
+		} else if ((Input.GetAxis("Sprint") > 0.5f) || (state.Buttons.LeftStick == ButtonState.Pressed)) {
             input.y = sprintSpeed / walkSpeed;
         }
 
@@ -122,10 +144,10 @@ public class PlayerController : MonoSingleton<PlayerController> {
     void Crouch() {
         if (crouchingTimeLeft < 0.0f) crouchingTimeLeft = 0.0f;
 
-        if (!isCrouching && Input.GetKey(KeyCode.LeftControl)) {
+		if (!isCrouching && (Input.GetKey(KeyCode.LeftControl) || state.Buttons.Y == ButtonState.Pressed)) {
             isCrouching = true;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
-        } else if (isCrouching && !Input.GetKey(KeyCode.LeftControl) && !Physics.Raycast(transform.position, Vector3.up, 1.0f)) {
+		} else if (isCrouching && !(Input.GetKey(KeyCode.LeftControl) || state.Buttons.Y == ButtonState.Pressed) && !Physics.Raycast(transform.position, Vector3.up, 1.0f)) {
             isCrouching = false;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
         }

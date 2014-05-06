@@ -1,7 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController> {
+
+	bool playerIndexSet = false;
+	PlayerIndex playerIndex;
+	GamePadState state;
+	GamePadState prevState;
+
 	private float _horizontalAngle;
 	public float horizontalAngle {
 		get {
@@ -32,13 +39,31 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 #if UNITY_EDITOR
         if (!Input.GetKey(KeyCode.Escape)) {
 #endif
+			if (!playerIndexSet || !prevState.IsConnected)
+			{
+				for (int i = 0; i < 4; ++i)
+				{
+					PlayerIndex testPlayerIndex = (PlayerIndex)i;
+					GamePadState testState = GamePad.GetState(testPlayerIndex);
+					if (testState.IsConnected)
+					{
+						Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+						playerIndex = testPlayerIndex;
+						playerIndexSet = true;
+					}
+				}
+			}
+			
+			prevState = state;
+			state = GamePad.GetState(playerIndex);
+
             // lock and hide cursor
             Screen.lockCursor = true;
 
             // read input
             Vector2 input;
-            input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-            input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+			input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity + state.ThumbSticks.Right.X;
+			input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity + state.ThumbSticks.Right.Y;
             //input /= Screen.height;
 
             if (input != Vector2.zero) {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using XInputDotNetPure;
 
 public class AK47Shooter : MonoBehaviour {
 	public GameObject bulletSource;
@@ -22,6 +23,13 @@ public class AK47Shooter : MonoBehaviour {
     private int currentClip;
 	private float spread;
 	private float knockBack;
+	private float granadeCooldown = 1.0f;
+	private float nextGranade = 0.0f;
+
+	bool playerIndexSet = false;
+	PlayerIndex playerIndex;
+	GamePadState state;
+	GamePadState prevState;
 
     void Start() {
         shootingPhase = ShootingPhase.NotShooting;
@@ -30,7 +38,9 @@ public class AK47Shooter : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButton(0)) {
+		if(nextGranade > 0.0f) nextGranade -= Time.deltaTime;
+
+		if (Input.GetMouseButton(0) || state.Triggers.Right > 0.75f) {
             if (shootingPhase == ShootingPhase.NotShooting)
                 shootingPhase = ShootingPhase.ShootingStart;
         } else {
@@ -38,17 +48,36 @@ public class AK47Shooter : MonoBehaviour {
                 shootingPhase = ShootingPhase.NotShooting;
         }
         
-        if (Input.GetKeyDown(KeyCode.R)) {
+		if (Input.GetKeyDown(KeyCode.R) || (state.Buttons.B == ButtonState.Pressed && prevState.Buttons.B == ButtonState.Released)) {
             currentClip = clipSize;
         }
 
-		if (Input.GetMouseButtonDown(2)) {
+		if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || (state.Buttons.RightShoulder == ButtonState.Pressed && prevState.Buttons.RightShoulder == ButtonState.Released))) {
 			GameObject granade = Instantiate(granadePrefab, granadeLauncher.transform.position, granadeLauncher.transform.localRotation) as GameObject;
 			granade.rigidbody.velocity = transform.root.rigidbody.velocity + granadeLauncher.transform.forward * granadeSpeed;
+			nextGranade = granadeCooldown;
 		}
     }
 
     void FixedUpdate() {
+		if (!playerIndexSet || !prevState.IsConnected)
+		{
+			for (int i = 0; i < 4; ++i)
+			{
+				PlayerIndex testPlayerIndex = (PlayerIndex)i;
+				GamePadState testState = GamePad.GetState(testPlayerIndex);
+				if (testState.IsConnected)
+				{
+					Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+					playerIndex = testPlayerIndex;
+					playerIndexSet = true;
+				}
+			}
+		}
+		
+		prevState = state;
+		state = GamePad.GetState(playerIndex);
+
 		float effectiveHandling = handling;
 		if (PlayerController.instance.isCrouching) {
 			effectiveHandling *= 4.0f;
@@ -56,7 +85,6 @@ public class AK47Shooter : MonoBehaviour {
 		spread += PlayerController.instance.speed * 0.001f;
 		knockBack *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
 		spread *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
-
         
         if (Time.fixedTime >= nextShot && shootingPhase != ShootingPhase.NotShooting) {
 			RaycastHit hitInfo;
