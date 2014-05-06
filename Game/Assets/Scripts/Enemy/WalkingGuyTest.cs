@@ -111,7 +111,7 @@ public class WalkingGuyTest : CharacterAI {
                              {
                                  
                                  blockadeToDestroy.GetComponent<Damageable>().DealDamage(transform.forward * 0.5f);
-                                 
+                                
                              }
                              else
                              {
