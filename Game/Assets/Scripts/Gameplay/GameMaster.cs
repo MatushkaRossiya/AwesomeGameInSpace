@@ -23,6 +23,16 @@ public class GameMaster : MonoSingleton<GameMaster> {
 		phase();
 	}
 
+	//Kuba - z tego korzysta hud
+	public string getTimeToDayEnd(){
+		if(phase!=Day) return "0:00";
+		float timeToEndInSeconds = dayLenght - dayPhase;
+		int minuty = Mathf.FloorToInt(timeToEndInSeconds / 60.0f);
+		int sekundy = (int)((timeToEndInSeconds/60.0f - minuty)*60);
+		if(sekundy < 10) return minuty.ToString() + ":0" + sekundy.ToString();
+		return minuty.ToString() + ":" + sekundy.ToString(); 
+	}
+
 	void Day() {
 		if(dayPhase < dayLenght){
 			dayPhase += Time.deltaTime;
