@@ -42,7 +42,7 @@ public class HUD : MonoBehaviour {
 		healtbarRectCurrentRect.width = healthbarRect.width * ratioo;
 		if (ratioo >= 0.61f) healthBarColor = new Color (0.1f,1, 0.2f);
 		else if (ratioo >= 0.31f) healthBarColor = new Color (1,1, 0.1f);
-		else healthBarColor = new Color (1,0,1f, 0.1f);
+		else healthBarColor = new Color (1,0,0.1f);
 	}
 
 	//INIT
