@@ -150,13 +150,9 @@ GameObject:
   - 124: {fileID: 12400000}
   - 92: {fileID: 9200000}
   - 81: {fileID: 8100000}
-  - 114: {fileID: 11400022}
-  - 114: {fileID: 11400020}
-  - 54: {fileID: 5400002}
-  - 114: {fileID: 11400018}
-  - 114: {fileID: 11400016}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
+  - 54: {fileID: 5400002}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
@@ -175,7 +171,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400018}
-  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400016}
   m_Layer: 11
   m_Name: HUD
   m_TagString: Untagged
@@ -311,7 +307,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .544117689, g: .721405208, b: 1, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -627,8 +623,8 @@ Light:
   serializedVersion: 3
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 16
+  m_Intensity: 1.5
+  m_Range: 20
   m_SpotAngle: 45
   m_CookieSize: 10
   m_Shadows:
@@ -698,7 +694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 20
   walkSpeed: 4
-  sprintSpeed: 10.2200003
+  sprintSpeed: 8
   jumpHeight: 2
   standingViewHeight: .75
   crouchingViewHeight: -.25
@@ -760,114 +756,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9aaa3f5f2d574f228e4a21aa38b61e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 1
-  showGeneratedNormals: 0
-  offsetScale: .200000003
-  blurRadius: 18
-  edgeThresholdMin: .0500000007
-  edgeThreshold: .200000003
-  edgeSharpness: 4
-  dlaaSharp: 0
-  ssaaShader: {fileID: 4800000, guid: b3728d1488b02490cbd196c7941bf1f8, type: 3}
-  dlaaShader: {fileID: 4800000, guid: 017ca72b9e8a749058d13ebd527e98fa, type: 3}
-  nfaaShader: {fileID: 4800000, guid: ce0cb2621f6d84e21a87414e471a3cce, type: 3}
-  shaderFXAAPreset2: {fileID: 4800000, guid: 6f1418cffd12146f2a83be795f6fa5a7, type: 3}
-  shaderFXAAPreset3: {fileID: 4800000, guid: c182fa94a5a0a4c02870641efcd38cd5, type: 3}
-  shaderFXAAII: {fileID: 4800000, guid: cd5b323dcc592457790ff18b528f5e67, type: 3}
-  shaderFXAAIII: {fileID: 4800000, guid: c547503fff0e8482ea5793727057041c, type: 3}
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bef3d242a13c447ac90c2d2dc213b1ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mode: 0
-  intensity: 5
-  chromaticAberration: 0
-  axialAberration: .5
-  blur: 0
-  blurSpread: .75
-  luminanceDependency: .25
-  blurDistance: 2.5
-  vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
-  separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
-  chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
-    type: 3}
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da8daaf1d21e474bafa968f8f6c9f1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intensityMultiplier: .25
-  generalIntensity: .5
-  blackIntensity: 1
-  whiteIntensity: 1
-  midGrey: .200000003
-  dx11Grain: 1
-  softness: 0
-  monochrome: 0
-  intensities: {x: 1, y: 1, z: 1}
-  tiling: {x: 64, y: 64, z: 64}
-  monochromeTiling: 64
-  filterMode: 1
-  noiseTexture: {fileID: 2800000, guid: 7a632f967e8ad42f5bd275898151ab6a, type: 3}
-  noiseShader: {fileID: 4800000, guid: b0249d8c935344451aa4de6db76f0688, type: 3}
-  dx11NoiseShader: {fileID: 4800000, guid: 8b30686bb4322ab42ad5eb50a0210b58, type: 3}
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7db9ec1392f34265817a55853e6ab07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filterType: 3
-  preview: 0
-  previewScale: {x: 1, y: 1, z: 1}
-  movementScale: 0
-  rotationScale: 1
-  maxVelocity: 8
-  minVelocity: .100000001
-  velocityScale: .375
-  softZDistance: .00499999989
-  velocityDownsample: 1
-  excludeLayers:
-    serializedVersion: 2
-    m_Bits: 2048
-  shader: {fileID: 4800000, guid: 85a88efa8c871af4a9d17c64791b6f4f, type: 3}
-  dx11MotionBlurShader: {fileID: 4800000, guid: f1b13d7a80660504a858ea24cfa418c6,
-    type: 3}
-  replacementClear: {fileID: 4800000, guid: 7699c5fbfa27745a1abe111ab7bf9785, type: 3}
-  noiseTexture: {fileID: 2800000, guid: 31f5a8611c4ed1245b18456206e798dc, type: 3}
-  jitter: .0500000007
-  showVelocity: 0
-  showVelocityScale: 1
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43d955acba56d47d3be0eb7eef88325c, type: 3}
   m_Name: 
@@ -879,7 +768,7 @@ MonoBehaviour:
   downsample: 1
   rand: {fileID: 2800000, guid: a181ca8e3c62f3e4b8f183f6c586b032, type: 3}
   aoShader: {fileID: 4800000, guid: 95616c020c5604dda96cf76afbbc0272, type: 3}
---- !u!114 &11400016
+--- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -903,7 +792,7 @@ MonoBehaviour:
   adaptionSpeed: 1.5
   tonemapper: {fileID: 4800000, guid: 003377fc2620a44939dadde6fe3f8190, type: 3}
   validRenderTextureFormat: 1
---- !u!114 &11400018
+--- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -942,7 +831,7 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!114 &11400020
+--- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -955,7 +844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchRange: 1.5
   touchRadius: .300000012
---- !u!114 &11400022
+--- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -968,7 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 1.39999998
   mouseSensitivity: .100000001
---- !u!114 &11400024
+--- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

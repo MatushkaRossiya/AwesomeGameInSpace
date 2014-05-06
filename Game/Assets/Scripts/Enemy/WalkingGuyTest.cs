@@ -145,7 +145,7 @@ public class WalkingGuyTest : CharacterAI {
             navMeshAgent.enabled = false;
             ragdollAnimation.isRagdoll = true;
             StartCoroutine(DelayDie(5.0f));
-            audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 100.0f);
+            audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 10.0f);
 			GameMaster.instance.activeEnemies--;
         }
     }
