@@ -14,12 +14,16 @@ public class EnemySpawner : MonoBehaviour {
 	}
 
 	private IEnumerator Spawn() {
-		yield return new WaitForSeconds(Random.Range(0.5f * meanTimeBetweenSpawns, 1.5f * meanTimeBetweenSpawns));
-		if (GameMaster.instance.spawnPool > 0) {
-			GameMaster.instance.spawnPool--;
-			GameMaster.instance.activeEnemies++;
-			Instantiate(enemyPrefab, transform.position, transform.localRotation);
-			StartCoroutine(Spawn());
+		while(true){
+			yield return new WaitForSeconds(Random.Range(0.5f * meanTimeBetweenSpawns, 1.5f * meanTimeBetweenSpawns));
+			if (GameMaster.instance.spawnPool > 0) {
+				GameMaster.instance.spawnPool--;
+				GameMaster.instance.activeEnemies++;
+				Instantiate(enemyPrefab, transform.position, transform.localRotation);
+			}
+			else {
+				break;
+			}
 		}
 	}
 }

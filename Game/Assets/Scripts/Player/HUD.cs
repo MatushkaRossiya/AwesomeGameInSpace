@@ -86,7 +86,7 @@ public class HUD : MonoBehaviour {
 		GUI.DrawTexture (syfRect, syfTex);
 		GUI.Label (syfTextRect,syfAmount, syfTextStyle);
 		GUI.DrawTexture (timeBackgroundRect, timeBackgroundTex);
-		GUI.Label (timeBackgroundRect, GameMaster.instance.getTimeToDayEnd(),timeTextStyle);
+		GUI.Label (timeBackgroundRect, GameMaster.instance.TimeToDayEnd,timeTextStyle);
 		GUI.DrawTexture (healthbarRect, healtBarTexEmpty);
 		if (hintVisible) {
 			GUI.DrawTexture (hintRect, hintTex);
