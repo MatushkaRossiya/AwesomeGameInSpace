@@ -11,7 +11,7 @@ public class GameMaster : MonoSingleton<GameMaster> {
 
 	private delegate void Phase();
 	private Phase phase;
-
+	private float totalTime;
 	private float dayPhase = 0;
 	private List<EnemySpawner> spawners = new List<EnemySpawner>();
 
@@ -22,13 +22,14 @@ public class GameMaster : MonoSingleton<GameMaster> {
 	void Update () {
 		phase();
 	}
-
+	void Start(){
+		totalTime = dayLenght + changeDuration;
+	}
 	//Kuba - z tego korzysta hud
 	public string getTimeToDayEnd(){
-		if(phase!=Day) return "0:00";
-		float timeToEndInSeconds = dayLenght - dayPhase;
-		int minuty = Mathf.FloorToInt(timeToEndInSeconds / 60.0f);
-		int sekundy = (int)((timeToEndInSeconds/60.0f - minuty)*60);
+		//if(phase != Day && phase != Evening) return "0:00" 
+		int minuty = Mathf.FloorToInt(totalTime / 60.0f);
+		int sekundy = (int)((totalTime/60.0f - minuty)*60);
 		if(sekundy < 10) return minuty.ToString() + ":0" + sekundy.ToString();
 		return minuty.ToString() + ":" + sekundy.ToString(); 
 	}
@@ -36,6 +37,7 @@ public class GameMaster : MonoSingleton<GameMaster> {
 	void Day() {
 		if(dayPhase < dayLenght){
 			dayPhase += Time.deltaTime;
+			totalTime -= Time.deltaTime;
 		} else {
 			phase = Evening;
 			dayPhase = 0;
@@ -45,6 +47,8 @@ public class GameMaster : MonoSingleton<GameMaster> {
 	void Evening() {
 		if (dayPhase < changeDuration) {
 			dayPhase += Time.deltaTime;
+			if(totalTime > Time.deltaTime)
+			totalTime -= Time.deltaTime;
 			LightManager.instance.dayPhase = dayPhase / changeDuration;
 		} else {
 			phase = Night;
