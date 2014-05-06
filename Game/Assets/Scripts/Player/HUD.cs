@@ -14,8 +14,7 @@ public class HUD : MonoBehaviour {
 	public Texture2D timeBackgroundTex; //jakis prostokąt albo tło za czcionką czasu który będzie sie zmeiniac( chyba ze ladniej bedzie bez tla)
 	public Texture2D syfTex; //textura syfu z tlem (nie wiem czy czcionka ma byc na tle czy nie (obczaj jak bedize ladniej)
 	public Texture2D hintTex;
-
-	GameMaster gameMaster;
+	
 	bool displayTime;
 	Color healthBarColor;	//aktualny kolor statusut zdrowie (cz,zolt,zielony)
 	//private rects
@@ -47,7 +46,6 @@ public class HUD : MonoBehaviour {
 
 	//INIT
 	void Start(){
-		gameMaster = GameObject.FindObjectOfType<GameMaster> ().GetComponent<GameMaster>();
 		initView ();
 		updateSyf (10);
 		updateHealth (1.0f);
@@ -88,7 +86,7 @@ public class HUD : MonoBehaviour {
 		GUI.DrawTexture (syfRect, syfTex);
 		GUI.Label (syfTextRect,syfAmount, syfTextStyle);
 		GUI.DrawTexture (timeBackgroundRect, timeBackgroundTex);
-		GUI.Label (timeBackgroundRect, gameMaster.getTimeToDayEnd(),timeTextStyle);
+		GUI.Label (timeBackgroundRect, GameMaster.instance.getTimeToDayEnd(),timeTextStyle);
 		GUI.DrawTexture (healthbarRect, healtBarTexEmpty);
 		if (hintVisible) {
 			GUI.DrawTexture (hintRect, hintTex);
