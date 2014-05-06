@@ -73,6 +73,7 @@ public class GameMaster : MonoSingleton<GameMaster> {
 			dayPhase += Time.deltaTime;
 			LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
 		} else {
+			totalTime = dayLenght + changeDuration;
 			phase = Day;
 			dayPhase = 0;
 			LightManager.instance.dayPhase = 0;
