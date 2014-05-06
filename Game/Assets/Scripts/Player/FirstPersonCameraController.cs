@@ -62,8 +62,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
             // read input
             Vector2 input;
-			input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity + state.ThumbSticks.Right.X;
-			input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity + state.ThumbSticks.Right.Y;
+			input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity + state.ThumbSticks.Right.X * 0.5f;
+			input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity + state.ThumbSticks.Right.Y * 0.5f;
             //input /= Screen.height;
 
             if (input != Vector2.zero) {

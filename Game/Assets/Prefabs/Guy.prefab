@@ -2584,9 +2584,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 200
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2650,9 +2650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34c7dc1e65b71b499b2d0b2fb4df764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 100
+  maxHitPoints: 50
   attackCooldown: .550000012
-  wilhelmScream: {fileID: 8300000, guid: 84430ab1a939cf349944034c9844834e, type: 3}
+  scream:
+  - {fileID: 8300000, guid: 985ee0345cc9b40409f88db9178a66c9, type: 3}
+  - {fileID: 8300000, guid: e310290fdfb8a5543b3f5bf11b81ad67, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

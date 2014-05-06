@@ -11,6 +11,6 @@ MonoImporter:
       type: 3}
   - brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
       type: 3}
-  executionOrder: 0
+  executionOrder: 100
   icon: {instanceID: 0}
   userData: 

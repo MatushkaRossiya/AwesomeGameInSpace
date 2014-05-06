@@ -10,7 +10,7 @@ public class WalkingGuyTest : CharacterAI {
     private float currentHitPoints;
 
     public float attackCooldown;
-    public AudioClip wilhelmScream;
+    public AudioClip[] scream;
     private float nextAttack;
 
     //public GameObject stuffPrefab;
@@ -48,7 +48,7 @@ public class WalkingGuyTest : CharacterAI {
             navMeshAgent.enabled = false;
             ragdollAnimation.isRagdoll = true;
             StartCoroutine(DelayDie(5.0f));
-            audio.PlayOneShot(wilhelmScream, 10.0f);
+            audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 100.0f);
 			GameMaster.instance.activeEnemies--;
         }
     }
