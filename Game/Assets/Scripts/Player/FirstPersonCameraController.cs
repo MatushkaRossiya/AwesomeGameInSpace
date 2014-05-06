@@ -29,12 +29,11 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 			transform.localRotation = Quaternion.Euler(new Vector3(-_verticalAngle, 0, 0));
 		}
 	}
+
     public float acceleration = 1.0f;
-
     public float mouseSensitivity = 1.0f;
-
-	// Update is called once per frame
-    void Update()
+	
+    void FixedUpdate()
     {
 #if UNITY_EDITOR
         if (!Input.GetKey(KeyCode.Escape)) {
@@ -68,10 +67,10 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
             if (input != Vector2.zero) {
 
-                float speed = input.magnitude / Time.deltaTime;
+                float speed = input.magnitude / Time.fixedDeltaTime;
                 float multiplier = Mathf.Pow(speed, acceleration);
 
-                input = input.normalized * (multiplier * Time.deltaTime);
+                input = input.normalized * (multiplier * Time.fixedDeltaTime);
 
                 horizontalAngle += input.x;
                 verticalAngle += input.y;

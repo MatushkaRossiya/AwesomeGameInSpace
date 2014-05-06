@@ -170,7 +170,7 @@ public class PlayerController : MonoSingleton<PlayerController> {
     void Breathe() {
         // TODO make it better
         float targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
-        fatigue = (fatigue - targetFatigue) * Mathf.Exp(-0.15f * Time.deltaTime) + targetFatigue;
+        fatigue = (fatigue - targetFatigue) * Mathf.Exp(-0.15f * Time.fixedDeltaTime) + targetFatigue;
 
 
         if (Time.time > nextBreath) {
