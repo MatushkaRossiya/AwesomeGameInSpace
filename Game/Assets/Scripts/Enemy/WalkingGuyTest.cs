@@ -81,7 +81,13 @@ public class WalkingGuyTest : CharacterAI {
         }
             else
             {
-
+                if(Vector3.Distance(transform.position, player.transform.position) < 2.0f)
+                {
+                    mainObjectiveDelayed = false;
+                    subobjective = SubObjective.none;
+                    subobjectivePosition = Vector3.zero;
+                }
+                else{
                 switch(subobjective)
                 {
                     case SubObjective.anotherWay:
@@ -122,7 +128,7 @@ public class WalkingGuyTest : CharacterAI {
                         break;
                 }
 
-
+            }
                 }
 
 
