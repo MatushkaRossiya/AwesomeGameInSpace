@@ -697,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 20
   walkSpeed: 4
-  sprintSpeed: 8
+  sprintSpeed: 6
   jumpHeight: 2
   standingViewHeight: .75
   crouchingViewHeight: -.25

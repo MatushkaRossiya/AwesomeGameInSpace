@@ -1,42 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public sealed class GuyAnimation : RagdollAnimation {
+public sealed class GuyAnimation : RagdollAnimation
+{
     Rigidbody[] skeleton;
     Animator animator;
     CharacterAI characterAI;
-
     bool _isRagdoll;
-    public override bool isRagdoll {
+
+    public override bool isRagdoll
+    {
         get { return _isRagdoll; }
-        set {
-            if (value && !_isRagdoll) {
+        set
+        {
+            if (value && !_isRagdoll)
+            {
                 _isRagdoll = true;
                 animator.enabled = false;
-                foreach (var bone in skeleton) {
+                foreach (var bone in skeleton)
+                {
                     bone.isKinematic = false;
                 }
 
-            } else if (!value && _isRagdoll) {
+            }
+            else if (!value && _isRagdoll)
+            {
                 _isRagdoll = false;
                 animator.enabled = true;
-                foreach (var bone in skeleton) {
+                foreach (var bone in skeleton)
+                {
                     bone.isKinematic = true;
                 }
             }
         }
     }
 
-    private bool isDead { get { return characterAI.isDead;  } }
+    private bool isDead { get { return characterAI.isDead; } }
 
-    void Start() {
+    void Start()
+    {
         skeleton = GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
         characterAI = GetComponent<CharacterAI>();
     }
 
-    void FixedUpdate() {
-        if (!isDead) {
+    void FixedUpdate()
+    {
+        if (!isDead)
+        {
             float speed = characterAI.velocity.magnitude / 1.513f;
             if (speed < 0.1 || speed > 1.0f)
                 animator.speed = 1.0f;
@@ -46,9 +57,11 @@ public sealed class GuyAnimation : RagdollAnimation {
         }
     }
 
-    public override void DealDamage(BodyPart bodyPart, float rawDamage) {
+    public override void DealDamage(BodyPart bodyPart, float rawDamage)
+    {
         float damage;
-        switch (bodyPart.type) {
+        switch (bodyPart.type)
+        {
             case BodyPart.Part.arm:
                 damage = 0.5f * rawDamage;
                 break;
