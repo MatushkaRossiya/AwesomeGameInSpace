@@ -15,9 +15,8 @@ public class Granade : MonoBehaviour
     {
         detonationTime = Time.time + fuse;
     }
-    
-    // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         if (detonated)
         {

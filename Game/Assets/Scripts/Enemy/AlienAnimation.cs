@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public sealed class GuyAnimation : RagdollAnimation
+public sealed class AlienAnimation : RagdollAnimation
 {
     Rigidbody[] skeleton;
     Animator animator;

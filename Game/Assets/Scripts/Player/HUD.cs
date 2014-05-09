@@ -80,11 +80,11 @@ public class HUD : MonoBehaviour
         hintVisible = true;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (hintVisible)
         {
-            Debug.Log(timeHintVisible.ToString());
+            //Debug.Log(timeHintVisible.ToString());
             if (timeHintVisible > Time.deltaTime)
                 timeHintVisible -= Time.deltaTime;
             else

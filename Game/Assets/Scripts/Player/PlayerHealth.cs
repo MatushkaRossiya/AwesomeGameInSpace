@@ -46,7 +46,7 @@ public class PlayerHealth : MonoSingleton<PlayerHealth>
         _health = maxHealth;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKeyDown(KeyCode.H))
         {

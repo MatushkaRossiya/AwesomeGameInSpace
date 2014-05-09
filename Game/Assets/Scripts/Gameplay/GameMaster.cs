@@ -23,7 +23,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         phase = Day;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         phase();
     }
@@ -50,7 +50,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     {
         if (dayPhase < dayLenght)
         {
-            dayPhase += Time.deltaTime;
+            dayPhase += Time.fixedDeltaTime;
         } 
         else
         {
@@ -63,7 +63,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     {
         if (dayPhase < changeDuration)
         {
-            dayPhase += Time.deltaTime;
+            dayPhase += Time.fixedDeltaTime;
             LightManager.instance.dayPhase = dayPhase / changeDuration;
         } 
         else
@@ -92,7 +92,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     {
         if (dayPhase < changeDuration)
         {
-            dayPhase += Time.deltaTime;
+            dayPhase += Time.fixedDeltaTime;
             LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
         } 
         else

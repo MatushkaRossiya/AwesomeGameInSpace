@@ -13,7 +13,7 @@ public class InteractionHandler : MonoBehaviour
     GamePadState state;
     GamePadState prevState;
 
-    void Update()
+    void FixedUpdate()
     {
         if (!playerIndexSet || !prevState.IsConnected)
         {

@@ -123,7 +123,6 @@ public class Alien : CharacterAI
                             }
                             else
                             {
-                           
                                 if (Vector3.Distance(new Vector3(transform.position.x, transform.position.y), new Vector3(subobjectivePosition.x, subobjectivePosition.y)) < 2.0f)
                                 {
                                     blockadeToDestroy.GetComponent<Damageable>().DealDamage(transform.forward * 0.5f);
@@ -188,14 +187,8 @@ public class Alien : CharacterAI
             Kill();
     }
 
-    void OnBecameVisible()
-    {
-        //Debug.Log("I'M VISIBLE MOTHAFUCKA!!!");
-    }
-
     void OnBecameInvisible()
     {
-        //Debug.Log("I'M AN INVISIBLE MOTHERFUCKER!!!");
         if (disposeBody)
         {
             Destroy(this.gameObject);

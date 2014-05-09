@@ -28,7 +28,7 @@ public class LightManager : MonoSingleton<LightManager>
 
     private float _dayPhase;
 
-    void Update()
+    void FixedUpdate()
     {
         if (_dayPhase != 0)
         {
