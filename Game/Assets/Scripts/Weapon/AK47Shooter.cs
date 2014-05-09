@@ -2,7 +2,7 @@
 using System.Collections;
 using XInputDotNetPure;
 
-public class AK47Shooter : MonoBehaviour {
+public class AK47Shooter : MonoSingleton<AK47Shooter> {
 	public GameObject bulletSource;
 	public GameObject granadeLauncher;
 	public GameObject granadePrefab;
@@ -12,7 +12,7 @@ public class AK47Shooter : MonoBehaviour {
 
     [Range(0.1f, 0.5f)]
     public float shotPeriod;
-    public int clipSize;
+    public int maxAmmo;
 	public float recoil;
 	public float handling;
 
@@ -20,7 +20,15 @@ public class AK47Shooter : MonoBehaviour {
     ShootingPhase shootingPhase;
 
     private float nextShot;
-    private int currentClip;
+	private int _ammo;
+    public int ammo{
+		get{
+			return _ammo;
+		}
+		set{
+			_ammo = Mathf.Clamp(value, 0, maxAmmo);
+		}
+	}
 	private float spread;
 	private float knockBack;
 	private float granadeCooldown = 1.0f;
@@ -34,7 +42,7 @@ public class AK47Shooter : MonoBehaviour {
     void Start() {
         shootingPhase = ShootingPhase.NotShooting;
         nextShot = Time.fixedTime;
-        currentClip = clipSize;
+        ammo = maxAmmo;
     }
 
     void Update() {
@@ -49,7 +57,7 @@ public class AK47Shooter : MonoBehaviour {
         }
         
 		if (Input.GetKeyDown(KeyCode.R) || (state.Buttons.B == ButtonState.Pressed && prevState.Buttons.B == ButtonState.Released)) {
-            currentClip = clipSize;
+            ammo = maxAmmo;
         }
 
 		if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || (state.Buttons.RightShoulder == ButtonState.Pressed && prevState.Buttons.RightShoulder == ButtonState.Released))) {
@@ -101,10 +109,10 @@ public class AK47Shooter : MonoBehaviour {
             nextShot = Time.fixedTime + shotPeriod;
 
 
-            if (currentClip <= 0) {
+            if (ammo <= 0) {
                 audio.PlayOneShot(outOfAmmoSound);
             } else {
-                --currentClip;
+                --ammo;
                 audio.PlayOneShot(pewSound);
 				if (hit) {
 					Debug.DrawLine(start, hitInfo.point, Color.red, 0.2f, true);
@@ -134,10 +142,8 @@ public class AK47Shooter : MonoBehaviour {
     void OnGUI() {
         int sw = Screen.width;
         int sh = Screen.height;
-        GUI.Label(new Rect(sw * 0.8f, sh * 0.8f, sw * 0.2f, sh * 0.2f), "AMMO: " + currentClip);
+        GUI.Label(new Rect(sw * 0.8f, sh * 0.8f, sw * 0.2f, sh * 0.2f), "AMMO: " + ammo);
     }
-
-
 
 	enum ShootingPhase {
 		NotShooting,

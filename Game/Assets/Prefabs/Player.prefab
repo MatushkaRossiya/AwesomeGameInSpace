@@ -100,6 +100,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 82: {fileID: 8200002}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400018}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -666,7 +667,7 @@ MonoBehaviour:
   pewSound: {fileID: 8300000, guid: 105f26ac05059b14f955f39903cd7701, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 10544dfdd743f61469b617892b167107, type: 3}
   shotPeriod: .100000001
-  clipSize: 30
+  maxAmmo: 200
   recoil: .00999999978
   handling: 2
 --- !u!114 &11400002
@@ -1053,6 +1054,17 @@ MonoBehaviour:
   timeBackgroundTex: {fileID: 2800000, guid: eb02af827cc4a1f489038dbf23564c3c, type: 3}
   syfTex: {fileID: 2800000, guid: e34f9981ff5f89643b7754aad8a95872, type: 3}
   hintTex: {fileID: 2800000, guid: b33cda62a8540324a80b7be3159d7b90, type: 3}
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94722031323afcf46ba95fda892438ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
