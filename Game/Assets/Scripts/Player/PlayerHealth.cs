@@ -1,26 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : Damageable {
-	public float health;
-	private float maxHealth;
-	private float currentHealth{
+public class PlayerHealth : MonoSingleton<PlayerHealth> {
+	public float maxHealth;
+	private float _health;
+	public float health{
 		get{
-			return health;
+			return _health;
 		}
 		set{
-			health = value;
-			GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(health/maxHealth);	//powiadamia hud o zmianie zycia
-			if(health < 0){
+			_health = Mathf.Clamp(value, 0, maxHealth);
+			//GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);	//powiadamia hud o zmianie zycia
+			if(_health == 0){
 				Application.LoadLevel(1);
 			}
 		}
 	}
-	void Start(){
-		maxHealth = health;
+
+	public int maxSyringes;
+	private int _syringes;
+	public int syringes{
+		get{
+			return _syringes;
+		}
+		set{
+			_syringes = value;
+			Debug.Log("You now have " + _syringes + " syringes");
+		}
 	}
-	public override void DealDamage(Vector3 damage) {
-		currentHealth -= damage.magnitude;
-		rigidbody.AddForce(damage * 100.0f);
+
+
+	public float syringeHealAmount;
+
+
+	void Start(){
+		_health = maxHealth;
+	}
+
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.H)) {
+			UseSyringe();
+		}
+	}
+
+	private bool UseSyringe() {
+		if (syringes > 0) {
+			syringes--;
+			health += syringeHealAmount;
+			return true;
+		}
+		return false;
+	}
+
+	public float healthPercentage {
+		get {
+			return health / maxHealth;
+		}
+	}
+
+	public bool canBuySyringe {
+		get { return syringes < maxSyringes; }
 	}
 }

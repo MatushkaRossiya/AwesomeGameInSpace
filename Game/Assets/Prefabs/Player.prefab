@@ -680,7 +680,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640ccde4f6256044194111e49e2ed55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHealth: 100
+  maxSyringes: 3
+  syringeHealAmount: 40
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d96c563888ba242962adbec70d3180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 1.39999998
+  acceleration: 1.20000005
   mouseSensitivity: .100000001
 --- !u!114 &11400016
 MonoBehaviour:

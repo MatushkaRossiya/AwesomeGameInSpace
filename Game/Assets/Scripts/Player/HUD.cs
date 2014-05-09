@@ -71,13 +71,15 @@ public class HUD : MonoBehaviour {
 		hintVisible = true;
 	}
 	void Update(){
-				if (hintVisible) {
-						Debug.Log (timeHintVisible.ToString ());
-						if (timeHintVisible > Time.deltaTime)
-								timeHintVisible -= Time.deltaTime;
-						else
-								hintVisible = false;
-				}
+		if (hintVisible) {
+			Debug.Log (timeHintVisible.ToString ());
+			if (timeHintVisible > Time.deltaTime)
+					timeHintVisible -= Time.deltaTime;
+			else
+					hintVisible = false;
+		}
+
+		updateHealth(PlayerHealth.instance.healthPercentage);
 	}
 	//UI	
 	void OnGUI() {
