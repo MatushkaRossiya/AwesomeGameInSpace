@@ -678,11 +678,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640ccde4f6256044194111e49e2ed55e, type: 3}
+  m_Script: {fileID: 11500000, guid: f6121c10a8cef8f4ab32c6c5b989c3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxSyringes: 3
+  maxSyf: 100
   syringeHealAmount: 40
 --- !u!114 &11400004
 MonoBehaviour:

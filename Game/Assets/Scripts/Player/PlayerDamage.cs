@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class PlayerDamage : Damageable {
-	PlayerHealth playerHealth;
+	PlayerStats playerHealth;
 	// Use this for initialization
 	void Start () {
-		playerHealth = GetComponent<PlayerHealth>();
+		playerHealth = GetComponent<PlayerStats>();
 	}
 
 	public override void DealDamage(Vector3 damage) {

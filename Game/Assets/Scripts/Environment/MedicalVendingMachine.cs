@@ -5,19 +5,33 @@ public class MedicalVendingMachine : Interactive {
 	public int syringePrice;
 	public override string message {
 		get {
-			if (PlayerHealth.instance.canBuySyringe) {
-				return "Buy syringe for " + syringePrice + " SYF";
-			}
-			else {
-				return "Syringes full";
-			}
+			string ret;
+			CanBuy(out ret);
+			return ret;
 		}
 	}
 
 	public override void Action() {
-		if (PlayerHealth.instance.canBuySyringe) {
-			PlayerHealth.instance.syringes++;
-			// TODO take away scrap as payment
+		string str;
+		if (CanBuy(out str)) {
+			PlayerStats.instance.syringes++;
+			PlayerStats.instance.syf -= syringePrice;
+		}
+	}
+
+	private bool CanBuy(out string msg) {
+		PlayerStats p = PlayerStats.instance;
+		if (p.syringes >= p.maxSyringes) {
+			msg = "Syringes full";
+			return false;
+		}
+		else if (p.syf < syringePrice) {
+			msg = "Insufficient syf";
+			return false;
+		}
+		else {
+			msg = "Buy syringe for " + syringePrice + " syf";
+			return true;
 		}
 	}
 }

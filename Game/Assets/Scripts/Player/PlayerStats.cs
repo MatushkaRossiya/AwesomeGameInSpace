@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoSingleton<PlayerHealth> {
+public class PlayerStats : MonoSingleton<PlayerStats> {
 	public float maxHealth;
 	private float _health;
 	public float health{
@@ -29,12 +29,26 @@ public class PlayerHealth : MonoSingleton<PlayerHealth> {
 		}
 	}
 
+	public int maxSyf;
+	private int _syf;
+	public int syf {
+		get {
+			return _syf;
+		}
+		set {
+			_syf = value;
+			Debug.Log("You now have " + _syf + " syf");
+		}
+	}
+
 
 	public float syringeHealAmount;
 
 
 	void Start(){
 		_health = maxHealth;
+		_syringes = 0;
+		_syf = 100; // TODO: don't give freebies
 	}
 
 	void Update() {
