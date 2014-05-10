@@ -29,7 +29,6 @@ public class PlayerStats : MonoSingleton<PlayerStats> {
 		}
 	}
 
-	public int maxSyf;
 	private int _syf;
 	public int syf {
 		get {
@@ -52,7 +51,7 @@ public class PlayerStats : MonoSingleton<PlayerStats> {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.H)) {
+		if (Input.GetKeyDown(KeyCode.Q)) {
 			UseSyringe();
 		}
 	}

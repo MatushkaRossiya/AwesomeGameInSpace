@@ -5,6 +5,8 @@ public sealed class GuyAnimation : RagdollAnimation {
     Rigidbody[] skeleton;
     Animator animator;
     CharacterAI characterAI;
+	public GameObject syfPrefab;
+	public int syfDropAmount;
 
     bool _isRagdoll;
     public override bool isRagdoll {
@@ -67,4 +69,14 @@ public sealed class GuyAnimation : RagdollAnimation {
         }
         characterAI.DealDamage(damage);
     }
+
+	void OnDestroy() {
+		float prob = (float) syfDropAmount / (float) skeleton.Length;
+		foreach (var bone in skeleton) {
+			if (Random.value < prob) {
+				SyfCollectible syf = (Instantiate(syfPrefab, bone.position, Random.rotation) as GameObject).GetComponent<SyfCollectible>();
+				syf.value = 1;
+			}
+		}
+	}
 }

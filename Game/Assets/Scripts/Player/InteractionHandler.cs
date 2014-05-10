@@ -39,7 +39,7 @@ public class InteractionHandler : MonoBehaviour {
             if (interactiveObject != null) {
                 message = interactiveObject.message;
                 screenPosition = Camera.main.WorldToScreenPoint(interactiveObject.transform.position);
-                if (Input.GetKeyDown(KeyCode.F) || state.Buttons.X == ButtonState.Pressed)
+                if (Input.GetKeyDown(KeyCode.E) || state.Buttons.X == ButtonState.Pressed)
                 {
                     interactiveObject.Action();
                 }

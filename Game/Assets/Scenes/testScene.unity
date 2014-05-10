@@ -2355,6 +2355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb51b470bdb7d6a4cb96a7f93a7bebd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syfPrefab: {fileID: 100000, guid: 24d7ceed7ff8c83469355f2022c7b046, type: 2}
+  syfDropAmount: 5
 --- !u!114 &288668046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7308,7 +7310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxSyringes: 3
-  maxSyf: 100
   syringeHealAmount: 40
 --- !u!82 &968081067
 AudioSource:
