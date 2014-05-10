@@ -104,7 +104,7 @@ public class AK47Shooter : MonoSingleton<AK47Shooter> {
 			dir += transform.right * Mathf.Cos(angle) * dist;
 			dir.Normalize();
 
-			bool hit = Physics.Raycast(start, dir, out hitInfo, 10000.0f);
+			bool hit = Physics.Raycast(start, dir, out hitInfo, 10000.0f, Layers.playerAttack);
             shootingPhase = ShootingPhase.Shooting;
             nextShot = Time.fixedTime + shotPeriod;
 
