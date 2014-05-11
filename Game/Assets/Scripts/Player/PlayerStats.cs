@@ -17,22 +17,17 @@ public class PlayerStats : MonoSingleton<PlayerStats> {
 		}
 	}
 
-    public float health
-    {
-        get
-        {
-            return _health;
-        }
-        set
-        {
-            _health = Mathf.Clamp(value, 0, maxHealth);
-            //GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);   //powiadamia hud o zmianie zycia
-            if (_health == 0)
-            {
-                Application.LoadLevel(1);
-            }
-        }
-    }
+	public int maxSyringes;
+	private int _syringes;
+	public int syringes{
+		get{
+			return _syringes;
+		}
+		set{
+			_syringes = value;
+			Debug.Log("You now have " + _syringes + " syringes");
+		}
+	}
 
 	private int _syf;
 	public int syf {
@@ -47,8 +42,6 @@ public class PlayerStats : MonoSingleton<PlayerStats> {
 
 
 	public float syringeHealAmount;
-
-    public float syringeHealAmount;
 
 	void Start(){
 		_health = maxHealth;

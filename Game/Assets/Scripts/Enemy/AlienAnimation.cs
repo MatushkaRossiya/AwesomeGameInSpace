@@ -9,6 +9,7 @@ public sealed class AlienAnimation : RagdollAnimation
 	public GameObject syfPrefab;
 	public int syfDropAmount;
 
+	private bool _isRagdoll;
     public override bool isRagdoll
     {
         get { return _isRagdoll; }

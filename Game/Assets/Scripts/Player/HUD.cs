@@ -91,7 +91,7 @@ public class HUD : MonoBehaviour
                 hintVisible = false;
         }
 
-        updateHealth(PlayerHealth.instance.healthPercentage);
+        updateHealth(PlayerStats.instance.healthPercentage);
     }
 
     //UI    
