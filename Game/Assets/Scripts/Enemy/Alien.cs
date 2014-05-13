@@ -145,7 +145,7 @@ public class Alien : CharacterAI
         {
             isDead = true;
             navMeshAgent.enabled = false;
-            ragdollAnimation.isRagdoll = true;
+			ragdollAnimation.Kill();
             StartCoroutine(DelayDie(10.0f));
             audio.PlayOneShot(scream [Random.Range(0, scream.Length)], 10.0f);
             GameMaster.instance.activeEnemies--;

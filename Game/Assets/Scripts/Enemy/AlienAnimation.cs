@@ -83,13 +83,15 @@ public sealed class AlienAnimation : RagdollAnimation
         characterAI.DealDamage(damage);
     }
 
-	void OnDestroy() {
-		float prob = (float) syfDropAmount / (float) skeleton.Length;
+
+	public override void Kill() {
+		float prob = (float)syfDropAmount / (float)skeleton.Length;
 		foreach (var bone in skeleton) {
 			if (Random.value < prob) {
 				SyfCollectible syf = (Instantiate(syfPrefab, bone.position, Random.rotation) as GameObject).GetComponent<SyfCollectible>();
 				syf.value = 1;
 			}
 		}
+		isRagdoll = true;
 	}
 }
