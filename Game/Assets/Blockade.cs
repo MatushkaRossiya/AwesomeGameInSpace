@@ -9,16 +9,45 @@ public class Blockade : MonoBehaviour {
 	private int currentComponentCount;
 	private int lastComponentCount;
 	private Vector3 forceDirection;
+	private NavMeshObstacle[] obstacles;
+	bool _destroyed;
+	bool destroyed{
+		get{
+			return _destroyed;
+		}
+		set{
+			if(value && !_destroyed){
+				foreach (var obstacle in obstacles) {
+					obstacle.enabled = false;
+				}
+			}else if(_destroyed && !value){
+				foreach (var obstacle in obstacles) {
+					obstacle.enabled = false;
+				}
+			}
+			_destroyed = value;
+		}
+	}
+
+	public float hitPointsPercentage {
+		get {
+			return hitPoints / maxHitpoints;
+		}
+		set {
+			hitPoints = Mathf.Clamp01(value) * maxHitpoints;
+		}
+	}
 
 	void Start() {
+		obstacles = GetComponentsInChildren<NavMeshObstacle>();
+		destroyed = hitPoints <= 0;
 		lastComponentCount = blockadeComponents.Count;
 		SetActiveComponents();
 	}
 
 	private void SetActiveComponents() {
 		float percentage = 0.5f;
-		currentComponentCount = (hitPoints / maxHitpoints) <= 0 ? 0 : (int)((1 / percentage - 1 + hitPoints / maxHitpoints) * percentage * blockadeComponents.Count);
-		Debug.Log(currentComponentCount);
+		currentComponentCount = hitPointsPercentage <= 0 ? 0 : (int)((1 / percentage - 1 + hitPointsPercentage) * percentage * blockadeComponents.Count);
 		for (int i = lastComponentCount; i < currentComponentCount; ++i) {
 			ActivateComponent(blockadeComponents[i]);
 		}
@@ -26,6 +55,7 @@ public class Blockade : MonoBehaviour {
 			DeactivateComponent(blockadeComponents[i]);
 		}
 		lastComponentCount = currentComponentCount;
+		destroyed = hitPoints < 0;
 	}
 
 	private void ActivateComponent(GameObject component) {
@@ -45,7 +75,12 @@ public class Blockade : MonoBehaviour {
 
 	public void DealDamage(GameObject target, Vector3 damage) {
 		forceDirection = damage;
-		hitPoints -= damage.magnitude;
+		hitPoints = Mathf.Max(0, hitPoints - damage.magnitude);
+		SetActiveComponents();
+	}
+
+	public void Repair(float repairAmount) {
+		hitPointsPercentage += repairAmount;
 		SetActiveComponents();
 	}
 }

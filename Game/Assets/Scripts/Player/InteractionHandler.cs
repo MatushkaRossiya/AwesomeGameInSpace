@@ -33,20 +33,21 @@ public class InteractionHandler : MonoBehaviour
         prevState = state;
         state = GamePad.GetState(playerIndex);
 
-        RaycastHit hitInfo;
         message = null;
-        if (Physics.SphereCast(transform.position, touchRadius, transform.forward, out hitInfo, touchRange))
+		RaycastHit[] hits = Physics.SphereCastAll(transform.position, touchRadius, transform.forward, touchRange);
+        if (hits.Length > 0)
         {
-            Interactive interactiveObject = hitInfo.collider.GetComponent<Interactive>();
-            if (interactiveObject != null)
-            {
-                message = interactiveObject.message;
-                screenPosition = Camera.main.WorldToScreenPoint(interactiveObject.transform.position);
-                if (Input.GetKeyDown(KeyCode.E) || state.Buttons.X == ButtonState.Pressed)
-                {
-                    interactiveObject.Action();
-                }
-            }
+			foreach (var hit in hits) {
+				Interactive interactiveObject = hit.collider.GetComponent<Interactive>();
+				if (interactiveObject != null) {
+					message = interactiveObject.message;
+					screenPosition = Camera.main.WorldToScreenPoint(interactiveObject.transform.position);
+					if (Input.GetKeyDown(KeyCode.E) || state.Buttons.X == ButtonState.Pressed) {
+						interactiveObject.Action();
+					}
+					break;
+				}
+			}
         }
     }
 
