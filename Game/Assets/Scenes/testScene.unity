@@ -2621,9 +2621,10 @@ MonoBehaviour:
   - {fileID: 985084358}
   - {fileID: 1938481138}
   - {fileID: 534590308}
-  hitPoints: 500
+  hitPoints: 0
   maxHitpoints: 500
   forceMultiplier: 5
+  destroyedThreshold: .5
 --- !u!114 &282209166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3818,6 +3819,7 @@ GameObject:
   - 4: {fileID: 446872637}
   - 114: {fileID: 446872639}
   - 114: {fileID: 446872638}
+  - 114: {fileID: 446872640}
   m_Layer: 0
   m_Name: TestLevel
   m_TagString: Untagged
@@ -3942,6 +3944,32 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 0
     m_PostInfinity: 0
+--- !u!114 &446872640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 446872636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451ac1b6e66293f429bfb64d8b856858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: .25
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &448052131
 GameObject:
   m_ObjectHideFlags: 0
@@ -8165,7 +8193,7 @@ MonoBehaviour:
   acceleration: 20
   walkSpeed: 4
   sprintSpeed: 6
-  jumpHeight: 2
+  jumpHeight: .5
   standingViewHeight: .75
   crouchingViewHeight: -.25
   crouchingDelay: .400000006
@@ -10764,6 +10792,10 @@ Prefab:
     - target: {fileID: 11400002, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: jumpHeight
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}

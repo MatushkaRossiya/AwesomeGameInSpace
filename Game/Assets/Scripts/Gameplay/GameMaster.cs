@@ -65,6 +65,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             dayPhase += Time.fixedDeltaTime;
             LightManager.instance.dayPhase = dayPhase / changeDuration;
+			GravityManager.instance.gravity = dayPhase / changeDuration;
         } 
         else
         {

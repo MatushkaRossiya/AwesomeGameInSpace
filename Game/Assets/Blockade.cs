@@ -6,6 +6,7 @@ public class Blockade : MonoBehaviour {
 	public float hitPoints;
 	public float maxHitpoints;
 	public float forceMultiplier;
+	public float destroyedThreshold = 0.5f;
 	private int currentComponentCount;
 	private int lastComponentCount;
 	private Vector3 forceDirection;
@@ -42,12 +43,16 @@ public class Blockade : MonoBehaviour {
 		obstacles = GetComponentsInChildren<NavMeshObstacle>();
 		destroyed = hitPoints <= 0;
 		lastComponentCount = blockadeComponents.Count;
-		SetActiveComponents();
+		currentComponentCount = hitPointsPercentage <= 0 ? 0 : (int)((1 / destroyedThreshold - 1 + hitPointsPercentage) * destroyedThreshold * blockadeComponents.Count);
+		for (int i = currentComponentCount; i < lastComponentCount; ++i) {
+			blockadeComponents[i].SetActive(false);
+		}
+		lastComponentCount = currentComponentCount;
+		destroyed = hitPoints < 0;
 	}
 
 	private void SetActiveComponents() {
-		float percentage = 0.5f;
-		currentComponentCount = hitPointsPercentage <= 0 ? 0 : (int)((1 / percentage - 1 + hitPointsPercentage) * percentage * blockadeComponents.Count);
+		currentComponentCount = hitPointsPercentage <= 0 ? 0 : (int)((1 / destroyedThreshold - 1 + hitPointsPercentage) * destroyedThreshold * blockadeComponents.Count);
 		for (int i = lastComponentCount; i < currentComponentCount; ++i) {
 			ActivateComponent(blockadeComponents[i]);
 		}
