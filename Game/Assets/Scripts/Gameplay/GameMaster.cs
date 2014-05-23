@@ -9,7 +9,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     public float dayLenght;
     public float changeDuration;
     public int waveSize;
-    public int spawnRate;
+    public float spawnRate;
 
     private delegate void Phase();
 
@@ -71,7 +71,8 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             phase = Night;
             spawnPool = waveSize;
-            float meanTimeBetweenSpawns = (spawnRate / spawners.Count) * spawnRate;
+            float meanTimeBetweenSpawns = spawners.Count / spawnRate;
+			Debug.Log(spawners.Count);
             foreach (EnemySpawner spawner in spawners)
             {
                 spawner.meanTimeBetweenSpawns = meanTimeBetweenSpawns;

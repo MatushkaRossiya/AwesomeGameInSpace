@@ -3690,7 +3690,7 @@ MonoBehaviour:
   dayLenght: 10
   changeDuration: 15
   waveSize: 50
-  spawnRate: 5
+  spawnRate: 1
 --- !u!114 &446872639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13130,6 +13130,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: d1ff32da61c362647ae3dceeb49e17ec, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: d1ff32da61c362647ae3dceeb49e17ec, type: 2}
+      propertyPath: dayLenght
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: d1ff32da61c362647ae3dceeb49e17ec, type: 2}
+      propertyPath: changeDuration
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400024, guid: d1ff32da61c362647ae3dceeb49e17ec, type: 2}
+      propertyPath: spawnRate
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
