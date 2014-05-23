@@ -140,6 +140,7 @@ public class AlienFSM : BaseFSM {
                         else
                         {
                             controller.AttackStrong(1.0f);
+                            if (!blockadeToDestroy) SubObjectiveClear();
                         }
                         break;
                     }
