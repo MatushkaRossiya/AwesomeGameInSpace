@@ -50,6 +50,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _syf = value;
+			GameObject.FindObjectOfType<HUD> ().GetComponent<HUD> ().updateSyf (value);
             Debug.Log("You now have " + _syf + " syf");
         }
     }

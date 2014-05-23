@@ -52,7 +52,7 @@ public class HUD : MonoBehaviour
     void Start()
     {
         initView();
-        updateSyf(99);
+		updateSyf (100);//TO DO CHANGE
         updateHealth(1.0f);
     }
 

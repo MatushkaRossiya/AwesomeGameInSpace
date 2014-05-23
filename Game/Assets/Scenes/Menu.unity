@@ -243,8 +243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundIMG: {fileID: 2800000, guid: 3d5a7e88d716b1b428c1054cc2c9f052, type: 3}
   creditsIMG: {fileID: 2800000, guid: dfd6e8babbf73e94487a510d315ebcbd, type: 3}
-  click: {fileID: 8300000, guid: 6021db7e54fae594e97d706d228af250, type: 3}
-  hover: {fileID: 8300000, guid: 708b247d818cd6e4aa94f084b0ab4671, type: 3}
+  click: {fileID: 0}
+  hover: {fileID: 0}
 --- !u!4 &2121291614
 Transform:
   m_ObjectHideFlags: 0

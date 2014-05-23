@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syfPrefab: {fileID: 100000, guid: 24d7ceed7ff8c83469355f2022c7b046, type: 2}
-  syfDropAmount: 5
+  syfDropAmount: 15
 --- !u!114 &288668046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13469,6 +13469,18 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: syfTextStyle.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: timeTextStyle.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400016, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: hintTextStyle.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
   m_RootGameObject: {fileID: 968081065}
@@ -15467,7 +15479,7 @@ MonoBehaviour:
     m_Font: {fileID: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
@@ -15526,7 +15538,7 @@ MonoBehaviour:
     m_Font: {fileID: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
@@ -15585,7 +15597,7 @@ MonoBehaviour:
     m_Font: {fileID: 0}
     m_FontSize: 0
     m_FontStyle: 0
-    m_Alignment: 0
+    m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
