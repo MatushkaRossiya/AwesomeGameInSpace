@@ -23,7 +23,7 @@ public class Blockade : MonoBehaviour {
 				}
 			}else if(_destroyed && !value){
 				foreach (var obstacle in obstacles) {
-					obstacle.enabled = false;
+					obstacle.enabled = true;
 				}
 			}
 			_destroyed = value;
