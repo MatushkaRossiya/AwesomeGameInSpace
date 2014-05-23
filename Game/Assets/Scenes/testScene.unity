@@ -971,7 +971,7 @@ GameObject:
   - 23: {fileID: 106123699}
   - 208: {fileID: 106123698}
   - 114: {fileID: 106123697}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -2469,6 +2469,8 @@ GameObject:
   - 82: {fileID: 288668044}
   - 95: {fileID: 288668043}
   - 23: {fileID: 288668048}
+  - 114: {fileID: 288668050}
+  - 114: {fileID: 288668049}
   m_Layer: 9
   m_Name: Alien
   m_TagString: Untagged
@@ -2590,7 +2592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoints: 50
-  attackCooldown: .550000012
   scream:
   - {fileID: 8300000, guid: 985ee0345cc9b40409f88db9178a66c9, type: 3}
   - {fileID: 8300000, guid: e310290fdfb8a5543b3f5bf11b81ad67, type: 3}
@@ -2645,6 +2646,30 @@ Renderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
+--- !u!114 &288668049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400026, guid: a74645a24cc377846ba206a6e4c187d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1078126986}
+  m_GameObject: {fileID: 288668041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd801828fb9e7184db061ffbe73c8bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &288668050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400024, guid: a74645a24cc377846ba206a6e4c187d6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1078126986}
+  m_GameObject: {fileID: 288668041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eea83c3c7ab8b049b9b6938e8e0bfc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &294041210
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,7 +4176,7 @@ GameObject:
   - 23: {fileID: 496644822}
   - 208: {fileID: 496644821}
   - 114: {fileID: 496644820}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -5839,7 +5864,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 690718754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blockade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6179,7 +6204,7 @@ GameObject:
   - 23: {fileID: 762255964}
   - 208: {fileID: 762255963}
   - 114: {fileID: 762255962}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -7100,7 +7125,7 @@ GameObject:
   - 23: {fileID: 895883447}
   - 208: {fileID: 895883446}
   - 114: {fileID: 895883445}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -8081,7 +8106,7 @@ GameObject:
   - 23: {fileID: 974946223}
   - 208: {fileID: 974946222}
   - 114: {fileID: 974946221}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -9092,7 +9117,7 @@ GameObject:
   - 23: {fileID: 1060789215}
   - 208: {fileID: 1060789214}
   - 114: {fileID: 1060789213}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -11669,7 +11694,7 @@ GameObject:
   - 23: {fileID: 1396386894}
   - 208: {fileID: 1396386893}
   - 114: {fileID: 1396386892}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -15444,7 +15469,7 @@ GameObject:
   - 23: {fileID: 1844541775}
   - 208: {fileID: 1844541774}
   - 114: {fileID: 1844541773}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}
@@ -16049,7 +16074,7 @@ GameObject:
   - 23: {fileID: 1880312716}
   - 208: {fileID: 1880312715}
   - 114: {fileID: 1880312714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Blockade
   m_Icon: {fileID: 0}

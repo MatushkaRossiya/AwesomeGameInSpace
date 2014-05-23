@@ -46,6 +46,8 @@ GameObject:
   - 82: {fileID: 8200000}
   - 95: {fileID: 9500000}
   - 23: {fileID: 2300004}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400026}
   m_Layer: 9
   m_Name: Alien
   m_TagString: Untagged
@@ -2673,7 +2675,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHitPoints: 50
-  attackCooldown: .550000012
   scream:
   - {fileID: 8300000, guid: 985ee0345cc9b40409f88db9178a66c9, type: 3}
   - {fileID: 8300000, guid: e310290fdfb8a5543b3f5bf11b81ad67, type: 3}
@@ -2818,6 +2819,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eea83c3c7ab8b049b9b6938e8e0bfc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd801828fb9e7184db061ffbe73c8bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
