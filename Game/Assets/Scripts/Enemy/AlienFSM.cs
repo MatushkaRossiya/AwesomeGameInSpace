@@ -23,7 +23,7 @@ public class AlienFSM : BaseFSM {
                 case State.Chase:
                     UpdateChase();      //Seek
                     break;
-                //and
+                                        //and
                 case State.Attack:
                     UpdateAttack();     //Destroy
                     break;
@@ -44,7 +44,7 @@ public class AlienFSM : BaseFSM {
             if (!wait)
             {
 
-                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 3.0f && Random.Range(0.0f, 1.0f) > 0.9f) controller.Dodge();
+                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.95f) controller.Dodge();
                 if (distanceToPlayer > 2.0f)
                 {
                     agent.SetDestination(player.transform.position);
@@ -55,31 +55,27 @@ public class AlienFSM : BaseFSM {
                 else
                 {
 
-                    int atk = Random.Range(1, 5);
+                    int atk = Random.Range(1, 9);
 
 
                     switch (atk)
                     {
+                        case 6:
                         case 1:
+                        case 9:
                             controller.AttackFast(1.0f);
                             break;
+                        case 7:
+                        case 8:                        
                         case 2:
                             controller.AttackStrong(1.0f);
-                            break;
-                        case 3:
-                            controller.Dodge();
-                            StartCoroutine(moment());
-
-                            break;
-                        case 4:
-                            
+                            break;                     
+                       
+                        case 4:                            
                             StartCoroutine(atk4());
                             break;
-                        case 5:
-                           
+                        case 5:                           
                             StartCoroutine(atk5());
-
-
                             break;
                         default:
                             break;
@@ -125,41 +121,35 @@ public class AlienFSM : BaseFSM {
     protected override void UpdateSubObjective()
     {
 
-
-       // Debug.Log(subObjective + "    " + Vector3.Distance(transform.position, subobjectivePosition));
-        if (Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
+        switch (subObjective)
         {
-            switch (subObjective)
-            {
-                case SubObjective.destroyBlockade:
-                    {
-                        if (!blockadeToDestroy)
-                        {
-                            SubObjectiveClear();
-                        }
-                        else
-                        {
-                            controller.AttackStrong(1.0f);
-                            if (!blockadeToDestroy) SubObjectiveClear();
-                        }
-                        break;
-                    }
-
-                case SubObjective.anotherWay:
+            case SubObjective.destroyBlockade:
+                {
+                    if (!blockadeToDestroy)
                     {
                         SubObjectiveClear();
-                        break;
                     }
-
-                default:
+                    else if(Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
+                    {
+                        controller.AttackStrong(1.0f);
+                    }
+                    else
+                    {
+                        agent.SetDestination(subobjectivePosition);
+                    }
                     break;
-            }
+                }
+
+            case SubObjective.anotherWay:
+                {
+                    SubObjectiveClear();
+                    break;
+                }
+
+            default:
+                break;
         }
-        else
-        {
-            agent.SetDestination(subobjectivePosition);
-            agent.speed = 2.0f;
-        }
+       
     }
 
 
@@ -204,7 +194,6 @@ public class AlienFSM : BaseFSM {
                agent.SetDestination(player.transform.position + Vector3.right/4.0f);
                agent.speed = 5.0f;
                controller.AttackFast(1.0f);
-
                yield return new WaitForSeconds(0.01f);
            }
        }
@@ -220,7 +209,7 @@ public class AlienFSM : BaseFSM {
             {
                 agent.SetDestination(player.transform.position + Vector3.left/4.0f);
                 agent.speed = 5.0f;
-                controller.AttackFast(1.0f);
+                controller.AttackStrong(1.0f);
                 yield return new WaitForSeconds(0.01f);
             }
         }

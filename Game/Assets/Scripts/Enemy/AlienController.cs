@@ -14,7 +14,7 @@ public class AlienController : MonoBehaviour {
     public void Dodge() {
         if (!GetComponent<Alien>().isDead)
         {
-            Debug.Log("dodged it");
+            //Debug.Log("dodged it");
             GetComponent<NavMeshAgent>().SetDestination(transform.position + Vector3.back/4.0f);
             GetComponent<NavMeshAgent>().speed = 7.0f;
         }

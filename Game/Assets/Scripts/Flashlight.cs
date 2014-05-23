@@ -33,24 +33,27 @@ public class Flashlight : MonoBehaviour
         {
             if (flickerTimeCurrent < flickerTimeOff)
             {
-                lightComponent.enabled = false;
+                //lightComponent.enabled = false;
+                lightComponent.intensity = Random.Range(0.05f, 0.2f);
                 flickerTimeCurrent += Time.fixedDeltaTime;
             }
             else if (flickerTimeCurrent < flickerTimeOn)
             {
-                lightComponent.enabled = true;
+                //lightComponent.enabled = true;
+                lightComponent.intensity = Random.Range(0.9f, 1.10f);
                 flickerTimeCurrent += Time.fixedDeltaTime;
             }
             else if (flickerCount > 0)
             {
                 flickerTimeCurrent = 0.0f;
-                flickerTimeOff = Random.Range(0.25f, 1.0f);
-                flickerTimeOn = flickerTimeOff + Random.Range(0.25f, 1.0f);
+                flickerTimeOff = Random.Range(0.5f, 0.75f);
+                flickerTimeOn = flickerTimeOff + Random.Range(0.5f, 0.75f);
                 flickerCount--;
             }
             else 
             {
-                lightComponent.enabled = true;
+                //lightComponent.enabled = true;
+                lightComponent.intensity = 1.5f;
                 flicker = false;
                 flickerFrequency = Random.Range(5, 15);
             }
@@ -69,7 +72,7 @@ public class Flashlight : MonoBehaviour
 
         flicker = true;
         //Debug.Log(strength);
-        flickerCount = (int)Random.Range(1, strength / 3.0f);
+        flickerCount = (int)Random.Range(1, strength / 2.0f);
         if (flickerCount > 3)
             flickerCount = 3;
     }
