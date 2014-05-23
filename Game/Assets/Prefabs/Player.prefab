@@ -100,6 +100,7 @@ GameObject:
   - 135: {fileID: 13500000}
   - 82: {fileID: 8200002}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400018}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -124,13 +125,14 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100014
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400014}
   - 108: {fileID: 10800000}
+  - 114: {fileID: 11400020}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -250,6 +252,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400016}
+  - {fileID: 400014}
   m_Father: {fileID: 0}
 --- !u!4 &400012
 Transform:
@@ -269,10 +272,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .159999996}
+  m_LocalPosition: {x: -.600000024, y: .800000012, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400016}
+  m_Father: {fileID: 400010}
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -285,7 +288,6 @@ Transform:
   m_Children:
   - {fileID: 400018}
   - {fileID: 400000}
-  - {fileID: 400014}
   m_Father: {fileID: 400010}
 --- !u!4 &400018
 Transform:
@@ -625,7 +627,7 @@ Light:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.5
   m_Range: 20
-  m_SpotAngle: 45
+  m_SpotAngle: 60
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -634,7 +636,7 @@ Light:
     m_Bias: .0500000007
     m_Softness: 4
     m_SoftnessFade: 1
-  m_Cookie: {fileID: 0}
+  m_Cookie: {fileID: 2800000, guid: 2c29c08dd1c0b6749b7cd0fcff7a29fd, type: 3}
   m_DrawHalo: 0
   m_ActuallyLightmapped: 0
   m_Flare: {fileID: 0}
@@ -666,7 +668,7 @@ MonoBehaviour:
   pewSound: {fileID: 8300000, guid: 105f26ac05059b14f955f39903cd7701, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 10544dfdd743f61469b617892b167107, type: 3}
   shotPeriod: .100000001
-  clipSize: 30
+  maxAmmo: 200
   recoil: .00999999978
   handling: 2
 --- !u!114 &11400002
@@ -677,10 +679,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 640ccde4f6256044194111e49e2ed55e, type: 3}
+  m_Script: {fileID: 11500000, guid: f6121c10a8cef8f4ab32c6c5b989c3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHealth: 100
+  maxSyringes: 3
+  syringeHealAmount: 40
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -694,8 +698,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 20
   walkSpeed: 4
-  sprintSpeed: 8
-  jumpHeight: 2
+  sprintSpeed: 6
+  jumpHeight: .5
   standingViewHeight: .75
   crouchingViewHeight: -.25
   crouchingDelay: .400000006
@@ -855,8 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d96c563888ba242962adbec70d3180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 1.39999998
-  mouseSensitivity: .100000001
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,6 +1053,30 @@ MonoBehaviour:
   timeBackgroundTex: {fileID: 2800000, guid: eb02af827cc4a1f489038dbf23564c3c, type: 3}
   syfTex: {fileID: 2800000, guid: e34f9981ff5f89643b7754aad8a95872, type: 3}
   hintTex: {fileID: 2800000, guid: b33cda62a8540324a80b7be3159d7b90, type: 3}
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94722031323afcf46ba95fda892438ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0c130160d8fee5479cb62374e938f3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 100016}
+  player: {fileID: 100010}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
