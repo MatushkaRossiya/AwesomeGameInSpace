@@ -148,7 +148,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
         {
             isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft; 
         } 
         else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
         {
@@ -166,6 +166,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerCollider.center = new Vector3(0, height, 0);
         height = MathfX.sinerp(1, 2, T);
         playerCollider.height = height;
+
+        height = MathfX.sinerp(crouchingViewHeight + 0.05f, standingViewHeight + 0.05f, T);
+        flashlighObject.transform.localPosition = new Vector3(-0.6f, height, 0);
 
         crouchingTimeLeft -= Time.fixedDeltaTime;
     }

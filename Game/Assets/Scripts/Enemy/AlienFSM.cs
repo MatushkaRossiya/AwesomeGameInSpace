@@ -191,7 +191,7 @@ public class AlienFSM : BaseFSM {
        {
            for (int i = 0; i < 25; i++)
            {
-               agent.SetDestination(player.transform.position + Vector3.right/4.0f);
+               if (!GetComponent<Alien>().isDead) agent.SetDestination(player.transform.position + Vector3.right / 4.0f);
                agent.speed = 5.0f;
                controller.AttackFast(1.0f);
                yield return new WaitForSeconds(0.01f);
@@ -207,7 +207,7 @@ public class AlienFSM : BaseFSM {
         {
             for (int i = 0; i < 25; i++)
             {
-                agent.SetDestination(player.transform.position + Vector3.left/4.0f);
+                if (!GetComponent<Alien>().isDead) agent.SetDestination(player.transform.position + Vector3.left / 4.0f);
                 agent.speed = 5.0f;
                 controller.AttackStrong(1.0f);
                 yield return new WaitForSeconds(0.01f);
