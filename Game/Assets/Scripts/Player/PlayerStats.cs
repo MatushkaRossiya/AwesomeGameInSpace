@@ -1,59 +1,75 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerStats : MonoSingleton<PlayerStats> {
-	public float maxHealth;
-	private float _health;
-	public float health{
-		get{
-			return _health;
-		}
-		set{
-			_health = Mathf.Clamp(value, 0, maxHealth);
-			//GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);	//powiadamia hud o zmianie zycia
-			if(_health == 0){
-				Application.LoadLevel(1);
-			}
-		}
-	}
+public class PlayerStats : MonoSingleton<PlayerStats>
+{
+    public float maxHealth;
+    private float _health;
 
-	public int maxSyringes;
-	private int _syringes;
-	public int syringes{
-		get{
-			return _syringes;
-		}
-		set{
-			_syringes = value;
-			Debug.Log("You now have " + _syringes + " syringes");
-		}
-	}
+    public float health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = Mathf.Clamp(value, 0, maxHealth);
+            //GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);   //powiadamia hud o zmianie zycia
+            if (_health == 0)
+            {
+                Application.LoadLevel(1);
+            }
+        }
+    }
 
-	private int _syf;
-	public int syf {
-		get {
-			return _syf;
-		}
-		set {
-			_syf = value;
-			Debug.Log("You now have " + _syf + " syf");
-		}
-	}
+    public int maxSyringes;
+    private int _syringes;
 
+    public int syringes
+    {
+        get
+        {
+            return _syringes;
+        }
+        set
+        {
+            _syringes = value;
+            Debug.Log("You now have " + _syringes + " syringes");
+        }
+    }
 
-	public float syringeHealAmount;
+    private int _syf;
 
-	void Start(){
-		_health = maxHealth;
-		_syringes = 0;
-		_syf = 100; // TODO: don't give freebies
-	}
+    public int syf
+    {
+        get
+        {
+            return _syf;
+        }
+        set
+        {
+            _syf = value;
+            Debug.Log("You now have " + _syf + " syf");
+        }
+    }
 
-	void Update() {
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			UseSyringe();
-		}
-	}
+    public float syringeHealAmount;
+
+    void Start()
+    {
+        _health = maxHealth;
+        _syringes = 0;
+        _syf = 100; // TODO: don't give freebies
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) || Gamepad.instance.justPressedDPadUp())
+        {
+            UseSyringe();
+        }
+    }
 
     private bool UseSyringe()
     {

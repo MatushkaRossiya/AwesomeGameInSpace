@@ -21,7 +21,7 @@ public class LightManager : MonoSingleton<LightManager>
                 l.color = color;
             }
 
-            RenderSettings.ambientLight = color * 0.05f + new Color(0.01f, 0.01f, 0.01f);
+            RenderSettings.ambientLight = color * 0.025f + new Color(0.01f, 0.01f, 0.01f);
             _dayPhase = value;
         }
     }

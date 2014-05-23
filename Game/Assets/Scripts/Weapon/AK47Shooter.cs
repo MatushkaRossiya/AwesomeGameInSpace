@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using XInputDotNetPure;
 
 public class AK47Shooter : MonoSingleton<AK47Shooter>
 {
@@ -36,10 +35,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
     private float knockBack;
     private float granadeCooldown = 1.0f;
     private float nextGranade = 0.0f;
-    bool playerIndexSet = false;
-    PlayerIndex playerIndex;
-    GamePadState state;
-    GamePadState prevState;
 
     void Start()
     {
@@ -53,7 +48,7 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
         if (nextGranade > 0.0f)
             nextGranade -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) || state.Triggers.Right > 0.75f)
+        if (Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f)
         {
             if (shootingPhase == ShootingPhase.NotShooting)
                 shootingPhase = ShootingPhase.ShootingStart;
@@ -64,12 +59,12 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
                 shootingPhase = ShootingPhase.NotShooting;
         }
         
-        if (Input.GetKeyDown(KeyCode.R) || (state.Buttons.B == ButtonState.Pressed && prevState.Buttons.B == ButtonState.Released))
+        if (Input.GetKeyDown(KeyCode.R) || Gamepad.instance.justPressedB())
         {
             ammo = maxAmmo;
         }
 
-        if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || (state.Buttons.RightShoulder == ButtonState.Pressed && prevState.Buttons.RightShoulder == ButtonState.Released)))
+        if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
             GameObject granade = Instantiate(granadePrefab, granadeLauncher.transform.position, granadeLauncher.transform.localRotation) as GameObject;
             granade.rigidbody.velocity = transform.root.rigidbody.velocity + granadeLauncher.transform.forward * granadeSpeed;
@@ -79,24 +74,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
     void FixedUpdate()
     {
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-        
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
-
         float effectiveHandling = handling;
 
         if (PlayerController.instance.isCrouching)

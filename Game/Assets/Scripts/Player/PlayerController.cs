@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using XInputDotNetPure;
 
 public class PlayerController : MonoSingleton<PlayerController>
 {
     public float acceleration = 10.0f;
-    public float walkSpeed = 10.0f;
-    public float sprintSpeed = 20.0f;
-    public float jumpHeight = 1.0f;
+    public float walkSpeed = 4.0f;
+    public float sprintSpeed = 6.0f;
+    public float jumpHeight = 0.5f;
     public float standingViewHeight = 0.75f;
     public float crouchingViewHeight = -0.25f;
-    public float crouchingDelay = 0.3f;
-    public float stepLength;
+    public float crouchingDelay = 0.4f;
+    public float stepLength = 0.94f;
     public List<AudioClip> walkOnMetalSounds;
     public List<AudioClip> dropSounds;
     public List<AudioClip> jumpSounds;
@@ -36,49 +35,35 @@ public class PlayerController : MonoSingleton<PlayerController>
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
     private bool canJump;
-    bool playerIndexSet = false;
-    PlayerIndex playerIndex;
-    GamePadState state;
-    GamePadState prevState;
     CapsuleCollider playerCollider;
+
+    private Transform flashlighObject;
+    private Light flashlightLight;
 
     void Start()
     {
         firstPersonCameraController = transform.GetComponentInChildren<FirstPersonCameraController>();
         playerCollider = GetComponent<CapsuleCollider>();
-    }
-
-    void Update()
-    {
-        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || (state.Buttons.A == ButtonState.Pressed));
-        Breathe();
+        flashlighObject = transform.FindChild("Flashlight");
+        if (flashlighObject) flashlightLight = flashlighObject.GetComponent<Light>();
     }
 
     void FixedUpdate()
     {
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-        
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
+        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
 
         Crouch();
         Walk();
         Jump();
 
+        Breathe();
+
         isTouchingGround = false;
+
+        if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
+        {
+            if (flashlightLight) flashlightLight.enabled = !flashlightLight.enabled;
+        }
     }
 
     void Walk()
@@ -88,8 +73,8 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         // read input
         Vector3 input = new Vector3();
-        input.x = Input.GetAxis("Horizontal") + state.ThumbSticks.Left.X;
-        input.y = Input.GetAxis("Vertical") + state.ThumbSticks.Left.Y;
+        input.x = Input.GetAxis("Horizontal") + Gamepad.instance.leftStick().x;
+        input.y = Input.GetAxis("Vertical") + Gamepad.instance.leftStick().y;
 
         // normalize if needed to avoid going faster diagonally
         if (input.sqrMagnitude > 1.0f)
@@ -100,7 +85,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             input *= 0.5f;
         } 
-        else if ((Input.GetAxis("Sprint") > 0.5f) || (state.Buttons.LeftStick == ButtonState.Pressed))
+        else if ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick())
         {
             input.y = sprintSpeed / walkSpeed;
         }
@@ -160,14 +145,14 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (crouchingTimeLeft < 0.0f)
             crouchingTimeLeft = 0.0f;
 
-        if (!isCrouching && (Input.GetKey(KeyCode.LeftControl) || state.Buttons.Y == ButtonState.Pressed))
+        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
         {
-            isCrouching = true;
+            isCrouching = !isCrouching;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
         } 
-        else if (isCrouching && !(Input.GetKey(KeyCode.LeftControl) || state.Buttons.Y == ButtonState.Pressed) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
+        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
         {
-            isCrouching = false;
+            isCrouching = !isCrouching;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
         }
 

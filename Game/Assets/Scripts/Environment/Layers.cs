@@ -21,6 +21,12 @@ public class Layers
         private set;
     }
 
+    public static int enemy
+    {
+        get;
+        private set;
+    }
+
     static Layers()
     {
         playerAttack = 
@@ -33,6 +39,8 @@ public class Layers
         enemyAttack = 
             1 << LayerMask.NameToLayer("Player") |
             1 << LayerMask.NameToLayer("Environment");
+        enemy = 
+            1 << LayerMask.NameToLayer("Enemy");
 
     }
 }
