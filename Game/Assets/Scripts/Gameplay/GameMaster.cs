@@ -51,7 +51,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         if (dayPhase < dayLenght)
         {
             dayPhase += Time.fixedDeltaTime;
-        } 
+        }
         else
         {
             phase = Evening;
@@ -65,14 +65,13 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             dayPhase += Time.fixedDeltaTime;
             LightManager.instance.dayPhase = dayPhase / changeDuration;
-			GravityManager.instance.gravity = dayPhase / changeDuration;
-        } 
+            GravityManager.instance.gravity = dayPhase / changeDuration;
+        }
         else
         {
             phase = Night;
             spawnPool = waveSize;
             float meanTimeBetweenSpawns = spawners.Count / spawnRate;
-			Debug.Log(spawners.Count);
             foreach (EnemySpawner spawner in spawners)
             {
                 spawner.meanTimeBetweenSpawns = meanTimeBetweenSpawns;
@@ -96,7 +95,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             dayPhase += Time.fixedDeltaTime;
             LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
-        } 
+        }
         else
         {
             //totalTime = dayLenght + changeDuration;

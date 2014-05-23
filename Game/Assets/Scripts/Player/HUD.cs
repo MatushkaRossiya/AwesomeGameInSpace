@@ -28,7 +28,7 @@ public class HUD : MonoBehaviour
     bool hintVisible;
     string hintString;
     float timeHintVisible;
-    float timeHintOpacity = 1;
+    //float timeHintOpacity = 1;
 
     //metody do wywolywania z zewnatrz. Mozna w sumie stworzyc jakies custom eventy
     public void updateSyf(int syfAmountt)

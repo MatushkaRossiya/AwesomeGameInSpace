@@ -22,7 +22,7 @@ public partial class Menu : MonoBehaviour {
 	LTRect doYouWantToStartNewGame;
 	LTRect doYouwantToExitLabelRect;
 	//texture Rects
-	Rect creditsTextureRect;
+	//Rect creditsTextureRect;
 	Rect guiTextureRect;
 
 void goToMenu(MenuSelector nextMenu){
@@ -76,7 +76,7 @@ void goToMenu(MenuSelector nextMenu){
 		float horizontalButtonPos = Screen.width / 2 - 0.5f * width;
 		//textures setup
 		guiTextureRect = new Rect (0, 0, Screen.width, Screen.height);
-		creditsTextureRect = new Rect (Screen.width / 10, Screen.height / 10, Screen.width*0.8f, Screen.height * 0.8f);
+		//creditsTextureRect = new Rect (Screen.width / 10, Screen.height / 10, Screen.width*0.8f, Screen.height * 0.8f);
 		//MAIN BUTTONS SETUP
 		startButtonRect   = new LTRect (horizontalButtonPos,verticalButtonsPos-verticalOffset, width, height);
 		optionsButtonRect = new LTRect (horizontalButtonPos,verticalButtonsPos, width, height);

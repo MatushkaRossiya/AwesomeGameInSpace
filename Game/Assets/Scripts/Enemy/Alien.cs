@@ -6,7 +6,7 @@ public class Alien : CharacterAI
 {
     NavMeshAgent navMeshAgent;
     RagdollAnimation ragdollAnimation;
-    GameObject player;
+    //GameObject player;
     public float maxHitPoints;
     //    public float attackCooldown;
     public AudioClip[] scream;
@@ -36,7 +36,7 @@ public class Alien : CharacterAI
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        player = FindObjectOfType<PlayerController>().gameObject;
+        //player = FindObjectOfType<PlayerController>().gameObject;
         ragdollAnimation = GetComponent<RagdollAnimation>();
         currentHitPoints = maxHitPoints;
         //     waypoints = GameObject.FindGameObjectsWithTag("waypoint");
