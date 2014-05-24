@@ -7568,6 +7568,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94722031323afcf46ba95fda892438ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scream:
+  - {fileID: 8300000, guid: b087ffcb2f6beda4db47ae69d8254385, type: 3}
+  - {fileID: 8300000, guid: 900036c211f76134dbfe8cf24b30562f, type: 3}
+  - {fileID: 8300000, guid: b0d792b86befa434ca6624049b39c9f8, type: 3}
+  - {fileID: 8300000, guid: f0725187954aeb743adac3df91503886, type: 3}
+  - {fileID: 8300000, guid: 5646a6bdfa49fd945aadbcc6b9eec4af, type: 3}
+  - {fileID: 8300000, guid: b1a970117553fa042ace04241043637f, type: 3}
+  - {fileID: 8300000, guid: baaa16b558dde10408f154ae44f6ac25, type: 3}
+  - {fileID: 8300000, guid: 528a70405e245084dba279d309cfe517, type: 3}
+  - {fileID: 8300000, guid: 2b61ef95d27f4ff4ba0adc4b171c3eca, type: 3}
+  - {fileID: 8300000, guid: d6f262a71c51aeb4abe15c2a5136f9f3, type: 3}
+  - {fileID: 8300000, guid: f471a63189261eb40b79cb313bc0f6c7, type: 3}
 --- !u!1 &974946219
 GameObject:
   m_ObjectHideFlags: 0

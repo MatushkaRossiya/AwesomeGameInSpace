@@ -38,14 +38,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     CapsuleCollider playerCollider;
 
     private Transform flashlighObject;
-    private Light flashlightLight;
 
     void Start()
     {
         firstPersonCameraController = transform.GetComponentInChildren<FirstPersonCameraController>();
         playerCollider = GetComponent<CapsuleCollider>();
         flashlighObject = transform.FindChild("Flashlight");
-        if (flashlighObject) flashlightLight = flashlighObject.GetComponent<Light>();
     }
 
     void FixedUpdate()
@@ -55,15 +53,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         Crouch();
         Walk();
         Jump();
-
         Breathe();
 
         isTouchingGround = false;
-
-        if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
-        {
-            if (flashlightLight) flashlightLight.enabled = !flashlightLight.enabled;
-        }
     }
 
     void Walk()

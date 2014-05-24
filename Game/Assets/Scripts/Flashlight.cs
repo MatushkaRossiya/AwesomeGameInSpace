@@ -58,6 +58,11 @@ public class Flashlight : MonoBehaviour
                 flickerFrequency = Random.Range(5, 15);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
+        {
+            if (lightComponent) lightComponent.enabled = !lightComponent.enabled;
+        }
     }
 
     public void Flicker(float strength)

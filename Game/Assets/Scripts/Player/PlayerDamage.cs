@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerDamage : Damageable
 {
     PlayerStats playerHealth;
+    public AudioClip[] scream;
 
     private Transform flashlighObject;
     private Flashlight flashlight;
@@ -19,6 +20,7 @@ public class PlayerDamage : Damageable
 
     public override void DealDamage(Vector3 damage)
     {
+        audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 10.0f);
         playerHealth.health -= damage.magnitude;
         playerHealth.rigidbody.AddForce(damage * 100.0f);
         if (flashlight)
