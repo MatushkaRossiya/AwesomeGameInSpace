@@ -26,7 +26,7 @@ public class Flashlight : MonoBehaviour
     
     void FixedUpdate()
     {
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, playerCamera.transform.rotation, 0.70f);
+        //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, playerCamera.transform.rotation, 0.70f);
         //this.transform.position = player.transform.position + offset;
 
         if (flicker)
