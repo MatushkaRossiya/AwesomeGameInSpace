@@ -43,15 +43,25 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerCollider = GetComponent<CapsuleCollider>();
     }
 
+	void Update() {
+		// U CAN'T TOUCH THIS! - REALLY DON'T
+		if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY())) {
+			isCrouching = !isCrouching;
+			crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+		}
+		else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f)) {
+			isCrouching = !isCrouching;
+			crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+		}
+		canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
+	}
+
     void FixedUpdate()
     {
-        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
-
         Crouch();
         Walk();
         Jump();
         Breathe();
-
         isTouchingGround = false;
     }
 
@@ -134,16 +144,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (crouchingTimeLeft < 0.0f)
             crouchingTimeLeft = 0.0f;
 
-        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft; 
-        } 
-        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
-        }
+        
 
         float T = crouchingTimeLeft / crouchingDelay;
         if (!isCrouching)
