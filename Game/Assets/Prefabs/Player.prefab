@@ -723,6 +723,7 @@ MonoBehaviour:
   bulletSource: {fileID: 100012}
   granadeLauncher: {fileID: 100002}
   granadePrefab: {fileID: 100000, guid: 91df14664fbea5149886d8466aa56b8f, type: 2}
+  hitParticleEffect: {fileID: 0}
   granadeSpeed: 15
   pewSound: {fileID: 8300000, guid: 105f26ac05059b14f955f39903cd7701, type: 3}
   outOfAmmoSound: {fileID: 8300000, guid: 10544dfdd743f61469b617892b167107, type: 3}
