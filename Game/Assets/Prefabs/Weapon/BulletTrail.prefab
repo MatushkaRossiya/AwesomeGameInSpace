@@ -39,7 +39,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e0f80302441104ea23d8a3067d6948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: {x: 0, y: 0, z: 0}
+  end: {x: 0, y: 0, z: 0}
+  width: .00999999978
   lifeTime: .400000006
+  frequency: .200000003
+  speed: .349999994
+  density: .0500000007
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1

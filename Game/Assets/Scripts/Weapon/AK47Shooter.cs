@@ -113,11 +113,9 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
                 --ammo;
                 audio.PlayOneShot(pewSound);
 
-                LineRenderer bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<LineRenderer>();
-                float trailWidth = 0.02f;
-                bulletTrail.SetWidth(trailWidth, trailWidth);
-                bulletTrail.SetPosition(0, start);
-                Vector3 endPosition;
+				BulletTrail bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<BulletTrail>();
+				bulletTrail.start = start;
+				Vector3 endPosition;
 
                 if (hit)
                 {
@@ -140,7 +138,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
                     hitParticleEffect.transform.position = hitInfo.point;
                     hitParticleEffect.transform.forward = (Vector3.Reflect(dir, hitInfo.normal) + hitInfo.normal) / 2;
-                    ;
                     hitParticleEffect.Emit(10);
                     endPosition = hitInfo.point;
                 }
@@ -149,8 +146,8 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
                     Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
                     endPosition = start + dir * 1000.0f;
                 }
-                bulletTrail.SetPosition(1, endPosition);
-                bulletTrail.material.mainTextureScale = new Vector2((start - endPosition).magnitude / trailWidth * 0.25f, 1);
+				bulletTrail.end = endPosition;
+				//bulletTrail.material.mainTextureScale = new Vector2((start - endPosition).magnitude / trailWidth * 0.25f, 1);
 
                 spread += recoil;
                 knockBack += recoil;
