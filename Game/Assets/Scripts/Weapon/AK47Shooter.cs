@@ -116,10 +116,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 				BulletTrail bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<BulletTrail>();
 				bulletTrail.start = start;
 				Vector3 endPosition;
-                float trailWidth = 0.02f;
-                bulletTrail.SetWidth(trailWidth, trailWidth);
-                bulletTrail.SetPosition(0, start);
-                Vector3 endPosition;
 
                 if (hit)
                 {
@@ -142,7 +138,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
                     hitParticleEffect.transform.position = hitInfo.point;
                     hitParticleEffect.transform.forward = (Vector3.Reflect(dir, hitInfo.normal) + hitInfo.normal) / 2;
-                    ;
                     hitParticleEffect.Emit(10);
                     endPosition = hitInfo.point;
                 }
