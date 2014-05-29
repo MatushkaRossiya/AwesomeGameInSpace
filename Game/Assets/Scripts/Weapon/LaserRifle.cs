@@ -72,7 +72,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
             audio.PlayOneShot(grenadeLauncherSound);
-            GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.localRotation) as GameObject;
+            GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.rotation * Quaternion.AngleAxis(-90.0f, Vector3.right)) as GameObject;
             granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
             nextGrenade = grenadeCooldown;
         }
