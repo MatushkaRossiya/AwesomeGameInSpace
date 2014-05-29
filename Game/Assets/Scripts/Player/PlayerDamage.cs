@@ -14,8 +14,8 @@ public class PlayerDamage : Damageable
     {
         playerHealth = GetComponent<PlayerStats>();
 
-        flashlighObject = transform.FindChild("Flashlight");
-        if (flashlighObject) flashlight = flashlighObject.GetComponent<Flashlight>();
+        flashlighObject = transform.FindChild("FirstPersonCamera").FindChild("Flashlight");
+        if (flashlighObject != null) flashlight = flashlighObject.GetComponent<Flashlight>();
     }
 
     public override void DealDamage(Vector3 damage)
@@ -23,7 +23,7 @@ public class PlayerDamage : Damageable
         audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 10.0f);
         playerHealth.health -= damage.magnitude;
         playerHealth.rigidbody.AddForce(damage * 100.0f);
-        if (flashlight)
+        if (flashlight != null)
             flashlight.Flicker(damage.magnitude);
     }
 }

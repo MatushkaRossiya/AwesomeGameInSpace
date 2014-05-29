@@ -76,7 +76,6 @@ public class Flashlight : MonoBehaviour
         }
 
         flicker = true;
-        //Debug.Log(strength);
         flickerCount = (int)Random.Range(1, strength / 2.0f);
         if (flickerCount > 3)
             flickerCount = 3;
