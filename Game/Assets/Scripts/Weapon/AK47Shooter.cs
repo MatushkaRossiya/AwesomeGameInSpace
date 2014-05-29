@@ -5,19 +5,22 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 {
     public GameObject bulletSource;
     public GameObject granadeLauncher;
-    public GameObject granadePrefab;
+	public GameObject granadePrefab;
+	public TextMesh ammoCounter;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
     public float granadeSpeed;
     public AudioClip pewSound;
     public AudioClip outOfAmmoSound;
-    public AudioClip granadeLauncherSound;
+	public AudioClip granadeLauncherSound;
+
     [Range(0.1f, 0.5f)]
     public float
         shotPeriod;
     public int maxAmmo;
     public float recoil;
     public float handling;
+
     ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
@@ -31,6 +34,7 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
         set
         {
             _ammo = Mathf.Clamp(value, 0, maxAmmo);
+			ammoCounter.text = string.Format("{0:000}", _ammo);
         }
     }
 
@@ -156,13 +160,6 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
         }
 
         transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * knockBack, 0, 0));
-    }
-
-    void OnGUI()
-    {
-        int sw = Screen.width;
-        int sh = Screen.height;
-        GUI.Label(new Rect(sw * 0.8f, sh * 0.8f, sw * 0.2f, sh * 0.2f), "AMMO: " + ammo);
     }
 
     enum ShootingPhase
