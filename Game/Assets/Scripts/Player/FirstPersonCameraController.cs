@@ -56,6 +56,43 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         akrecoil = AK47Shooter.instance.recoil;
         akhandling = AK47Shooter.instance.handling;
     }
+
+	void Update() {
+		if (Input.GetMouseButtonDown(1)) {
+			zoom = !zoom;
+		}
+		if (Gamepad.instance.isConnected()) {
+			if (Gamepad.instance.leftTrigger() > 0.75f) {
+				zoom = true;
+			}
+			else {
+				zoom = false;
+			}
+		}
+
+		if (zoom) {
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 3.0f);
+
+			PlayerController.instance.acceleration = pacceleration * 0.5f;
+			PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
+			PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
+			PlayerController.instance.jumpHeight = 0.0f;
+
+			AK47Shooter.instance.recoil = akrecoil * 0.75f;
+			AK47Shooter.instance.handling = akhandling * 1.25f;
+		}
+		else {
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
+
+			PlayerController.instance.acceleration = pacceleration;
+			PlayerController.instance.walkSpeed = pwalkSpeed;
+			PlayerController.instance.sprintSpeed = psprintSpeed;
+			PlayerController.instance.jumpHeight = pjumpHeight;
+
+			AK47Shooter.instance.recoil = akrecoil;
+			AK47Shooter.instance.handling = akhandling;
+		}
+	}
     
     void FixedUpdate()
     {
@@ -107,46 +144,7 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
             }
 
 
-            if (Input.GetMouseButtonDown(1))
-            {
-                zoom = !zoom;
-            }
-            if (Gamepad.instance.isConnected())
-            {
-                if (Gamepad.instance.leftTrigger() > 0.75f)
-                {
-                    zoom = true;
-                }
-                else
-                {
-                    zoom = false;
-                }
-            }
-
-            if (zoom)
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 3.0f);
-
-                PlayerController.instance.acceleration = pacceleration * 0.5f;
-                PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
-                PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
-                PlayerController.instance.jumpHeight = 0.0f;
-
-                AK47Shooter.instance.recoil = akrecoil * 0.75f;
-                AK47Shooter.instance.handling = akhandling * 1.25f;
-            }
-            else
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
-
-                PlayerController.instance.acceleration = pacceleration;
-                PlayerController.instance.walkSpeed = pwalkSpeed;
-                PlayerController.instance.sprintSpeed = psprintSpeed;
-                PlayerController.instance.jumpHeight = pjumpHeight;
-
-                AK47Shooter.instance.recoil = akrecoil;
-                AK47Shooter.instance.handling = akhandling;
-            }
+            
             
 #if UNITY_EDITOR
         }

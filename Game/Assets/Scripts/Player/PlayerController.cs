@@ -43,15 +43,53 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerCollider = GetComponent<CapsuleCollider>();
     }
 
+    void Update()
+    {
+        //You can't touch this
+        //You can't touch this
+        //You can't touch this
+        //You can't touch this
+        //You can't touch this
+
+        //My, my, my music hits me so hard
+        //Makes me say "Oh, my Lord"
+        //Thank you for blessing me
+        //With a mind to rhyme and two hype feet
+
+        //It feels good, when you know you're down
+        //A super dope homeboy from the Oak town
+        //And I'm known as such
+        //And this is a beat, uh, you can't touch
+                
+        //I told you, homeboy
+        //(You can't touch this)
+        //Yeah, that's how we living and you know
+        //(You can't touch this)
+
+        //Look at my eyes, man
+        //(You can't touch this)
+        //Yo, let me bust the funky lyrics
+        //(You can't touch this)
+
+        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
+        {
+            isCrouching = !isCrouching;
+            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+        }
+        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
+        {
+            isCrouching = !isCrouching;
+            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+        }
+        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
+    }
+
     void FixedUpdate()
     {
-        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
-
         Crouch();
         Walk();
         Jump();
         Breathe();
-
         isTouchingGround = false;
     }
 
@@ -73,7 +111,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (isCrouching)
         {
             input *= 0.5f;
-        } 
+        }
         else if ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick())
         {
             input.y = sprintSpeed / walkSpeed;
@@ -109,7 +147,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 distance = 0.0f;
                 PlayRandomAudio(walkOnMetalSounds);
             }
-        } 
+        }
         else
         {
             distance = 0.0f;
@@ -134,16 +172,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (crouchingTimeLeft < 0.0f)
             crouchingTimeLeft = 0.0f;
 
-        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft; 
-        } 
-        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
-        }
+        
 
         float T = crouchingTimeLeft / crouchingDelay;
         if (!isCrouching)

@@ -6,9 +6,12 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
     public GameObject bulletSource;
     public GameObject granadeLauncher;
     public GameObject granadePrefab;
+    public ParticleSystem hitParticleEffect;
+    public GameObject bulletTrailPrefab;
     public float granadeSpeed;
     public AudioClip pewSound;
     public AudioClip outOfAmmoSound;
+    public AudioClip granadeLauncherSound;
     [Range(0.1f, 0.5f)]
     public float
         shotPeriod;
@@ -66,6 +69,7 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
         if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
+            audio.PlayOneShot(granadeLauncherSound);
             GameObject granade = Instantiate(granadePrefab, granadeLauncher.transform.position, granadeLauncher.transform.localRotation) as GameObject;
             granade.rigidbody.velocity = transform.root.rigidbody.velocity + granadeLauncher.transform.forward * granadeSpeed;
             nextGranade = granadeCooldown;
@@ -96,7 +100,7 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
             dir += transform.right * Mathf.Cos(angle) * dist;
             dir.Normalize();
 
-			bool hit = Physics.Raycast(start, dir, out hitInfo, 10000.0f, Layers.playerAttack);
+            bool hit = Physics.Raycast(start, dir, out hitInfo, 10000.0f, Layers.playerAttack);
             shootingPhase = ShootingPhase.Shooting;
             nextShot = Time.fixedTime + shotPeriod;
 
@@ -108,6 +112,10 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
             {
                 --ammo;
                 audio.PlayOneShot(pewSound);
+
+				BulletTrail bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<BulletTrail>();
+				bulletTrail.start = start;
+				Vector3 endPosition;
 
                 if (hit)
                 {
@@ -127,11 +135,19 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
                         hole.transform.parent = hitInfo.transform;
                         BulletHoleManager.instance.AddBulletHole(hole);
                     }
+
+                    hitParticleEffect.transform.position = hitInfo.point;
+                    hitParticleEffect.transform.forward = (Vector3.Reflect(dir, hitInfo.normal) + hitInfo.normal) / 2;
+                    hitParticleEffect.Emit(10);
+                    endPosition = hitInfo.point;
                 }
                 else
                 {
                     Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
+                    endPosition = start + dir * 1000.0f;
                 }
+				bulletTrail.end = endPosition;
+				//bulletTrail.material.mainTextureScale = new Vector2((start - endPosition).magnitude / trailWidth * 0.25f, 1);
 
                 spread += recoil;
                 knockBack += recoil;
