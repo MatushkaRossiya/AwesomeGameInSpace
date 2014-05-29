@@ -59,7 +59,7 @@ public class Blockade : MonoBehaviour {
 			DeactivateComponent(blockadeComponents[i]);
 		}
 		lastComponentCount = currentComponentCount;
-		destroyed = hitPoints < 0;
+		destroyed = hitPoints <= 0;
 	}
 
 	private void ActivateComponent(GameObject component) {
