@@ -6,6 +6,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public GameObject bulletSource;
     public GameObject grenadeLauncher;
     public GameObject grenadePrefab;
+    public TextMesh ammoCounter;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
     public float grenadeSpeed;
@@ -31,6 +32,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         set
         {
             _ammo = Mathf.Clamp(value, 0, maxAmmo);
+            ammoCounter.text = string.Format("{0:000}", _ammo);
         }
     }
 
@@ -156,13 +158,6 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         }
 
         transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * knockBack, 0, 0));
-    }
-
-    void OnGUI()
-    {
-        int sw = Screen.width;
-        int sh = Screen.height;
-        GUI.Label(new Rect(sw * 0.8f, sh * 0.8f, sw * 0.2f, sh * 0.2f), "AMMO: " + ammo);
     }
 
     enum ShootingPhase
