@@ -53,8 +53,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         psprintSpeed = PlayerController.instance.sprintSpeed;
         pjumpHeight = PlayerController.instance.jumpHeight;
 
-        akrecoil = AK47Shooter.instance.recoil;
-        akhandling = AK47Shooter.instance.handling;
+        akrecoil = LaserRifle.instance.recoil;
+        akhandling = LaserRifle.instance.handling;
     }
 
 	void Update() {
@@ -78,8 +78,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 			PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
 			PlayerController.instance.jumpHeight = 0.0f;
 
-			AK47Shooter.instance.recoil = akrecoil * 0.75f;
-			AK47Shooter.instance.handling = akhandling * 1.25f;
+            LaserRifle.instance.recoil = akrecoil * 0.75f;
+            LaserRifle.instance.handling = akhandling * 1.25f;
 		}
 		else {
 			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
@@ -89,8 +89,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 			PlayerController.instance.sprintSpeed = psprintSpeed;
 			PlayerController.instance.jumpHeight = pjumpHeight;
 
-			AK47Shooter.instance.recoil = akrecoil;
-			AK47Shooter.instance.handling = akhandling;
+            LaserRifle.instance.recoil = akrecoil;
+            LaserRifle.instance.handling = akhandling;
 		}
 	}
     
@@ -142,9 +142,6 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
                 horizontalAngle += input.x;
                 verticalAngle += input.y;
             }
-
-
-            
             
 #if UNITY_EDITOR
         }

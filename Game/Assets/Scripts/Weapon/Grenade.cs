@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Granade : MonoBehaviour
+public class Grenade : MonoBehaviour
 {
     public float fuse = 3.0f;
     public float radius = 3.0f;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class BulletHoleManager : MonoSingleton<BulletHoleManager>
 {
     private Queue<GameObject> holes;
-    public int maxHoleCount = 100;
+    public int maxHoleCount = 128;
     
     // Use this for initialization
     BulletHoleManager()

@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AK47Shooter : MonoSingleton<AK47Shooter>
+public class LaserRifle : MonoSingleton<LaserRifle>
 {
     public GameObject bulletSource;
-    public GameObject granadeLauncher;
-    public GameObject granadePrefab;
+    public GameObject grenadeLauncher;
+    public GameObject grenadePrefab;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
-    public float granadeSpeed;
+    public float grenadeSpeed;
     public AudioClip pewSound;
     public AudioClip outOfAmmoSound;
-    public AudioClip granadeLauncherSound;
+    public AudioClip grenadeLauncherSound;
     [Range(0.1f, 0.5f)]
     public float
         shotPeriod;
@@ -36,8 +36,8 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
     private float spread;
     private float knockBack;
-    private float granadeCooldown = 1.0f;
-    private float nextGranade = 0.0f;
+    private float grenadeCooldown = 1.0f;
+    private float nextGrenade = 0.0f;
 
     void Start()
     {
@@ -48,8 +48,8 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
 
     void Update()
     {
-        if (nextGranade > 0.0f)
-            nextGranade -= Time.deltaTime;
+        if (nextGrenade > 0.0f)
+            nextGrenade -= Time.deltaTime;
 
         if (Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f)
         {
@@ -67,12 +67,12 @@ public class AK47Shooter : MonoSingleton<AK47Shooter>
             ammo = maxAmmo;
         }
 
-        if (nextGranade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
+        if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
-            audio.PlayOneShot(granadeLauncherSound);
-            GameObject granade = Instantiate(granadePrefab, granadeLauncher.transform.position, granadeLauncher.transform.localRotation) as GameObject;
-            granade.rigidbody.velocity = transform.root.rigidbody.velocity + granadeLauncher.transform.forward * granadeSpeed;
-            nextGranade = granadeCooldown;
+            audio.PlayOneShot(grenadeLauncherSound);
+            GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.localRotation) as GameObject;
+            granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
+            nextGrenade = grenadeCooldown;
         }
     }
 
