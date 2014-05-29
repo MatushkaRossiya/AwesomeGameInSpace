@@ -18,7 +18,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             //GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);   //powiadamia hud o zmianie zycia
             if (_health == 0)
             {
-                Application.LoadLevel(1);
+                Application.LoadLevel(3);
             }
         }
     }
