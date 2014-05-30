@@ -23,6 +23,14 @@ public class Flashlight : MonoBehaviour
         lightComponent = GetComponent<Light>();
         flickerFrequency = Random.Range(1, 5);
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
+        {
+            if (lightComponent) lightComponent.enabled = !lightComponent.enabled;
+        }
+    }
     
     void FixedUpdate()
     {
@@ -57,11 +65,6 @@ public class Flashlight : MonoBehaviour
                 flicker = false;
                 flickerFrequency = Random.Range(5, 15);
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
-        {
-            if (lightComponent) lightComponent.enabled = !lightComponent.enabled;
         }
     }
 

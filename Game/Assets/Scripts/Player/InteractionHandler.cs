@@ -6,7 +6,19 @@ public class InteractionHandler : MonoBehaviour
     public float touchRange = 0.7f;
     public float touchRadius = 0.2f;
     private string message;
-    Vector2 screenPosition;
+    private Vector2 screenPosition;
+    private Interactive interactiveObject;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) || Gamepad.instance.justPressedX())
+        {
+            if (interactiveObject != null)
+            {
+                interactiveObject.Action();
+            }
+        }
+    }
 
     void FixedUpdate()
     {
@@ -16,17 +28,11 @@ public class InteractionHandler : MonoBehaviour
         {
             foreach (var hit in hits)
             {
-                Interactive interactiveObject = hit.collider.GetComponent<Interactive>();
+                interactiveObject = hit.collider.GetComponent<Interactive>();
                 if (interactiveObject != null)
                 {
                     message = interactiveObject.message;
                     screenPosition = Camera.main.WorldToScreenPoint(interactiveObject.transform.position);
-
-                    if (Input.GetKeyDown(KeyCode.E) || Gamepad.instance.justPressedX())
-                    {
-                        interactiveObject.Action();
-                    }
-
                     break;
                 }
             }

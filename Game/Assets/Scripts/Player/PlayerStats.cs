@@ -35,7 +35,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _syringes = value;
-            Debug.Log("You now have " + _syringes + " syringes");
+            //Debug.Log("You now have " + _syringes + " syringes");
         }
     }
 
@@ -51,7 +51,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         {
             _syf = value;
 			GameObject.FindObjectOfType<HUD> ().GetComponent<HUD> ().updateSyf (value);
-            Debug.Log("You now have " + _syf + " syf");
+            //Debug.Log("You now have " + _syf + " syf");
         }
     }
 
@@ -68,7 +68,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     {
         if (Input.GetKeyDown(KeyCode.Q) || Gamepad.instance.justPressedDPadUp())
         {
-            UseSyringe();
+            if (healthPercentage < 1.0f)
+            {
+                UseSyringe();
+            }
         }
     }
 

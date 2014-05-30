@@ -16,7 +16,7 @@ public class BlockadeRepairer : Interactive
     {
         get
         {
-            if (blockade.hitPointsPercentage <= 0)
+            if (blockade.hitPointsPercentage <= 0.0f)
             {
                 if (PlayerStats.instance.syf >= buildCost)
                 {
@@ -27,7 +27,7 @@ public class BlockadeRepairer : Interactive
                     return "Insufficient syf (" + buildCost + " needed)";
                 }
             }
-            else if (blockade.hitPointsPercentage < 100)
+            else if (blockade.hitPointsPercentage < 1.0f)
             {
                 if (PlayerStats.instance.syf >= repairCost)
                 {
@@ -47,7 +47,7 @@ public class BlockadeRepairer : Interactive
 
     public override void Action()
     {
-        if (blockade.hitPointsPercentage <= 0 && PlayerStats.instance.syf >= buildCost)
+        if (blockade.hitPointsPercentage <= 0.0f && PlayerStats.instance.syf >= buildCost)
         {
             blockade.Repair(1);
             PlayerStats.instance.syf -= buildCost;
