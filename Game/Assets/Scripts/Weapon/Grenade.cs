@@ -7,6 +7,8 @@ public class Grenade : MonoBehaviour
     public float radius = 3.0f;
     public float damage = 3.0f;
     public GameObject explosion;
+	public GameObject explosionMark;
+
     private float detonationTime = float.PositiveInfinity;
     bool detonated = false;
 
@@ -38,16 +40,31 @@ public class Grenade : MonoBehaviour
         Destroy(GetComponent<Collider>());
         Destroy(GetComponent<Renderer>());
 
-        var colliders = Physics.OverlapSphere(transform.position, radius);
-        foreach (var col in colliders)
-        {
-            Damageable dam = col.gameObject.GetComponent<Damageable>();
-            if (dam != null)
-            {
-                Vector3 dir = col.transform.position - transform.position;
-                dam.DealDamage(dir.normalized * (1 - dir.magnitude / radius) * damage);
-            }
-        }
+        var colliders = Physics.OverlapSphere(transform.position, radius, Layers.damage);
+		float closestDistance = float.PositiveInfinity;
+		Collider closest = null;
+		foreach (var col in colliders) {
+			Damageable dam = col.gameObject.GetComponent<Damageable>();
+			if (dam != null) {
+				Vector3 dir = col.transform.position - transform.position;
+				dam.DealDamage(dir.normalized * (1 - dir.magnitude / radius) * damage);
+			}
+			//if ((col.gameObject.layer & Layers.environment) != 0) {
+				float dist = (col.transform.position - transform.position).magnitude;
+				if (dist < closestDistance) {
+					closest = col;
+					closestDistance = dist;
+				}
+			//}
+		}
+		Debug.Log(closestDistance);
+		if (closest != null) {
+			RaycastHit hit;
+			Vector3 direction = closest.transform.position - transform.position;
+			if (Physics.SphereCast(transform.position - rigidbody.velocity, 1.0f,  direction, out hit, closestDistance)) {
+				Instantiate(explosionMark, hit.point, Quaternion.LookRotation(hit.normal));
+			}
+		}
     }
 
     void OnCollisionEnter(Collision col)

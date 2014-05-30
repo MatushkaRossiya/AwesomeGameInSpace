@@ -6,14 +6,14 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public GameObject bulletSource;
     public GameObject grenadeLauncher;
     public GameObject grenadePrefab;
-    public TextMesh ammoCounter;
+	public AmmoCounter ammoCounter;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
     public float grenadeSpeed;
     public AudioClip pewSound;
     public AudioClip outOfAmmoSound;
     public AudioClip grenadeLauncherSound;
-    [Range(0.1f, 0.5f)]
+    [Range(0.01f, 0.5f)]
     public float
         shotPeriod;
     public int maxAmmo;
@@ -32,7 +32,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         set
         {
             _ammo = Mathf.Clamp(value, 0, maxAmmo);
-            ammoCounter.text = string.Format("{0:000}", _ammo);
+            ammoCounter.ammo = _ammo;
         }
     }
 
@@ -44,7 +44,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     void Start()
     {
         shootingPhase = ShootingPhase.NotShooting;
-        nextShot = Time.fixedTime;
+		nextShot = Time.fixedTime;
+		ammoCounter.maxAmmo = maxAmmo;
         ammo = maxAmmo;
     }
 

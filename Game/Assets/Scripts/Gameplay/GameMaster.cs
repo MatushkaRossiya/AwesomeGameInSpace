@@ -94,7 +94,8 @@ public class GameMaster : MonoSingleton<GameMaster>
         if (dayPhase < changeDuration)
         {
             dayPhase += Time.fixedDeltaTime;
-            LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
+			LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
+			GravityManager.instance.gravity = (1 - dayPhase / changeDuration);
         }
         else
         {
