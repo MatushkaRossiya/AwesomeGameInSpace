@@ -56,7 +56,7 @@ public class Grenade : MonoBehaviour
         Detonate();
         if ((1 << col.collider.gameObject.layer & Layers.environment) != 0)
         {
-            GameObject mark = Instantiate(explosionMark, col.contacts [0].point + 0.01f * col.contacts [0].normal, Quaternion.LookRotation(col.contacts [0].normal)) as GameObject;
+            GameObject mark = Instantiate(explosionMark, col.contacts [0].point + 0.001f * col.contacts [0].normal, Quaternion.LookRotation(col.contacts [0].normal)) as GameObject;
             mark.transform.parent = col.collider.transform;
             ExplosionMarkManager.instance.AddExplosionMark(mark);
         }

@@ -67,7 +67,10 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         
         if (Input.GetKeyDown(KeyCode.R) || Gamepad.instance.justPressedB())
         {
-            ammo = maxAmmo;
+            if (shootingPhase == ShootingPhase.NotShooting)
+            {
+                ammo = maxAmmo;
+            }
         }
 
         if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
