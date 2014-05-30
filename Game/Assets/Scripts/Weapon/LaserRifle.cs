@@ -22,6 +22,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
+    private float nextBulletHoleDepth = 0.002f;
 
     public int ammo
     {
@@ -137,9 +138,12 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                     if (mat != null)
                     {
-                        GameObject hole = Instantiate(mat.materialProperties.bulletHolePrefab, hitInfo.point + 0.01f * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
+                        GameObject hole = Instantiate(mat.materialProperties.bulletHolePrefab, hitInfo.point + nextBulletHoleDepth * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
                         hole.transform.parent = hitInfo.transform;
                         BulletHoleManager.instance.AddBulletHole(hole);
+                        nextBulletHoleDepth += 0.001f;
+                        if (nextBulletHoleDepth > 0.01f)
+                            nextBulletHoleDepth = 0.002f;
                     }
 
                     hitParticleEffect.transform.position = hitInfo.point;
