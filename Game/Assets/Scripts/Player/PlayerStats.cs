@@ -5,6 +5,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 {
     public float maxHealth;
     private float _health;
+    public AudioClip syringeSound;
 
     public float health
     {
@@ -79,6 +80,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     {
         if (syringes > 0)
         {
+            audio.PlayOneShot(syringeSound, 1.0f);
             syringes--;
             health += syringeHealAmount;
             return true;
