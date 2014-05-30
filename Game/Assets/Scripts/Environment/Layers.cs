@@ -49,7 +49,5 @@ public class Layers
 		environment =
 			1 << LayerMask.NameToLayer("Environment") |
 			1 << LayerMask.NameToLayer("Interactive");
-
-
     }
 }

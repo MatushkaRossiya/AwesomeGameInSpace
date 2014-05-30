@@ -39,30 +39,14 @@ public class Grenade : MonoBehaviour
         Destroy(GetComponent<Rigidbody>());
         Destroy(GetComponent<Collider>());
         Destroy(GetComponent<Renderer>());
+        Destroy(GetComponent<Light>());
 
         var colliders = Physics.OverlapSphere(transform.position, radius, Layers.damage);
-		float closestDistance = float.PositiveInfinity;
-		Collider closest = null;
 		foreach (var col in colliders) {
 			Damageable dam = col.gameObject.GetComponent<Damageable>();
 			if (dam != null) {
 				Vector3 dir = col.transform.position - transform.position;
 				dam.DealDamage(dir.normalized * (1 - dir.magnitude / radius) * damage);
-			}
-			//if ((col.gameObject.layer & Layers.environment) != 0) {
-				float dist = (col.transform.position - transform.position).magnitude;
-				if (dist < closestDistance) {
-					closest = col;
-					closestDistance = dist;
-				}
-			//}
-		}
-		Debug.Log(closestDistance);
-		if (closest != null) {
-			RaycastHit hit;
-			Vector3 direction = closest.transform.position - transform.position;
-			if (Physics.SphereCast(transform.position - rigidbody.velocity, 1.0f,  direction, out hit, closestDistance)) {
-				Instantiate(explosionMark, hit.point, Quaternion.LookRotation(hit.normal));
 			}
 		}
     }
@@ -70,5 +54,11 @@ public class Grenade : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         Detonate();
+        if ((1 << col.collider.gameObject.layer & Layers.environment) != 0)
+        {
+            GameObject mark = Instantiate(explosionMark, col.contacts [0].point + 0.01f * col.contacts [0].normal, Quaternion.LookRotation(col.contacts [0].normal)) as GameObject;
+            mark.transform.parent = col.collider.transform;
+            ExplosionMarkManager.instance.AddExplosionMark(mark);
+        }
     }
 }
