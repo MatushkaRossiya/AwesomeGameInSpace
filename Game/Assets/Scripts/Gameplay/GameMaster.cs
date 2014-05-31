@@ -99,6 +99,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         }
         else
         {
+            nightBeginTime = Time.time + dayLenght;
             //totalTime = dayLenght + changeDuration;
             phase = Day;
             dayPhase = 0;
