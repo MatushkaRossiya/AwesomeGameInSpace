@@ -10394,7 +10394,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6c7c876328c2714a992475ad0c91311, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6c7c876328c2714a992475ad0c91311, type: 2}
@@ -16220,7 +16220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbf7d22f38ebc40bf200fea11551c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLenght: 10
+  dayLenght: 30
   changeDuration: 15
   waveSize: 50
   spawnRate: 1

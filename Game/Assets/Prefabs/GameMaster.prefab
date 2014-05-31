@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbf7d22f38ebc40bf200fea11551c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLenght: 10
+  dayLenght: 30
   changeDuration: 15
   waveSize: 50
   spawnRate: 1
