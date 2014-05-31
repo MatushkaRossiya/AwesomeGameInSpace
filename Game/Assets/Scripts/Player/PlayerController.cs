@@ -35,12 +35,14 @@ public class PlayerController : MonoSingleton<PlayerController>
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
     private bool canJump;
-    CapsuleCollider playerCollider;
+    private CapsuleCollider playerCollider;
+    private Vector3 input;
 
     void Start()
     {
         firstPersonCameraController = transform.GetComponentInChildren<FirstPersonCameraController>();
         playerCollider = GetComponent<CapsuleCollider>();
+        input = new Vector3();
     }
 
     void Update()
@@ -99,7 +101,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         transform.localRotation = Quaternion.Euler(new Vector3(0, firstPersonCameraController.horizontalAngle, 0));
 
         // read input
-        Vector3 input = new Vector3();
         input.x = Input.GetAxis("Horizontal") + Gamepad.instance.leftStick().x;
         input.y = Input.GetAxis("Vertical") + Gamepad.instance.leftStick().y;
 
@@ -112,7 +113,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             input *= 0.5f;
         }
-        else if ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick())
+        else if ((input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
         {
             input.y = sprintSpeed / walkSpeed;
         }
@@ -171,8 +172,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         if (crouchingTimeLeft < 0.0f)
             crouchingTimeLeft = 0.0f;
-
-        
 
         float T = crouchingTimeLeft / crouchingDelay;
         if (!isCrouching)
