@@ -52,7 +52,7 @@ public class BlockadeRepairer : Interactive
             blockade.Repair(1);
             PlayerStats.instance.syf -= buildCost;
         }
-        else if (PlayerStats.instance.syf >= repairCost)
+        else if (blockade.hitPointsPercentage < 1.0f && PlayerStats.instance.syf >= repairCost)
         {
             blockade.Repair(repairAmount);
             PlayerStats.instance.syf -= repairCost;
