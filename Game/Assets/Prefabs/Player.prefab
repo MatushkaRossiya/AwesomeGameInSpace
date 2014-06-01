@@ -447,7 +447,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .100000001
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 55
   orthographic: 0
   orthographic size: 5
@@ -945,8 +945,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   syringeSound: {fileID: 8300000, guid: e073f1ef8440c2841bc5733eeece47b5, type: 3}
+  minePrefab: {fileID: 100012, guid: 7d048fff8c792e54388a2225d68c26a7, type: 2}
   maxSyringes: 3
   syringeHealAmount: 40
+  maxMines: 3
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

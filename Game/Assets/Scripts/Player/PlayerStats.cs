@@ -6,7 +6,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     public float maxHealth;
     private float _health;
     public AudioClip syringeSound;
-
+    public GameObject minePrefab;
     public float health
     {
         get
@@ -19,7 +19,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             //GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);   //powiadamia hud o zmianie zycia
             if (_health == 0)
             {
-                Application.LoadLevel(1);
+                Application.LoadLevel(3);
             }
         }
     }
@@ -58,11 +58,26 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 
     public float syringeHealAmount;
 
+    public int maxMines = 3;
+    private int _mines;
+    public int mines
+    {
+        get
+        {
+            return _mines;
+        }
+        set
+        {
+            _mines = value;
+        }
+    }
+
     void Start()
     {
         _health = maxHealth;
         _syringes = 0;
-        _syf = 100; // TODO: don't give freebies
+        _syf = 100;
+        _mines = 3;
     }
 
     void Update()
@@ -72,6 +87,15 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             if (healthPercentage < 1.0f)
             {
                 UseSyringe();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.V) || Gamepad.instance.justPressedDPadLeft())
+        {
+            if (_mines > 0)
+            {
+                Vector3 pos = new Vector3(transform.position.x, 0.0f, transform.position.z);
+                Instantiate(minePrefab, pos, Quaternion.identity);
+                _mines--;
             }
         }
     }
@@ -99,5 +123,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     public bool canBuySyringe
     {
         get { return syringes < maxSyringes; }
+    }
+
+    public bool canButMine
+    {
+        get { return mines < maxMines; }
     }
 }
