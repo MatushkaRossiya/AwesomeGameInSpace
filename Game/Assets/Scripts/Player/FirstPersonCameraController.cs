@@ -55,6 +55,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
         akrecoil = LaserRifle.instance.recoil;
         akhandling = LaserRifle.instance.handling;
+
+		camera.depthTextureMode = DepthTextureMode.Depth;
     }
 
 	void Update() {
