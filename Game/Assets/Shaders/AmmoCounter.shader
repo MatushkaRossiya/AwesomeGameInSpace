@@ -5,32 +5,42 @@
 		_Color ("Color", Color) = (1, 0, 0)
 	}
 	SubShader {
-		Tags { "RenderType"="Transparent" }
-		LOD 200
-		
-		CGPROGRAM
-		#pragma surface surf Simple alphatest:_Cutoff
+		Tags { "RenderType"="Transparent" "RenderQueue"="Transparent" }
+		ZWrite Off
+		Pass{
+			CGPROGRAM
+			#pragma vertex vert  
+			#pragma fragment frag 
 
-		half4 LightingSimple (SurfaceOutput s, half3 lightDir, half3 viewDir, half atten) {
-			half4 c;
-			c.rgb = s.Albedo;
-			c.a = 1;
-			return c;
-		}
+			sampler2D _MainTex;
+			float _Cutoff;
+			half4 _Color;
 
-		struct Input {
-			float2 uv_MainTex;
-		};
+			struct vertexInput {
+				float4 vertex : POSITION;
+				float2 tex : TEXCOORD0;
+			};
+
+			struct vertexOutput {
+				float4 pos : SV_POSITION;
+				float2 tex : TEXCOORD0;
+			};
+
+			vertexOutput vert(vertexInput input) 
+			{
+				vertexOutput output;
+				output.pos = mul(UNITY_MATRIX_MVP, input.vertex);
+				output.tex = input.tex;
+				return output;
+			}
     
-		sampler2D _MainTex;
-		float _Threshold;
-		half3 _Color;
-    
-		void surf (Input IN, inout SurfaceOutput o) {
-			o.Albedo = _Color;
-			o.Alpha = tex2D (_MainTex, IN.uv_MainTex).r;
+			float4 frag(vertexOutput input) : COLOR
+			{
+				float4 color = _Color * 2;   
+				if(tex2D(_MainTex, input.tex).r < _Cutoff) discard;
+				return color;
+			}
+			ENDCG
 		}
-		ENDCG
-	} 
-	FallBack "Diffuse"
+	}
 }
