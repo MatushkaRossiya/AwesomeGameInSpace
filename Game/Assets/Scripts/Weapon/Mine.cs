@@ -48,7 +48,7 @@ public class Mine : MonoBehaviour {
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
 
         RaycastHit hitInfo;
-        Vector3 start = transform.position;
+        Vector3 start = new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z);
         Vector3 direction = -transform.up;
         
         bool hit = Physics.Raycast(start, direction, out hitInfo, radius + 0.1f, Layers.environment);
