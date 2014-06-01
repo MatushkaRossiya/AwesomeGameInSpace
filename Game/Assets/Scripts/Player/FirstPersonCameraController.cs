@@ -53,9 +53,46 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         psprintSpeed = PlayerController.instance.sprintSpeed;
         pjumpHeight = PlayerController.instance.jumpHeight;
 
-        akrecoil = AK47Shooter.instance.recoil;
-        akhandling = AK47Shooter.instance.handling;
+        akrecoil = LaserRifle.instance.recoil;
+        akhandling = LaserRifle.instance.handling;
     }
+
+	void Update() {
+		if (Input.GetMouseButtonDown(1)) {
+			zoom = !zoom;
+		}
+		if (Gamepad.instance.isConnected()) {
+			if (Gamepad.instance.leftTrigger() > 0.75f) {
+				zoom = true;
+			}
+			else {
+				zoom = false;
+			}
+		}
+
+		if (zoom) {
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 3.0f);
+
+			PlayerController.instance.acceleration = pacceleration * 0.5f;
+			PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
+			PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
+			PlayerController.instance.jumpHeight = 0.0f;
+
+            LaserRifle.instance.recoil = akrecoil * 0.75f;
+            LaserRifle.instance.handling = akhandling * 1.25f;
+		}
+		else {
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
+
+			PlayerController.instance.acceleration = pacceleration;
+			PlayerController.instance.walkSpeed = pwalkSpeed;
+			PlayerController.instance.sprintSpeed = psprintSpeed;
+			PlayerController.instance.jumpHeight = pjumpHeight;
+
+            LaserRifle.instance.recoil = akrecoil;
+            LaserRifle.instance.handling = akhandling;
+		}
+	}
     
     void FixedUpdate()
     {
@@ -104,48 +141,6 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
                 horizontalAngle += input.x;
                 verticalAngle += input.y;
-            }
-
-
-            if (Input.GetMouseButtonDown(1))
-            {
-                zoom = !zoom;
-            }
-            if (Gamepad.instance.isConnected())
-            {
-                if (Gamepad.instance.leftTrigger() > 0.75f)
-                {
-                    zoom = true;
-                }
-                else
-                {
-                    zoom = false;
-                }
-            }
-
-            if (zoom)
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 3.0f);
-
-                PlayerController.instance.acceleration = pacceleration * 0.5f;
-                PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
-                PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
-                PlayerController.instance.jumpHeight = 0.0f;
-
-                AK47Shooter.instance.recoil = akrecoil * 0.75f;
-                AK47Shooter.instance.handling = akhandling * 1.25f;
-            }
-            else
-            {
-                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
-
-                PlayerController.instance.acceleration = pacceleration;
-                PlayerController.instance.walkSpeed = pwalkSpeed;
-                PlayerController.instance.sprintSpeed = psprintSpeed;
-                PlayerController.instance.jumpHeight = pjumpHeight;
-
-                AK47Shooter.instance.recoil = akrecoil;
-                AK47Shooter.instance.handling = akhandling;
             }
             
 #if UNITY_EDITOR

@@ -5,6 +5,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 {
     public float maxHealth;
     private float _health;
+    public AudioClip syringeSound;
 
     public float health
     {
@@ -35,7 +36,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _syringes = value;
-            Debug.Log("You now have " + _syringes + " syringes");
+            //Debug.Log("You now have " + _syringes + " syringes");
         }
     }
 
@@ -51,7 +52,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         {
             _syf = value;
 			GameObject.FindObjectOfType<HUD> ().GetComponent<HUD> ().updateSyf (value);
-            Debug.Log("You now have " + _syf + " syf");
+            //Debug.Log("You now have " + _syf + " syf");
         }
     }
 
@@ -68,7 +69,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     {
         if (Input.GetKeyDown(KeyCode.Q) || Gamepad.instance.justPressedDPadUp())
         {
-            UseSyringe();
+            if (healthPercentage < 1.0f)
+            {
+                UseSyringe();
+            }
         }
     }
 
@@ -76,6 +80,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     {
         if (syringes > 0)
         {
+            audio.PlayOneShot(syringeSound, 1.0f);
             syringes--;
             health += syringeHealAmount;
             return true;
