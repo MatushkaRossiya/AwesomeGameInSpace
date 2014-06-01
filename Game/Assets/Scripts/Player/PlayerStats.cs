@@ -125,7 +125,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         get { return syringes < maxSyringes; }
     }
 
-    public bool canButMine
+    public bool canBuyMine
     {
         get { return mines < maxMines; }
     }
