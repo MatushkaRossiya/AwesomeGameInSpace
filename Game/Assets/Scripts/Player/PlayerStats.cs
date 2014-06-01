@@ -6,7 +6,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     public float maxHealth;
     private float _health;
     public AudioClip syringeSound;
-
+    public GameObject minePrefab;
     public float health
     {
         get
@@ -58,11 +58,29 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 
     public float syringeHealAmount;
 
+
+
+    public int maxMines = 3;
+    private int _mines;
+    public int mines
+    {
+        get
+        {
+            return _mines;
+        }
+        set
+        {
+            _mines = value;
+        }
+    }
+
+
     void Start()
     {
         _health = maxHealth;
-        _syringes = 0;
+        _syringes = 3;
         _syf = 100; // TODO: don't give freebies
+
     }
 
     void Update()
@@ -73,6 +91,12 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             {
                 UseSyringe();
             }
+        }
+        if ((Input.GetKeyDown(KeyCode.V) || Gamepad.instance.justPressedDPadLeft())&&(_syringes > 0))
+        {
+            Vector3 pos = new Vector3(transform.position.x, 0.0f, transform.position.z);
+            Instantiate(minePrefab, pos, Quaternion.identity);
+            _syringes--;
         }
     }
 
@@ -99,5 +123,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     public bool canBuySyringe
     {
         get { return syringes < maxSyringes; }
+    }
+
+    public bool canButMine
+    {
+        get { return mines < maxMines; }
     }
 }
