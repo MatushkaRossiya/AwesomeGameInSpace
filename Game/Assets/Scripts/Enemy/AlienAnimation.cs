@@ -89,7 +89,7 @@ public sealed class AlienAnimation : RagdollAnimation
 		foreach (var bone in skeleton) {
 			if (Random.value < prob) {
 				SyfCollectible syf = (Instantiate(syfPrefab, bone.position, Random.rotation) as GameObject).GetComponent<SyfCollectible>();
-				syf.value = 1;
+				syf.value = Random.Range(1, 5);
 			}
 		}
 		isRagdoll = true;
