@@ -93,9 +93,17 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         {
             if (_mines > 0)
             {
-                Vector3 pos = new Vector3(transform.position.x, 0.0f, transform.position.z);
-                Instantiate(minePrefab, pos, Quaternion.identity);
-                _mines--;
+                RaycastHit hitInfo;
+                Vector3 start = transform.position;
+                Vector3 direction = -transform.up;
+                
+                bool hit = Physics.Raycast(start, direction, out hitInfo, 100.0f, Layers.environment);
+                
+                if (hit)
+                {
+                    Instantiate(minePrefab, hitInfo.point, Quaternion.identity);
+                    _mines--;
+                }
             }
         }
     }
