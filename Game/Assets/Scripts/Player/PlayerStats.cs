@@ -58,8 +58,6 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 
     public float syringeHealAmount;
 
-
-
     public int maxMines = 3;
     private int _mines;
     public int mines
@@ -74,13 +72,12 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         }
     }
 
-
     void Start()
     {
         _health = maxHealth;
-        _syringes = 3;
-        _syf = 100; // TODO: don't give freebies
-
+        _syringes = 0;
+        _syf = 100;
+        _mines = 3;
     }
 
     void Update()
@@ -92,11 +89,14 @@ public class PlayerStats : MonoSingleton<PlayerStats>
                 UseSyringe();
             }
         }
-        if ((Input.GetKeyDown(KeyCode.V) || Gamepad.instance.justPressedDPadLeft())&&(_syringes > 0))
+        if (Input.GetKeyDown(KeyCode.V) || Gamepad.instance.justPressedDPadLeft())
         {
-            Vector3 pos = new Vector3(transform.position.x, 0.0f, transform.position.z);
-            Instantiate(minePrefab, pos, Quaternion.identity);
-            _syringes--;
+            if (_mines > 0)
+            {
+                Vector3 pos = new Vector3(transform.position.x, 0.0f, transform.position.z);
+                Instantiate(minePrefab, pos, Quaternion.identity);
+                _mines--;
+            }
         }
     }
 

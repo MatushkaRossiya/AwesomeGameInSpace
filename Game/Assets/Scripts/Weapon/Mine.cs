@@ -9,19 +9,19 @@ public class Mine : MonoBehaviour {
     //Taken my speech
 
     public GameObject explosionParticle;
+    public GameObject explosionMark;
     public float force = 200.0f;
+    public float radius = 2.0f;
     private bool exploded = false;
-    private AudioSource audio;
 
     //Taken my hearing
 
 	void Start() {
-        audio = GetComponent<AudioSource>();
 	}
 
     //Taken my arms
 
-    void Update()
+    void FixedUpdate()
     {
         if (exploded && !audio.isPlaying) Destroy(this.gameObject);
     }
@@ -30,32 +30,48 @@ public class Mine : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-         if(!exploded) if (col.gameObject.tag == "Alien") Boom();
+        if (!exploded)
+        {
+            if ((1 << col.collider.gameObject.layer & Layers.enemy) != 0) 
+            {
+                Boom();
+            }
+        }
     }
 
     //Taken my soul
 
     private void Boom()
     {
-        Instantiate(explosionParticle , transform.position, Quaternion.identity);
+        exploded = true;
         audio.Play();
-        
-        Debug.DrawLine(transform.position, transform.position + Vector3.right + Vector3.right, Color.green, 5.0f);
-        int layerMask = 1 << 9;
-        Collider[] cols = Physics.OverlapSphere(transform.position, 2.0f, layerMask);
-        var killAlienz = cols.Where(n => n.GetComponent<Alien>()).Select(n => n.GetComponent<Alien>());
-        foreach (var alien in killAlienz) alien.Kill();
-        foreach (Collider hit in cols)
-        {
+        Instantiate(explosionParticle, transform.position, Quaternion.identity);
 
-            if (hit && hit.rigidbody )
-            {
-                hit.rigidbody.AddForce((hit.transform.position - transform.position).normalized * force, ForceMode.Impulse);               
+        RaycastHit hitInfo;
+        Vector3 start = transform.position;
+        Vector3 direction = -transform.up;
+        
+        bool hit = Physics.Raycast(start, direction, out hitInfo, radius + 0.1f, Layers.environment);
+
+        if (hit)
+        {
+            GameObject mark = Instantiate(explosionMark, hitInfo.point + 0.001f * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
+            mark.transform.parent = hitInfo.collider.transform;
+            ExplosionMarkManager.instance.AddExplosionMark(mark);
+        }
+        
+        //Debug.DrawLine(transform.position, transform.position + Vector3.right + Vector3.right, Color.green, 5.0f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius, Layers.damage);
+        foreach (var col in colliders) {
+            Damageable dam = col.gameObject.GetComponent<Damageable>();
+            if (dam != null) {
+                Vector3 dir = col.transform.position - transform.position;
+                dam.DealDamage(dir.normalized * (1 - dir.magnitude / radius) * force);
             }
         }
-        exploded = true;
-        var m = GetComponentsInChildren<MeshRenderer>();
-        foreach (var a in m) a.enabled = false;
+
+        MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers) meshRenderer.enabled = false;
     }
 
 }
