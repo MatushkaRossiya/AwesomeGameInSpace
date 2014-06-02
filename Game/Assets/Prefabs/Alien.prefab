@@ -50,7 +50,6 @@ GameObject:
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400026}
-  - 136: {fileID: 13600016}
   m_Layer: 9
   m_Name: Alien
   m_TagString: Alien
@@ -284,6 +283,7 @@ GameObject:
   - 136: {fileID: 13600008}
   - 54: {fileID: 5400012}
   - 144: {fileID: 14400012}
+  - 114: {fileID: 11400022}
   m_Layer: 9
   m_Name: Bip001 R Calf
   m_TagString: Alien
@@ -366,6 +366,7 @@ GameObject:
   - 136: {fileID: 13600010}
   - 54: {fileID: 5400014}
   - 144: {fileID: 14400014}
+  - 114: {fileID: 11400028}
   m_Layer: 9
   m_Name: Bip001 L Calf
   m_TagString: Alien
@@ -482,7 +483,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400048}
-  m_RootOrder: 0
 --- !u!4 &400002
 Transform:
   m_ObjectHideFlags: 1
@@ -494,7 +494,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 400012}
-  m_RootOrder: 0
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -502,13 +501,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.66871262, y: 0, z: 6.01290798}
+  m_LocalPosition: {x: 9.69333935, y: 0, z: 4.43027496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400052}
   - {fileID: 400054}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -520,7 +518,6 @@ Transform:
   m_LocalScale: {x: -1, y: -1, z: -.99999994}
   m_Children: []
   m_Father: {fileID: 400026}
-  m_RootOrder: 0
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -532,7 +529,6 @@ Transform:
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
-  m_RootOrder: 0
 --- !u!4 &400010
 Transform:
   m_ObjectHideFlags: 1
@@ -545,7 +541,6 @@ Transform:
   m_Children:
   - {fileID: 400008}
   m_Father: {fileID: 400020}
-  m_RootOrder: 0
 --- !u!4 &400012
 Transform:
   m_ObjectHideFlags: 1
@@ -558,7 +553,6 @@ Transform:
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 400014}
-  m_RootOrder: 0
 --- !u!4 &400014
 Transform:
   m_ObjectHideFlags: 1
@@ -571,7 +565,6 @@ Transform:
   m_Children:
   - {fileID: 400012}
   m_Father: {fileID: 400016}
-  m_RootOrder: 0
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -584,7 +577,6 @@ Transform:
   m_Children:
   - {fileID: 400014}
   m_Father: {fileID: 400018}
-  m_RootOrder: 0
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -597,7 +589,6 @@ Transform:
   m_Children:
   - {fileID: 400016}
   m_Father: {fileID: 400036}
-  m_RootOrder: 1
 --- !u!4 &400020
 Transform:
   m_ObjectHideFlags: 1
@@ -610,7 +601,6 @@ Transform:
   m_Children:
   - {fileID: 400010}
   m_Father: {fileID: 400040}
-  m_RootOrder: 0
 --- !u!4 &400022
 Transform:
   m_ObjectHideFlags: 1
@@ -622,7 +612,6 @@ Transform:
   m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 400024}
-  m_RootOrder: 0
 --- !u!4 &400024
 Transform:
   m_ObjectHideFlags: 1
@@ -635,7 +624,6 @@ Transform:
   m_Children:
   - {fileID: 400022}
   m_Father: {fileID: 400038}
-  m_RootOrder: 0
 --- !u!4 &400026
 Transform:
   m_ObjectHideFlags: 1
@@ -648,7 +636,6 @@ Transform:
   m_Children:
   - {fileID: 400006}
   m_Father: {fileID: 400028}
-  m_RootOrder: 0
 --- !u!4 &400028
 Transform:
   m_ObjectHideFlags: 1
@@ -661,7 +648,6 @@ Transform:
   m_Children:
   - {fileID: 400026}
   m_Father: {fileID: 400030}
-  m_RootOrder: 0
 --- !u!4 &400030
 Transform:
   m_ObjectHideFlags: 1
@@ -674,7 +660,6 @@ Transform:
   m_Children:
   - {fileID: 400028}
   m_Father: {fileID: 400032}
-  m_RootOrder: 0
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -687,7 +672,6 @@ Transform:
   m_Children:
   - {fileID: 400030}
   m_Father: {fileID: 400036}
-  m_RootOrder: 0
 --- !u!4 &400034
 Transform:
   m_ObjectHideFlags: 1
@@ -700,7 +684,6 @@ Transform:
   m_Children:
   - {fileID: 400036}
   m_Father: {fileID: 400050}
-  m_RootOrder: 0
 --- !u!4 &400036
 Transform:
   m_ObjectHideFlags: 1
@@ -715,7 +698,6 @@ Transform:
   - {fileID: 400018}
   - {fileID: 400046}
   m_Father: {fileID: 400034}
-  m_RootOrder: 0
 --- !u!4 &400038
 Transform:
   m_ObjectHideFlags: 1
@@ -728,7 +710,6 @@ Transform:
   m_Children:
   - {fileID: 400024}
   m_Father: {fileID: 400042}
-  m_RootOrder: 0
 --- !u!4 &400040
 Transform:
   m_ObjectHideFlags: 1
@@ -741,7 +722,6 @@ Transform:
   m_Children:
   - {fileID: 400020}
   m_Father: {fileID: 400044}
-  m_RootOrder: 2
 --- !u!4 &400042
 Transform:
   m_ObjectHideFlags: 1
@@ -754,7 +734,6 @@ Transform:
   m_Children:
   - {fileID: 400038}
   m_Father: {fileID: 400044}
-  m_RootOrder: 1
 --- !u!4 &400044
 Transform:
   m_ObjectHideFlags: 1
@@ -769,7 +748,6 @@ Transform:
   - {fileID: 400042}
   - {fileID: 400040}
   m_Father: {fileID: 400046}
-  m_RootOrder: 0
 --- !u!4 &400046
 Transform:
   m_ObjectHideFlags: 1
@@ -782,7 +760,6 @@ Transform:
   m_Children:
   - {fileID: 400044}
   m_Father: {fileID: 400036}
-  m_RootOrder: 2
 --- !u!4 &400048
 Transform:
   m_ObjectHideFlags: 1
@@ -795,7 +772,6 @@ Transform:
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 400044}
-  m_RootOrder: 0
 --- !u!4 &400050
 Transform:
   m_ObjectHideFlags: 1
@@ -808,7 +784,6 @@ Transform:
   m_Children:
   - {fileID: 400034}
   m_Father: {fileID: 400054}
-  m_RootOrder: 0
 --- !u!4 &400052
 Transform:
   m_ObjectHideFlags: 1
@@ -820,7 +795,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400004}
-  m_RootOrder: 0
 --- !u!4 &400054
 Transform:
   m_ObjectHideFlags: 1
@@ -833,7 +807,6 @@ Transform:
   m_Children:
   - {fileID: 400050}
   m_Father: {fileID: 400004}
-  m_RootOrder: 1
 --- !u!23 &2300004
 Renderer:
   m_ObjectHideFlags: 1
@@ -852,8 +825,9 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -955,7 +929,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -970,7 +944,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1103,7 +1077,7 @@ AudioSource:
     m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
-  serializedVersion: 3
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -1112,8 +1086,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 6f2a6395d0a3e8242b5f51a03e4a0867, type: 3}
   m_Controller: {fileID: 9100000, guid: 4f6820b9d7a8e8740a4614a40ada9aeb, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 1
   m_ApplyRootMotion: 0
+  m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -1259,6 +1233,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c93c867da99564e9203bb0fc511644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1281,6 +1267,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd801828fb9e7184db061ffbe73c8bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c93c867da99564e9203bb0fc511644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1397,19 +1395,6 @@ CapsuleCollider:
   m_Height: .435845405
   m_Direction: 0
   m_Center: {x: -.217922702, y: 0, z: 0}
---- !u!136 &13600016
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .300000012
-  m_Height: 1.94000006
-  m_Direction: 1
-  m_Center: {x: 0, y: .949999988, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1430,8 +1415,9 @@ SkinnedMeshRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
+  m_SortingLayerID: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1498,7 +1484,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400002
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1533,7 +1518,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400004
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1568,7 +1552,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400006
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1603,7 +1586,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400008
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1638,7 +1620,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400010
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1673,7 +1654,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400012
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1708,7 +1688,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400014
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1743,7 +1722,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400016
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1778,7 +1756,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!144 &14400018
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1813,7 +1790,6 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
-  m_EnableCollision: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
