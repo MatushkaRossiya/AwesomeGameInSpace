@@ -16,7 +16,8 @@ public class Mine : MonoBehaviour {
 
     //Taken my hearing
 
-	void Start() {
+	void Start()
+    {
 	}
 
     //Taken my arms
@@ -28,11 +29,11 @@ public class Mine : MonoBehaviour {
 
     //Taken my legs
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter(Collider col)
     {
         if (!exploded)
         {
-            if ((1 << col.collider.gameObject.layer & Layers.enemy) != 0) 
+            if ((1 << col.gameObject.layer & Layers.enemy) != 0) 
             {
                 Boom();
             }
