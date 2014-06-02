@@ -13,7 +13,7 @@ public class AmmoVendingMachine : Interactive {
 		}
 	}
 
-	public override void Action() {
+	public override void MomentaryAction() {
 		string str;
 		if (CanBuy(out str)) {
 			LaserRifle.instance.ammo += ammoAmount;

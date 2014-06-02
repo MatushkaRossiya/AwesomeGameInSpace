@@ -17,7 +17,7 @@ public class Stuff : Interactive
             Destroy(gameObject);
     }
 
-    public override void Action()
+    public override void MomentaryAction()
     {
         DataBank.stuffCount++;
         Destroy(gameObject);

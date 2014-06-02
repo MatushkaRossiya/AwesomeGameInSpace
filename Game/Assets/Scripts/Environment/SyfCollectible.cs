@@ -12,7 +12,7 @@ public class SyfCollectible : Interactive {
 		get { return "Pick up syf"; }
 	}
 
-	public override void Action() {
+	public override void MomentaryAction() {
 		PlayerStats.instance.syf += value;
 		Destroy(gameObject);
 	}

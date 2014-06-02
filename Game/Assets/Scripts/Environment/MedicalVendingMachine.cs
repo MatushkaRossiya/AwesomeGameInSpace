@@ -11,7 +11,7 @@ public class MedicalVendingMachine : Interactive {
 		}
 	}
 
-	public override void Action() {
+	public override void MomentaryAction() {
 		string str;
 		if (CanBuy(out str)) {
 			PlayerStats.instance.syringes++;

@@ -45,7 +45,7 @@ public class BlockadeRepairer : Interactive
         }
     }
 
-    public override void Action()
+    public override void HoldAction()
     {
         if (blockade.hitPointsPercentage <= 0.0f && PlayerStats.instance.syf >= buildCost)
         {
