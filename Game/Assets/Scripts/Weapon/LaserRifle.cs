@@ -25,6 +25,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     private int _ammo;
     private float nextBulletHoleDepth = 0.002f;
 	private float muzzleFlashBrightness;
+    private Light muzzleFlashLight;
 
     public int ammo
     {
@@ -50,6 +51,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 		nextShot = Time.fixedTime;
 		ammoCounter.maxAmmo = maxAmmo;
         ammo = maxAmmo;
+        muzzleFlashLight = transform.FindChild("MuzzleFlashLight").gameObject.GetComponent<Light>();
+        muzzleFlashLight.intensity = 0.0f;
     }
 
     void Update()
@@ -69,8 +72,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         }
 
 		muzzleFlash.material.SetColor("_TintColor", new Color(muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness));
-		muzzleFlashBrightness = Mathf.Max(0, muzzleFlashBrightness * 0.7f - Time.deltaTime);
-		
+		muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
+        muzzleFlashLight.intensity = muzzleFlashBrightness * 5.0f;
 
         if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
@@ -124,7 +127,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                 if (hit)
                 {
-                    Debug.DrawLine(start, hitInfo.point, Color.yellow, 0.2f, true);
+                    //Debug.DrawLine(start, hitInfo.point, Color.yellow, 0.2f, true);
                     Damageable damagable = hitInfo.collider.GetComponent<Damageable>();
 
                     if (damagable != null)
@@ -151,7 +154,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 }
                 else
                 {
-                    Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
+                    //Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
                     endPosition = start + dir * 1000.0f;
                 }
 				bulletTrail.end = endPosition;
