@@ -6,6 +6,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public GameObject bulletSource;
     public GameObject grenadeLauncher;
     public GameObject grenadePrefab;
+	public MeshRenderer muzzleFlash;
 	public AmmoCounter ammoCounter;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
@@ -23,6 +24,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     private float nextShot;
     private int _ammo;
     private float nextBulletHoleDepth = 0.002f;
+	private float muzzleFlashBrightness;
 
     public int ammo
     {
@@ -65,14 +67,10 @@ public class LaserRifle : MonoSingleton<LaserRifle>
             if (shootingPhase == ShootingPhase.Shooting)
                 shootingPhase = ShootingPhase.NotShooting;
         }
-        
-        if (Input.GetKeyDown(KeyCode.R) || Gamepad.instance.justPressedB())
-        {
-            if (shootingPhase == ShootingPhase.NotShooting)
-            {
-                ammo = maxAmmo;
-            }
-        }
+
+		muzzleFlash.material.SetColor("_TintColor", new Color(muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness));
+		muzzleFlashBrightness = Mathf.Max(0, muzzleFlashBrightness * 0.7f - Time.deltaTime);
+		
 
         if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
@@ -162,6 +160,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 spread += recoil;
                 knockBack += recoil;
                 FirstPersonCameraController.instance.verticalAngle += knockBack * 10.0f;
+				muzzleFlashBrightness += 0.6f;
             }
         }
 
