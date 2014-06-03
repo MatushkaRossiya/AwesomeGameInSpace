@@ -2901,7 +2901,7 @@ Transform:
   - {fileID: 216024072}
   - {fileID: 344707901}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!114 &282209165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5562,7 +5562,7 @@ Transform:
   - {fileID: 610439497}
   - {fileID: 1778352412}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &457464899
 GameObject:
   m_ObjectHideFlags: 0
@@ -6300,6 +6300,10 @@ Prefab:
     - target: {fileID: 400010, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400010, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
@@ -10578,7 +10582,7 @@ Transform:
   m_Children:
   - {fileID: 1412372815}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &968081073
 MonoBehaviour:
   m_ObjectHideFlags: 0

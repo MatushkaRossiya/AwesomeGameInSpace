@@ -46,6 +46,11 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
     private float akrecoil;
     private float akhandling;
 
+    private Vector3 riflePosition;
+    private Quaternion rifleRotation;
+    private Vector3 rifleZoomPosition;
+    private Quaternion rifleZoomRotation;
+
     void Start()
     {
         pacceleration = PlayerController.instance.acceleration;
@@ -55,6 +60,11 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
         akrecoil = LaserRifle.instance.recoil;
         akhandling = LaserRifle.instance.handling;
+
+        riflePosition = LaserRifle.instance.gameObject.transform.localPosition;
+        rifleRotation = LaserRifle.instance.gameObject.transform.localRotation;
+        rifleZoomPosition = new Vector3(0.0195f, -0.0775f, 0.0f);
+        rifleZoomRotation = Quaternion.identity;
 
 		camera.depthTextureMode = DepthTextureMode.Depth;
     }
@@ -73,7 +83,9 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 		}
 
 		if (zoom) {
-			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 3.0f);
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, rifleZoomPosition, Time.fixedDeltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleZoomRotation, Time.fixedDeltaTime * 4.0f);
 
 			PlayerController.instance.acceleration = pacceleration * 0.5f;
 			PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
@@ -84,7 +96,9 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
             LaserRifle.instance.handling = akhandling * 1.25f;
 		}
 		else {
-			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 3.0f);
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, riflePosition, Time.fixedDeltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleRotation, Time.fixedDeltaTime * 4.0f);
 
 			PlayerController.instance.acceleration = pacceleration;
 			PlayerController.instance.walkSpeed = pwalkSpeed;
