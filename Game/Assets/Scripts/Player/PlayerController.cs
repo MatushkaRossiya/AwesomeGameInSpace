@@ -83,7 +83,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             isCrouching = !isCrouching;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
         }
-        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
+        canJump |= !isCrouching && isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA()) && (jumpHeight > 0.0f);
     }
 
     void FixedUpdate()
