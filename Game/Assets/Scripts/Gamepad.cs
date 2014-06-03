@@ -32,7 +32,7 @@ public class Gamepad : MonoSingleton<Gamepad> {
         init = true;
     }
 	
-    void FixedUpdate()
+    void Update()
     {
         if (!playerIndexSet || !prevState.IsConnected)
         {
