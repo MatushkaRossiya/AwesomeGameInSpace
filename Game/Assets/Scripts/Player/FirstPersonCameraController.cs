@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController>
-{
+public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController> {
+	public float mouseSensitivity = 1.0f;
+	public AnimationCurve speedCurve;
+	public float gamepadSensitivity = 3.0f;
+
     private float _horizontalAngle;
 
     public float horizontalAngle
@@ -32,81 +35,30 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         }
     }
 
-    private float acceleration = 1.0f;
-    private float mouseSensitivity = 1.0f;
-    private float gamepadSensitivity = 3.0f;
-    private float effectiveGamepadSensitivity;
-    private bool zoom = false;
+    private float effectiveSensitivity;
+    private bool isZoomed = false;
 
-    private float pacceleration;
-    private float pwalkSpeed;
-    private float psprintSpeed;
-    private float pjumpHeight;
-
-    private float akrecoil;
-    private float akhandling;
-
-    private Vector3 riflePosition;
-    private Quaternion rifleRotation;
-    private Vector3 rifleZoomPosition;
-    private Quaternion rifleZoomRotation;
 
     void Start()
     {
-        pacceleration = PlayerController.instance.acceleration;
-        pwalkSpeed = PlayerController.instance.walkSpeed;
-        psprintSpeed = PlayerController.instance.sprintSpeed;
-        pjumpHeight = PlayerController.instance.jumpHeight;
-
-        akrecoil = LaserRifle.instance.recoil;
-        akhandling = LaserRifle.instance.handling;
-
-        riflePosition = LaserRifle.instance.gameObject.transform.localPosition;
-        rifleRotation = LaserRifle.instance.gameObject.transform.localRotation;
-        rifleZoomPosition = new Vector3(0.0195f, -0.0775f, 0.0f);
-        rifleZoomRotation = Quaternion.identity;
-
 		camera.depthTextureMode = DepthTextureMode.Depth;
     }
 
 	void Update() {
-		if (Input.GetMouseButtonDown(1)) {
-			zoom = !zoom;
-		}
 		if (Gamepad.instance.isConnected()) {
-			if (Gamepad.instance.leftTrigger() > 0.75f) {
-				zoom = true;
-			}
-			else {
-				zoom = false;
-			}
+			isZoomed = Gamepad.instance.leftTrigger() > 0.25f;
+		}else if (Input.GetMouseButtonDown(1)) {
+			isZoomed = !isZoomed;
 		}
 
-		if (zoom) {
+		LaserRifle.instance.isZoomed = isZoomed;
+		PlayerController.instance.isZoomed = isZoomed;
+
+		if (isZoomed) {
 			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.deltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, rifleZoomPosition, Time.deltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleZoomRotation, Time.deltaTime * 4.0f);
-
-			PlayerController.instance.acceleration = pacceleration * 0.5f;
-			PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
-			PlayerController.instance.sprintSpeed = pwalkSpeed * 0.5f;
-			PlayerController.instance.jumpHeight = 0.0f;
-
-            LaserRifle.instance.recoil = akrecoil * 0.75f;
-            LaserRifle.instance.handling = akhandling * 1.25f;
 		}
 		else {
 			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.deltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, riflePosition, Time.deltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleRotation, Time.deltaTime * 4.0f);
-
-			PlayerController.instance.acceleration = pacceleration;
-			PlayerController.instance.walkSpeed = pwalkSpeed;
-			PlayerController.instance.sprintSpeed = psprintSpeed;
-			PlayerController.instance.jumpHeight = pjumpHeight;
-
-            LaserRifle.instance.recoil = akrecoil;
-            LaserRifle.instance.handling = akhandling;
 		}
 	}
     
@@ -118,6 +70,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 #endif
             // lock and hide cursor
             Screen.lockCursor = true;
+
+			effectiveSensitivity = 1;
 
             if(Gamepad.instance.isConnected())
             {
@@ -133,31 +87,27 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
                     
                     if (ai != null)
                     {
-                        if (!ai.isDead) effectiveGamepadSensitivity = gamepadSensitivity * 0.1f;
+                        if (!ai.isDead) effectiveSensitivity *= 0.1f;
                     }
                 }
-                else
-                {
-                    effectiveGamepadSensitivity = gamepadSensitivity;
-                }
             }
+
+			if (isZoomed) effectiveSensitivity *= 0.75f;
 
             // read input
             Vector2 input;
-            input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity + Gamepad.instance.rightStick().x * effectiveGamepadSensitivity;
-            input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity + Gamepad.instance.rightStick().y * effectiveGamepadSensitivity;
-            //input /= Screen.height;
+            input.x = Input.GetAxisRaw("Mouse X") * mouseSensitivity + Gamepad.instance.rightStick().x * gamepadSensitivity;
+            input.y = Input.GetAxisRaw("Mouse Y") * mouseSensitivity + Gamepad.instance.rightStick().y * gamepadSensitivity;
 
-            if (input != Vector2.zero)
-            {
-                float speed = input.magnitude / Time.deltaTime;
-                float multiplier = Mathf.Pow(speed, acceleration);
+			if (input != Vector2.zero) {
+				float speed = input.magnitude / Time.fixedDeltaTime;
+				speed *= speedCurve.Evaluate(speed);
+				input = Time.fixedDeltaTime * speed * effectiveSensitivity * input.normalized;
+				input *= effectiveSensitivity;
+				horizontalAngle += input.x;
+				verticalAngle += input.y;
+			}
 
-                input = input.normalized * (multiplier * Time.deltaTime);
-
-                horizontalAngle += input.x;
-                verticalAngle += input.y;
-            }
             
 #if UNITY_EDITOR
         }

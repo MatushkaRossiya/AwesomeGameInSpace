@@ -40,10 +40,10 @@ public class Loader
 		PlayerPrefs.SetInt (anySaves, PlayerPrefs.GetInt(anySaves,0));
 		PlayerPrefs.SetFloat(healthStr+saveName, PlayerStats.instance.health);
 		PlayerPrefs.SetInt(syfStr+saveName, PlayerStats.instance.syf);
-		PlayerPrefs.SetInt (ammoStr + saveName, AmmoCounter.instance.ammo);
-		PlayerPrefs.SetInt (roundStr+saveName, GameMaster.instance.CurrentRound);
+		PlayerPrefs.SetInt (ammoStr + saveName, LaserRifle.instance.ammo);
+		PlayerPrefs.SetInt (roundStr+saveName, GameMaster.instance.currentRound);
 		PlayerPrefs.SetInt (waveSizeStr+saveName, GameMaster.instance.waveSize);
-		PlayerPrefs.SetFloat(spawnRateStr+saveName, GameMaster.instance.SpawnRate);
+		PlayerPrefs.SetFloat(spawnRateStr+saveName, GameMaster.instance.spawnRate);
 		PlayerPrefs.SetInt (levelStr + saveName, Application.loadedLevel);
 		PlayerPrefs.Save ();
 		HUD.instance.setHintvisible ("Game Saved", 2);
@@ -71,10 +71,10 @@ public class Loader
 		Debug.Log ("Ammo = " + PlayerPrefs.GetInt (ammoStr + saveName));
 		PlayerStats.instance.health = PlayerPrefs.GetFloat (healthStr + saveName);
 		PlayerStats.instance.syf = PlayerPrefs.GetInt (syfStr + saveName);
-		AmmoCounter.instance.ammo = PlayerPrefs.GetInt (ammoStr + saveName);
-		GameMaster.instance.CurrentRound = PlayerPrefs.GetInt (roundStr + saveName);
-		GameMaster.instance.WaveSize = PlayerPrefs.GetInt (waveSizeStr + saveName);
-		GameMaster.instance.SpawnRate = PlayerPrefs.GetFloat (spawnRateStr + saveName);
+		LaserRifle.instance.ammo = PlayerPrefs.GetInt (ammoStr + saveName);
+		GameMaster.instance.currentRound = PlayerPrefs.GetInt (roundStr + saveName);
+		GameMaster.instance.waveSize = PlayerPrefs.GetInt (waveSizeStr + saveName);
+		GameMaster.instance.spawnRate = PlayerPrefs.GetFloat (spawnRateStr + saveName);
 		saveToLoad = null;
 		HUD.instance.setHintvisible ("Game Loaded", 2);
 	}
