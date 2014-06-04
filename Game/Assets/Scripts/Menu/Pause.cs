@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Pause : MonoBehaviour {
 	bool paused;
 	LTRect mainMenuBtnRect;
 	LTRect continueBtnRect;
+	LTRect saveBtnRect;
 	LTRect PausedLabelRect;
 	float ScrHeight = Screen.height;
 	float ScrWidth = Screen.width;
@@ -21,13 +23,14 @@ public class Pause : MonoBehaviour {
 		float btnHeight = 0.2f * ScrHeight;
 		float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
 		float verCcenter = 0.5f * ScrHeight - 0.5f*btnHeight;
-		continueBtnRect = new LTRect (ScrWidth,verCcenter-0.15f*ScrHeight, btnWidth, btnHeight);
-		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+0.15f*ScrHeight, btnWidth, btnHeight);
+		continueBtnRect = new LTRect (ScrWidth,verCcenter-0.25f*ScrHeight, btnWidth, btnHeight);
+		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+0.25f*ScrHeight, btnWidth, btnHeight);
+		saveBtnRect  = new LTRect (ScrWidth,verCcenter+0.0f*ScrHeight, btnWidth, btnHeight);
 	}
 	void pauseGame()
 	{
 		gamespeed = 0;
-		showButtons (-0.65f, 0, 0, continueBtnRect, mainMenuBtnRect);
+		showButtons (-0.65f, 0, 0, continueBtnRect, saveBtnRect,mainMenuBtnRect);
 		Debug.Log ("Game Paused");
 		paused = true;
 	}
@@ -35,7 +38,7 @@ public class Pause : MonoBehaviour {
 	{
 		gamespeed = 1;
 		Time.timeScale = gamespeed;
-		hideButtons (0.65f, 0, 0, continueBtnRect, mainMenuBtnRect);
+		hideButtons (0.65f, 0, 0, continueBtnRect, saveBtnRect,mainMenuBtnRect);
 		Debug.Log ("Game unPaused");
 		paused = false;
 	}
@@ -64,6 +67,10 @@ public class Pause : MonoBehaviour {
 		{
 			unPauseGame();
 			Application.LoadLevel(0);
+		}
+		if (GUI.Button (saveBtnRect.rect, "SAVE")) {
+			unPauseGame();
+			Loader.instance.save(System.DateTime.Now.ToString());
 		}
 	}
 
