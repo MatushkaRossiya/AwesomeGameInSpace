@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 public class HUD : MonoSingleton<HUD>
 {
     //public textures
@@ -25,7 +24,7 @@ public class HUD : MonoSingleton<HUD>
     Rect syfTextRect;
     Rect syfRect;   //lewy dolny rog (ilosc syfu)
     Rect timeRect;  //prway gorny rog (Czas)
-    Rect hintRect;
+    LTRect hintRect;
     string syfAmount;
     bool hintVisible;
     string hintString;
@@ -62,6 +61,7 @@ public class HUD : MonoSingleton<HUD>
     void Start()
     {
         initView();
+		LeanTween.alpha (hintRect, 0, 0.01f);
 		updateSyf (100);//TO DO CHANGE
         updateHealth(1.0f);
         newRoundTextColor0 = newRoundTextStyle.normal.textColor;
@@ -81,7 +81,7 @@ public class HUD : MonoSingleton<HUD>
         glassRect = new Rect(0, 0, w, h);
         syfRect = new Rect(0.14f * w, 0.83f * h, 0.23f * w, 0.11f * h);
         timeBackgroundRect = new Rect(0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
-        hintRect = new Rect(0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
+        hintRect= new LTRect(0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
         syfTextRect = syfRect;
         syfTextRect.x += 0.082f * w;
         syfTextRect.y -= 0.02f * h;
@@ -92,8 +92,11 @@ public class HUD : MonoSingleton<HUD>
     {
         hintString = stringToDisplay;
         timeHintVisible = secondsToBeVisible;
+		if (hintRect != null)
+						LeanTween.alpha (hintRect, 1, 0.5f);
         hintVisible = true;
     }
+
 
     public void showRoundNumber(int roundNumber)
     {
@@ -114,7 +117,10 @@ public class HUD : MonoSingleton<HUD>
             if (timeHintVisible > Time.fixedDeltaTime)
                 timeHintVisible -= Time.fixedDeltaTime;
             else
-                hintVisible = false;
+			{
+				LeanTween.alpha (hintRect, 0, 0.5f);
+				hintVisible=false;
+			}
         }
 
         updateHealth(PlayerStats.instance.healthPercentage);
@@ -153,11 +159,9 @@ public class HUD : MonoSingleton<HUD>
         GUI.Label(timeBackgroundRect, GameMaster.instance.TimeToDayEnd, timeTextStyle);
         GUI.DrawTexture(healthbarRect, healtBarTexEmpty);
 
-        if (hintVisible)
-        {
-            GUI.DrawTexture(hintRect, hintTex);
-            GUI.Label(hintRect, hintString, hintTextStyle);
-        }
+            GUI.DrawTexture(hintRect.rect, hintTex);
+            GUI.Label(hintRect.rect, hintString, hintTextStyle);
+        
 
         GUI.color = healthBarColor;
         GUI.BeginGroup(healtbarRectCurrentRect);
