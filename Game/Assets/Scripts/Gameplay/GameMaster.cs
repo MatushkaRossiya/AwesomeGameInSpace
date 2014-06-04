@@ -17,40 +17,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     private float nightBeginTime;
     private float dayPhase = 0;
     private List<EnemySpawner> spawners = new List<EnemySpawner>();
-    private int currentRound = 0;
-	public int CurrentRound
-	{
-		get
-		{
-			return currentRound;
-		}
-		set
-		{
-			currentRound = value;
-		}
-	}
-	public int WaveSize
-	{
-		get
-		{
-			return waveSize;
-		}
-		set
-		{
-			waveSize = value;
-		}
-	}
-	public float SpawnRate
-	{
-		get
-		{
-			return spawnRate;
-		}
-		set
-		{
-			spawnRate = value;
-		}
-	}
+	public int currentRound;
     GameMaster()
     {
         phase = Day;

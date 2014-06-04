@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AmmoCounter : MonoSingleton<AmmoCounter> {
+public class AmmoCounter : MonoBehaviour {
 	public int maxAmmo;
 	private int _ammo;
 	public TextMesh number;
