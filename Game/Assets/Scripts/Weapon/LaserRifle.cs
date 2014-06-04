@@ -23,7 +23,6 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
-    private float nextBulletHoleDepth = 0.002f;
 	private float muzzleFlashBrightness;
     private Light muzzleFlashLight;
 
@@ -127,7 +126,6 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                 if (hit)
                 {
-                    //Debug.DrawLine(start, hitInfo.point, Color.yellow, 0.2f, true);
                     Damageable damagable = hitInfo.collider.GetComponent<Damageable>();
 
                     if (damagable != null)
@@ -139,12 +137,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                     if (mat != null)
                     {
-                        GameObject hole = Instantiate(mat.materialProperties.bulletHolePrefab, hitInfo.point + nextBulletHoleDepth * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
-                        hole.transform.parent = hitInfo.transform;
-                        BulletHoleManager.instance.AddBulletHole(hole);
-                        nextBulletHoleDepth += 0.001f;
-                        if (nextBulletHoleDepth > 0.01f)
-                            nextBulletHoleDepth = 0.002f;
+						mat.materialProperties.Hit(hitInfo, dir);
                     }
 
                     hitParticleEffect.transform.position = hitInfo.point;
@@ -154,11 +147,9 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 }
                 else
                 {
-                    //Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
                     endPosition = start + dir * 1000.0f;
                 }
 				bulletTrail.end = endPosition;
-				//bulletTrail.material.mainTextureScale = new Vector2((start - endPosition).magnitude / trailWidth * 0.25f, 1);
 
                 spread += recoil;
                 knockBack += recoil;
