@@ -69,6 +69,7 @@ public partial class Menu : MonoBehaviour {
 					goToMenu(MenuSelector.LOADGAME);
 					playSound();
 				}
+				if(savesBtnsRects!=null)
 				foreach (var rect in savesBtnsRects) {
 						if (GUI.Button (rect.Value.rect, rect.Key)) {
 								playSound ();
