@@ -20342,7 +20342,6 @@ GameObject:
   - 114: {fileID: 1891614344}
   - 114: {fileID: 1891614343}
   - 114: {fileID: 1891614342}
-  - 114: {fileID: 1891614346}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -20486,17 +20485,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1891614346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1891614341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1cfbfc01e79c6448d72ae3eb5ceca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1894751741
 GameObject:
   m_ObjectHideFlags: 0

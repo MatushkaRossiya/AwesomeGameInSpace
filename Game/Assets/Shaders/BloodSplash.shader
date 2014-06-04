@@ -1,6 +1,7 @@
-﻿Shader "Custom/ExplosionMark" {
+﻿Shader "Custom/BloodSplash" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_Color ("Color", Color) = (1, 0, 0)
 	}
 	SubShader {
 		Tags { "Queue"="Transparent-100" "RenderType"="Transparent" }
@@ -11,6 +12,7 @@
 
 		sampler2D _MainTex;
 		sampler2D _CameraDepthTexture;
+		float4 _Color;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -21,8 +23,9 @@
 			float depth = DECODE_EYEDEPTH(tex2Dproj(_CameraDepthTexture, IN.screenPos).r);
 			float sceneZ = IN.screenPos.z + _ProjectionParams.y;
 			float transparency = saturate(1 - (depth - sceneZ) * 10);
-			float4 c = tex2D (_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb;
+			half4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
+			o.Emission = c;
+			o.Albedo = c;
 			o.Alpha = c.a * transparency;
 		}
 		ENDCG
