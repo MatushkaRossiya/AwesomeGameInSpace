@@ -13080,6 +13080,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10d96c563888ba242962adbec70d3180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseSensitivity: .5
+  mouseAcceleration: 1.20000005
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: .700832665
+      inSlope: .000780922943
+      outSlope: .000825884519
+      tangentMode: 17
+    - time: 360.6026
+      value: .998648763
+      inSlope: .000825884519
+      outSlope: 0
+      tangentMode: 21
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  gamepadSensitivity: 3
 --- !u!81 &1412372826
 AudioListener:
   m_ObjectHideFlags: 0
@@ -15956,6 +15974,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2.46066713
@@ -16011,6 +16033,54 @@ Prefab:
     - target: {fileID: 19800000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: EmissionModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: mouseAcceleration
+      value: 1.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[0].value
+      value: .700832665
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[1].time
+      value: 360.6026
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[1].value
+      value: .998648763
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[0].inSlope
+      value: .000780922943
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[0].outSlope
+      value: .000825884519
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[0].tangentMode
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[1].inSlope
+      value: .000825884519
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[1].tangentMode
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: speedCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: mouseSensitivity
+      value: .5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
@@ -16832,7 +16902,6 @@ GameObject:
   - 114: {fileID: 1891614344}
   - 114: {fileID: 1891614343}
   - 114: {fileID: 1891614342}
-  - 114: {fileID: 1891614346}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -16976,17 +17045,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1891614346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1891614341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e1cfbfc01e79c6448d72ae3eb5ceca6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1894751741
 GameObject:
   m_ObjectHideFlags: 0

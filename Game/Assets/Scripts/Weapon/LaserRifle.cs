@@ -20,7 +20,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public int maxAmmo;
     public float recoil;
     public float handling;
-    ShootingPhase shootingPhase;
+
+    private ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
 	private float muzzleFlashBrightness;
@@ -39,10 +40,17 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         }
     }
 
+	public bool isZoomed{ get; set; }
+
     private float spread;
     private float knockBack;
     private float grenadeCooldown = 1.0f;
     private float nextGrenade = 0.0f;
+
+	private float zoomPhase;
+	private float zoomTime = 0.5f;
+	private Vector3 riflePosition;
+	private Vector3 rifleZoomPosition;
 
     void Start()
     {
@@ -52,6 +60,9 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         ammo = maxAmmo;
         muzzleFlashLight = transform.FindChild("MuzzleFlashLight").gameObject.GetComponent<Light>();
         muzzleFlashLight.intensity = 0.0f;
+
+		riflePosition = transform.localPosition;
+		rifleZoomPosition = new Vector3(0.0195f, -0.075f, 0.0f);
     }
 
     void Update()
@@ -59,38 +70,43 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         if (nextGrenade > 0.0f)
             nextGrenade -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f)
-        {
-            if (shootingPhase == ShootingPhase.NotShooting)
-                shootingPhase = ShootingPhase.ShootingStart;
-        }
-        else
-        {
-            if (shootingPhase == ShootingPhase.Shooting)
-                shootingPhase = ShootingPhase.NotShooting;
-        }
+        if ((Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.25f) && shootingPhase == ShootingPhase.NotShooting){
+			shootingPhase = ShootingPhase.ShootingStart;
+        } else if (shootingPhase == ShootingPhase.Shooting){
+			shootingPhase = ShootingPhase.NotShooting;
+		}
+
+		if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder())) {
+			audio.PlayOneShot(grenadeLauncherSound);
+			GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.rotation * Quaternion.AngleAxis(-90.0f, Vector3.right)) as GameObject;
+			granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
+			nextGrenade = grenadeCooldown;
+		}
 
 		muzzleFlash.material.SetColor("_TintColor", new Color(muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness));
-		muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
         muzzleFlashLight.intensity = muzzleFlashBrightness * 5.0f;
+		muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
 
-        if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
-        {
-            audio.PlayOneShot(grenadeLauncherSound);
-            GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.rotation * Quaternion.AngleAxis(-90.0f, Vector3.right)) as GameObject;
-            granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
-            nextGrenade = grenadeCooldown;
-        }
-    }
+
+		zoomPhase = Mathf.Clamp01(zoomPhase + (isZoomed ? 1 : -1 ) * Time.deltaTime / zoomTime);
+		float t = MathfX.sinerp(0, 1, zoomPhase);
+		transform.localPosition = Vector3.Lerp(riflePosition, rifleZoomPosition, t);
+	}
 
     void FixedUpdate()
     {
-        float effectiveHandling = handling;
+		float effectiveHandling = handling;
+		float effectiveRecoil = recoil;
 
         if (PlayerController.instance.isCrouching)
         {
             effectiveHandling *= 4.0f;
         }
+
+		if (isZoomed) {
+			effectiveRecoil *= 0.75f;
+			effectiveHandling *= 1.25f;
+		}
 
         spread += PlayerController.instance.speed * 0.001f;
         knockBack *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
@@ -151,8 +167,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 }
 				bulletTrail.end = endPosition;
 
-                spread += recoil;
-                knockBack += recoil;
+                spread += effectiveRecoil;
+				knockBack += effectiveRecoil;
                 FirstPersonCameraController.instance.verticalAngle += knockBack * 10.0f;
 				muzzleFlashBrightness += 0.6f;
             }
