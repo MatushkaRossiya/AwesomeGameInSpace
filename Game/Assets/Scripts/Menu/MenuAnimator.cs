@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public partial class Menu : MonoBehaviour {
 
 	//main menu BUTTONS rects
@@ -24,6 +24,7 @@ public partial class Menu : MonoBehaviour {
 	//texture Rects
 	//Rect creditsTextureRect;
 	Rect guiTextureRect;
+	Dictionary<string,LTRect> savesBtnsRects;
 
 void goToMenu(MenuSelector nextMenu){
 		//hide old buttons
@@ -44,6 +45,10 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.STARTNEWGAME:
 			hideButtons(1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
+			break;
+		case MenuSelector.LOADGAME:
+			hideButtons(0,0.3f,0,previousButtonRect);
+			hideButtons(1,0,0,getSavesRects());
 			break;
 		}
 		currMenu = nextMenu;
@@ -66,7 +71,31 @@ void goToMenu(MenuSelector nextMenu){
 		case MenuSelector.STARTNEWGAME:
 			showButtons(-1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
 			break;
+		case MenuSelector.LOADGAME:
+			showButtons(0,-0.3f,0.5f,previousButtonRect);
+			showButtons(-1,0,0,getSavesRects());
+			break;
 		}
+	}
+	LTRect[] getSavesRects()
+	{
+		savesBtnsRects = new Dictionary<string, LTRect> ();
+		int amount = Loader.instance.getSaves ().Count;
+
+		float beginpos = 0.2f *ScrHeight;
+		float btnwidth = 0.4f * ScrWidth;
+		float btnheight = (ScrHeight - 2*beginpos) / amount;
+		if (btnheight > 0.2f * ScrHeight) btnheight = 0.2f * ScrHeight;
+		int i = 1;
+
+		foreach(var save in Loader.instance.getSaves())
+        {
+			savesBtnsRects.Add(save,new LTRect(ScrWidth*1.5f-btnwidth/2,beginpos+btnheight*i,btnwidth,btnheight));
+			i++;
+		}
+		LTRect[] tab = new LTRect[savesBtnsRects.Count];
+		savesBtnsRects.Values.CopyTo(tab,0);
+		return tab;
 	}
 	void setUpRects()
 	{

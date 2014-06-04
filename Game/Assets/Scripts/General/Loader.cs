@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Loader
 {
@@ -24,6 +25,7 @@ public class Loader
 	private const string spawnRateStr = "SpawnRate";
 	//autosave
 	public const string autoSaveStr = "autoSave";
+
 	private const string levelStr = "Level";
 	public string saveToLoad;
 	//ustawiane zanim zmienimy scene zeby bylo wiadomo ktory save wczytac
@@ -31,7 +33,11 @@ public class Loader
 	public void save(string saveName=autoSaveStr)
 	{
 		Debug.Log("Saving:"+saveName);
-		PlayerPrefs.SetInt (anySaves, 1);
+
+		//DODANIE JEZELI NIE ISTENIEJE SAVE DO LISTY SAVE'OW
+		checkandAdd (saveName);
+		//ZAPISANIE INFORMACJI
+		PlayerPrefs.SetInt (anySaves, PlayerPrefs.GetInt(anySaves,0));
 		PlayerPrefs.SetFloat(healthStr+saveName, PlayerStats.instance.health);
 		PlayerPrefs.SetInt(syfStr+saveName, PlayerStats.instance.syf);
 		PlayerPrefs.SetInt (ammoStr + saveName, LaserRifle.instance.ammo);
@@ -75,6 +81,20 @@ public class Loader
 	public bool areThereAnySaves()
 	{
 		return PlayerPrefs.HasKey (anySaves);
+	}
+	public List<string> getSaves()
+	{
+		List<string> lista = new List<string> ();
+		int i;
+		for (i=0; PlayerPrefs.HasKey(i.ToString()); i++);
+		for (i=i-1; i>=0;i--) lista.Add (PlayerPrefs.GetString (i.ToString ()));
+		return lista;
+	}
+	void checkandAdd(string saveName)
+	{
+		int i;
+		for (i=0; PlayerPrefs.HasKey(i.ToString()); i++);
+		PlayerPrefs.SetString (i.ToString (), saveName);
 	}
 }
 

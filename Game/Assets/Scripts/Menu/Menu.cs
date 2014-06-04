@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class Menu : MonoBehaviour {
 	enum MenuSelector {
-		PLAY,MAIN,OPTIONS,EXIT,CREDITS,STARTNEWGAME
+		PLAY,MAIN,OPTIONS,EXIT,CREDITS,STARTNEWGAME,LOADGAME
 	}
 	MenuSelector currMenu;
 	float ScrHeight = Screen.height;
@@ -50,14 +50,10 @@ public partial class Menu : MonoBehaviour {
 								goToMenu (MenuSelector.MAIN);
 						else if (currMenu == MenuSelector.STARTNEWGAME)
 								goToMenu (MenuSelector.PLAY);
-				} else if (GUI.Button (previousButtonRect.rect, "BACK")) {
+				} else if (GUI.Button (previousButtonRect.rect, "MAIN")) {
 						playSound ();
 						goToMenu (MenuSelector.MAIN);
-				} else if (GUI.Button (previousButtonRect.rect, "BACK")) {
-						playSound ();
-						goToMenu (MenuSelector.MAIN);
-				
-				} if (Loader.instance.areThereAnySaves () == false) {
+				}if (Loader.instance.areThereAnySaves () == false) {
 						GUI.enabled=false;
 						GUI.Button (continueButtonRect.rect, "CONTINUE");
 						GUI.enabled=true;
@@ -70,7 +66,14 @@ public partial class Menu : MonoBehaviour {
 						playSound();
 				}
 				else if(GUI.Button (loadButtonRect.rect, "LOAD GAME")){	
+					goToMenu(MenuSelector.LOADGAME);
 					playSound();
+				}
+				foreach (var rect in savesBtnsRects) {
+						if (GUI.Button (rect.Value.rect, rect.Key)) {
+								playSound ();
+								Loader.instance.load (rect.Key);
+						}
 				}
 				//LABELS
 				if (currMenu != MenuSelector.STARTNEWGAME) 
