@@ -12,7 +12,7 @@ public class MetalMaterialProperties : MaterialProperties {
         GameObject hole = Instantiate(bulletHolePrefab, hit.point + nextBulletHoleDepth * hit.normal, Quaternion.LookRotation(hit.normal)) as GameObject;
 		hole.transform.parent = hit.transform;
 		BulletHoleManager.instance.AddBulletHole(hole);
-		nextBulletHoleDepth += 0.002f;
+		nextBulletHoleDepth += 0.001f;
 		if (nextBulletHoleDepth > 0.01f)
 			nextBulletHoleDepth = 0.002f;
 
