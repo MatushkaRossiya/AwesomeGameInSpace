@@ -83,9 +83,9 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 		}
 
 		if (zoom) {
-			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.fixedDeltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, rifleZoomPosition, Time.fixedDeltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleZoomRotation, Time.fixedDeltaTime * 4.0f);
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.deltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, rifleZoomPosition, Time.deltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleZoomRotation, Time.deltaTime * 4.0f);
 
 			PlayerController.instance.acceleration = pacceleration * 0.5f;
 			PlayerController.instance.walkSpeed = pwalkSpeed * 0.5f;
@@ -96,9 +96,9 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
             LaserRifle.instance.handling = akhandling * 1.25f;
 		}
 		else {
-			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.fixedDeltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, riflePosition, Time.fixedDeltaTime * 4.0f);
-            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleRotation, Time.fixedDeltaTime * 4.0f);
+			Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.deltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localPosition = Vector3.Lerp(LaserRifle.instance.gameObject.transform.localPosition, riflePosition, Time.deltaTime * 4.0f);
+            LaserRifle.instance.gameObject.transform.localRotation = Quaternion.Lerp(LaserRifle.instance.gameObject.transform.localRotation, rifleRotation, Time.deltaTime * 4.0f);
 
 			PlayerController.instance.acceleration = pacceleration;
 			PlayerController.instance.walkSpeed = pwalkSpeed;
@@ -150,10 +150,10 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
             if (input != Vector2.zero)
             {
-                float speed = input.magnitude / Time.fixedDeltaTime;
+                float speed = input.magnitude / Time.deltaTime;
                 float multiplier = Mathf.Pow(speed, acceleration);
 
-                input = input.normalized * (multiplier * Time.fixedDeltaTime);
+                input = input.normalized * (multiplier * Time.deltaTime);
 
                 horizontalAngle += input.x;
                 verticalAngle += input.y;
