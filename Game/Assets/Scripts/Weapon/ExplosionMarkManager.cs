@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class ExplosionMarkManager : MonoSingleton<ExplosionMarkManager>
 {
     private Queue<GameObject> marks;
-    public int maxMarkCount = 100;
+    public int maxMarkCount = 16;
     
     // Use this for initialization
     ExplosionMarkManager()
