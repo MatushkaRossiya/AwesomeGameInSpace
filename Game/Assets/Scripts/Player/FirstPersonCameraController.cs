@@ -150,10 +150,10 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
             if (input != Vector2.zero)
             {
-                float speed = input.magnitude / Time.fixedDeltaTime;
+                float speed = input.magnitude / Time.deltaTime;
                 float multiplier = Mathf.Pow(speed, acceleration);
 
-                input = input.normalized * (multiplier * Time.fixedDeltaTime);
+                input = input.normalized * (multiplier * Time.deltaTime);
 
                 horizontalAngle += input.x;
                 verticalAngle += input.y;
