@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController> {
 	public float mouseSensitivity = 1.0f;
-	public float mouseAcceleration = 1.0f;
 	public AnimationCurve speedCurve;
 	public float gamepadSensitivity = 3.0f;
 
