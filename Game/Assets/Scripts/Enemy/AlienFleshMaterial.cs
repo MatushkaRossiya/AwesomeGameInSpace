@@ -20,7 +20,7 @@ public class AlienFleshMaterial : MaterialProperties {
 		if(Physics.Raycast(hit.point, Random.onUnitSphere, out hitInfo, 4, Layers.environment)){
 			GameObject splash = (GameObject)Instantiate(bloodSplashPrefab);
 			splash.transform.position = hitInfo.point + hitInfo.normal * offset;
-			splash.transform.forward = hitInfo.normal;
+			splash.transform.rotation = Quaternion.LookRotation(hitInfo.normal, Random.onUnitSphere);
 			splash.transform.parent = hitInfo.transform;
 			BloodSplashManager.instance.AddSplash(splash);
 			offset += 0.001f;
