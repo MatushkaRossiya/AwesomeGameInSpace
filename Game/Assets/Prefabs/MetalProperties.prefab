@@ -79,6 +79,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 44e19f5f8aa88134cbb8aad5fcb4d888, type: 3}
   - {fileID: 8300000, guid: 89c94a7f448d0bd4da43ff83b9c43229, type: 3}
   bulletHolePrefab: {fileID: 100000, guid: adb587fd926c524428ddfd953617c39e, type: 2}
+  sparksParticlesPrefab: {fileID: 100000, guid: b9af30c11c04d3c43971462bcc02ad18,
+    type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
