@@ -90,6 +90,7 @@ void goToMenu(MenuSelector nextMenu){
 
 		foreach(var save in Loader.instance.getSaves())
         {
+			if(savesBtnsRects.ContainsKey(save)) continue;
 			savesBtnsRects.Add(save,new LTRect(ScrWidth*1.5f-btnwidth/2,beginpos+btnheight*i,btnwidth,btnheight));
 			i++;
 		}
