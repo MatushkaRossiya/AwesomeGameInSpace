@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class BloodSplashManager : MonoSingleton<BloodSplashManager>
 {
     private Queue<GameObject> splashes;
-    public int maxSplashCount = 32;
+    public int maxSplashCount = 64;
     
     // Use this for initialization
 	BloodSplashManager()
