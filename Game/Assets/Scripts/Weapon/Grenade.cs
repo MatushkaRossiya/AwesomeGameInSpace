@@ -10,7 +10,8 @@ public class Grenade : MonoBehaviour
 	public GameObject explosionMark;
 
     private float detonationTime = float.PositiveInfinity;
-    bool detonated = false;
+    private bool detonated = false;
+    private static float offset = 0.0001f;
 
     // Use this for initialization
     void Start()
@@ -56,9 +57,11 @@ public class Grenade : MonoBehaviour
         Detonate();
         if ((1 << col.collider.gameObject.layer & Layers.environment) != 0)
         {
-            GameObject mark = Instantiate(explosionMark, col.contacts [0].point + 0.001f * col.contacts [0].normal, Quaternion.LookRotation(col.contacts [0].normal)) as GameObject;
+            GameObject mark = Instantiate(explosionMark, col.contacts [0].point + offset * col.contacts [0].normal, Quaternion.LookRotation(col.contacts [0].normal, Random.onUnitSphere)) as GameObject;
             mark.transform.parent = col.collider.transform;
             ExplosionMarkManager.instance.AddExplosionMark(mark);
+            offset += 0.0001f;
+            if (offset > 0.001f) offset = 0.0001f;
         }
     }
 }

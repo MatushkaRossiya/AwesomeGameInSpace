@@ -13,6 +13,7 @@ public class Mine : MonoBehaviour {
     public float force = 200.0f;
     public float radius = 2.0f;
     private bool exploded = false;
+    private static float offset = 0.0001f;
 
     //Taken my hearing
 
@@ -56,9 +57,11 @@ public class Mine : MonoBehaviour {
 
         if (hit)
         {
-            GameObject mark = Instantiate(explosionMark, hitInfo.point + 0.001f * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
+            GameObject mark = Instantiate(explosionMark, hitInfo.point + offset * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal, Random.onUnitSphere)) as GameObject;
             mark.transform.parent = hitInfo.collider.transform;
             ExplosionMarkManager.instance.AddExplosionMark(mark);
+            offset += 0.0001f;
+            if (offset > 0.001f) offset = 0.0001f;
         }
         
         //Debug.DrawLine(transform.position, transform.position + Vector3.right + Vector3.right, Color.green, 5.0f);

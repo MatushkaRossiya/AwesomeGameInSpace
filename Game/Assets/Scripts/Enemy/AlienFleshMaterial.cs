@@ -6,7 +6,7 @@ public class AlienFleshMaterial : MaterialProperties {
 	public GameObject bloodSplashPrefab;
 	
 	private static ParticleSystem bloodParticles;
-	private static float offset = 0.001f;
+	private static float offset = 0.0001f;
 	
 	public override void Hit(RaycastHit hit, Vector3 force) {
 		try {
@@ -23,8 +23,8 @@ public class AlienFleshMaterial : MaterialProperties {
 			splash.transform.rotation = Quaternion.LookRotation(hitInfo.normal, Random.onUnitSphere);
 			splash.transform.parent = hitInfo.transform;
 			BloodSplashManager.instance.AddSplash(splash);
-			offset += 0.001f;
-			if (offset > 0.01f) offset = 0.001f;
+			offset += 0.0001f;
+			if (offset > 0.001f) offset = 0.0001f;
 		}
 	}
 

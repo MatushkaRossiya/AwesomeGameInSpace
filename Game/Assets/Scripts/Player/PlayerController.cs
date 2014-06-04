@@ -32,7 +32,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
     }
 
-	public bool isZoomed { get; set; }
+    public bool isZoomed { get; set; }
 
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
@@ -89,9 +89,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             input *= 0.5f;
         }
-		if(isZoomed){
-			input *= 0.5f;
-		}
+        if (isZoomed)
+        {
+            input *= 0.5f;
+        }
         if ((!isCrouching && !isZoomed) && (input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
         {
             input.y = sprintSpeed / walkSpeed;

@@ -9,10 +9,10 @@ public class MetalMaterialProperties : MaterialProperties {
 	private static ParticleSystem sparksParticles;
 
 	public override void Hit(RaycastHit hit, Vector3 force) {
-		GameObject hole = Instantiate(bulletHolePrefab, hit.point + nextBulletHoleDepth * hit.normal, Quaternion.LookRotation(hit.normal)) as GameObject;
+        GameObject hole = Instantiate(bulletHolePrefab, hit.point + nextBulletHoleDepth * hit.normal, Quaternion.LookRotation(hit.normal)) as GameObject;
 		hole.transform.parent = hit.transform;
 		BulletHoleManager.instance.AddBulletHole(hole);
-		nextBulletHoleDepth += 0.001f;
+		nextBulletHoleDepth += 0.002f;
 		if (nextBulletHoleDepth > 0.01f)
 			nextBulletHoleDepth = 0.002f;
 
