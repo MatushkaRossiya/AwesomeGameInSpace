@@ -2,7 +2,7 @@
 	Properties {
 		_MainTex ("Base (RGB) Gloss (A)", 2D) = "white" {}
 		_Normal ("Normalmap", 2D) = "bump" {}
-		_Specular ("Specular", 2D) = "bump" {}
+		_Specular ("Specular", 2D) = "white" {}
 		_SpecColor ("Specular Color", Color) = (0.5, 0.5, 0.5, 1)
 	}
 	SubShader { 
@@ -20,8 +20,6 @@
 
 		struct Input {
 			float2 uv_MainTex;
-			float2 uv_Normal;
-			float3 viewDir;
 		};
 
 		void surf (Input IN, inout SurfaceOutput o) {
@@ -30,7 +28,7 @@
 			o.Gloss = specular_gloss.r;
 			o.Alpha = 1;
 			o.Specular = specular_gloss.g;
-			o.Normal = UnpackNormal(tex2D(_Normal, IN.uv_Normal));
+			o.Normal = UnpackNormal(tex2D(_Normal, IN.uv_MainTex));
 		}
 		ENDCG
 	}
