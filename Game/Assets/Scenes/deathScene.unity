@@ -91,7 +91,7 @@ GameObject:
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!81 &1155109446
 AudioListener:
@@ -130,8 +130,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
+  near clip plane: .100000001
+  far clip plane: 10
   field of view: 14.1999998
   orthographic: 0
   orthographic size: 5
@@ -142,7 +142,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_HDR: 0
+  m_HDR: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
@@ -169,11 +169,11 @@ GameObject:
   - 131: {fileID: 1912273305}
   - 114: {fileID: 1912273307}
   m_Layer: 0
-  m_Name: UnityWatermark-small
+  m_Name: DeathScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!131 &1912273305
 GUITexture:
@@ -218,7 +218,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textures:
-  - {fileID: 2800000, guid: 4757d8c0b98a8724fa783fb3a2fe80fd, type: 3}
-  - {fileID: 2800000, guid: 622316dfce584c34aba4abd39f80a013, type: 3}
   - {fileID: 2800000, guid: c7679f628d8fd9d43aa23d6c2ac95ede, type: 3}
-  - {fileID: 2800000, guid: 6847db81965f2814ebf9ad6468e13ae2, type: 3}
+  - {fileID: 2800000, guid: 622316dfce584c34aba4abd39f80a013, type: 3}

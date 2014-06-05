@@ -17,7 +17,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     private float nightBeginTime;
     private float dayPhase = 0;
     private List<EnemySpawner> spawners = new List<EnemySpawner>();
-
+	public int currentRound;
     GameMaster()
     {
         phase = Day;
@@ -32,7 +32,6 @@ public class GameMaster : MonoSingleton<GameMaster>
     {
         nightBeginTime = Time.time + dayLenght;
     }
-
     public string TimeToDayEnd
     {
         get
@@ -77,6 +76,8 @@ public class GameMaster : MonoSingleton<GameMaster>
                 spawner.meanTimeBetweenSpawns = meanTimeBetweenSpawns;
                 spawner.Activate();
             }
+            currentRound++;
+            HUD.instance.showRoundNumber(currentRound);
         }
     }
 
@@ -86,6 +87,10 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             phase = Dawn;
             dayPhase = 0;
+            waveSize += 5;
+            if (waveSize > 100) waveSize = 100;
+            spawnRate += 0.01f;
+            if (spawnRate > 2.0f) spawnRate = 2.0f;
         }
     }
 
@@ -103,6 +108,7 @@ public class GameMaster : MonoSingleton<GameMaster>
             //totalTime = dayLenght + changeDuration;
             phase = Day;
             dayPhase = 0;
+			Loader.instance.save();//autosave po zakonczeniu ranka
             LightManager.instance.dayPhase = 0;
         }
     }

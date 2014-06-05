@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class HUD : MonoBehaviour
+public class HUD : MonoSingleton<HUD>
 {
     //public textures
     public GUIStyle syfTextStyle;
     public GUIStyle timeTextStyle;
     public GUIStyle hintTextStyle;
+    public GUIStyle newRoundTextStyle;
     public Texture2D glassTex;  //po prostu maska od srodka
     public Texture2D healtBarTexEmpty; //szary pasek
     public Texture2D healthBarTex; // ten taki wygiety pasek (poziomo tak jak u marka) (BIALY! kolory ustawione beda w kodzie dla odpowienich stanow)
     public Texture2D timeBackgroundTex; //jakis prostokąt albo tło za czcionką czasu który będzie sie zmeiniac( chyba ze ladniej bedzie bez tla)
     public Texture2D syfTex; //textura syfu z tlem (nie wiem czy czcionka ma byc na tle czy nie (obczaj jak bedize ladniej)
     public Texture2D hintTex;
+    public AudioClip newRoundSound;
     bool displayTime;
     Color healthBarColor;   //aktualny kolor statusut zdrowie (cz,zolt,zielony)
     //private rects
@@ -23,12 +24,20 @@ public class HUD : MonoBehaviour
     Rect syfTextRect;
     Rect syfRect;   //lewy dolny rog (ilosc syfu)
     Rect timeRect;  //prway gorny rog (Czas)
-    Rect hintRect;
+    LTRect hintRect;
     string syfAmount;
     bool hintVisible;
     string hintString;
     float timeHintVisible;
     //float timeHintOpacity = 1;
+    private Rect newRoundTextRect;
+    private int currentRoundNumber = 0;
+    private bool showNewRoundNumber = false;
+    private float newRoundTextTime;
+    private float newRoundTextTimeDelay;
+    private float newRoundTextTimeDelayEnd;
+    private Color newRoundTextColor0;
+    private Color newRoundTextColor1;
 
     //metody do wywolywania z zewnatrz. Mozna w sumie stworzyc jakies custom eventy
     public void updateSyf(int syfAmountt)
@@ -52,8 +61,13 @@ public class HUD : MonoBehaviour
     void Start()
     {
         initView();
+		LeanTween.alpha (hintRect, 0, 0.01f);
 		updateSyf (100);//TO DO CHANGE
         updateHealth(1.0f);
+        newRoundTextColor0 = newRoundTextStyle.normal.textColor;
+        newRoundTextColor0.a = 0.0f;
+        newRoundTextColor1 = newRoundTextStyle.normal.textColor;
+        newRoundTextColor1.a = 1.0f;
     }
 
     void initView()
@@ -67,17 +81,32 @@ public class HUD : MonoBehaviour
         glassRect = new Rect(0, 0, w, h);
         syfRect = new Rect(0.14f * w, 0.83f * h, 0.23f * w, 0.11f * h);
         timeBackgroundRect = new Rect(0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
-        hintRect = new Rect(0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
+        hintRect= new LTRect(0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
         syfTextRect = syfRect;
         syfTextRect.x += 0.082f * w;
         syfTextRect.y -= 0.02f * h;
+        newRoundTextRect = new Rect(0.5f * (w - (0.25f * w)), 0.5f * (h - (0.25f * h)), 0.25f * w, 0.25f * h);
     }
 
     public void setHintvisible(string stringToDisplay, float secondsToBeVisible)
     {
         hintString = stringToDisplay;
         timeHintVisible = secondsToBeVisible;
+		if (hintRect != null)
+						LeanTween.alpha (hintRect, 1, 0.5f);
         hintVisible = true;
+    }
+
+
+    public void showRoundNumber(int roundNumber)
+    {
+        currentRoundNumber = roundNumber;
+        showNewRoundNumber = true;
+        newRoundTextTime = 7.0f;
+        newRoundTextTimeDelay = 1.4f;
+        newRoundTextTimeDelayEnd = 0.85f;
+        newRoundTextStyle.normal.textColor = newRoundTextColor0;
+        audio.PlayOneShot(newRoundSound, 1.0f);
     }
 
     void FixedUpdate()
@@ -85,13 +114,38 @@ public class HUD : MonoBehaviour
         if (hintVisible)
         {
             //Debug.Log(timeHintVisible.ToString());
-            if (timeHintVisible > Time.deltaTime)
-                timeHintVisible -= Time.deltaTime;
+            if (timeHintVisible > Time.fixedDeltaTime)
+                timeHintVisible -= Time.fixedDeltaTime;
             else
-                hintVisible = false;
+			{
+				LeanTween.alpha (hintRect, 0, 0.5f);
+				hintVisible=false;
+			}
         }
 
         updateHealth(PlayerStats.instance.healthPercentage);
+
+        if (showNewRoundNumber)
+        {
+            if (newRoundTextTimeDelay > 0.0f)
+            {
+                newRoundTextTimeDelay -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                newRoundTextTime -= Time.fixedDeltaTime; 
+                newRoundTextStyle.normal.textColor = Color.Lerp(newRoundTextStyle.normal.textColor, newRoundTextColor1, Time.fixedDeltaTime);
+            }
+            if (newRoundTextTime <= 0.0f)
+            {
+                newRoundTextTimeDelayEnd -= Time.fixedDeltaTime;
+                newRoundTextStyle.normal.textColor = Color.Lerp(newRoundTextStyle.normal.textColor, newRoundTextColor0, Time.fixedDeltaTime * 4.0f);
+                if (newRoundTextTimeDelayEnd <= 0.0f)
+                {
+                    showNewRoundNumber = false;
+                }
+            }
+        }
     }
 
     //UI    
@@ -104,14 +158,19 @@ public class HUD : MonoBehaviour
         GUI.DrawTexture(timeBackgroundRect, timeBackgroundTex);
         GUI.Label(timeBackgroundRect, GameMaster.instance.TimeToDayEnd, timeTextStyle);
         GUI.DrawTexture(healthbarRect, healtBarTexEmpty);
-        if (hintVisible)
-        {
-            GUI.DrawTexture(hintRect, hintTex);
-            GUI.Label(hintRect, hintString, hintTextStyle);
-        }
+
+            GUI.DrawTexture(hintRect.rect, hintTex);
+            GUI.Label(hintRect.rect, hintString, hintTextStyle);
+        
+
         GUI.color = healthBarColor;
         GUI.BeginGroup(healtbarRectCurrentRect);
         GUI.DrawTexture(new Rect(0, 0, healthbarRect.width, healthbarRect.height), healthBarTex);
         GUI.EndGroup();
+
+        if (showNewRoundNumber)
+        {
+            GUI.Label(newRoundTextRect, currentRoundNumber.ToString(), newRoundTextStyle);
+        }
     }
 }

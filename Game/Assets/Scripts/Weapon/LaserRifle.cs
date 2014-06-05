@@ -6,7 +6,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public GameObject bulletSource;
     public GameObject grenadeLauncher;
     public GameObject grenadePrefab;
-	public AmmoCounter ammoCounter;
+    public MeshRenderer muzzleFlash;
+    public AmmoCounter ammoCounter;
     public ParticleSystem hitParticleEffect;
     public GameObject bulletTrailPrefab;
     public float grenadeSpeed;
@@ -19,10 +20,11 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public int maxAmmo;
     public float recoil;
     public float handling;
-    ShootingPhase shootingPhase;
+    private ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
-    private float nextBulletHoleDepth = 0.002f;
+    private float muzzleFlashBrightness;
+    private Light muzzleFlashLight;
 
     public int ammo
     {
@@ -37,17 +39,28 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         }
     }
 
+    public bool isZoomed{ get; set; }
+
     private float spread;
     private float knockBack;
     private float grenadeCooldown = 1.0f;
     private float nextGrenade = 0.0f;
+    private float zoomPhase;
+    private float zoomTime = 0.5f;
+    private Vector3 riflePosition;
+    private Vector3 rifleZoomPosition;
 
     void Start()
     {
         shootingPhase = ShootingPhase.NotShooting;
-		nextShot = Time.fixedTime;
-		ammoCounter.maxAmmo = maxAmmo;
+        nextShot = Time.fixedTime;
+        ammoCounter.maxAmmo = maxAmmo;
         ammo = maxAmmo;
+        muzzleFlashLight = transform.FindChild("MuzzleFlashLight").gameObject.GetComponent<Light>();
+        muzzleFlashLight.intensity = 0.0f;
+
+        riflePosition = transform.localPosition;
+        rifleZoomPosition = new Vector3(0.0195f, -0.075f, 0.0f);
     }
 
     void Update()
@@ -55,23 +68,13 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         if (nextGrenade > 0.0f)
             nextGrenade -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f)
+        if ((Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f) && shootingPhase == ShootingPhase.NotShooting)
         {
-            if (shootingPhase == ShootingPhase.NotShooting)
-                shootingPhase = ShootingPhase.ShootingStart;
+            shootingPhase = ShootingPhase.ShootingStart;
         }
-        else
+        else if (shootingPhase == ShootingPhase.Shooting)
         {
-            if (shootingPhase == ShootingPhase.Shooting)
-                shootingPhase = ShootingPhase.NotShooting;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.R) || Gamepad.instance.justPressedB())
-        {
-            if (shootingPhase == ShootingPhase.NotShooting)
-            {
-                ammo = maxAmmo;
-            }
+            shootingPhase = ShootingPhase.NotShooting;
         }
 
         if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
@@ -81,15 +84,30 @@ public class LaserRifle : MonoSingleton<LaserRifle>
             granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
             nextGrenade = grenadeCooldown;
         }
+
+        muzzleFlash.material.SetColor("_TintColor", new Color(muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness));
+        muzzleFlashLight.intensity = muzzleFlashBrightness * 5.0f;
+        muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
+
+        zoomPhase = Mathf.Clamp01(zoomPhase + (isZoomed ? 1 : -1) * Time.deltaTime / zoomTime);
+        float t = MathfX.sinerp(0, 1, zoomPhase);
+        transform.localPosition = Vector3.Lerp(riflePosition, rifleZoomPosition, t);
     }
 
     void FixedUpdate()
     {
         float effectiveHandling = handling;
+        float effectiveRecoil = recoil;
 
         if (PlayerController.instance.isCrouching)
         {
             effectiveHandling *= 4.0f;
+        }
+
+        if (isZoomed)
+        {
+            effectiveRecoil *= 0.75f;
+            effectiveHandling *= 1.25f;
         }
 
         spread += PlayerController.instance.speed * 0.001f;
@@ -120,13 +138,12 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 --ammo;
                 audio.PlayOneShot(pewSound);
 
-				BulletTrail bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<BulletTrail>();
-				bulletTrail.start = start;
-				Vector3 endPosition;
+                BulletTrail bulletTrail = (Instantiate(bulletTrailPrefab) as GameObject).GetComponent<BulletTrail>();
+                bulletTrail.start = start;
+                Vector3 endPosition;
 
                 if (hit)
                 {
-                    Debug.DrawLine(start, hitInfo.point, Color.yellow, 0.2f, true);
                     Damageable damagable = hitInfo.collider.GetComponent<Damageable>();
 
                     if (damagable != null)
@@ -138,12 +155,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                     if (mat != null)
                     {
-                        GameObject hole = Instantiate(mat.materialProperties.bulletHolePrefab, hitInfo.point + nextBulletHoleDepth * hitInfo.normal, Quaternion.LookRotation(hitInfo.normal)) as GameObject;
-                        hole.transform.parent = hitInfo.transform;
-                        BulletHoleManager.instance.AddBulletHole(hole);
-                        nextBulletHoleDepth += 0.001f;
-                        if (nextBulletHoleDepth > 0.01f)
-                            nextBulletHoleDepth = 0.002f;
+                        mat.materialProperties.Hit(hitInfo, dir);
                     }
 
                     hitParticleEffect.transform.position = hitInfo.point;
@@ -153,15 +165,14 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 }
                 else
                 {
-                    Debug.DrawRay(start, dir * 1000.0f, Color.yellow, 0.2f, true);
                     endPosition = start + dir * 1000.0f;
                 }
-				bulletTrail.end = endPosition;
-				//bulletTrail.material.mainTextureScale = new Vector2((start - endPosition).magnitude / trailWidth * 0.25f, 1);
+                bulletTrail.end = endPosition;
 
-                spread += recoil;
-                knockBack += recoil;
+                spread += effectiveRecoil;
+                knockBack += effectiveRecoil;
                 FirstPersonCameraController.instance.verticalAngle += knockBack * 10.0f;
+                muzzleFlashBrightness += 0.6f;
             }
         }
 

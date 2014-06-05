@@ -18,14 +18,11 @@
 		};
 
 		void surf (Input IN, inout SurfaceOutput o) {
-			float2 screenUV = IN.screenPos.xy / IN.screenPos.w;
 			float depth = DECODE_EYEDEPTH(tex2Dproj(_CameraDepthTexture, IN.screenPos).r);
 			float sceneZ = IN.screenPos.z + _ProjectionParams.y;
-			float transparency = saturate(1 - (depth - sceneZ) * 100);
-			half4 c = tex2D (_MainTex, IN.uv_MainTex);
-			//o.Emission = float3(transparency, transparency, transparency);
-			//o.Alpha = 1;
-			o.Emission = c.rgb;
+			float transparency = saturate(1 - (depth - sceneZ) * 10);
+			float4 c = tex2D (_MainTex, IN.uv_MainTex);
+			o.Albedo = c.rgb;
 			o.Alpha = c.a * transparency;
 		}
 		ENDCG
