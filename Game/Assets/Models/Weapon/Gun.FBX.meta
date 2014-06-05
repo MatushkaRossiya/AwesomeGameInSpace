@@ -51,6 +51,8 @@ ModelImporter:
     100090: Torus004
     100092: Torus005
     100094: Torus006
+    100096: cryAnimationExportNode
+    100098: cryExporterSettingsNode
     400000: Barrel
     400002: body
     400004: body_2
@@ -99,6 +101,8 @@ ModelImporter:
     400090: Torus004
     400092: Torus005
     400094: Torus006
+    400096: cryAnimationExportNode
+    400098: cryExporterSettingsNode
     2300000: Barrel
     2300002: body
     2300004: body_2
