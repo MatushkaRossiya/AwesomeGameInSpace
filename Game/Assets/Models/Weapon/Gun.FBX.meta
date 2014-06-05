@@ -53,6 +53,7 @@ ModelImporter:
     100094: Torus006
     100096: cryAnimationExportNode
     100098: cryExporterSettingsNode
+    100100: Magazine02
     400000: Barrel
     400002: body
     400004: body_2
@@ -103,6 +104,7 @@ ModelImporter:
     400094: Torus006
     400096: cryAnimationExportNode
     400098: cryExporterSettingsNode
+    400100: Magazine02
     2300000: Barrel
     2300002: body
     2300004: body_2
@@ -150,6 +152,7 @@ ModelImporter:
     2300088: Torus004
     2300090: Torus005
     2300092: Torus006
+    2300094: Magazine02
     3300000: Barrel
     3300002: body
     3300004: body_2
@@ -197,6 +200,7 @@ ModelImporter:
     3300088: Torus004
     3300090: Torus005
     3300092: Torus006
+    3300094: Magazine02
     4300000: body
     4300002: body_upper
     4300004: buttLines
@@ -244,6 +248,7 @@ ModelImporter:
     4300088: Torus004
     4300090: Torus005
     4300092: Torus006
+    4300094: Magazine02
     9500000: //RootNode
   materials:
     importMaterials: 1
