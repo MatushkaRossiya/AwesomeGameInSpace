@@ -4,10 +4,19 @@ ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
+    100002: GL
+    100004: GLScrews
     400000: //RootNode
+    400002: GL
+    400004: GLScrews
     2300000: //RootNode
+    2300002: GL
+    2300004: GLScrews
     3300000: //RootNode
+    3300002: GL
+    3300004: GLScrews
     4300000: GL
+    4300002: GLScrews
     9500000: //RootNode
   materials:
     importMaterials: 1
