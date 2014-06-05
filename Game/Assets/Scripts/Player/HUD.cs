@@ -81,7 +81,7 @@ public class HUD : MonoSingleton<HUD>
         glassRect = new Rect(0, 0, w, h);
         syfRect = new Rect(0.14f * w, 0.83f * h, 0.23f * w, 0.11f * h);
         timeBackgroundRect = new Rect(0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
-        hintRect= new LTRect(0.306f * w, 0.388f * h, 0.383f * w, 0.105f * h);
+        hintRect = new LTRect(0.5f * (w - (0.4f * w)), 0.075f * (h - (0.1f * h)), 0.4f * w, 0.1f * h);
         syfTextRect = syfRect;
         syfTextRect.x += 0.082f * w;
         syfTextRect.y -= 0.02f * h;
@@ -93,7 +93,7 @@ public class HUD : MonoSingleton<HUD>
         hintString = stringToDisplay;
         timeHintVisible = secondsToBeVisible;
 		if (hintRect != null)
-						LeanTween.alpha (hintRect, 1, 0.5f);
+		    LeanTween.alpha (hintRect, 1, 0.5f);
         hintVisible = true;
     }
 
@@ -114,12 +114,12 @@ public class HUD : MonoSingleton<HUD>
         if (hintVisible)
         {
             //Debug.Log(timeHintVisible.ToString());
-            if (timeHintVisible > Time.fixedDeltaTime)
+            if (timeHintVisible > 0.0f)
                 timeHintVisible -= Time.fixedDeltaTime;
             else
 			{
 				LeanTween.alpha (hintRect, 0, 0.5f);
-				hintVisible=false;
+				hintVisible = false;
 			}
         }
 
@@ -159,9 +159,8 @@ public class HUD : MonoSingleton<HUD>
         GUI.Label(timeBackgroundRect, GameMaster.instance.TimeToDayEnd, timeTextStyle);
         GUI.DrawTexture(healthbarRect, healtBarTexEmpty);
 
-            GUI.DrawTexture(hintRect.rect, hintTex);
-            GUI.Label(hintRect.rect, hintString, hintTextStyle);
-        
+        GUI.DrawTexture(hintRect.rect, hintTex);
+        GUI.Label(hintRect.rect, hintString, hintTextStyle);
 
         GUI.color = healthBarColor;
         GUI.BeginGroup(healtbarRectCurrentRect);

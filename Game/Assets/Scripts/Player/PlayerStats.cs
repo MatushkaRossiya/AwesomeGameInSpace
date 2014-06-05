@@ -7,6 +7,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     private float _health;
     public AudioClip syringeSound;
     public GameObject minePrefab;
+
     public float health
     {
         get
@@ -15,8 +16,6 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         }
         set
         {
-			Debug.Log(value.ToString());
-			HUDEffects.instance.showEffect(value);
             _health = Mathf.Clamp(value, 0, maxHealth);
             if (_health == 0)
             {
@@ -37,7 +36,6 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _syringes = value;
-            //Debug.Log("You now have " + _syringes + " syringes");
         }
     }
 
@@ -53,7 +51,6 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         {
             _syf = value;
 			GameObject.FindObjectOfType<HUD> ().GetComponent<HUD> ().updateSyf (value);
-            //Debug.Log("You now have " + _syf + " syf");
         }
     }
 

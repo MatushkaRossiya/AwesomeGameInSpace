@@ -22,6 +22,7 @@ public class PlayerDamage : Damageable
     {
         audio.PlayOneShot(scream[Random.Range(0, scream.Length)], 10.0f);
         playerHealth.health -= damage.magnitude;
+        HUDEffects.instance.showEffect(playerHealth.health);
         playerHealth.rigidbody.AddForce(damage * 100.0f);
         if (flashlight != null)
             flashlight.Flicker(damage.magnitude);
