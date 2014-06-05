@@ -39,7 +39,7 @@ public class HeavyAlien : Alien
         GetComponent<HeavyAlienFSM>().enabled = false;
         navMeshAgent.enabled = false;
         ragdollAnimation.isRagdoll = true;
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         transform.position = transform.FindChild("Bip001").FindChild("Bip001 Pelvis").position;
         navMeshAgent.enabled = true;
         ragdollAnimation.isRagdoll = false;

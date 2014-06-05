@@ -59,9 +59,9 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
         if (load.hiddenlayers == HeavyAlienBrainCreator.instance.hiddenLayersPerNetwork && load.neuronsinlayer == HeavyAlienBrainCreator.instance.neuronsPerHiddenLayer
             && load.inputs == HeavyAlienBrainCreator.instance.inputs && load.outputs == HeavyAlienBrainCreator.instance.outputs
             && load.minW == HeavyAlienBrainCreator.instance.minWeight && load.maxW == HeavyAlienBrainCreator.instance.maxWeight
-            && load.bias == HeavyAlienBrainCreator.instance.bias)
+            && load.bias == HeavyAlienBrainCreator.instance.bias && load.populationsize == HeavyAlienBrainCreator.instance.populationSize)
         {
-            populationSize = load.populationsize;
+           
             currentGeneration = load.epoch;
             next = load.next;
             currentPopulation = load.population;

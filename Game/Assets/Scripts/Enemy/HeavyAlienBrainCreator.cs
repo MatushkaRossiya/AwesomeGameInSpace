@@ -9,20 +9,20 @@ using System.Collections.Generic;
 public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreator> {
 
 
-    public float bias = -1.0f;
-    public int inputs = 7;
-    public int outputs = 1;
+    internal float bias = -1.0f;
+    internal int inputs = 4;
+    internal int outputs = 3;
 
     private int elitism = 2;
-    public int next = 0;
-    public int populationSize = 20;
+    private int next = 0;
+    private int populationSize = 20;
     private int currentGeneration = 1;
 
     private float crossoverRate = 0.85f;
     private float mutationRate = 0.08f;
 
-    public int neuronsPerHiddenLayer = 4;
-    public int hiddenLayersPerNetwork = 1;
+    internal int neuronsPerHiddenLayer = 7;
+    internal int hiddenLayersPerNetwork = 2;
 
     private List<Genome> currentPopulation = new List<Genome>();
 

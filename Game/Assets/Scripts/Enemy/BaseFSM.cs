@@ -8,8 +8,9 @@ public abstract class BaseFSM : MonoBehaviour {
     protected GameObject player;
     protected AlienController controller;
     protected internal State currentState;
-    protected float distanceChaseToAttack = 2.5f;
+    protected float distanceChaseToAttack = 3.5f;
     protected float distancePatroltoChase = 10.0f;
+    protected float distanceAlarm = 8.0f;
     protected float distanceToPlayer;
     protected GameObject[] waypoints;
     protected bool mainObjectiveDelayed;
@@ -25,23 +26,25 @@ public abstract class BaseFSM : MonoBehaviour {
 
     protected float patrolTaskTime = 0.0f;
 
-    protected float viewAngle = 120.0f;
-    protected float viewRadius = 20.0f;
+    protected float viewAngle = 130.0f;
+    protected float viewRadius = 25.0f;
 
     protected float chasingTime = 10.0f;
     protected bool chaseTimeout = false;
     protected float stopChase = 0.0f;
 
-    protected float attackMultiplier = 1.0f;
+    protected float alienMultiplier = 1.0f;
 
     protected bool wait = false;
 
 
     internal float damageDealt = 0.0f;
+
+
     protected abstract void UpdateAttack();
-    protected void  UpdateChase()
+    protected virtual void  UpdateChase()
     {
-          agent.speed = 3.0f;
+        agent.speed = 3.0f * alienMultiplier;
           agent.stoppingDistance = 3.0f;
         if (distanceToPlayer < distanceChaseToAttack)
         {
@@ -68,7 +71,7 @@ public abstract class BaseFSM : MonoBehaviour {
             if (agent.velocity.magnitude < 1.0f)
             {
               
-                controller.AttackStrong(attackMultiplier);
+                controller.AttackStrong(alienMultiplier);
             }
             if (mainObjectiveDelayed) UpdateSubObjective();
             else
@@ -83,8 +86,17 @@ public abstract class BaseFSM : MonoBehaviour {
     protected abstract void UpdateSubObjective();
     protected void UpdatePatrol()
     {
-        if (IsPlayerTooClose()) currentState = State.Chase;
-        else if (IsPlayerInMyFOV()) currentState = State.Chase;
+        if (IsPlayerTooClose())
+        {
+            currentState = State.Chase;
+            Alarm();
+        }
+
+        else if (IsPlayerInMyFOV())
+        {
+            currentState = State.Chase;
+            Alarm();
+        }
         else
         {
             if (mainObjectiveDelayed) UpdateSubObjective();
@@ -215,5 +227,21 @@ public abstract class BaseFSM : MonoBehaviour {
         wait = true;
         yield return new WaitForSeconds(t);
         wait = false;
+    }
+
+
+    protected void Alarm()
+    {
+        BaseFSM[] aliensAround = FindObjectsOfType<BaseFSM>();
+        foreach(BaseFSM alien in aliensAround)
+        {
+            if(Vector3.Distance(transform.position, alien.transform.position) < distanceAlarm)
+            {
+                if (alien.currentState == State.Patrol)
+                {
+                    alien.currentState = State.Chase;
+                }
+            }
+        }
     }
 }

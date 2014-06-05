@@ -8,8 +8,7 @@ public class AlienFSM : BaseFSM {
 
 	void Start () {
         Initialize();
-        viewAngle = 120.0f;
-        viewRadius = 20.0f;
+       
      
 	}
 	
@@ -36,6 +35,17 @@ public class AlienFSM : BaseFSM {
             }
         }
 	}
+
+    protected override void UpdateChase()
+    {
+        if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9725f)
+        {
+            agent.Stop();
+            controller.Dodge();
+            StartCoroutine(moment(0.3f));
+        }
+       if(!wait) base.UpdateChase();
+    }
 
     protected override void UpdateAttack()
     {
@@ -69,14 +79,14 @@ public class AlienFSM : BaseFSM {
                         case 2:
                         case 3:
                             transform.LookAt(player.transform);
-                            controller.AttackFast(attackMultiplier);
+                            controller.AttackFast(alienMultiplier);
                             StartCoroutine(moment(0.4f));
                             break;
                         case 4:
                         case 5:
                         case 6:
                             transform.LookAt(player.transform);
-                            controller.AttackStrong(attackMultiplier);
+                            controller.AttackStrong(alienMultiplier);
                             StartCoroutine(moment(0.9f));
                             break;
                         case 7:
@@ -176,7 +186,7 @@ public class AlienFSM : BaseFSM {
        Vector3 runaway = waypoints[Random.Range(0, waypoints.Length)].transform.position;
         while(Vector3.Distance(transform.position, runaway) > closeEnoughToSubobjective)
         {
-            agent.SetDestination(runaway);
+           if(!GetComponent<Alien>().isDead) agent.SetDestination(runaway);
             agent.speed = 4.0f;
             yield return new WaitForSeconds(1.0f);
         }
@@ -191,7 +201,7 @@ public class AlienFSM : BaseFSM {
         controller.Dodge();
         yield return new WaitForSeconds(0.3f);
         transform.LookAt(player.transform);
-        controller.AttackFast(attackMultiplier);
+        controller.AttackFast(alienMultiplier);
         yield return new WaitForSeconds(0.4f);
         wait = false;
         yield return null;
@@ -204,7 +214,7 @@ public class AlienFSM : BaseFSM {
         controller.Dodge();
         yield return new WaitForSeconds(0.3f);
         transform.LookAt(player.transform);
-        controller.AttackStrong(attackMultiplier);
+        controller.AttackStrong(alienMultiplier);
         yield return new WaitForSeconds(0.8f);
         wait = false;
         yield return null;

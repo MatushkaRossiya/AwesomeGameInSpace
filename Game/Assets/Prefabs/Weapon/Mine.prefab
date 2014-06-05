@@ -449,7 +449,7 @@ MonoBehaviour:
   explosionParticle: {fileID: 100000, guid: 3ea03d1d3c4a99642a0d0404dfb58915, type: 2}
   explosionMark: {fileID: 100000, guid: c4f5e9b66293f1246a78f21f3316decc, type: 2}
   force: 200
-  radius: 2
+  radius: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

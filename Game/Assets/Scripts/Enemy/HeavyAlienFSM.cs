@@ -19,7 +19,7 @@ public class HeavyAlienFSM : BaseFSM
     void Awake()
     {
         Initialize();
-        attackMultiplier = 1.5f;   
+        alienMultiplier = 1.5f;   
     }
     void Start()
     {
@@ -53,8 +53,7 @@ public class HeavyAlienFSM : BaseFSM
     protected override void UpdateAttack()
     {
         timeAttacking += Time.fixedDeltaTime;
-        transform.LookAt(player.transform);
-
+      
             if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
             else
             {
@@ -77,12 +76,12 @@ public class HeavyAlienFSM : BaseFSM
                     {
                         case 0:
                           transform.LookAt(player.transform);
-                            controller.AttackFast(attackMultiplier);
+                            controller.AttackFast(alienMultiplier);
                             StartCoroutine(moment(0.4f));
                             break;
                         case 1:
                             transform.LookAt(player.transform);
-                            controller.AttackStrong(attackMultiplier);
+                            controller.AttackStrong(alienMultiplier);
                             StartCoroutine(moment(0.9f));
                             break;
                         case 2:
