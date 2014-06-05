@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public class HeavyAlienFSM : BaseFSM
 {
 
-    NeuralNetwork brain = new NeuralNetwork();
+    internal NeuralNetwork brain = new NeuralNetwork();
 
     private float oldRotY = 0.0f;
     private float oldDistance = 0.0f;
     private bool inAction = false;
 
+    internal float timeAttacking = 0.0f;
+    
+
     void Awake()
     {
         Initialize();
-        
+        attackMultiplier = 1.5f;   
     }
     void Start()
     {
@@ -48,59 +52,55 @@ public class HeavyAlienFSM : BaseFSM
 
     protected override void UpdateAttack()
     {
-     
-        if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
-        else
-        {
-            List<float> inputs = new List<float>();
-            inputs.Add((transform.rotation.y - player.transform.rotation.y)*10.0f);
-            inputs.Add(oldRotY);
+        timeAttacking += Time.fixedDeltaTime;
+        transform.LookAt(player.transform);
 
-
-            inputs.Add(Vector3.Distance(transform.position, player.transform.position));
-            inputs.Add(oldDistance);
-
-            inputs.Add(inAction ? 1.0f : 0.0f);
-
-            Debug.Log("inputs");
-            foreach (var i in inputs) Debug.Log(i);
-            oldRotY = (transform.rotation.y - player.transform.rotation.y)*10.0f;
-            oldDistance = Vector3.Distance(transform.position, player.transform.position);
-            Debug.Log(Mathf.RoundToInt(brain.NetworkResponse(inputs)[0]));
-        }
-    }
-
-    float sigmoid(float x)
-    {
-        return 6.0f / (1 + Mathf.Exp(-x));
-    }
-    protected override void UpdateChase()
-    {
-        if (distanceToPlayer < distanceChaseToAttack)
-        {
-            currentState = State.Attack;
-            SubObjectiveClear();
-        }
-        else
-        {
-
-            if (agent.velocity.magnitude < 1.0f)
-            {
-
-                controller.AttackStrong(1.5f);
-            }
-            if (mainObjectiveDelayed) UpdateSubObjective();
+            if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
             else
             {
-                Look();
-                agent.SetDestination(player.transform.position);
+                List<float> inputs = new List<float>();
+                inputs.Add((transform.rotation.y - player.transform.rotation.y) * 10.0f);
+                inputs.Add(oldRotY);
+                inputs.Add(Vector3.Distance(transform.position, player.transform.position));
+                inputs.Add(oldDistance);
+
+               
+                oldRotY = (transform.rotation.y - player.transform.rotation.y) * 10.0f;
+                oldDistance = Vector3.Distance(transform.position, player.transform.position);
+
+                if (!wait)
+                {
+                    List<float> response = brain.NetworkResponse(inputs);
+                    int decision = response.IndexOf(response.Max());
+
+                    switch(decision)
+                    {
+                        case 0:
+                          transform.LookAt(player.transform);
+                            controller.AttackFast(attackMultiplier);
+                            StartCoroutine(moment(0.4f));
+                            break;
+                        case 1:
+                            transform.LookAt(player.transform);
+                            controller.AttackStrong(attackMultiplier);
+                            StartCoroutine(moment(0.9f));
+                            break;
+                        case 2:
+                            controller.Dodge();
+                            StartCoroutine(moment(0.3f));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
+       
             }
-
-
-        }
+        
     }
 
-
+   
+ 
     protected override void Look()
     {
         RaycastHit sight;
@@ -128,5 +128,12 @@ public class HeavyAlienFSM : BaseFSM
 
         }
         else agent.SetDestination(subobjectivePosition);
+    }
+
+
+    public void PlayerDied()
+    {
+        currentState = BaseFSM.State.Patrol;
+        brain.Fitness(timeAttacking, damageDealt, !(GetComponent<Alien>().isDead));
     }
 }

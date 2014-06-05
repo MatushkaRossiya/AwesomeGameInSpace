@@ -9,7 +9,7 @@ public abstract class BaseFSM : MonoBehaviour {
     protected AlienController controller;
     protected internal State currentState;
     protected float distanceChaseToAttack = 2.5f;
-    protected float distancePatroltoChase = 4.5f;
+    protected float distancePatroltoChase = 10.0f;
     protected float distanceToPlayer;
     protected GameObject[] waypoints;
     protected bool mainObjectiveDelayed;
@@ -28,8 +28,58 @@ public abstract class BaseFSM : MonoBehaviour {
     protected float viewAngle = 120.0f;
     protected float viewRadius = 20.0f;
 
+    protected float chasingTime = 10.0f;
+    protected bool chaseTimeout = false;
+    protected float stopChase = 0.0f;
+
+    protected float attackMultiplier = 1.0f;
+
+    protected bool wait = false;
+
+
+    internal float damageDealt = 0.0f;
     protected abstract void UpdateAttack();
-    protected abstract void UpdateChase();
+    protected void  UpdateChase()
+    {
+          agent.speed = 3.0f;
+          agent.stoppingDistance = 3.0f;
+        if (distanceToPlayer < distanceChaseToAttack)
+        {
+           
+            currentState = State.Attack;
+            SubObjectiveClear();
+        }
+        else
+        {
+            if(distanceToPlayer > distancePatroltoChase && !IsPlayerInMyFOV() && !chaseTimeout)
+            {
+                chaseTimeout = true;
+                stopChase = Time.time + chasingTime;
+            }
+            else if(chaseTimeout && IsPlayerInMyFOV())
+            {
+                chaseTimeout = false;
+            }
+            else if(chaseTimeout && !IsPlayerInMyFOV() && distanceToPlayer > distancePatroltoChase)
+            {
+                if (Time.time > stopChase) currentState = State.Patrol;
+            }
+
+            if (agent.velocity.magnitude < 1.0f)
+            {
+              
+                controller.AttackStrong(attackMultiplier);
+            }
+            if (mainObjectiveDelayed) UpdateSubObjective();
+            else
+            {
+                Look();
+                agent.SetDestination(player.transform.position);
+            }
+
+
+        }
+    }
     protected abstract void UpdateSubObjective();
     protected void UpdatePatrol()
     {
@@ -158,5 +208,12 @@ public abstract class BaseFSM : MonoBehaviour {
         nothing,
         hangOut,
         takeAWalk
+    }
+
+    protected IEnumerator moment(float t)
+    {
+        wait = true;
+        yield return new WaitForSeconds(t);
+        wait = false;
     }
 }

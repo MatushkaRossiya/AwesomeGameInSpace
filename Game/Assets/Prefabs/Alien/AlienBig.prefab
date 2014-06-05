@@ -454,12 +454,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 400054}
   - 195: {fileID: 19500000}
-  - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 82: {fileID: 8200000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11400006}
   m_Layer: 9
   m_Name: AlienBig
   m_TagString: Untagged
@@ -478,6 +478,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400048}
+  m_RootOrder: 0
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -489,6 +490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 400012}
+  m_RootOrder: 0
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -500,6 +502,7 @@ Transform:
   m_LocalScale: {x: -1, y: -1, z: -.99999994}
   m_Children: []
   m_Father: {fileID: 400024}
+  m_RootOrder: 0
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -511,6 +514,7 @@ Transform:
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
+  m_RootOrder: 0
 --- !u!4 &400010
 Transform:
   m_ObjectHideFlags: 1
@@ -523,6 +527,7 @@ Transform:
   m_Children:
   - {fileID: 400008}
   m_Father: {fileID: 400018}
+  m_RootOrder: 0
 --- !u!4 &400012
 Transform:
   m_ObjectHideFlags: 1
@@ -535,6 +540,7 @@ Transform:
   m_Children:
   - {fileID: 400004}
   m_Father: {fileID: 400014}
+  m_RootOrder: 0
 --- !u!4 &400014
 Transform:
   m_ObjectHideFlags: 1
@@ -547,6 +553,7 @@ Transform:
   m_Children:
   - {fileID: 400012}
   m_Father: {fileID: 400016}
+  m_RootOrder: 0
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -559,6 +566,7 @@ Transform:
   m_Children:
   - {fileID: 400014}
   m_Father: {fileID: 400030}
+  m_RootOrder: 0
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -571,6 +579,7 @@ Transform:
   m_Children:
   - {fileID: 400010}
   m_Father: {fileID: 400040}
+  m_RootOrder: 0
 --- !u!4 &400020
 Transform:
   m_ObjectHideFlags: 1
@@ -582,6 +591,7 @@ Transform:
   m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 400022}
+  m_RootOrder: 0
 --- !u!4 &400022
 Transform:
   m_ObjectHideFlags: 1
@@ -594,6 +604,7 @@ Transform:
   m_Children:
   - {fileID: 400020}
   m_Father: {fileID: 400038}
+  m_RootOrder: 0
 --- !u!4 &400024
 Transform:
   m_ObjectHideFlags: 1
@@ -606,6 +617,7 @@ Transform:
   m_Children:
   - {fileID: 400006}
   m_Father: {fileID: 400026}
+  m_RootOrder: 0
 --- !u!4 &400026
 Transform:
   m_ObjectHideFlags: 1
@@ -618,6 +630,7 @@ Transform:
   m_Children:
   - {fileID: 400024}
   m_Father: {fileID: 400028}
+  m_RootOrder: 0
 --- !u!4 &400028
 Transform:
   m_ObjectHideFlags: 1
@@ -630,6 +643,7 @@ Transform:
   m_Children:
   - {fileID: 400026}
   m_Father: {fileID: 400032}
+  m_RootOrder: 0
 --- !u!4 &400030
 Transform:
   m_ObjectHideFlags: 1
@@ -642,6 +656,7 @@ Transform:
   m_Children:
   - {fileID: 400016}
   m_Father: {fileID: 400036}
+  m_RootOrder: 1
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -654,6 +669,7 @@ Transform:
   m_Children:
   - {fileID: 400028}
   m_Father: {fileID: 400036}
+  m_RootOrder: 0
 --- !u!4 &400034
 Transform:
   m_ObjectHideFlags: 1
@@ -666,6 +682,7 @@ Transform:
   m_Children:
   - {fileID: 400036}
   m_Father: {fileID: 400050}
+  m_RootOrder: 0
 --- !u!4 &400036
 Transform:
   m_ObjectHideFlags: 1
@@ -680,6 +697,7 @@ Transform:
   - {fileID: 400030}
   - {fileID: 400046}
   m_Father: {fileID: 400034}
+  m_RootOrder: 0
 --- !u!4 &400038
 Transform:
   m_ObjectHideFlags: 1
@@ -692,6 +710,7 @@ Transform:
   m_Children:
   - {fileID: 400022}
   m_Father: {fileID: 400042}
+  m_RootOrder: 0
 --- !u!4 &400040
 Transform:
   m_ObjectHideFlags: 1
@@ -704,6 +723,7 @@ Transform:
   m_Children:
   - {fileID: 400018}
   m_Father: {fileID: 400044}
+  m_RootOrder: 2
 --- !u!4 &400042
 Transform:
   m_ObjectHideFlags: 1
@@ -716,6 +736,7 @@ Transform:
   m_Children:
   - {fileID: 400038}
   m_Father: {fileID: 400044}
+  m_RootOrder: 1
 --- !u!4 &400044
 Transform:
   m_ObjectHideFlags: 1
@@ -730,6 +751,7 @@ Transform:
   - {fileID: 400042}
   - {fileID: 400040}
   m_Father: {fileID: 400046}
+  m_RootOrder: 0
 --- !u!4 &400046
 Transform:
   m_ObjectHideFlags: 1
@@ -742,6 +764,7 @@ Transform:
   m_Children:
   - {fileID: 400044}
   m_Father: {fileID: 400036}
+  m_RootOrder: 2
 --- !u!4 &400048
 Transform:
   m_ObjectHideFlags: 1
@@ -754,6 +777,7 @@ Transform:
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 400044}
+  m_RootOrder: 0
 --- !u!4 &400050
 Transform:
   m_ObjectHideFlags: 1
@@ -766,6 +790,7 @@ Transform:
   m_Children:
   - {fileID: 400034}
   m_Father: {fileID: 400054}
+  m_RootOrder: 1
 --- !u!4 &400052
 Transform:
   m_ObjectHideFlags: 1
@@ -777,6 +802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400054}
+  m_RootOrder: 0
 --- !u!4 &400054
 Transform:
   m_ObjectHideFlags: 1
@@ -784,12 +810,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.35064113, y: 0, z: -3.78920269}
+  m_LocalPosition: {x: 3.14532137, y: 0, z: -12.4606705}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400052}
   - {fileID: 400050}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -990,7 +1017,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 3090f9735b787f0408d1808ccb828cc4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: .850000024
   Loop: 0
   Mute: 0
   Priority: 128
@@ -1039,7 +1066,7 @@ AudioSource:
     m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -1048,8 +1075,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 6f2a6395d0a3e8242b5f51a03e4a0867, type: 3}
   m_Controller: {fileID: 9100000, guid: 4f6820b9d7a8e8740a4614a40ada9aeb, type: 2}
   m_CullingMode: 1
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
-  m_AnimatePhysics: 1
   m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -1059,9 +1086,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd801828fb9e7184db061ffbe73c8bde, type: 3}
+  m_Script: {fileID: 11500000, guid: 2120b25d755ef694cb1f5cb3bf2641e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHitPoints: 500
+  scream:
+  - {fileID: 8300000, guid: 985ee0345cc9b40409f88db9178a66c9, type: 3}
+  - {fileID: 8300000, guid: e310290fdfb8a5543b3f5bf11b81ad67, type: 3}
+  - {fileID: 8300000, guid: 8b5f2c79ea8519f41b1ecb7e29c41f17, type: 3}
+  - {fileID: 8300000, guid: 8999eefbea4f42a469f14dd8490796fe, type: 3}
+  - {fileID: 8300000, guid: e63a89c259d85c5408844b3836cf9e44, type: 3}
+  - {fileID: 8300000, guid: b8408cfe28f01b54da2b210c6e76c3c3, type: 3}
+  - {fileID: 8300000, guid: 628a50e32d296ab47b8b7ec832325fc5, type: 3}
+  - {fileID: 8300000, guid: c6958b0d29223e1478deeea942a007da, type: 3}
+  - {fileID: 8300000, guid: bdf9322e2fa3d414686c095832f926ff, type: 3}
+  - {fileID: 8300000, guid: f4363547b911574408cedd56e377805b, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1094,21 +1133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34c7dc1e65b71b499b2d0b2fb4df764, type: 3}
+  m_Script: {fileID: 11500000, guid: 19be1317186e11949b6d338fa5780bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 500
-  scream:
-  - {fileID: 8300000, guid: 985ee0345cc9b40409f88db9178a66c9, type: 3}
-  - {fileID: 8300000, guid: e310290fdfb8a5543b3f5bf11b81ad67, type: 3}
-  - {fileID: 8300000, guid: 8b5f2c79ea8519f41b1ecb7e29c41f17, type: 3}
-  - {fileID: 8300000, guid: 8999eefbea4f42a469f14dd8490796fe, type: 3}
-  - {fileID: 8300000, guid: e63a89c259d85c5408844b3836cf9e44, type: 3}
-  - {fileID: 8300000, guid: b8408cfe28f01b54da2b210c6e76c3c3, type: 3}
-  - {fileID: 8300000, guid: 628a50e32d296ab47b8b7ec832325fc5, type: 3}
-  - {fileID: 8300000, guid: c6958b0d29223e1478deeea942a007da, type: 3}
-  - {fileID: 8300000, guid: bdf9322e2fa3d414686c095832f926ff, type: 3}
-  - {fileID: 8300000, guid: f4363547b911574408cedd56e377805b, type: 3}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1509,9 +1536,8 @@ SkinnedMeshRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1578,6 +1604,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400002
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1588,7 +1615,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261507094, y: 3.00068521e-08, z: -2.02982051e-07}
+  m_ConnectedAnchor: {x: -.261507004, y: -2.55203105e-07, z: -1.04849256e-07}
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_LowTwistLimit:
     limit: -90
@@ -1612,6 +1639,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400004
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1622,7 +1650,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261505991, y: 1.97417506e-07, z: 1.95243729e-07}
+  m_ConnectedAnchor: {x: -.261506021, y: 3.52420919e-08, z: 1.60806252e-07}
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_LowTwistLimit:
     limit: -90
@@ -1646,6 +1674,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400006
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1656,7 +1685,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.245637044, y: -.0443528481, z: -.218799397}
+  m_ConnectedAnchor: {x: -.245637044, y: -.0443525277, z: -.218799323}
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_LowTwistLimit:
     limit: -70
@@ -1680,6 +1709,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400008
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1690,7 +1720,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.245636925, y: -.0443540439, z: .218799233}
+  m_ConnectedAnchor: {x: -.245636925, y: -.0443537235, z: .218799233}
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_LowTwistLimit:
     limit: -70
@@ -1714,6 +1744,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400010
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1724,7 +1755,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.344110072, y: -.000194072723, z: 4.77114781e-07}
+  m_ConnectedAnchor: {x: -.344110072, y: -.000193913787, z: 3.97602889e-07}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1748,6 +1779,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400012
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1758,7 +1790,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.435845256, y: -2.62910795e-08, z: -2.48998759e-08}
+  m_ConnectedAnchor: {x: -.435845256, y: -1.84355315e-07, z: -2.33765913e-08}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -80
@@ -1782,6 +1814,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400014
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1792,7 +1825,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.435846567, y: -6.86737422e-08, z: 2.4976228e-07}
+  m_ConnectedAnchor: {x: -.435846567, y: 9.15502341e-08, z: 1.77160103e-07}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -80
@@ -1816,6 +1849,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400016
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1850,6 +1884,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400018
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1860,7 +1895,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 5.96046448e-08, y: 1.5842194e-07, z: .110744961}
+  m_ConnectedAnchor: {x: 5.96046448e-08, y: 1.5842204e-07, z: .110745035}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1884,6 +1919,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1

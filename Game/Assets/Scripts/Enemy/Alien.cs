@@ -10,7 +10,7 @@ public class Alien : CharacterAI
     public float maxHitPoints;
     //    public float attackCooldown;
     public AudioClip[] scream;
-    protected float currentHitPoints;
+    internal float currentHitPoints;
     // private float nextAttack;
     //   private bool mainObjectiveDelayed = false;
     // private SubObjective subobjective = SubObjective.none;
@@ -139,7 +139,7 @@ public class Alien : CharacterAI
          }
      }
      */
-    public void Kill()
+    public virtual void Kill()
     {
         if (!isDead)
         {

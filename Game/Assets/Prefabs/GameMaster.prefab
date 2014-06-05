@@ -16,6 +16,8 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400018}
+  - 114: {fileID: 11400016}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -34,6 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,6 +217,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1cfbfc01e79c6448d72ae3eb5ceca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894456a8c22e004428464b2a7298cd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bias: -1
+  inputs: 4
+  outputs: 3
+  next: 0
+  populationSize: 5
+  neuronsPerHiddenLayer: 6
+  hiddenLayersPerNetwork: 2
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2335a8c2bf4df45b20106e5bad9106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMarkCount: 16
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
