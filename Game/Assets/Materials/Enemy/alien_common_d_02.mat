@@ -59,6 +59,14 @@ Material:
         second: .0197321419
       data:
         first:
+          name: _SpecularMultiplier
+        second: 1
+      data:
+        first:
+          name: _GlossMultiplier
+        second: .200000003
+      data:
+        first:
           name: _Gloss
         second: .159999996
     m_Colors:
