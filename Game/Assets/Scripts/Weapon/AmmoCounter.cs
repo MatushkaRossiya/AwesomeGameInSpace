@@ -4,7 +4,9 @@ using System.Collections;
 public class AmmoCounter : MonoBehaviour {
 	public int maxAmmo;
 	private int _ammo;
-	public TextMesh number;
+	public TextMesh units;
+	public TextMesh tens;
+	public TextMesh hundreds;
 	public GameObject indicator;
 	private Material indicatorMat;
 	private int ID;
@@ -18,7 +20,9 @@ public class AmmoCounter : MonoBehaviour {
 		get { return _ammo; }
 		set {
 			indicatorMat.SetFloat(ID, ThresholdFunc(value));
-			number.text = string.Format("{0:000}", value);
+			units.text = (value % 10).ToString();
+			tens.text = (value / 10 % 10).ToString();
+			hundreds.text = (value / 100 % 10).ToString();
 			_ammo = value;
 		}
 	}
