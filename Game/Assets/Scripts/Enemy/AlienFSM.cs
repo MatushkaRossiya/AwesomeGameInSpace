@@ -3,29 +3,33 @@ using System.Collections;
 
 public class AlienFSM : BaseFSM {
 
-    protected GameObject[] waypoints;
 
     private bool wait = false;
+    
 	void Start () {
         Initialize();
-        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+        viewAngle = 120.0f;
+        viewRadius = 20.0f;
 	}
 	
 
 	void FixedUpdate () {
-
+   
         if (!GetComponent<Alien>().isDead)
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
           
             switch (currentState)
             {
-                case State.Chase:
-                    UpdateChase();      //Seek
+                case State.Patrol:
+                    UpdatePatrol();
                     break;
-                                        //and
+                case State.Chase:
+                    UpdateChase();     
+                    break;
+                                        
                 case State.Attack:
-                    UpdateAttack();     //Destroy
+                    UpdateAttack();     
                     break;
                 default:
                     break;
@@ -35,11 +39,9 @@ public class AlienFSM : BaseFSM {
 
     protected override void UpdateAttack()
     {
-        if (distanceToPlayer > stateTransitionDistance) currentState = State.Chase;
+        if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
         else
         {
-
-           
 
             if (!wait)
             {
@@ -91,7 +93,7 @@ public class AlienFSM : BaseFSM {
     {
 
         agent.speed = 3.0f;
-        if (distanceToPlayer < stateTransitionDistance)
+        if (distanceToPlayer < distanceChaseToAttack)
         {
             currentState = State.Attack;
             SubObjectiveClear();
@@ -125,6 +127,7 @@ public class AlienFSM : BaseFSM {
         {
             case SubObjective.destroyBlockade:
                 {
+                    agent.stoppingDistance = 0.001f;
                     if (!blockadeToDestroy)
                     {
                         SubObjectiveClear();
@@ -142,7 +145,9 @@ public class AlienFSM : BaseFSM {
 
             case SubObjective.anotherWay:
                 {
-                    SubObjectiveClear();
+                    agent.stoppingDistance = 1.5f;
+                 if(Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective) SubObjectiveClear();
+                 else agent.SetDestination(subobjectivePosition);
                     break;
                 }
 
@@ -152,7 +157,7 @@ public class AlienFSM : BaseFSM {
        
     }
 
-
+  
     protected override void Look()
     {
         RaycastHit sight;
@@ -175,6 +180,7 @@ public class AlienFSM : BaseFSM {
             }
         }     
     }
+
 
    IEnumerator moment()
     {

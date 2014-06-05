@@ -32,6 +32,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
     }
 
+    public bool isZoomed { get; set; }
+
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
     private bool canJump;
@@ -47,32 +49,6 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     void Update()
     {
-        //You can't touch this
-        //You can't touch this
-        //You can't touch this
-        //You can't touch this
-        //You can't touch this
-
-        //My, my, my music hits me so hard
-        //Makes me say "Oh, my Lord"
-        //Thank you for blessing me
-        //With a mind to rhyme and two hype feet
-
-        //It feels good, when you know you're down
-        //A super dope homeboy from the Oak town
-        //And I'm known as such
-        //And this is a beat, uh, you can't touch
-                
-        //I told you, homeboy
-        //(You can't touch this)
-        //Yeah, that's how we living and you know
-        //(You can't touch this)
-
-        //Look at my eyes, man
-        //(You can't touch this)
-        //Yo, let me bust the funky lyrics
-        //(You can't touch this)
-
         if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
         {
             isCrouching = !isCrouching;
@@ -83,7 +59,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             isCrouching = !isCrouching;
             crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
         }
-        canJump |= !isCrouching && isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA()) && (jumpHeight > 0.0f);
+        canJump |= !isCrouching && isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA()) && !isZoomed;
     }
 
     void FixedUpdate()
@@ -113,7 +89,11 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             input *= 0.5f;
         }
-        else if ((input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
+        if (isZoomed)
+        {
+            input *= 0.5f;
+        }
+        if ((!isCrouching && !isZoomed) && (input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
         {
             input.y = sprintSpeed / walkSpeed;
         }

@@ -1,16 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class HeavyAlienFSM : BaseFSM
 {
 
+    NeuralNetwork brain = new NeuralNetwork();
 
-    void Start()
+    private float oldRotY = 0.0f;
+    private float oldDistance = 0.0f;
+    private bool inAction = false;
+
+    void Awake()
     {
         Initialize();
+        
+    }
+    void Start()
+    {
+        brain.IntializeNetwork();
+        HeavyAlienBrainCreator.instance.GiveWeights(ref brain);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!GetComponent<Alien>().isDead)
@@ -19,12 +31,14 @@ public class HeavyAlienFSM : BaseFSM
 
             switch (currentState)
             {
-                case State.Chase:
-                    UpdateChase();      //Seek
+                case State.Patrol:
+                    UpdatePatrol();
                     break;
-                //and
+                case State.Chase:
+                    UpdateChase();     
+                    break;              
                 case State.Attack:
-                    UpdateAttack();     //Destroy
+                    UpdateAttack();     
                     break;
                 default:
                     break;
@@ -34,12 +48,35 @@ public class HeavyAlienFSM : BaseFSM
 
     protected override void UpdateAttack()
     {
-        throw new System.NotImplementedException();
+     
+        if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
+        else
+        {
+            List<float> inputs = new List<float>();
+            inputs.Add((transform.rotation.y - player.transform.rotation.y)*10.0f);
+            inputs.Add(oldRotY);
+
+
+            inputs.Add(Vector3.Distance(transform.position, player.transform.position));
+            inputs.Add(oldDistance);
+
+            inputs.Add(inAction ? 1.0f : 0.0f);
+
+            Debug.Log("inputs");
+            foreach (var i in inputs) Debug.Log(i);
+            oldRotY = (transform.rotation.y - player.transform.rotation.y)*10.0f;
+            oldDistance = Vector3.Distance(transform.position, player.transform.position);
+            Debug.Log(Mathf.RoundToInt(brain.NetworkResponse(inputs)[0]));
+        }
     }
 
+    float sigmoid(float x)
+    {
+        return 6.0f / (1 + Mathf.Exp(-x));
+    }
     protected override void UpdateChase()
     {
-        if (distanceToPlayer < stateTransitionDistance)
+        if (distanceToPlayer < distanceChaseToAttack)
         {
             currentState = State.Attack;
             SubObjectiveClear();
@@ -62,6 +99,7 @@ public class HeavyAlienFSM : BaseFSM
 
         }
     }
+
 
     protected override void Look()
     {
