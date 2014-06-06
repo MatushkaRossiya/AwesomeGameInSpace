@@ -16,6 +16,13 @@ GameObject:
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
+  - 114: {fileID: 11400018}
+  - 114: {fileID: 11400016}
+  - 114: {fileID: 11400020}
+  - 82: {fileID: 8200000}
+  - 114: {fileID: 11400022}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -34,6 +41,65 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbf7d22f38ebc40bf200fea11551c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLenght: 30
+  dayLenght: 45
   changeDuration: 15
   waveSize: 10
   spawnRate: 1
@@ -214,6 +280,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1cfbfc01e79c6448d72ae3eb5ceca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 894456a8c22e004428464b2a7298cd39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2335a8c2bf4df45b20106e5bad9106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMarkCount: 16
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba1d8dad8b17f2449945f4037efa6e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music:
+  - {fileID: 8300000, guid: f3cd4e753ce16f74d9d30ee06d3074bb, type: 3}
+  - {fileID: 8300000, guid: 50fbf9d2e5746b241b856169214a08ce, type: 3}
+  - {fileID: 8300000, guid: 487665a041046624f9d01bb956b8f041, type: 3}
+  tipOffCountdown: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72687c785be36c84a8377e54db6459f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85515aa1b4c22c644b89efb6261fece2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  look: {fileID: 2800000, guid: 858e3c2ee4f3a1e468cda64290bae5b9, type: 3}
+  move: {fileID: 2800000, guid: 67f94b04d8c6a634eba6d4fc8297e55b, type: 3}
+  sprint: {fileID: 2800000, guid: 67f94b04d8c6a634eba6d4fc8297e55b, type: 3}
+  jump: {fileID: 2800000, guid: 7e0ddb2be341c3342b1a69706d7f35be, type: 3}
+  crouch: {fileID: 2800000, guid: 32104508bbef0bb459c11a582c98762e, type: 3}
+  flashlight: {fileID: 2800000, guid: d0642f373fa495947a3a588f6c91050f, type: 3}
+  syringe: {fileID: 2800000, guid: 6b45b21b8d1deaa46a66fc99dc1e7bb5, type: 3}
+  weapon: {fileID: 2800000, guid: 2ea297e8ecd657b4f96bd20ff57a8884, type: 3}
+  grenade: {fileID: 2800000, guid: 8519faa750206e348ae212f400c1b421, type: 3}
+  aim: {fileID: 2800000, guid: 73030e5b778e0cf408edd4fdf8900079, type: 3}
+  mine: {fileID: 2800000, guid: d9a4cb071bf0e4949bc22d806150c5f9, type: 3}
+  interact: {fileID: 2800000, guid: 37c5e816ad3d6d94e8684c8c529faa75, type: 3}
+  lookPC: {fileID: 2800000, guid: 6d1f32eeab249224e91952b401875a1f, type: 3}
+  movePC: {fileID: 0}
+  sprintPC: {fileID: 2800000, guid: 3d393c24778bd164e97dc0997d7a7bce, type: 3}
+  jumpPC: {fileID: 2800000, guid: c35a6c3c0d8a5a448b2c9d96a67702ef, type: 3}
+  crouchPC: {fileID: 2800000, guid: 966881ca7ac861e4da738001cf4a8791, type: 3}
+  flashlightPC: {fileID: 2800000, guid: d093ab65d4c235e46a1e5812be4d723a, type: 3}
+  syringePC: {fileID: 2800000, guid: 10d836a6e904d954199b2c684e6db4bb, type: 3}
+  weaponPC: {fileID: 2800000, guid: 7627d0a32b0cfdb42867d2cb42dfeb8c, type: 3}
+  grenadePC: {fileID: 2800000, guid: bf9392f637a659944a86124ec0966b91, type: 3}
+  aimPC: {fileID: 2800000, guid: 4ffd61c30e3f4d14aac50ad32de6c842, type: 3}
+  minePC: {fileID: 2800000, guid: 36979a4d3d38eab46bb941162329adad, type: 3}
+  interactPC: {fileID: 2800000, guid: 36b2b458f945c43469e6d685949658ed, type: 3}
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2335a8c2bf4df45b20106e5bad9106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMarkCount: 16
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -18,6 +18,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     private float dayPhase = 0;
     private List<EnemySpawner> spawners = new List<EnemySpawner>();
 	public int currentRound;
+
     GameMaster()
     {
         phase = Day;
@@ -31,7 +32,9 @@ public class GameMaster : MonoSingleton<GameMaster>
     void Start()
     {
         nightBeginTime = Time.time + dayLenght;
+        MusicMaster.instance.startDayMusic();
     }
+
     public string TimeToDayEnd
     {
         get
@@ -78,6 +81,7 @@ public class GameMaster : MonoSingleton<GameMaster>
             }
             currentRound++;
             HUD.instance.showRoundNumber(currentRound);
+            MusicMaster.instance.startExplorationMusic();
         }
     }
 
@@ -110,6 +114,7 @@ public class GameMaster : MonoSingleton<GameMaster>
             dayPhase = 0;
 			Loader.instance.save();//autosave po zakonczeniu ranka
             LightManager.instance.dayPhase = 0;
+            MusicMaster.instance.startDayMusic();
         }
     }
 

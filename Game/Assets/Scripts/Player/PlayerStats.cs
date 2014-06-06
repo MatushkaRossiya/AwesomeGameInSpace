@@ -19,7 +19,9 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             _health = Mathf.Clamp(value, 0, maxHealth);
             if (_health == 0)
             {
-                Application.LoadLevel(3);
+                HeavyAlienFSM[] heavyAliens = FindObjectsOfType<HeavyAlienFSM>();
+                foreach (HeavyAlienFSM heavyAlien in heavyAliens) heavyAlien.PlayerDied();
+                Application.LoadLevel(1);
             }
         }
     }

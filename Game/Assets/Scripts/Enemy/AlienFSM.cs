@@ -3,29 +3,32 @@ using System.Collections;
 
 public class AlienFSM : BaseFSM {
 
-    protected GameObject[] waypoints;
 
-    private bool wait = false;
+    
+
 	void Start () {
         Initialize();
-        waypoints = GameObject.FindGameObjectsWithTag("waypoint");
+       
+     
 	}
 	
 
 	void FixedUpdate () {
-
+   
         if (!GetComponent<Alien>().isDead)
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
           
             switch (currentState)
             {
-                case State.Chase:
-                    UpdateChase();      //Seek
+                case State.Patrol:
+                    UpdatePatrol();
                     break;
-                                        //and
+                case State.Chase:
+                    UpdateChase();     
+                    break;                                        
                 case State.Attack:
-                    UpdateAttack();     //Destroy
+                    UpdateAttack();     
                     break;
                 default:
                     break;
@@ -33,88 +36,82 @@ public class AlienFSM : BaseFSM {
         }
 	}
 
+    protected override void UpdateChase()
+    {
+        if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9725f)
+        {
+            agent.Stop();
+            controller.Dodge();
+            StartCoroutine(moment(0.3f));
+        }
+       if(!wait) base.UpdateChase();
+    }
+
     protected override void UpdateAttack()
     {
-        if (distanceToPlayer > stateTransitionDistance) currentState = State.Chase;
-        else
+        if(!wait)
         {
-
-           
-
-            if (!wait)
+            if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
+            else
             {
 
-                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.95f) controller.Dodge();
-                if (distanceToPlayer > 2.0f)
+                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9725f)
                 {
-                    agent.SetDestination(player.transform.position);
-                    agent.speed = 3.5f;
-                    agent.stoppingDistance = 0.75f;
-                    StartCoroutine(moment());
+                    controller.Dodge();
+                    StartCoroutine(moment(0.3f));
                 }
+                //if (distanceToPlayer > 2.0f)
+                //{
+                //    agent.SetDestination(player.transform.position);
+                //    agent.speed = 3.5f;
+                //    agent.stoppingDistance = 1.75f;
+                //    StartCoroutine(moment(0.3f));
+                //}
                 else
                 {
 
-                    int atk = Random.Range(1, 9);
+                    int atk = Random.Range(1, 12);
 
 
                     switch (atk)
                     {
-                        case 6:
                         case 1:
-                        case 9:
-                            controller.AttackFast(1.0f);
+                        case 2:
+                        case 3:
+                            transform.LookAt(player.transform);
+                            controller.AttackFast(alienMultiplier);
+                            StartCoroutine(moment(0.4f));
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            transform.LookAt(player.transform);
+                            controller.AttackStrong(alienMultiplier);
+                            StartCoroutine(moment(0.9f));
                             break;
                         case 7:
-                        case 8:                        
-                        case 2:
-                            controller.AttackStrong(1.0f);
-                            break;                     
-                       
-                        case 4:                            
-                            StartCoroutine(atk4());
+                            if (GetComponent<Alien>().currentHitPoints < GetComponent<Alien>().maxHitPoints * 0.1f) StartCoroutine(retreat());
                             break;
-                        case 5:                           
-                            StartCoroutine(atk5());
+                        case 8:
+                        case 9:
+                            StartCoroutine(atkAction1());
+                            break;
+                        case 10:
+                        case 11:
+                            StartCoroutine(atkAction2());
                             break;
                         default:
                             break;
                     }
                 }
             }
+            
             }
         
 
     }
 
-    protected override void UpdateChase()
-    {
-
-        agent.speed = 3.0f;
-        if (distanceToPlayer < stateTransitionDistance)
-        {
-            currentState = State.Attack;
-            SubObjectiveClear();
-        }
-        else
-        {
-
-            if (agent.velocity.magnitude < 1.0f)
-            {
-              
-                controller.AttackStrong(1.0f);
-            }
-            if (mainObjectiveDelayed) UpdateSubObjective();
-            else
-            {
-                Look();
-                agent.SetDestination(player.transform.position);
-            }
-
-
-        }
-        
-    }
+  
 
 
 
@@ -125,6 +122,7 @@ public class AlienFSM : BaseFSM {
         {
             case SubObjective.destroyBlockade:
                 {
+                    agent.stoppingDistance = 0.001f;
                     if (!blockadeToDestroy)
                     {
                         SubObjectiveClear();
@@ -142,7 +140,9 @@ public class AlienFSM : BaseFSM {
 
             case SubObjective.anotherWay:
                 {
-                    SubObjectiveClear();
+                    agent.stoppingDistance = 1.5f;
+                 if(Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective) SubObjectiveClear();
+                 else agent.SetDestination(subobjectivePosition);
                     break;
                 }
 
@@ -152,7 +152,7 @@ public class AlienFSM : BaseFSM {
        
     }
 
-
+  
     protected override void Look()
     {
         RaycastHit sight;
@@ -176,43 +176,47 @@ public class AlienFSM : BaseFSM {
         }     
     }
 
-   IEnumerator moment()
-    {
-        wait = true;
-       yield return new WaitForSeconds(0.25f);
-       wait = false;
-    }
+
+  
 
 
-    IEnumerator atk4()
+    IEnumerator retreat()
    {
        wait = true;
-       if (!GetComponent<Alien>().isDead)
-       {
-           for (int i = 0; i < 25; i++)
-           {
-               if (!GetComponent<Alien>().isDead) agent.SetDestination(player.transform.position + Vector3.right / 4.0f);
-               agent.speed = 5.0f;
-               controller.AttackFast(1.0f);
-               yield return new WaitForSeconds(0.01f);
-           }
-       }
-       wait = false;
+       Vector3 runaway = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+        while(Vector3.Distance(transform.position, runaway) > closeEnoughToSubobjective)
+        {
+           if(!GetComponent<Alien>().isDead) agent.SetDestination(runaway);
+            agent.speed = 4.0f;
+            yield return new WaitForSeconds(1.0f);
+        }
+        if (Vector3.Distance(player.transform.position, transform.position) > distancePatroltoChase && !IsPlayerInMyFOV()) currentState = State.Patrol;
+        wait = false;
+        yield return null;
    }
 
-    IEnumerator atk5()
+    IEnumerator atkAction1()
     {
         wait = true;
-        if (!GetComponent<Alien>().isDead)
-        {
-            for (int i = 0; i < 25; i++)
-            {
-                if (!GetComponent<Alien>().isDead) agent.SetDestination(player.transform.position + Vector3.left / 4.0f);
-                agent.speed = 5.0f;
-                controller.AttackStrong(1.0f);
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
+        controller.Dodge();
+        yield return new WaitForSeconds(0.3f);
+        transform.LookAt(player.transform);
+        controller.AttackFast(alienMultiplier);
+        yield return new WaitForSeconds(0.4f);
         wait = false;
+        yield return null;
+
+    }
+
+    IEnumerator atkAction2()
+    {
+        wait = true;
+        controller.Dodge();
+        yield return new WaitForSeconds(0.3f);
+        transform.LookAt(player.transform);
+        controller.AttackStrong(alienMultiplier);
+        yield return new WaitForSeconds(0.8f);
+        wait = false;
+        yield return null;
     }
 }

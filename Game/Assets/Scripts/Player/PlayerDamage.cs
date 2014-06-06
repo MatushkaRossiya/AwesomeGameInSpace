@@ -26,5 +26,6 @@ public class PlayerDamage : Damageable
         playerHealth.rigidbody.AddForce(damage * 100.0f);
         if (flashlight != null)
             flashlight.Flicker(damage.magnitude);
+        MusicMaster.instance.startFightMusic();
     }
 }

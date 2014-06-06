@@ -7,13 +7,16 @@ public class HUD : MonoSingleton<HUD>
     public GUIStyle timeTextStyle;
     public GUIStyle hintTextStyle;
     public GUIStyle newRoundTextStyle;
+    public GUIStyle tutorialTextStyle;
     public Texture2D glassTex;  //po prostu maska od srodka
     public Texture2D healtBarTexEmpty; //szary pasek
     public Texture2D healthBarTex; // ten taki wygiety pasek (poziomo tak jak u marka) (BIALY! kolory ustawione beda w kodzie dla odpowienich stanow)
     public Texture2D timeBackgroundTex; //jakis prostokąt albo tło za czcionką czasu który będzie sie zmeiniac( chyba ze ladniej bedzie bez tla)
     public Texture2D syfTex; //textura syfu z tlem (nie wiem czy czcionka ma byc na tle czy nie (obczaj jak bedize ladniej)
     public Texture2D hintTex;
+    private Texture2D tutorialIcon = null;
     public AudioClip newRoundSound;
+    public AudioClip tutorialSound;
     bool displayTime;
     Color healthBarColor;   //aktualny kolor statusut zdrowie (cz,zolt,zielony)
     //private rects
@@ -25,10 +28,14 @@ public class HUD : MonoSingleton<HUD>
     Rect syfRect;   //lewy dolny rog (ilosc syfu)
     Rect timeRect;  //prway gorny rog (Czas)
     LTRect hintRect;
+    LTRect tutorialRect;
     string syfAmount;
     bool hintVisible;
+    bool tutorialVisible;
     string hintString;
+    string tutorialString;
     float timeHintVisible;
+    float timeTutorialVisible;
     //float timeHintOpacity = 1;
     private Rect newRoundTextRect;
     private int currentRoundNumber = 0;
@@ -62,6 +69,7 @@ public class HUD : MonoSingleton<HUD>
     {
         initView();
 		LeanTween.alpha (hintRect, 0, 0.01f);
+        LeanTween.alpha (tutorialRect, 0, 0.01f);
 		updateSyf (100);//TO DO CHANGE
         updateHealth(1.0f);
         newRoundTextColor0 = newRoundTextStyle.normal.textColor;
@@ -82,6 +90,7 @@ public class HUD : MonoSingleton<HUD>
         syfRect = new Rect(0.14f * w, 0.83f * h, 0.23f * w, 0.11f * h);
         timeBackgroundRect = new Rect(0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
         hintRect = new LTRect(0.5f * (w - (0.4f * w)), 0.075f * (h - (0.1f * h)), 0.4f * w, 0.1f * h);
+        tutorialRect = new LTRect(0.5f * (w - (0.4f * w)), 0.075f * (h - (0.2f * h)), 0.4f * w, 0.2f * h);
         syfTextRect = syfRect;
         syfTextRect.x += 0.082f * w;
         syfTextRect.y -= 0.02f * h;
@@ -97,6 +106,26 @@ public class HUD : MonoSingleton<HUD>
         hintVisible = true;
     }
 
+    public void setTutorialVisible(string stringToDisplay, float secondsToBeVisible)
+    {
+        tutorialString = stringToDisplay;
+        timeTutorialVisible = secondsToBeVisible;
+        if (tutorialRect != null)
+            LeanTween.alpha (tutorialRect, 1, 0.5f);
+        tutorialVisible = true;
+        audio.PlayOneShot(tutorialSound, 1.0f);
+    }
+
+    public void setTutorialVisible(string stringToDisplay, Texture2D icon, float secondsToBeVisible)
+    {
+        tutorialString = stringToDisplay;
+        timeTutorialVisible = secondsToBeVisible;
+        if (tutorialRect != null)
+            LeanTween.alpha (tutorialRect, 1, 0.5f);
+        tutorialVisible = true;
+        audio.PlayOneShot(tutorialSound, 1.0f);
+        tutorialIcon = icon;
+    }
 
     public void showRoundNumber(int roundNumber)
     {
@@ -113,7 +142,6 @@ public class HUD : MonoSingleton<HUD>
     {
         if (hintVisible)
         {
-            //Debug.Log(timeHintVisible.ToString());
             if (timeHintVisible > 0.0f)
                 timeHintVisible -= Time.fixedDeltaTime;
             else
@@ -121,6 +149,18 @@ public class HUD : MonoSingleton<HUD>
 				LeanTween.alpha (hintRect, 0, 0.5f);
 				hintVisible = false;
 			}
+        }
+
+        if (tutorialVisible)
+        {
+            if (timeTutorialVisible > 0.0f)
+                timeTutorialVisible -= Time.fixedDeltaTime;
+            else
+            {
+                LeanTween.alpha (tutorialRect, 0, 0.5f);
+                tutorialVisible = false;
+                tutorialIcon = null;
+            }
         }
 
         updateHealth(PlayerStats.instance.healthPercentage);
@@ -161,6 +201,16 @@ public class HUD : MonoSingleton<HUD>
 
         GUI.DrawTexture(hintRect.rect, hintTex);
         GUI.Label(hintRect.rect, hintString, hintTextStyle);
+
+        GUI.DrawTexture(tutorialRect.rect, hintTex);
+        if (tutorialIcon != null)
+        {
+            GUI.Label(tutorialRect.rect, new GUIContent(tutorialString, tutorialIcon), tutorialTextStyle);
+        }
+        else
+        {
+            GUI.Label(tutorialRect.rect, tutorialString, tutorialTextStyle);
+        }
 
         GUI.color = healthBarColor;
         GUI.BeginGroup(healtbarRectCurrentRect);
