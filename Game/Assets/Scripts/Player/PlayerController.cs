@@ -32,29 +32,42 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
     }
 
+    public bool isZoomed { get; set; }
+
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
     private bool canJump;
-    CapsuleCollider playerCollider;
-
-    private Transform flashlighObject;
+    private CapsuleCollider playerCollider;
+    private Vector3 input;
 
     void Start()
     {
         firstPersonCameraController = transform.GetComponentInChildren<FirstPersonCameraController>();
         playerCollider = GetComponent<CapsuleCollider>();
-        flashlighObject = transform.FindChild("Flashlight");
+        input = new Vector3();
+    }
+
+    void Update()
+    {
+        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
+        {
+            isCrouching = !isCrouching;
+            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+        }
+        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
+        {
+            isCrouching = !isCrouching;
+            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
+        }
+        canJump |= !isCrouching && isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA()) && !isZoomed;
     }
 
     void FixedUpdate()
     {
-        canJump |= isTouchingGround && (Time.fixedTime > nextJump) && ((Input.GetAxis("Jump") > 0.5f) || Gamepad.instance.pressedA());
-
         Crouch();
         Walk();
         Jump();
         Breathe();
-
         isTouchingGround = false;
     }
 
@@ -64,7 +77,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         transform.localRotation = Quaternion.Euler(new Vector3(0, firstPersonCameraController.horizontalAngle, 0));
 
         // read input
-        Vector3 input = new Vector3();
         input.x = Input.GetAxis("Horizontal") + Gamepad.instance.leftStick().x;
         input.y = Input.GetAxis("Vertical") + Gamepad.instance.leftStick().y;
 
@@ -76,8 +88,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (isCrouching)
         {
             input *= 0.5f;
-        } 
-        else if ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick())
+        }
+        if (isZoomed)
+        {
+            input *= 0.5f;
+        }
+        if ((!isCrouching && !isZoomed) && (input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
         {
             input.y = sprintSpeed / walkSpeed;
         }
@@ -112,7 +128,7 @@ public class PlayerController : MonoSingleton<PlayerController>
                 distance = 0.0f;
                 PlayRandomAudio(walkOnMetalSounds);
             }
-        } 
+        }
         else
         {
             distance = 0.0f;
@@ -137,17 +153,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (crouchingTimeLeft < 0.0f)
             crouchingTimeLeft = 0.0f;
 
-        if (!isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft; 
-        } 
-        else if (isCrouching && (Input.GetKeyDown(KeyCode.LeftControl) || Gamepad.instance.justPressedY()) && !Physics.Raycast(transform.position, Vector3.up, 1.0f))
-        {
-            isCrouching = !isCrouching;
-            crouchingTimeLeft = crouchingDelay - crouchingTimeLeft;
-        }
-
         float T = crouchingTimeLeft / crouchingDelay;
         if (!isCrouching)
             T = 1 - T;
@@ -158,9 +163,6 @@ public class PlayerController : MonoSingleton<PlayerController>
         playerCollider.center = new Vector3(0, height, 0);
         height = MathfX.sinerp(1, 2, T);
         playerCollider.height = height;
-
-        height = MathfX.sinerp(crouchingViewHeight + 0.05f, standingViewHeight + 0.05f, T);
-        flashlighObject.transform.localPosition = new Vector3(-0.6f, height, 0);
 
         crouchingTimeLeft -= Time.fixedDeltaTime;
     }

@@ -3,20 +3,21 @@ using System.Collections;
 
 public class Stuff : Interactive
 {
-    float deathTime;
+    private float deathTime;
 
     void Start()
     {
-        deathTime = Time.fixedTime + Random.Range(10.0f, 20.0f);
+        deathTime = Random.Range(10.0f, 20.0f);
     }
 
     void FixedUpdate()
     {
-        if (Time.fixedTime > deathTime)
+        deathTime -= Time.fixedDeltaTime;
+        if (deathTime <= 0.0f)
             Destroy(gameObject);
     }
 
-    public override void Action()
+    public override void MomentaryAction()
     {
         DataBank.stuffCount++;
         Destroy(gameObject);

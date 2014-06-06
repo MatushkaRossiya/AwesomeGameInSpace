@@ -13,13 +13,24 @@ public class AlienController : MonoBehaviour {
     public void AttackStrong(float alien) { Attack(0.85f, 15.0f * alien); }
     public void Dodge() {
         if (!GetComponent<Alien>().isDead)
-        {
-            //Debug.Log("dodged it");
-            GetComponent<NavMeshAgent>().SetDestination(transform.position + Vector3.back/4.0f);
-            GetComponent<NavMeshAgent>().speed = 7.0f;
+        {          
+            //temporary, until we have animations
+            
+            bool hit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), 1.0f);
+
+            StartCoroutine(dodging(hit));
         }
     }
 
+    IEnumerator dodging(bool dir)
+    {
+        for (int i = 0; i < 10; ++i)
+        {
+            transform.position +=  transform.TransformDirection(dir ? Vector3.left : Vector3.right) / 10.0f;
+            yield return new WaitForSeconds(0.03f);
+        }
+        yield return null;
+    }
 
     private void Attack(float cooldown, float multiplier)
     {
@@ -38,6 +49,7 @@ public class AlienController : MonoBehaviour {
                     if (obj != null)
                     {                        
                         obj.DealDamage(transform.forward * multiplier);
+                        if (obj.gameObject.name == "Player") GetComponent<BaseFSM>().damageDealt += (transform.forward * multiplier).magnitude;
                     }
                 }
             }

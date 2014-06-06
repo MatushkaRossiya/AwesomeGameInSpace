@@ -11,7 +11,7 @@ public class RemoteTrigger : Interactive
         get { return _message; }
     }
 
-    public override void Action()
+    public override void MomentaryAction()
     {
         remoteActor.Action();
     }

@@ -11,11 +11,31 @@ public class MedicalVendingMachine : Interactive {
 		}
 	}
 
-	public override void Action() {
+	public override void MomentaryAction() {
 		string str;
 		if (CanBuy(out str)) {
 			PlayerStats.instance.syringes++;
 			PlayerStats.instance.syf -= syringePrice;
+			action = true;
+		}
+	}
+
+	private GameObject door;
+	private float phase;
+	private bool action;
+
+	void Start() {
+		door = transform.FindChild("FirstAidKitDoor").gameObject;
+	}
+
+	void Update() {
+		if (action) {
+			phase += Time.deltaTime;
+			if (phase >= 1.0f) {
+				action = false;
+				phase = 0;
+			}
+			door.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90 * Mathf.Sin(phase * Mathf.PI)));
 		}
 	}
 

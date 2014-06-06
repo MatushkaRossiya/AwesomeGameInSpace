@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class Alien : CharacterAI
 {
-    NavMeshAgent navMeshAgent;
-    RagdollAnimation ragdollAnimation;
+    protected NavMeshAgent navMeshAgent;
+    protected RagdollAnimation ragdollAnimation;
     //GameObject player;
     public float maxHitPoints;
     //    public float attackCooldown;
     public AudioClip[] scream;
-    private float currentHitPoints;
+    internal float currentHitPoints;
     // private float nextAttack;
     //   private bool mainObjectiveDelayed = false;
     // private SubObjective subobjective = SubObjective.none;
@@ -33,7 +33,7 @@ public class Alien : CharacterAI
 
     private bool disposeBody;
 
-    void Start()
+    protected void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         //player = FindObjectOfType<PlayerController>().gameObject;
@@ -139,7 +139,7 @@ public class Alien : CharacterAI
          }
      }
      */
-    public void Kill()
+    public virtual void Kill()
     {
         if (!isDead)
         {
@@ -184,6 +184,7 @@ public class Alien : CharacterAI
 
     public override void DealDamage(float damage)
     {
+        if (GetComponent<BaseFSM>().currentState == BaseFSM.State.Patrol) GetComponent<BaseFSM>().currentState = BaseFSM.State.Chase;
         currentHitPoints -= damage;
         if (currentHitPoints <= 0.0f)
             Kill();
@@ -196,5 +197,20 @@ public class Alien : CharacterAI
             Destroy(this.gameObject);
         }
     }
+
+    void OnBecameVisible()
+    {
+        if (!isDead)
+        {
+            MusicMaster.instance.startFightMusic();
+            Tutorial.instance.showAlienTutorial();
+        }
+    }
+
+    public virtual void MineHit()
+    {
+        Kill();
+    }
+
 
 }

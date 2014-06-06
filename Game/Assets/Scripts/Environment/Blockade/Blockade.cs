@@ -16,7 +16,7 @@ public class Blockade : MonoBehaviour {
 		get{
 			return _destroyed;
 		}
-		set{
+		set {
 			if(value && !_destroyed){
 				foreach (var obstacle in obstacles) {
 					obstacle.enabled = false;
@@ -48,7 +48,6 @@ public class Blockade : MonoBehaviour {
 			blockadeComponents[i].SetActive(false);
 		}
 		lastComponentCount = currentComponentCount;
-		destroyed = hitPoints < 0;
 	}
 
 	private void SetActiveComponents() {
@@ -60,7 +59,7 @@ public class Blockade : MonoBehaviour {
 			DeactivateComponent(blockadeComponents[i]);
 		}
 		lastComponentCount = currentComponentCount;
-		destroyed = hitPoints < 0;
+		destroyed = hitPoints <= 0;
 	}
 
 	private void ActivateComponent(GameObject component) {

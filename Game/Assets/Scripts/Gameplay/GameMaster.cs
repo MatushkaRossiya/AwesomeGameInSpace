@@ -17,6 +17,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     private float nightBeginTime;
     private float dayPhase = 0;
     private List<EnemySpawner> spawners = new List<EnemySpawner>();
+	public int currentRound;
 
     GameMaster()
     {
@@ -31,6 +32,7 @@ public class GameMaster : MonoSingleton<GameMaster>
     void Start()
     {
         nightBeginTime = Time.time + dayLenght;
+        MusicMaster.instance.startDayMusic();
     }
 
     public string TimeToDayEnd
@@ -77,6 +79,9 @@ public class GameMaster : MonoSingleton<GameMaster>
                 spawner.meanTimeBetweenSpawns = meanTimeBetweenSpawns;
                 spawner.Activate();
             }
+            currentRound++;
+            HUD.instance.showRoundNumber(currentRound);
+            MusicMaster.instance.startExplorationMusic();
         }
     }
 
@@ -86,6 +91,10 @@ public class GameMaster : MonoSingleton<GameMaster>
         {
             phase = Dawn;
             dayPhase = 0;
+            waveSize += 5;
+            if (waveSize > 100) waveSize = 100;
+            spawnRate += 0.01f;
+            if (spawnRate > 2.0f) spawnRate = 2.0f;
         }
     }
 
@@ -94,14 +103,18 @@ public class GameMaster : MonoSingleton<GameMaster>
         if (dayPhase < changeDuration)
         {
             dayPhase += Time.fixedDeltaTime;
-            LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
+			LightManager.instance.dayPhase = (1 - dayPhase / changeDuration);
+			GravityManager.instance.gravity = (1 - dayPhase / changeDuration);
         }
         else
         {
+            nightBeginTime = Time.time + dayLenght;
             //totalTime = dayLenght + changeDuration;
             phase = Day;
             dayPhase = 0;
+			Loader.instance.save();//autosave po zakonczeniu ranka
             LightManager.instance.dayPhase = 0;
+            MusicMaster.instance.startDayMusic();
         }
     }
 

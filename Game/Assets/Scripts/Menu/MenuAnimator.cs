@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public partial class Menu : MonoBehaviour {
 
 	//main menu BUTTONS rects
@@ -13,7 +13,12 @@ public partial class Menu : MonoBehaviour {
 	LTRect newGameButtonRect;
 	LTRect loadButtonRect;
 	//OPTIONS RECTS
-		//to do
+	LTRect languageButtonRect;
+	LTRect tutorialswitchButtonRect;
+	LTRect englishSmallBtnRect;
+	LTRect polishSmallBtnRect;
+	LTRect enableTutorialbtnRect;
+	LTRect disableTutorialbtnRect;
 	//GENERAL RECTS
 	LTRect yesButtonRect;
 	LTRect noButtonRect;	
@@ -24,6 +29,7 @@ public partial class Menu : MonoBehaviour {
 	//texture Rects
 	//Rect creditsTextureRect;
 	Rect guiTextureRect;
+	Dictionary<string,LTRect> savesBtnsRects;
 
 void goToMenu(MenuSelector nextMenu){
 		//hide old buttons
@@ -40,10 +46,14 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.OPTIONS:
 			hideButtons(0,0.3f,0,previousButtonRect);
-			//to do
+			hideButtons(1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			hideButtons(1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
+			break;
+		case MenuSelector.LOADGAME:
+			hideButtons(0,0.3f,0,previousButtonRect);
+			hideButtons(1,0,0,getSavesRects());
 			break;
 		}
 		currMenu = nextMenu;
@@ -61,12 +71,37 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.OPTIONS:
 			showButtons(0,-0.3f,0.5f,previousButtonRect);
-			//to do
+			showButtons(-1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			showButtons(-1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
 			break;
+		case MenuSelector.LOADGAME:
+			showButtons(0,-0.3f,0.5f,previousButtonRect);
+			showButtons(-1,0,0,getSavesRects());
+			break;
 		}
+	}
+	LTRect[] getSavesRects()
+	{
+		savesBtnsRects = new Dictionary<string, LTRect> ();
+		int amount = Loader.instance.getSaves ().Count;
+
+		float beginpos = 0.2f *ScrHeight;
+		float btnwidth = 0.4f * ScrWidth;
+		float btnheight = (ScrHeight - 2*beginpos) / amount;
+		if (btnheight > 0.2f * ScrHeight) btnheight = 0.2f * ScrHeight;
+		int i = 1;
+
+		foreach(var save in Loader.instance.getSaves())
+        {
+			if(savesBtnsRects.ContainsKey(save)) continue;
+			savesBtnsRects.Add(save,new LTRect(ScrWidth*1.5f-btnwidth/2,beginpos+btnheight*i,btnwidth,btnheight));
+			i++;
+		}
+		LTRect[] tab = new LTRect[savesBtnsRects.Count];
+		savesBtnsRects.Values.CopyTo(tab,0);
+		return tab;
 	}
 	void setUpRects()
 	{
@@ -93,6 +128,14 @@ void goToMenu(MenuSelector nextMenu){
 		//LABELS RECTS
 		doYouwantToExitLabelRect = new LTRect (horizontalButtonPos+ScrWidth, verticalButtonsPos-0.4f*verticalOffset, width, 0.4f*height);
 		doYouWantToStartNewGame = new LTRect (horizontalButtonPos+ScrWidth, verticalButtonsPos-0.4f*verticalOffset, width, 0.4f*height);
+		//OPTIONS RECTS
+		//TU FILIP SA ROZMIESZCENIA PRZYCISKOW (POCZATKUOWE GDY SIE POKAZA PRZESUWAJA SIE O 1 (CALA DLUGOSC EKRANU) W LEWO
+		languageButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos-1.5f*verticalOffset, width, 0.5f*height);	//label
+		englishSmallBtnRect = new LTRect (horizontalButtonPos-0.5f*horizontallOffset+ScrWidth,verticalButtonsPos-verticalOffset,width,height); //btn
+		polishSmallBtnRect = new LTRect (horizontalButtonPos+0.5f*horizontallOffset+ScrWidth,verticalButtonsPos-verticalOffset,width,height);//btn
+		tutorialswitchButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos+0.1f*verticalOffset, width, 0.5f*height);//label
+		enableTutorialbtnRect = new LTRect (horizontalButtonPos-0.5f*horizontallOffset+ScrWidth,verticalButtonsPos+0.6f*verticalOffset,width,height);//btn
+		disableTutorialbtnRect = new LTRect (horizontalButtonPos+0.5f*horizontallOffset+ScrWidth,verticalButtonsPos+0.6f*verticalOffset,width,height);//btn
 	}
 
 	IEnumerator moveRects(float interval,float timeToMove,float delay,float endValX/*o ile przesunac w prawo relatywne do ekranu*/,

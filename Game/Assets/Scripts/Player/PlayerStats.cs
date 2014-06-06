@@ -5,6 +5,8 @@ public class PlayerStats : MonoSingleton<PlayerStats>
 {
     public float maxHealth;
     private float _health;
+    public AudioClip syringeSound;
+    public GameObject minePrefab;
 
     public float health
     {
@@ -15,9 +17,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _health = Mathf.Clamp(value, 0, maxHealth);
-            //GameObject.FindObjectOfType<HUD>().GetComponent<HUD>().updateHealth(_health/maxHealth);   //powiadamia hud o zmianie zycia
             if (_health == 0)
             {
+                HeavyAlienFSM[] heavyAliens = FindObjectsOfType<HeavyAlienFSM>();
+                foreach (HeavyAlienFSM heavyAlien in heavyAliens) heavyAlien.PlayerDied();
                 Application.LoadLevel(1);
             }
         }
@@ -35,7 +38,6 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         set
         {
             _syringes = value;
-            Debug.Log("You now have " + _syringes + " syringes");
         }
     }
 
@@ -51,24 +53,58 @@ public class PlayerStats : MonoSingleton<PlayerStats>
         {
             _syf = value;
 			GameObject.FindObjectOfType<HUD> ().GetComponent<HUD> ().updateSyf (value);
-            Debug.Log("You now have " + _syf + " syf");
         }
     }
 
     public float syringeHealAmount;
 
+    public int maxMines = 3;
+    private int _mines;
+    public int mines
+    {
+        get
+        {
+            return _mines;
+        }
+        set
+        {
+            _mines = value;
+        }
+    }
+
     void Start()
     {
         _health = maxHealth;
         _syringes = 0;
-        _syf = 100; // TODO: don't give freebies
+        _syf = 100;
+        _mines = 3;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q) || Gamepad.instance.justPressedDPadUp())
         {
-            UseSyringe();
+            if (healthPercentage < 1.0f)
+            {
+                UseSyringe();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.V) || Gamepad.instance.justPressedDPadLeft())
+        {
+            if (_mines > 0)
+            {
+                RaycastHit hitInfo;
+                Vector3 start = transform.position;
+                Vector3 direction = -transform.up;
+                
+                bool hit = Physics.Raycast(start, direction, out hitInfo, 100.0f, Layers.environment);
+                
+                if (hit)
+                {
+                    Instantiate(minePrefab, hitInfo.point, Quaternion.identity);
+                    _mines--;
+                }
+            }
         }
     }
 
@@ -76,6 +112,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     {
         if (syringes > 0)
         {
+            audio.PlayOneShot(syringeSound, 1.0f);
             syringes--;
             health += syringeHealAmount;
             return true;
@@ -94,5 +131,10 @@ public class PlayerStats : MonoSingleton<PlayerStats>
     public bool canBuySyringe
     {
         get { return syringes < maxSyringes; }
+    }
+
+    public bool canBuyMine
+    {
+        get { return mines < maxMines; }
     }
 }

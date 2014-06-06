@@ -8,5 +8,7 @@ public abstract class Interactive : MonoBehaviour
         get;
     }
 
-    public abstract void Action();
+    public virtual void MomentaryAction(){}
+
+	public virtual void HoldAction(){}
 }
