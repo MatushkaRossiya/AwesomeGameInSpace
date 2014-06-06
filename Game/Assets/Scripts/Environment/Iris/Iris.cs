@@ -13,7 +13,7 @@ public class Iris : RemoteActor {
 		set{
 			_angle = value;
 			for (int i = 0; i < 20; ++i) {
-				blades[i].localRotation = Quaternion.Euler(0, 0, _angle - 18 * i + 2);
+				blades[i].localRotation = Quaternion.Euler(angle / 50, 0, _angle - 18 * i + 2);
 			}
 		}
 	}
