@@ -13,7 +13,12 @@ public partial class Menu : MonoBehaviour {
 	LTRect newGameButtonRect;
 	LTRect loadButtonRect;
 	//OPTIONS RECTS
-		//to do
+	LTRect languageButtonRect;
+	LTRect tutorialswitchButtonRect;
+	LTRect englishSmallBtnRect;
+	LTRect polishSmallBtnRect;
+	LTRect enableTutorialbtnRect;
+	LTRect disableTutorialbtnRect;
 	//GENERAL RECTS
 	LTRect yesButtonRect;
 	LTRect noButtonRect;	
@@ -41,7 +46,7 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.OPTIONS:
 			hideButtons(0,0.3f,0,previousButtonRect);
-			//to do
+			hideButtons(1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			hideButtons(1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
@@ -66,7 +71,7 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.OPTIONS:
 			showButtons(0,-0.3f,0.5f,previousButtonRect);
-			//to do
+			showButtons(-1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			showButtons(-1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
@@ -123,6 +128,14 @@ void goToMenu(MenuSelector nextMenu){
 		//LABELS RECTS
 		doYouwantToExitLabelRect = new LTRect (horizontalButtonPos+ScrWidth, verticalButtonsPos-0.4f*verticalOffset, width, 0.4f*height);
 		doYouWantToStartNewGame = new LTRect (horizontalButtonPos+ScrWidth, verticalButtonsPos-0.4f*verticalOffset, width, 0.4f*height);
+		//OPTIONS RECTS
+		//TU FILIP SA ROZMIESZCENIA PRZYCISKOW (POCZATKUOWE GDY SIE POKAZA PRZESUWAJA SIE O 1 (CALA DLUGOSC EKRANU) W LEWO
+		languageButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos-1.5f*verticalOffset, width, 0.5f*height);	//label
+		englishSmallBtnRect = new LTRect (horizontalButtonPos-0.5f*horizontallOffset+ScrWidth,verticalButtonsPos-verticalOffset,width,height); //btn
+		polishSmallBtnRect = new LTRect (horizontalButtonPos+0.5f*horizontallOffset+ScrWidth,verticalButtonsPos-verticalOffset,width,height);//btn
+		tutorialswitchButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos+0.1f*verticalOffset, width, 0.5f*height);//label
+		enableTutorialbtnRect = new LTRect (horizontalButtonPos-0.5f*horizontallOffset+ScrWidth,verticalButtonsPos+0.6f*verticalOffset,width,height);//btn
+		disableTutorialbtnRect = new LTRect (horizontalButtonPos+0.5f*horizontallOffset+ScrWidth,verticalButtonsPos+0.6f*verticalOffset,width,height);//btn
 	}
 
 	IEnumerator moveRects(float interval,float timeToMove,float delay,float endValX/*o ile przesunac w prawo relatywne do ekranu*/,

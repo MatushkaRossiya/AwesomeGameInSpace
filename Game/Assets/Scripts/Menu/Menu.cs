@@ -76,7 +76,21 @@ public partial class Menu : MonoBehaviour {
 								Loader.instance.load (rect.Key);
 						}
 				}
+				
+				if (GUI.Button (polishSmallBtnRect.rect, "POLISH")) {
+                    Loc.instance.setLanguage(Loc.Language.POLISH);
+				} else if (GUI.Button (englishSmallBtnRect.rect, "ENGLISH")) {
+                    Loc.instance.setLanguage(Loc.Language.ENGLISH);
+				} else if (GUI.Button (enableTutorialbtnRect.rect, "ENABLE")) {
+                    PlayerPrefs.SetInt("tutorial", 1);
+				} else if (GUI.Button (disableTutorialbtnRect.rect,"DISABLE")){
+                    PlayerPrefs.SetInt("tutorial", 0);
+				}
+				
 				//LABELS
+				GUI.Box(languageButtonRect.rect,"CHOOSE LANGUAGE");
+				GUI.Box(tutorialswitchButtonRect.rect,"TUTORIAL ON/OFF");
+				
 				if (currMenu != MenuSelector.STARTNEWGAME) 
 						GUI.Box (doYouwantToExitLabelRect.rect, "DO YOU WANT TO EXIT?");
 				
