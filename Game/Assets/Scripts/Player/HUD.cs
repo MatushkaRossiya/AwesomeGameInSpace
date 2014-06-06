@@ -114,6 +114,7 @@ public class HUD : MonoSingleton<HUD>
             LeanTween.alpha (tutorialRect, 1, 0.5f);
         tutorialVisible = true;
         audio.PlayOneShot(tutorialSound, 1.0f);
+        tutorialIcon = null;
     }
 
     public void setTutorialVisible(string stringToDisplay, Texture2D icon, float secondsToBeVisible)
@@ -159,7 +160,6 @@ public class HUD : MonoSingleton<HUD>
             {
                 LeanTween.alpha (tutorialRect, 0, 0.5f);
                 tutorialVisible = false;
-                tutorialIcon = null;
             }
         }
 

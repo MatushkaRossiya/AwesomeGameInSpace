@@ -47,6 +47,9 @@ public class Tutorial : MonoSingleton<Tutorial>
     private bool tut14 = false;
     private bool tut15 = false;
 
+    private bool _showAlienTutorial = false;
+    private bool _alienTutorialTimerReset = false;
+
     // Use this for initialization
     public override void Init()
     {
@@ -65,7 +68,148 @@ public class Tutorial : MonoSingleton<Tutorial>
     {
         time += Time.fixedDeltaTime;
 
-        if (time > 12.0f && !tut05)
+        if (_showAlienTutorial)
+        {
+            if (!_alienTutorialTimerReset)
+            {
+                time = 0.0f;
+                _alienTutorialTimerReset = true;
+            }
+
+            if (time > 8.0f && !tut15)
+            {
+                tut15 = true;
+                PlayerPrefs.SetInt("tutorial", 0);
+                if (Gamepad.instance.isConnected())
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
+                }
+                else
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
+                }
+                return;
+            }
+            if (time > 4.0f && !tut14)
+            {
+                tut14 = true;
+                if (Gamepad.instance.isConnected())
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT14"), 3.0f);
+                }
+                else
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT14"), 3.0f);
+                }
+                return;
+            }
+            if (time > 0.0f && !tut13)
+            {
+                tut13 = true;
+                if (Gamepad.instance.isConnected())
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), 3.0f);
+                }
+                else
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), 3.0f);
+                }
+                return;
+            }
+        }
+
+        if (time > 44.0f && !tut12)
+        {
+            tut12 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), interact, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), interactPC, 3.0f);
+            }
+            return;
+        }
+        if (time > 40.0f && !tut11)
+        {
+            tut11 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT11"), mine, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT11"), minePC, 3.0f);
+            }
+            return;
+        }
+        if (time > 36.0f && !tut10)
+        {
+            tut10 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT10"), aim, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT10"), aimPC, 3.0f);
+            }
+            return;
+        }
+        if (time > 32.0f && !tut09)
+        {
+            tut09 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT09"), grenade, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT09"), grenadePC, 3.0f);
+            }
+            return;
+        }
+        if (time > 28.0f && !tut08)
+        {
+            tut08 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT08"), weapon, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT08"), weaponPC, 3.0f);
+            }
+            return;
+        }
+        if (time > 24.0f && !tut07)
+        {
+            tut07 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT07"), syringe, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT07"), syringePC, 3.0f);
+            }
+            return;
+        }
+        if (time > 20.0f && !tut06)
+        {
+            tut06 = true;
+            if (Gamepad.instance.isConnected())
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT06"), flashlight, 3.0f);
+            }
+            else
+            {
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT06"), flashlightPC, 3.0f);
+            }
+            return;
+        }
+        if (time > 16.0f && !tut05)
         {
             tut05 = true;
             if (Gamepad.instance.isConnected())
@@ -78,7 +222,7 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 9.0f && !tut04)
+        if (time > 12.0f && !tut04)
         {
             tut04 = true;
             if (Gamepad.instance.isConnected())
@@ -91,7 +235,7 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 6.0f && !tut03)
+        if (time > 8.0f && !tut03)
         {
             tut03 = true;
             if (Gamepad.instance.isConnected())
@@ -104,7 +248,7 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 3.0f && !tut02)
+        if (time > 4.0f && !tut02)
         {
             tut02 = true;
             if (Gamepad.instance.isConnected())
@@ -130,7 +274,10 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
+    }
 
-        //PlayerPrefs.SetInt("tutorial", 0);
+    public void showAlienTutorial()
+    {
+        _showAlienTutorial = true;
     }
 }

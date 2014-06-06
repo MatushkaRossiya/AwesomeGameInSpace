@@ -203,6 +203,7 @@ public class Alien : CharacterAI
         if (!isDead)
         {
             MusicMaster.instance.startFightMusic();
+            Tutorial.instance.showAlienTutorial();
         }
     }
 
