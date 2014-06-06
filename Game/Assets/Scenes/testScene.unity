@@ -20442,7 +20442,7 @@ MonoBehaviour:
   mine: {fileID: 2800000, guid: d9a4cb071bf0e4949bc22d806150c5f9, type: 3}
   interact: {fileID: 2800000, guid: 37c5e816ad3d6d94e8684c8c529faa75, type: 3}
   lookPC: {fileID: 2800000, guid: 6d1f32eeab249224e91952b401875a1f, type: 3}
-  movePC: {fileID: 0}
+  movePC: {fileID: 2800000, guid: 4c704190c496a064490d264c454485f2, type: 3}
   sprintPC: {fileID: 2800000, guid: 3d393c24778bd164e97dc0997d7a7bce, type: 3}
   jumpPC: {fileID: 2800000, guid: c35a6c3c0d8a5a448b2c9d96a67702ef, type: 3}
   crouchPC: {fileID: 2800000, guid: 966881ca7ac861e4da738001cf4a8791, type: 3}
