@@ -11,6 +11,7 @@ public class MusicMaster : MonoSingleton<MusicMaster>
     private float volume1 = 0.0f;
     private float volume2 = 0.0f;
     private int musicId = -1;
+    private float dayMusicTime = 0.0f;
 
     // Use this for initialization
     void Start()
@@ -68,6 +69,7 @@ public class MusicMaster : MonoSingleton<MusicMaster>
         musicChange = true;
         musicSet = false;
         musicId = 0;
+        audio.time = dayMusicTime;
     }
 
     public void startExplorationMusic()
@@ -77,6 +79,7 @@ public class MusicMaster : MonoSingleton<MusicMaster>
         musicChange = true;
         musicSet = false;
         musicId = 1;
+        dayMusicTime = audio.time;
     }
 
     public void startFightMusic()
