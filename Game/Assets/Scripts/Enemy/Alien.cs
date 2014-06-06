@@ -198,6 +198,14 @@ public class Alien : CharacterAI
         }
     }
 
+    void OnBecameVisible()
+    {
+        if (!isDead)
+        {
+            MusicMaster.instance.startFightMusic();
+        }
+    }
+
     public virtual void MineHit()
     {
         Kill();
