@@ -9,7 +9,7 @@ public class SyfCollectible : Interactive {
 	}
 	
 	public override string message {
-		get { return "Pick up syf"; }
+		get { return "Pick up Syf"; }
 	}
 
 	public override void MomentaryAction() {

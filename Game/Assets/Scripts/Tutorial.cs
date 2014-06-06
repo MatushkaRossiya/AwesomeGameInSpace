@@ -29,43 +29,39 @@ public class Tutorial : MonoSingleton<Tutorial>
     public Texture2D minePC;
     public Texture2D interactPC;
 
-    private float time = 0.0f;
+    private static float time = 0.0f;
 
-    private bool tut01 = false;
-    private bool tut02 = false;
-    private bool tut03 = false;
-    private bool tut04 = false;
-    private bool tut05 = false;
-    private bool tut06 = false;
-    private bool tut07 = false;
-    private bool tut08 = false;
-    private bool tut09 = false;
-    private bool tut10 = false;
-    private bool tut11 = false;
-    private bool tut12 = false;
-    private bool tut13 = false;
-    private bool tut14 = false;
-    private bool tut15 = false;
+    private static bool tut01 = false;
+    private static bool tut02 = false;
+    private static bool tut03 = false;
+    private static bool tut04 = false;
+    private static bool tut05 = false;
+    private static bool tut06 = false;
+    private static bool tut07 = false;
+    private static bool tut08 = false;
+    private static bool tut09 = false;
+    private static bool tut10 = false;
+    private static bool tut11 = false;
+    private static bool tut12 = false;
+    private static bool tut13 = false;
+    private static bool tut14 = false;
+    private static bool tut15 = false;
 
-    private bool _showAlienTutorial = false;
-    private bool _alienTutorialTimerReset = false;
+    private static bool _showAlienTutorial = false;
+    private static bool _alienTutorialTimerReset = false;
+    private static bool _enabled;
 
     // Use this for initialization
     public override void Init()
     {
-        if (PlayerPrefs.HasKey("tutorial")) {
-            int tutorial = PlayerPrefs.GetInt("tutorial");
-            if (tutorial == 0)
-                Destroy(this);
-        }
-        else {
-            PlayerPrefs.SetInt("tutorial", 1);
-        }
+        checkIfEnabled();
     }
     
     // Update is called once per frame
     void FixedUpdate()
     {
+        checkIfEnabled();
+
         time += Time.fixedDeltaTime;
 
         if (_showAlienTutorial)
@@ -88,6 +84,7 @@ public class Tutorial : MonoSingleton<Tutorial>
                 {
                     HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
                 }
+                Destroy(this);
                 return;
             }
             if (time > 4.0f && !tut14)
@@ -279,5 +276,30 @@ public class Tutorial : MonoSingleton<Tutorial>
     public void showAlienTutorial()
     {
         _showAlienTutorial = true;
+    }
+
+    private void checkIfEnabled()
+    {
+        if (PlayerPrefs.HasKey("tutorial")) {
+            int tutorial = PlayerPrefs.GetInt("tutorial");
+            if (tutorial == 0)
+            {
+                _enabled = false;
+                Destroy(this);
+            }
+            else
+            {
+                _enabled = true;
+            }
+        }
+        else {
+            PlayerPrefs.SetInt("tutorial", 1);
+            _enabled = true;
+        }
+    }
+
+    public static bool isEnabled()
+    {
+        return _enabled;
     }
 }

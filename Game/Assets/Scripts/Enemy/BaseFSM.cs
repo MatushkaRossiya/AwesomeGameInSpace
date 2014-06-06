@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class BaseFSM : MonoBehaviour {
-
-
+public abstract class BaseFSM : MonoBehaviour
+{
     protected NavMeshAgent agent;
     protected GameObject player;
+    protected Alien alienComponent;
     protected AlienController controller;
     protected internal State currentState;
     protected float distanceChaseToAttack = 3.5f;
@@ -16,74 +16,67 @@ public abstract class BaseFSM : MonoBehaviour {
     protected bool mainObjectiveDelayed;
     protected SubObjective subObjective;
     protected float closeEnoughToSubobjective = 1.7f;
-    
     protected Vector3 subobjectivePosition = Vector3.zero;
     protected GameObject blockadeToDestroy = null;
-
     protected PatrolObjective patrolObjective = PatrolObjective.nothing;
     protected Vector3 patrolObjectivePosition = Vector3.zero;
     protected float patrolSpeed = 1.0f;
-
     protected float patrolTaskTime = 0.0f;
-
     protected float viewAngle = 130.0f;
     protected float viewRadius = 25.0f;
-
     protected float chasingTime = 10.0f;
     protected bool chaseTimeout = false;
     protected float stopChase = 0.0f;
-
     protected float alienMultiplier = 1.0f;
-
     protected bool wait = false;
-
-
     internal float damageDealt = 0.0f;
 
-
     protected abstract void UpdateAttack();
+
     protected virtual void  UpdateChase()
     {
         agent.speed = 3.0f * alienMultiplier;
-          agent.stoppingDistance = 3.0f;
+        agent.stoppingDistance = 3.0f;
+
         if (distanceToPlayer < distanceChaseToAttack)
         {
-           
             currentState = State.Attack;
             SubObjectiveClear();
         }
         else
         {
-            if(distanceToPlayer > distancePatroltoChase && !IsPlayerInMyFOV() && !chaseTimeout)
+            if (distanceToPlayer > distancePatroltoChase && !IsPlayerInMyFOV() && !chaseTimeout)
             {
                 chaseTimeout = true;
                 stopChase = Time.time + chasingTime;
             }
-            else if(chaseTimeout && IsPlayerInMyFOV())
+            else if (chaseTimeout && IsPlayerInMyFOV())
             {
                 chaseTimeout = false;
             }
-            else if(chaseTimeout && !IsPlayerInMyFOV() && distanceToPlayer > distancePatroltoChase)
+            else if (chaseTimeout && !IsPlayerInMyFOV() && distanceToPlayer > distancePatroltoChase)
             {
-                if (Time.time > stopChase) currentState = State.Patrol;
+                if (Time.time > stopChase)
+                    currentState = State.Patrol;
             }
 
             if (agent.velocity.magnitude < 1.0f)
             {
-              
                 controller.AttackStrong(alienMultiplier);
             }
-            if (mainObjectiveDelayed) UpdateSubObjective();
+
+            if (mainObjectiveDelayed)
+                UpdateSubObjective();
             else
             {
                 Look();
                 agent.SetDestination(player.transform.position);
             }
-
-
         }
     }
+
     protected abstract void UpdateSubObjective();
+
     protected void UpdatePatrol()
     {
         if (IsPlayerTooClose())
@@ -91,7 +84,6 @@ public abstract class BaseFSM : MonoBehaviour {
             currentState = State.Chase;
             Alarm();
         }
-
         else if (IsPlayerInMyFOV())
         {
             currentState = State.Chase;
@@ -99,7 +91,8 @@ public abstract class BaseFSM : MonoBehaviour {
         }
         else
         {
-            if (mainObjectiveDelayed) UpdateSubObjective();
+            if (mainObjectiveDelayed)
+                UpdateSubObjective();
             else
             {
                 Look();
@@ -115,7 +108,7 @@ public abstract class BaseFSM : MonoBehaviour {
                         }
                         else if (next % 2 == 0)
                         {
-                            patrolObjectivePosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+                            patrolObjectivePosition = waypoints [Random.Range(0, waypoints.Length)].transform.position;
 
                             if (next == 0)
                             {
@@ -123,7 +116,8 @@ public abstract class BaseFSM : MonoBehaviour {
                                 RaycastHit hit;
                                 if (Physics.Raycast(pos, Vector3.down, out hit))
                                 {
-                                    if (hit.collider.gameObject.name == "Ground") patrolObjectivePosition = hit.transform.position;
+                                    if (hit.collider.gameObject.name == "Ground")
+                                        patrolObjectivePosition = hit.transform.position;
                                 }
                             }
                             patrolObjective = PatrolObjective.takeAWalk;
@@ -133,11 +127,13 @@ public abstract class BaseFSM : MonoBehaviour {
                         }
                         break;
                     case PatrolObjective.hangOut:
-                        if (Time.time > patrolTaskTime) patrolObjective = PatrolObjective.nothing;
+                        if (Time.time > patrolTaskTime)
+                            patrolObjective = PatrolObjective.nothing;
                         break;
                     case PatrolObjective.takeAWalk:
 
-                        if ((Vector3.Distance(transform.position, patrolObjectivePosition) < closeEnoughToSubobjective) || (Time.time > patrolTaskTime)) patrolObjective = PatrolObjective.nothing;
+                        if ((Vector3.Distance(transform.position, patrolObjectivePosition) < closeEnoughToSubobjective) || (Time.time > patrolTaskTime))
+                            patrolObjective = PatrolObjective.nothing;
                         else
                         {
                             agent.SetDestination(patrolObjectivePosition);
@@ -153,11 +149,10 @@ public abstract class BaseFSM : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerController>().gameObject;
+        alienComponent = GetComponent<Alien>();
         controller = GetComponent<AlienController>();
         currentState = State.Patrol;
         waypoints = GameObject.FindGameObjectsWithTag("waypoint");
-        
-        
     }
 
     protected void SubObjectiveClear()
@@ -169,6 +164,7 @@ public abstract class BaseFSM : MonoBehaviour {
     }
 
     protected abstract void Look();
+
     protected bool IsPlayerInMyFOV()
     {
         Vector3 playerPos = new Vector3(player.transform.position.x, 1.0f, player.transform.position.z);
@@ -180,7 +176,26 @@ public abstract class BaseFSM : MonoBehaviour {
         {
             if (Vector3.Angle((playerPos - transform.position), transform.forward) <= (viewAngle / 2.0f))
             {
-              //  Debug.Log("I can spy with my little eye...");
+                //  Debug.Log("I can spy with my little eye...");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected bool IsInPlayerFOV()
+    {
+        Vector3 playerPos = new Vector3(player.transform.position.x, 1.0f, player.transform.position.z);
+        Vector3 alienPos = new Vector3(transform.position.x, 1.0f, transform.position.z);
+        
+        RaycastHit rayHit;
+        bool hit = Physics.Raycast(playerPos, (alienPos - playerPos), out rayHit, 10.0f);
+        if (hit && rayHit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            //Debug.Log(">>>>>>>>>> HIT <<<<<<<<<<");
+            if (Vector3.Angle((transform.position - playerPos), player.transform.forward) <= (55.0f / 2.0f))
+            {
+                //Debug.Log(">>>>>>>>>> PLAYER CAN SEE <<<<<<<<<<");
                 return true;
             }
         }
@@ -195,10 +210,11 @@ public abstract class BaseFSM : MonoBehaviour {
         bool hit = Physics.Raycast(alienPos, (playerPos - alienPos), out rayHit, distancePatroltoChase);
         if (hit && rayHit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-           // Debug.Log("sensing sth");
+            // Debug.Log("sensing sth");
             return true;
         }
-        else return false;
+        else
+            return false;
     }
 
     protected internal enum State
@@ -229,13 +245,12 @@ public abstract class BaseFSM : MonoBehaviour {
         wait = false;
     }
 
-
     protected void Alarm()
     {
         BaseFSM[] aliensAround = FindObjectsOfType<BaseFSM>();
-        foreach(BaseFSM alien in aliensAround)
+        foreach (BaseFSM alien in aliensAround)
         {
-            if(Vector3.Distance(transform.position, alien.transform.position) < distanceAlarm)
+            if (Vector3.Distance(transform.position, alien.transform.position) < distanceAlarm)
             {
                 if (alien.currentState == State.Patrol)
                 {

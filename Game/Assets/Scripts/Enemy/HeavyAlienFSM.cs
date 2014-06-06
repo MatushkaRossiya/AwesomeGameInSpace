@@ -3,24 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
 public class HeavyAlienFSM : BaseFSM
 {
-
     internal NeuralNetwork brain = new NeuralNetwork();
-
     private float oldRotY = 0.0f;
     private float oldDistance = 0.0f;
-    private bool inAction = false;
-
+    //private bool inAction = false;
     internal float timeAttacking = 0.0f;
-    
 
     void Awake()
     {
         Initialize();
         alienMultiplier = 1.5f;   
     }
+
     void Start()
     {
         brain.IntializeNetwork();
@@ -29,9 +25,18 @@ public class HeavyAlienFSM : BaseFSM
 
     void FixedUpdate()
     {
-        if (!GetComponent<Alien>().isDead)
+        if (!alienComponent.isDead)
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+            if (distanceToPlayer < 10.0f && IsInPlayerFOV())
+            {
+                MusicMaster.instance.startFightMusic();
+                if (Tutorial.isEnabled())
+                {
+                    Tutorial.instance.showAlienTutorial();
+                }
+            }
 
             switch (currentState)
             {
@@ -54,51 +59,50 @@ public class HeavyAlienFSM : BaseFSM
     {
         timeAttacking += Time.fixedDeltaTime;
       
-            if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
-            else
-            {
-                List<float> inputs = new List<float>();
-                inputs.Add((transform.rotation.y - player.transform.rotation.y) * 10.0f);
-                inputs.Add(oldRotY);
-                inputs.Add(Vector3.Distance(transform.position, player.transform.position));
-                inputs.Add(oldDistance);
+        if (distanceToPlayer > distanceChaseToAttack)
+            currentState = State.Chase;
+        else
+        {
+            List<float> inputs = new List<float>();
+            inputs.Add((transform.rotation.y - player.transform.rotation.y) * 10.0f);
+            inputs.Add(oldRotY);
+            inputs.Add(Vector3.Distance(transform.position, player.transform.position));
+            inputs.Add(oldDistance);
 
                
-                oldRotY = (transform.rotation.y - player.transform.rotation.y) * 10.0f;
-                oldDistance = Vector3.Distance(transform.position, player.transform.position);
+            oldRotY = (transform.rotation.y - player.transform.rotation.y) * 10.0f;
+            oldDistance = Vector3.Distance(transform.position, player.transform.position);
 
-                if (!wait)
+            if (!wait)
+            {
+                List<float> response = brain.NetworkResponse(inputs);
+                int decision = response.IndexOf(response.Max());
+
+                switch (decision)
                 {
-                    List<float> response = brain.NetworkResponse(inputs);
-                    int decision = response.IndexOf(response.Max());
-
-                    switch(decision)
-                    {
-                        case 0:
-                          transform.LookAt(player.transform);
-                            controller.AttackFast(alienMultiplier);
-                            StartCoroutine(moment(0.4f));
-                            break;
-                        case 1:
-                            transform.LookAt(player.transform);
-                            controller.AttackStrong(alienMultiplier);
-                            StartCoroutine(moment(0.9f));
-                            break;
-                        case 2:
-                            controller.Dodge();
-                            StartCoroutine(moment(0.3f));
-                            break;
-                        default:
-                            break;
-                    }
+                    case 0:
+                        transform.LookAt(player.transform);
+                        controller.AttackFast(alienMultiplier);
+                        StartCoroutine(moment(0.4f));
+                        break;
+                    case 1:
+                        transform.LookAt(player.transform);
+                        controller.AttackStrong(alienMultiplier);
+                        StartCoroutine(moment(0.9f));
+                        break;
+                    case 2:
+                        controller.Dodge();
+                        StartCoroutine(moment(0.3f));
+                        break;
+                    default:
+                        break;
                 }
+            }
 
        
-            }
+        }
         
     }
-
-   
  
     protected override void Look()
     {
@@ -126,9 +130,9 @@ public class HeavyAlienFSM : BaseFSM
             controller.AttackStrong(1.5f);
 
         }
-        else agent.SetDestination(subobjectivePosition);
+        else
+            agent.SetDestination(subobjectivePosition);
     }
-
 
     public void PlayerDied()
     {

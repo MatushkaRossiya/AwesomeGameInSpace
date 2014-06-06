@@ -59,7 +59,7 @@ public class HUDEffects : MonoSingleton<HUDEffects> {
 	}
 	public void showEffect(float damage)
 	{
-		int randomElement = Random.Range (0, effects.Count);
+		//int randomElement = Random.Range (0, effects.Count);
 		List <LTRect> lizt = new List<LTRect>(effects.Values);
 		LTRect losowy;
 		bool istniejeniewyswietlony=false;

@@ -12,6 +12,7 @@ public class MusicMaster : MonoSingleton<MusicMaster>
     private float volume2 = 0.0f;
     private int musicId = -1;
     private float dayMusicTime = 0.0f;
+    private bool resetAudioTime = false;
 
     // Use this for initialization
     void Start()
@@ -31,7 +32,18 @@ public class MusicMaster : MonoSingleton<MusicMaster>
                 if(musicSet == false)
                 {
                     musicSet = true;
+                    audio.Stop();
                     audio.clip = music[musicId];
+                    if (resetAudioTime)
+                    {
+                        audio.time = 0.0f;
+                    }
+                    if (musicId == 0)
+                    {
+                        audio.time = dayMusicTime;
+                        //Debug.Log(">>>>>>>>>> RESTORE DAY MUSIC TIME <<<<<<<<<<");
+                        //Debug.Log(audio.time);
+                    }
                     audio.Play();
                 }
 
@@ -69,17 +81,22 @@ public class MusicMaster : MonoSingleton<MusicMaster>
         musicChange = true;
         musicSet = false;
         musicId = 0;
-        audio.time = dayMusicTime;
     }
 
     public void startExplorationMusic()
     {
         if (musicId == 1)
             return;
+        if (musicId == 0)
+        {
+            dayMusicTime = audio.time;
+            //Debug.Log(">>>>>>>>>> SET DAY MUSIC TIME <<<<<<<<<<");
+            //Debug.Log(dayMusicTime);
+            resetAudioTime = true;
+        }
         musicChange = true;
         musicSet = false;
         musicId = 1;
-        dayMusicTime = audio.time;
     }
 
     public void startFightMusic()
@@ -87,8 +104,8 @@ public class MusicMaster : MonoSingleton<MusicMaster>
         if (musicId == 2)
         {
             tipOffCountdown += 5.0f;
-            if (tipOffCountdown > 10.0f)
-                tipOffCountdown = 10.0f;
+            if (tipOffCountdown > 15.0f)
+                tipOffCountdown = 15.0f;
             return;
         }
         if (musicId != 1)
@@ -104,7 +121,7 @@ public class MusicMaster : MonoSingleton<MusicMaster>
         musicChange = false;
         musicSet = true;
         musicId = 2;
-        tipOffCountdown += 10.0f;
+        tipOffCountdown += 15.0f;
         audio.Stop();
         audio.clip = music[musicId];
         audio.time = 40.0f;

@@ -3,28 +3,28 @@ using System.Collections;
 
 public class HeavyAlien : Alien
 {
-
     private bool exploded = false;
 
-	void Start () {
+    void Start()
+    {
         base.Start();
-	}
-	
+    }
+    
     public override void MineHit()
     {
         if (!exploded)
         {
-          
             currentHitPoints -= maxHitPoints * 0.5f;
-            if (currentHitPoints < 0) Kill();
-            else StartCoroutine(ExplosionShock());
+            if (currentHitPoints < 0)
+                Kill();
+            else
+                StartCoroutine(ExplosionShock());
         }
     }
 
     public override void Kill()
     {
-       
-        if(!isDead)
+        if (!isDead)
         {
             GetComponent<BaseFSM>().currentState = BaseFSM.State.Patrol;
             GetComponent<HeavyAlienFSM>().brain.Fitness(GetComponent<HeavyAlienFSM>().timeAttacking, GetComponent<HeavyAlienFSM>().damageDealt);

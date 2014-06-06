@@ -21,7 +21,7 @@ public class Pause : MonoBehaviour {
 	{
 		float btnWidth = 0.3f * ScrWidth;
 		float btnHeight = 0.2f * ScrHeight;
-		float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
+		//float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
 		float verCcenter = 0.5f * ScrHeight - 0.5f*btnHeight;
 		continueBtnRect = new LTRect (ScrWidth,verCcenter-0.25f*ScrHeight, btnWidth, btnHeight);
 		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+0.25f*ScrHeight, btnWidth, btnHeight);

@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AlienFSM : BaseFSM {
-
-
-    
-
-	void Start () {
+public class AlienFSM : BaseFSM
+{
+    void Start()
+    {
         Initialize();
-       
-     
-	}
-	
+    }
 
-	void FixedUpdate () {
-   
-        if (!GetComponent<Alien>().isDead)
+    void FixedUpdate()
+    {
+        if (!alienComponent.isDead)
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+            if (distanceToPlayer < 10.0f && IsInPlayerFOV())
+            {
+                MusicMaster.instance.startFightMusic();
+                if (Tutorial.isEnabled())
+                {
+                    Tutorial.instance.showAlienTutorial();
+                }
+            }
           
             switch (currentState)
             {
@@ -34,7 +38,7 @@ public class AlienFSM : BaseFSM {
                     break;
             }
         }
-	}
+    }
 
     protected override void UpdateChase()
     {
@@ -44,14 +48,16 @@ public class AlienFSM : BaseFSM {
             controller.Dodge();
             StartCoroutine(moment(0.3f));
         }
-       if(!wait) base.UpdateChase();
+        if (!wait)
+            base.UpdateChase();
     }
 
     protected override void UpdateAttack()
     {
-        if(!wait)
+        if (!wait)
         {
-            if (distanceToPlayer > distanceChaseToAttack) currentState = State.Chase;
+            if (distanceToPlayer > distanceChaseToAttack)
+                currentState = State.Chase;
             else
             {
 
@@ -90,7 +96,8 @@ public class AlienFSM : BaseFSM {
                             StartCoroutine(moment(0.9f));
                             break;
                         case 7:
-                            if (GetComponent<Alien>().currentHitPoints < GetComponent<Alien>().maxHitPoints * 0.1f) StartCoroutine(retreat());
+                            if (GetComponent<Alien>().currentHitPoints < GetComponent<Alien>().maxHitPoints * 0.1f)
+                                StartCoroutine(retreat());
                             break;
                         case 8:
                         case 9:
@@ -106,14 +113,10 @@ public class AlienFSM : BaseFSM {
                 }
             }
             
-            }
+        }
         
 
     }
-
-  
-
-
 
     protected override void UpdateSubObjective()
     {
@@ -127,7 +130,7 @@ public class AlienFSM : BaseFSM {
                     {
                         SubObjectiveClear();
                     }
-                    else if(Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
+                    else if (Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
                     {
                         controller.AttackStrong(1.0f);
                     }
@@ -141,8 +144,10 @@ public class AlienFSM : BaseFSM {
             case SubObjective.anotherWay:
                 {
                     agent.stoppingDistance = 1.5f;
-                 if(Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective) SubObjectiveClear();
-                 else agent.SetDestination(subobjectivePosition);
+                    if (Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
+                        SubObjectiveClear();
+                    else
+                        agent.SetDestination(subobjectivePosition);
                     break;
                 }
 
@@ -151,7 +156,6 @@ public class AlienFSM : BaseFSM {
         }
        
     }
-
   
     protected override void Look()
     {
@@ -166,7 +170,7 @@ public class AlienFSM : BaseFSM {
             switch (subObjective)
             {
                 case SubObjective.anotherWay:
-                    subobjectivePosition = waypoints[Random.Range(0, waypoints.Length)].transform.position;
+                    subobjectivePosition = waypoints [Random.Range(0, waypoints.Length)].transform.position;
                     break;
                 case SubObjective.destroyBlockade:
                     subobjectivePosition = sight.collider.transform.position;
@@ -176,24 +180,22 @@ public class AlienFSM : BaseFSM {
         }     
     }
 
-
-  
-
-
     IEnumerator retreat()
-   {
-       wait = true;
-       Vector3 runaway = waypoints[Random.Range(0, waypoints.Length)].transform.position;
-        while(Vector3.Distance(transform.position, runaway) > closeEnoughToSubobjective)
+    {
+        wait = true;
+        Vector3 runaway = waypoints [Random.Range(0, waypoints.Length)].transform.position;
+        while (Vector3.Distance(transform.position, runaway) > closeEnoughToSubobjective)
         {
-           if(!GetComponent<Alien>().isDead) agent.SetDestination(runaway);
+            if (!GetComponent<Alien>().isDead)
+                agent.SetDestination(runaway);
             agent.speed = 4.0f;
             yield return new WaitForSeconds(1.0f);
         }
-        if (Vector3.Distance(player.transform.position, transform.position) > distancePatroltoChase && !IsPlayerInMyFOV()) currentState = State.Patrol;
+        if (Vector3.Distance(player.transform.position, transform.position) > distancePatroltoChase && !IsPlayerInMyFOV())
+            currentState = State.Patrol;
         wait = false;
         yield return null;
-   }
+    }
 
     IEnumerator atkAction1()
     {
