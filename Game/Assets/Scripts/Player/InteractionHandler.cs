@@ -6,6 +6,7 @@ public class InteractionHandler : MonoBehaviour
     public float touchRange = 0.7f;
     public float touchRadius = 0.2f;
 	public float holdActionThershold = 0.5f;
+    public GUIStyle textStyle;
 
     private string message;
     private Vector2 screenPosition;
@@ -55,6 +56,6 @@ public class InteractionHandler : MonoBehaviour
     void OnGUI()
     {
         if (!string.IsNullOrEmpty(message))
-            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 100, 100), message);
+            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 256, 96), message, textStyle);
     }
 }

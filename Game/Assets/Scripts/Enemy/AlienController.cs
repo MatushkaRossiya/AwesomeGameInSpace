@@ -7,12 +7,12 @@ public class AlienController : MonoBehaviour
 
     public void AttackFast(float alien)
     {
-        Attack(0.35f, 5.0f * alien);
+        Attack(1.0f, 5.0f * alien);
     }
 
     public void AttackStrong(float alien)
     {
-        Attack(0.85f, 15.0f * alien);
+        Attack(2.0f, 15.0f * alien);
     }
 
     public void Dodge()

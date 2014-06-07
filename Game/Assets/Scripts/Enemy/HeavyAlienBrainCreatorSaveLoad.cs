@@ -14,12 +14,11 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
 
     void Awake()
     {
-        if (File.Exists(path)) Load();
-
-        else Initialize();
-
+        if (File.Exists(path))
+            Load();
+        else
+            Initialize();
     }
-
 
     void OnApplicationQuit()
     {
@@ -33,9 +32,11 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
             inputs, outputs,
             minWeight, maxWeight,
             bias,
-             currentPopulation);
+            currentPopulation);
+
         FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
         BinaryFormatter bin = new BinaryFormatter();
+
         try
         {
             bin.Serialize(fs, save);
@@ -56,19 +57,18 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
         FileStream fs = new FileStream(path, FileMode.Open);
         BinaryFormatter bin = new BinaryFormatter();
         SaveFormat load = (SaveFormat)bin.Deserialize(fs);
+
         if (load.hiddenlayers == HeavyAlienBrainCreator.instance.hiddenLayersPerNetwork && load.neuronsinlayer == HeavyAlienBrainCreator.instance.neuronsPerHiddenLayer
             && load.inputs == HeavyAlienBrainCreator.instance.inputs && load.outputs == HeavyAlienBrainCreator.instance.outputs
             && load.minW == HeavyAlienBrainCreator.instance.minWeight && load.maxW == HeavyAlienBrainCreator.instance.maxWeight
             && load.bias == HeavyAlienBrainCreator.instance.bias && load.populationsize == HeavyAlienBrainCreator.instance.populationSize)
         {
-           
             currentGeneration = load.epoch;
             next = load.next;
             currentPopulation = load.population;
-
         }
-        else Initialize();
-       
+        else
+            Initialize();    
     }
 
     [Serializable]
@@ -88,6 +88,7 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
             maxW = max;
             bias = b;
         }
+
         internal int inputs;
         internal int outputs;
         internal int populationsize;
@@ -100,7 +101,4 @@ public partial class HeavyAlienBrainCreator : MonoSingleton<HeavyAlienBrainCreat
         internal float bias;
         internal List<Genome> population = new List<Genome>();
     }
-
-  
-
 }

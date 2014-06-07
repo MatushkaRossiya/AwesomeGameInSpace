@@ -75,9 +75,7 @@ public class AlienFSM : BaseFSM
                 //}
                 else
                 {
-
                     int atk = Random.Range(1, 12);
-
 
                     switch (atk)
                     {
@@ -96,7 +94,7 @@ public class AlienFSM : BaseFSM
                             StartCoroutine(moment(0.9f));
                             break;
                         case 7:
-                            if (GetComponent<Alien>().currentHitPoints < GetComponent<Alien>().maxHitPoints * 0.1f)
+                            if (alienComponent.currentHitPoints < alienComponent.maxHitPoints * 0.1f)
                                 StartCoroutine(retreat());
                             break;
                         case 8:
@@ -120,7 +118,6 @@ public class AlienFSM : BaseFSM
 
     protected override void UpdateSubObjective()
     {
-
         switch (subObjective)
         {
             case SubObjective.destroyBlockade:
@@ -154,7 +151,6 @@ public class AlienFSM : BaseFSM
             default:
                 break;
         }
-       
     }
   
     protected override void Look()
@@ -186,7 +182,7 @@ public class AlienFSM : BaseFSM
         Vector3 runaway = waypoints [Random.Range(0, waypoints.Length)].transform.position;
         while (Vector3.Distance(transform.position, runaway) > closeEnoughToSubobjective)
         {
-            if (!GetComponent<Alien>().isDead)
+            if (!alienComponent.isDead)
                 agent.SetDestination(runaway);
             agent.speed = 4.0f;
             yield return new WaitForSeconds(1.0f);

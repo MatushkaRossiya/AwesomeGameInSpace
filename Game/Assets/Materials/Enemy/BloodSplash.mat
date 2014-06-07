@@ -22,6 +22,20 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Normal
+        second:
+          m_Texture: {fileID: 2800000, guid: 5f4b0bca3bb97bc4786fddc0cd8e9b1f, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Specular
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _Illum
         second:
           m_Texture: {fileID: 0}
@@ -30,10 +44,22 @@ Material:
     m_Floats:
       data:
         first:
+          name: _SpecularMultiplier
+        second: 1
+      data:
+        first:
+          name: _GlossMultiplier
+        second: 1
+      data:
+        first:
           name: _EmissionLM
         second: 0
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 0, g: .338235319, b: .00233271904, a: 1}
+        second: {r: 0, g: .501960814, b: 0, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .627451003, g: .627451003, b: .627451003, a: 1}

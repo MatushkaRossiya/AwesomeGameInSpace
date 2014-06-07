@@ -68,7 +68,6 @@ public class HeavyAlienFSM : BaseFSM
             inputs.Add(oldRotY);
             inputs.Add(Vector3.Distance(transform.position, player.transform.position));
             inputs.Add(oldDistance);
-
                
             oldRotY = (transform.rotation.y - player.transform.rotation.y) * 10.0f;
             oldDistance = Vector3.Distance(transform.position, player.transform.position);
@@ -98,7 +97,6 @@ public class HeavyAlienFSM : BaseFSM
                         break;
                 }
             }
-
        
         }
         
@@ -126,9 +124,7 @@ public class HeavyAlienFSM : BaseFSM
         }
         else if (Vector3.Distance(transform.position, subobjectivePosition) < closeEnoughToSubobjective)
         {
-
-            controller.AttackStrong(1.5f);
-
+            controller.AttackStrong(1.5f);     
         }
         else
             agent.SetDestination(subobjectivePosition);
@@ -137,6 +133,6 @@ public class HeavyAlienFSM : BaseFSM
     public void PlayerDied()
     {
         currentState = BaseFSM.State.Patrol;
-        brain.Fitness(timeAttacking, damageDealt, !(GetComponent<Alien>().isDead));
+        brain.Fitness(timeAttacking, damageDealt, !(alienComponent.isDead));
     }
 }
