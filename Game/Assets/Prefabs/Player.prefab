@@ -155,11 +155,11 @@ GameObject:
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
-  - 54: {fileID: 5400002}
   - 114: {fileID: 11400010}
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400006}
   - 82: {fileID: 8200004}
+  - 114: {fileID: 11400026}
   m_Layer: 11
   m_Name: FirstPersonCamera
   m_TagString: MainCamera
@@ -1188,21 +1188,6 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
---- !u!54 &5400002
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!81 &8100000
 AudioListener:
@@ -2831,6 +2816,19 @@ MonoBehaviour:
   hintTex: {fileID: 2800000, guid: b33cda62a8540324a80b7be3159d7b90, type: 3}
   newRoundSound: {fileID: 8300000, guid: 85d1f46fc20110d438ac2e6c98003aa9, type: 3}
   tutorialSound: {fileID: 8300000, guid: 34b662465b6a39d488a023b09082a7fb, type: 3}
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073d35b51c1e24f418fa3b9676264963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessMaterial: {fileID: 2100000, guid: f5f231f981376f340bd19b8b54d543db, type: 2}
+  helmetEffectCamera: {fileID: 0}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

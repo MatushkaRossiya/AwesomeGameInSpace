@@ -27,6 +27,27 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Noise
+        second:
+          m_Texture: {fileID: 2800000, guid: e80c3c84ea861404d8a427db8b7abf04, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Fog
+        second:
+          m_Texture: {fileID: 2800000, guid: f560b65bd35c20b40966ace14cc5c61a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Steam
+        second:
+          m_Texture: {fileID: 2800000, guid: f560b65bd35c20b40966ace14cc5c61a, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -36,6 +57,14 @@ Material:
         first:
           name: _Magnitude
         second: -7.14285779e-05
+      data:
+        first:
+          name: _Foggieness
+        second: 1
+      data:
+        first:
+          name: _Steaminess
+        second: .839285731
     m_Colors:
       data:
         first:

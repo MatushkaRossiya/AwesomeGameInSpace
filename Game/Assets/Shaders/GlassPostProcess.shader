@@ -1,7 +1,10 @@
 ﻿Shader "Custom/GlassPostProcess" {
 	Properties {
-		_MainTex ("", 2D) = "white" {}
+		_MainTex ("Screen", 2D) = "white" {}
 		_Glass ("Heigth", 2D) = "white" {}
+		_Noise ("Noise", 2D) = "white" {}
+		_Steam ("Steam", 2D) = "white" {}
+		_Steaminess ("Steaminess", range(0, 1)) = 0
 		_Delta ("Sampling radius", range(0.0001, 0.005)) = 0.001
 		_Magnitude ("Magnitude", range(-0.001, 0.001)) = 0.0001
 	}
@@ -20,6 +23,16 @@
 				float4 pos : POSITION;
 				float2 uv : TEXCOORD0;
 			};
+
+			
+    
+			sampler2D _MainTex;
+			sampler2D _Glass;
+			sampler2D _Noise;
+			sampler2D _Steam;
+			float _Delta;
+			float _Magnitude;
+			float _Steaminess;
    
 			//Our Vertex Shader 
 			v2f vert (appdata_img v){
@@ -28,11 +41,6 @@
 				o.uv = v.texcoord.xy;
 				return o; 
 			}
-    
-			sampler2D _MainTex;
-			sampler2D _Glass;
-			float _Delta;
-			float _Magnitude;
     
 			//Our Fragment Shader
 			float4 frag (v2f i) : COLOR{
@@ -64,6 +72,12 @@
 				bump /= _Delta;
 
 				bump *= _Magnitude;
+
+				float2 noise = (tex2D(_Noise, i.uv * 50).rg - 0.5) * 0.2;
+
+				float fog = saturate((_Steaminess - tex2D(_Steam, i.uv).r) * 3);
+
+				bump += noise * fog;
 
 				float2 uv = i.uv + bump;
 
