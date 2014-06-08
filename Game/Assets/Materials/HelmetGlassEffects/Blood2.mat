@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GlassPostProcess
-  m_Shader: {fileID: 4800000, guid: 6d1e1f65f94b8f341ad8b119beff4e7e, type: 3}
+  m_Name: Blood2
+  m_Shader: {fileID: 4800000, guid: 078836e77376cf9489035e275ae06739, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,25 +17,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Glass
-        second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 29e2d55a97558dd49ade9b861e5f9166, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _Delta
-        second: .000275000028
-      data:
-        first:
-          name: _Magnitude
-        second: -7.14285779e-05
+          name: _Visibility
+        second: 1
     m_Colors:
       data:
         first:
