@@ -178,7 +178,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         float targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
         fatigue = (fatigue - targetFatigue) * 0.997f + targetFatigue;
 		steaminess = (steaminess - fatigue) * 0.997f + fatigue;
-		HelmetGlassEffects.instance.steaminess = steaminess;
+		HelmetGlassEffects.instance.steaminess = Mathf.Lerp(-0.5f, 1.0f, steaminess);
 
         if (Time.time > nextBreath)
         {
