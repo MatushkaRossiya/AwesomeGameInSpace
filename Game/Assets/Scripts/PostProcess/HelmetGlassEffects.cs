@@ -7,7 +7,6 @@ public class HelmetGlassEffects : MonoBehaviour {
 	public Shader refractionShader;
 	public Shader blurShader;
 	public Texture steamTexture;
-	public Texture noise;
 	[Range(0, 1)]
 	public float steaminess;
 	[Range(0, 3)]
@@ -50,18 +49,6 @@ public class HelmetGlassEffects : MonoBehaviour {
 		}
 	}
 
-	void Release() {
-		if (refractionMat != null) {
-			DestroyImmediate(_refractionMat);
-		}
-		if (blurMat != null) {
-			DestroyImmediate(_blurMat);
-		}
-		if (helmetEffectCamera != null && helmetEffectCamera.targetTexture != null) {
-			DestroyImmediate(helmetEffectCamera.targetTexture);
-			helmetEffectCamera.targetTexture = null;
-		}
-	}
 	
 	void OnRenderImage(RenderTexture source, RenderTexture destination) {
 		Init();
@@ -97,6 +84,15 @@ public class HelmetGlassEffects : MonoBehaviour {
 	}
 
 	void OnDisable() {
-		Release();
+		if (refractionMat != null) {
+			DestroyImmediate(_refractionMat);
+		}
+		if (blurMat != null) {
+			DestroyImmediate(_blurMat);
+		}
+		if (helmetEffectCamera != null && helmetEffectCamera.targetTexture != null) {
+			DestroyImmediate(helmetEffectCamera.targetTexture);
+			helmetEffectCamera.targetTexture = null;
+		}
 	}
 }

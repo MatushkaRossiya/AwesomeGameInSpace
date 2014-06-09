@@ -2,7 +2,7 @@
 	Properties {
 		_MainTex ("Screen", 2D) = "white" {}
 		_Glass ("Heigth", 2D) = "white" {}
-		_Noise ("Noise", 2D) = "white" {}
+		_Blurred ("Blurred", 2D) = "white" {}
 		_Steam ("Steam", 2D) = "white" {}
 		_Steaminess ("Steaminess", range(0, 1)) = 0
 		_Delta ("Sampling radius", range(0.0001, 0.005)) = 0.001
@@ -28,7 +28,7 @@
     
 			sampler2D _MainTex;
 			sampler2D _Glass;
-			sampler2D _Noise;
+			sampler2D _Blurred;
 			sampler2D _Steam;
 			float _Delta;
 			float _Magnitude;
@@ -73,17 +73,12 @@
 
 				bump *= _Magnitude;
 
-				float2 noise = (tex2D(_Noise, i.uv * 50).rg - 0.5) * 0.2;
-
-				float fog = saturate((_Steaminess - tex2D(_Steam, i.uv).r) * 3);
-
-				bump += noise * fog;
+				float steam = saturate((_Steaminess - tex2D(_Steam, i.uv).r) * 3);
 
 				float2 uv = i.uv + bump;
 
-				float4 original = tex2D( _MainTex, uv );
+				float4 original = lerp(tex2D( _MainTex, uv ), tex2D(_Blurred, uv), steam);
 				float4 modulation = tex2D(_Glass, i.uv);
-				//return tex2D(_Glass, i.uv).aaaa;
 				return original * modulation;
 			}
 			ENDCG
