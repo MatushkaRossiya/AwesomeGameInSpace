@@ -11966,7 +11966,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 2147483648
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 1547579012}
   m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
@@ -15990,7 +15990,7 @@ MonoBehaviour:
   refractionShader: {fileID: 4800000, guid: 6d1e1f65f94b8f341ad8b119beff4e7e, type: 3}
   blurShader: {fileID: 4800000, guid: 2b8a4d1faa17c724d9a6092d0e77d46b, type: 3}
   steamTexture: {fileID: 2800000, guid: f560b65bd35c20b40966ace14cc5c61a, type: 3}
-  steaminess: .880999982
+  steaminess: 0
   downSample: 2
   blurIteratons: 5
   blurSize: .0381999984
@@ -17426,6 +17426,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1927473769}
   m_GameObject: {fileID: 1544663585}
   m_Mesh: {fileID: 4300004, guid: 8fea0542d04105042be87f0ac17c4f16, type: 3}
+--- !u!84 &1547579012
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Width: 1119
+  m_Height: 459
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
 --- !u!1 &1554623216
 GameObject:
   m_ObjectHideFlags: 0
@@ -19644,10 +19663,10 @@ Prefab:
     - target: {fileID: 2000002, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1547579012}
     - target: {fileID: 11400026, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: steaminess
-      value: .880999982
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}

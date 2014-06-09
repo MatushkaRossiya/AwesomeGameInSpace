@@ -2,7 +2,7 @@
 using System.Collections;
 
 [ExecuteInEditMode]
-public class HelmetGlassEffects : MonoBehaviour {
+public class HelmetGlassEffects : MonoSingleton<HelmetGlassEffects> {
 	public Camera helmetEffectCamera;
 	public Shader refractionShader;
 	public Shader blurShader;
@@ -25,7 +25,7 @@ public class HelmetGlassEffects : MonoBehaviour {
 		get{
 			if(_refractionMat == null){
 				_refractionMat = new Material(refractionShader);
-				refractionMat.SetTexture("_Glass", helmetEffectCamera.targetTexture);
+				refractionMat.SetTexture("_Glass", helmetEffectsTexture);
 				refractionMat.SetTexture("_Steam", steamTexture);
 			}
 			return _refractionMat;
@@ -43,15 +43,17 @@ public class HelmetGlassEffects : MonoBehaviour {
 		}
 	}
 
-	void Init() {
-		if (helmetEffectCamera.targetTexture == null) {
-			helmetEffectCamera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+	private RenderTexture helmetEffectsTexture {
+		get {
+			if (helmetEffectCamera.targetTexture == null) {
+				helmetEffectCamera.targetTexture = new RenderTexture(Screen.width, Screen.height, 24);
+			}
+			return helmetEffectCamera.targetTexture;
 		}
 	}
 
 	
 	void OnRenderImage(RenderTexture source, RenderTexture destination) {
-		Init();
 		int actualWidth = Screen.width >> downSample;
 		int actualHeight = Screen.height >> downSample;
 
@@ -60,6 +62,7 @@ public class HelmetGlassEffects : MonoBehaviour {
 		RenderTexture blurred1 = RenderTexture.GetTemporary(actualWidth, actualHeight, 0, source.format);
 		RenderTexture blurred2 = RenderTexture.GetTemporary(actualWidth, actualHeight, 0, source.format);
 
+		steaminess = Mathf.Clamp01(steaminess);
 		float aspect = (float) Screen.height / (float) Screen.width;
 		blurMat.SetFloat("_Size", size);
 		blurMat.SetFloat("_Steaminess", steaminess);

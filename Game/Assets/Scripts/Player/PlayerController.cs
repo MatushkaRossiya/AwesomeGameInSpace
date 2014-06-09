@@ -145,6 +145,7 @@ public class PlayerController : MonoSingleton<PlayerController>
             canJump = false;
             rigidbody.AddForce(Vector3.up * Mathf.Sqrt(2.0f * 9.81f * jumpHeight), ForceMode.VelocityChange);
             PlayRandomAudio(jumpSounds);
+			fatigue += 0.1f;
         }
     }
 
@@ -168,13 +169,16 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     private float fatigue = 0.0f;
+	private float steaminess = 0.0f;
     private float nextBreath;
 
     void Breathe()
     {
         // TODO make it better
         float targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
-        fatigue = (fatigue - targetFatigue) * Mathf.Exp(-0.15f * Time.fixedDeltaTime) + targetFatigue;
+        fatigue = (fatigue - targetFatigue) * 0.997f + targetFatigue;
+		steaminess = (steaminess - fatigue) * 0.997f + fatigue;
+		HelmetGlassEffects.instance.steaminess = steaminess;
 
         if (Time.time > nextBreath)
         {
