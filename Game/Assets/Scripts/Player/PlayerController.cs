@@ -16,7 +16,6 @@ public class PlayerController : MonoSingleton<PlayerController>
     public List<AudioClip> jumpSounds;
     public List<AudioClip> breathSounds;
     private FirstPersonCameraController firstPersonCameraController;
-    private bool isTouchingGround = false;
 
     public bool isCrouching
     {
@@ -36,7 +35,9 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private float crouchingTimeLeft = 0;
     private float distance = 0.0f;
+	private bool isTouchingGround = false;
     private bool canJump;
+	private bool isSprinting;
     private CapsuleCollider playerCollider;
     private Vector3 input;
 
@@ -93,10 +94,16 @@ public class PlayerController : MonoSingleton<PlayerController>
         {
             input *= 0.5f;
         }
+
         if ((!isCrouching && !isZoomed) && (input.magnitude > 0.0f) && ((Input.GetAxis("Sprint") > 0.5f) || Gamepad.instance.pressedLeftStick()))
-        {
-            input.y = sprintSpeed / walkSpeed;
-        }
+		{
+			isSprinting = true;
+			input.y = sprintSpeed / walkSpeed;
+		}
+		else
+		{
+			isSprinting = false;
+		}
 
         // calculate desired velocity
         input = transform.forward * input.y + transform.right * input.x;
@@ -174,8 +181,11 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     void Breathe()
     {
-        // TODO make it better
-        float targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
+		float targetFatigue = 0.0f;
+		if (isSprinting)
+		{
+			targetFatigue = rigidbody.velocity.magnitude / sprintSpeed;
+		}
         fatigue = (fatigue - targetFatigue) * 0.997f + targetFatigue;
 		steaminess = (steaminess - fatigue) * 0.997f + fatigue;
 		HelmetGlassEffects.instance.steaminess = Mathf.Lerp(-0.5f, 1.0f, steaminess);

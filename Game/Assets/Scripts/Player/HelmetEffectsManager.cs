@@ -49,7 +49,7 @@ public class HelmetEffectsManager : MonoSingleton<HelmetEffectsManager> {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		foreach (var eff in queue) {
 			eff.visibility -= Time.deltaTime / lifeTime;
 			eff.gameObject.renderer.material.SetFloat("_Visibility", eff.visibility);
