@@ -4,7 +4,8 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour
 {
     public float meanTimeBetweenSpawns;
-    public GameObject enemyPrefab;
+    public GameObject alien;
+	public GameObject heavyAlien;
 
     void Start()
     {
@@ -25,7 +26,15 @@ public class EnemySpawner : MonoBehaviour
             {
                 GameMaster.instance.spawnPool--;
                 GameMaster.instance.activeEnemies++;
-                Instantiate(enemyPrefab, transform.position, transform.localRotation);
+				int rand = Random.Range(0, 100);
+				if (rand > 73)
+				{
+					Instantiate(heavyAlien, transform.position, transform.localRotation);
+				}
+				else
+				{
+					Instantiate(alien, transform.position, transform.localRotation);
+				}
             } 
             else
             {

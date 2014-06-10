@@ -277,7 +277,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400030}
-  - 114: {fileID: 11400028}
+  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -2779,7 +2779,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400246}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -3307,7 +3307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400246}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &400114
 Transform:
   m_ObjectHideFlags: 1
@@ -3787,7 +3787,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400246}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &400194
 Transform:
   m_ObjectHideFlags: 1
@@ -3972,7 +3972,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400246}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &400224
 Transform:
   m_ObjectHideFlags: 1
@@ -4116,10 +4116,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400030}
   - {fileID: 400112}
   - {fileID: 400222}
   - {fileID: 400192}
+  - {fileID: 400030}
   m_Father: {fileID: 400024}
   m_RootOrder: 4
 --- !u!4 &400248
@@ -8846,6 +8846,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialProperties: {fileID: 11400000, guid: 3e4fde9ac490422418eb7f49a7b6ac0e, type: 2}
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfd8bd28e15b00b4f8457186c542425e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meanTimeBetweenSpawns: 5
+  alien: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  heavyAlien: {fileID: 100054, guid: 9317254ee1bf90e43b8d83fcb548a3f5, type: 2}
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8858,19 +8872,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialProperties: {fileID: 11400000, guid: 3e4fde9ac490422418eb7f49a7b6ac0e, type: 2}
---- !u!114 &11400028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfd8bd28e15b00b4f8457186c542425e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  meanTimeBetweenSpawns: 5
-  enemyPrefab: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
 --- !u!114 &11400030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9356,7 +9357,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meanTimeBetweenSpawns: 5
-  enemyPrefab: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  alien: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  heavyAlien: {fileID: 100054, guid: 9317254ee1bf90e43b8d83fcb548a3f5, type: 2}
 --- !u!114 &11400110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9789,7 +9791,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meanTimeBetweenSpawns: 5
-  enemyPrefab: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  alien: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  heavyAlien: {fileID: 100054, guid: 9317254ee1bf90e43b8d83fcb548a3f5, type: 2}
 --- !u!114 &11400182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9958,7 +9961,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meanTimeBetweenSpawns: 5
-  enemyPrefab: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  alien: {fileID: 100004, guid: a74645a24cc377846ba206a6e4c187d6, type: 2}
+  heavyAlien: {fileID: 100054, guid: 9317254ee1bf90e43b8d83fcb548a3f5, type: 2}
 --- !u!114 &11400210
 MonoBehaviour:
   m_ObjectHideFlags: 1
