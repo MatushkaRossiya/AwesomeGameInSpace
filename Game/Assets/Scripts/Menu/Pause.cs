@@ -25,12 +25,12 @@ public class Pause : MonoBehaviour {
 	void setupRects()
 	{
 		float btnWidth = 0.3f * ScrWidth;
-		float btnHeight = 0.2f * ScrHeight;
+		float btnHeight = 0.1f * ScrHeight;
 		float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
 		float verCcenter = 0.5f * ScrHeight - 0.5f*btnHeight;
-		continueBtnRect = new LTRect (ScrWidth,verCcenter-0.25f*ScrHeight, btnWidth, btnHeight);
-		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+0.25f*ScrHeight, btnWidth, btnHeight);
-		saveBtnRect  = new LTRect (ScrWidth,verCcenter+0.0f*ScrHeight, btnWidth, btnHeight);
+		continueBtnRect = new LTRect (ScrWidth,verCcenter-1.5f*btnHeight, btnWidth, btnHeight);
+		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+1.5f*btnHeight, btnWidth, btnHeight);
+		saveBtnRect  = new LTRect (ScrWidth,verCcenter, btnWidth, btnHeight);
 	}
 	void pauseGame()
 	{

@@ -92,7 +92,7 @@ void goToMenu(MenuSelector nextMenu){
 		float beginpos = 0.2f *ScrHeight;
 		float btnwidth = 0.4f * ScrWidth;
 		float btnheight = (ScrHeight - 2*beginpos) / amount;
-		if (btnheight > 0.2f * ScrHeight) btnheight = 0.2f * ScrHeight;
+		if (btnheight > height) btnheight =height;
 		int i = 1;
 
 		foreach(var save in Loader.instance.getSaves())

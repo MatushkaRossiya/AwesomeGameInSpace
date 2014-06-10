@@ -61,7 +61,8 @@ public partial class Menu : MonoBehaviour {
 				}
 				else if(GUI.Button (continueButtonRect.rect, "CONTINUE",fontStyle)) {
 						playSound ();
-						Loader.instance.load ();//default parametr dla autosave'a
+						string latestSaveStr =(string) Loader.instance.getSaves().ToArray().GetValue(0);
+						Loader.instance.load(latestSaveStr);
 				} if(GUI.Button (newGameButtonRect.rect, "NEW GAME",fontStyle)) {
 						Loader.instance.load("NewGame");
 						playSound();
