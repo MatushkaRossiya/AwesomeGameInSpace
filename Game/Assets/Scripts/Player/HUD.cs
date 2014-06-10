@@ -192,7 +192,7 @@ public class HUD : MonoSingleton<HUD>
     void OnGUI()
     {
         //GUI.Label(new Rect(10, 10, 200, 50), "Stuff count: " + DataBank.stuffCount,textStyle);
-        GUI.DrawTexture(glassRect, glassTex);
+       // GUI.DrawTexture(glassRect, glassTex);
         GUI.DrawTexture(syfRect, syfTex);
         GUI.Label(syfTextRect, syfAmount, syfTextStyle);
         GUI.DrawTexture(timeBackgroundRect, timeBackgroundTex);
