@@ -44,17 +44,17 @@ void goToMenu(MenuSelector nextMenu){
 			break;
 		case MenuSelector.PLAY:
 			hideButtons(1,0,0,continueButtonRect,newGameButtonRect,loadButtonRect);
-			hideButtons(0,0.3f,0,previousButtonRect);
+			hideButtons(0,0.15f,0,previousButtonRect);
 			break;
 		case MenuSelector.OPTIONS:
-			hideButtons(0,0.3f,0,previousButtonRect);
+			hideButtons(0,0.15f,0,previousButtonRect);
 			hideButtons(1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			hideButtons(1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
 			break;
 		case MenuSelector.LOADGAME:
-			hideButtons(0,0.3f,0,previousButtonRect);
+			hideButtons(0,0.15f,0,previousButtonRect);
 			hideButtons(1,0,0,getSavesRects());
 			break;
 		}
@@ -62,24 +62,24 @@ void goToMenu(MenuSelector nextMenu){
 		//show new buttons
 	switch (currMenu) {
 		case MenuSelector.MAIN:
-			showButtons(1,0,0,startButtonRect,optionsButtonRect,exitButtonRect,creditsButtonRect);
+			showButtons(1,0,0.3f,startButtonRect,optionsButtonRect,exitButtonRect,creditsButtonRect);
 			break;
 		case MenuSelector.EXIT:
 			showButtons(-1,0,0,doYouwantToExitLabelRect,yesButtonRect,noButtonRect);
 			 break;
 		case MenuSelector.PLAY:
 			showButtons(-1,0,0,continueButtonRect,newGameButtonRect,loadButtonRect);
-			showButtons(0,-0.3f,0.5f,previousButtonRect);
+			showButtons(0,-0.15f,0.5f,previousButtonRect);
 			break;
 		case MenuSelector.OPTIONS:
-			showButtons(0,-0.3f,0.5f,previousButtonRect);
+			showButtons(0,-0.15f,0.5f,previousButtonRect);
 			showButtons(-1,0,0,languageButtonRect,tutorialswitchButtonRect,englishSmallBtnRect,polishSmallBtnRect,enableTutorialbtnRect,disableTutorialbtnRect);
 			break;
 		case MenuSelector.STARTNEWGAME:
 			showButtons(-1,0,0,doYouWantToStartNewGame,yesButtonRect,noButtonRect);
 			break;
 		case MenuSelector.LOADGAME:
-			showButtons(0,-0.3f,0.5f,previousButtonRect);
+			showButtons(0,-0.15f,0.5f,previousButtonRect);
 			showButtons(-1,0,0,getSavesRects());
 			break;
 		}
@@ -123,7 +123,7 @@ void goToMenu(MenuSelector nextMenu){
 		//GENERAL BUTTONS SETUP
 		yesButtonRect = new LTRect (horizontalButtonPos-0.5f*horizontallOffset+ScrWidth,verticalButtonsPos,width,height);
 		noButtonRect = new LTRect (horizontalButtonPos+0.5f*horizontallOffset+ScrWidth,verticalButtonsPos,width,height);
-		previousButtonRect = new LTRect (horizontalButtonPos - 0.8f*horizontallOffset, verticalButtonsPos + 1.6f*verticalOffset+0.3f*ScrHeight, width/2, height/2);
+		previousButtonRect = new LTRect (horizontalButtonPos - 0.8f*horizontallOffset, ScrHeight+height/2, width/2, height/2);
 		//PLAY BUTTONS SETUP
 		continueButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos-verticalOffset, width, height);
 		newGameButtonRect = new LTRect (horizontalButtonPos+ScrWidth,verticalButtonsPos, width, height);

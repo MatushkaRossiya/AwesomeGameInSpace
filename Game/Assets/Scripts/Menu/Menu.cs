@@ -10,7 +10,7 @@ public partial class Menu : MonoBehaviour {
 	float ScrHeight = Screen.height;
 	float ScrWidth = Screen.width;
 	float width = 0.3f*Screen.width;
-	float height = 0.2f*Screen.height;
+	float height = 0.1f*Screen.height;
 	public Texture2D backgroundIMG;
 	public Texture2D creditsIMG;
 	public GUIStyle fontStyle;
@@ -28,7 +28,7 @@ public partial class Menu : MonoBehaviour {
 	void OnGUI ()
 		{
 				//TEXTURES
-				GUI.DrawTexture (guiTextureRect, backgroundIMG, ScaleMode.ScaleAndCrop);
+				//GUI.DrawTexture (guiTextureRect, backgroundIMG, ScaleMode.ScaleAndCrop);
 				//BUTONS
 				if (GUI.Button (startButtonRect.rect, "PLAY",fontStyle)) {
 						playSound ();
@@ -71,8 +71,7 @@ public partial class Menu : MonoBehaviour {
 					playSound();
 				}
 				if(savesBtnsRects!=null)
-				foreach (var rect in savesBtnsRects) {
-						if (GUI.Button (rect.Value.rect, rect.Key)) {
+				foreach (var rect in savesBtnsRects) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        if (GUI.Button (rect.Value.rect, rect.Key,fontStyle)) {
 								playSound ();
 								Loader.instance.load (rect.Key);
 						}
@@ -82,6 +81,7 @@ public partial class Menu : MonoBehaviour {
                     Loc.instance.setLanguage(Loc.Language.POLISH);
 					playSound();
 				} else if (GUI.Button (englishSmallBtnRect.rect, "ENGLISH",fontStyle)) {
+					playSound ();
                     Loc.instance.setLanguage(Loc.Language.ENGLISH);
 				} else if (GUI.Button (enableTutorialbtnRect.rect, "ENABLE",fontStyle)) {
 					playSound();
