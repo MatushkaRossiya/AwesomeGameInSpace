@@ -28,6 +28,8 @@ public partial class Menu : MonoBehaviour {
 	LTRect doYouwantToExitLabelRect;
 	//texture Rects
 	//Rect creditsTextureRect;
+	//GUI CONTENTS (TEXT + TEXUTRES)
+	Dictionary<string,GUIContent> GUIcontents;
 	Rect guiTextureRect;
 	Dictionary<string,LTRect> savesBtnsRects;
 
@@ -103,6 +105,7 @@ void goToMenu(MenuSelector nextMenu){
 		savesBtnsRects.Values.CopyTo(tab,0);
 		return tab;
 	}
+
 	void setUpRects()
 	{
 		float verticalButtonsPos = Screen.height / 2 - 0.5f * height;

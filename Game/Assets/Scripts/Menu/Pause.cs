@@ -11,6 +11,11 @@ public class Pause : MonoBehaviour {
 	float ScrHeight = Screen.height;
 	float ScrWidth = Screen.width;
 	float gamespeed;
+	public Texture2D buttonOnTexture;
+	public Texture2D buttonOffTexture;
+	public Texture2D buttonHoverTexture;
+	public GUIStyle fontStyle;
+	public AudioClip click;
 	// Use this for initialization
 	void Start () {
 		paused = false;
@@ -21,7 +26,7 @@ public class Pause : MonoBehaviour {
 	{
 		float btnWidth = 0.3f * ScrWidth;
 		float btnHeight = 0.2f * ScrHeight;
-		//float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
+		float horCenter = 0.5f * ScrWidth - 0.5f*btnWidth;
 		float verCcenter = 0.5f * ScrHeight - 0.5f*btnHeight;
 		continueBtnRect = new LTRect (ScrWidth,verCcenter-0.25f*ScrHeight, btnWidth, btnHeight);
 		mainMenuBtnRect   = new LTRect (ScrWidth,verCcenter+0.25f*ScrHeight, btnWidth, btnHeight);
@@ -59,17 +64,20 @@ public class Pause : MonoBehaviour {
 	}
 	void OnGUI ()
 	{
-		if(GUI.Button(continueBtnRect.rect,"CONITNUE"))
+		if(GUI.Button(continueBtnRect.rect,"CONITNUE",fontStyle))
 	    {
 			unPauseGame();
+			playSound();
 		}
-		if(GUI.Button(mainMenuBtnRect.rect,"MAIN MENU"))
+		if(GUI.Button(mainMenuBtnRect.rect,"MAIN MENU",fontStyle))
 		{
 			unPauseGame();
+			playSound();
 			Application.LoadLevel(0);
 		}
-		if (GUI.Button (saveBtnRect.rect, "SAVE")) {
+		if (GUI.Button (saveBtnRect.rect, "SAVE",fontStyle)) {
 			unPauseGame();
+			playSound();
 			Loader.instance.save(System.DateTime.Now.ToString());
 		}
 	}
@@ -93,5 +101,11 @@ public class Pause : MonoBehaviour {
 	void hideButtons(float directionX,float directionY,float additonaldelay,params LTRect[] rectts)
 	{
 		StartCoroutine(moveRects(0.2f,0.18f,additonaldelay,directionX,directionY,rectts));
+	}
+	void playSound()
+	{
+		AudioSource source = GetComponent<AudioSource> ();
+		source.clip = click;
+		source.Play ();
 	}
 }
