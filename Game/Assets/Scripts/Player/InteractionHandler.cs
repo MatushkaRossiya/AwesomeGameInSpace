@@ -40,14 +40,13 @@ public class InteractionHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-		float cos = transform.localEulerAngles.x;
-		if (cos > 90) cos -= 360;
-		cos = 1 + Mathf.Abs(cos / 90 * 1.5f);
-		Debug.Log(cos);
+		float directionFactor = transform.localEulerAngles.x;
+		if (directionFactor > 90) directionFactor -= 360;
+		directionFactor = 1 + Mathf.Abs(directionFactor / 90 * 1.5f);
 		RaycastHit[] hits = Physics.SphereCastAll(
 			transform.position, 
-			touchRadius * cos, 
-			transform.forward, touchRange * cos);
+			touchRadius * directionFactor, 
+			transform.forward, touchRange * directionFactor);
 
 		if (hold) {
 			bool containsExisting = false;
