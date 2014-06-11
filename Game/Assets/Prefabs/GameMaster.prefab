@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayLenght: 45
-  changeDuration: 15
+  changeDuration: 10
   waveSize: 10
   spawnRate: 1
   currentRound: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  click: {fileID: 0}
+  click: {fileID: 8300000, guid: 6021db7e54fae594e97d706d228af250, type: 3}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

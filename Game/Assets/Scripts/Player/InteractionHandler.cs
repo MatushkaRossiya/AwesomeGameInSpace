@@ -6,10 +6,8 @@ public class InteractionHandler : MonoBehaviour
     public float touchRange = 0.7f;
     public float touchRadius = 0.2f;
 	public float holdActionThershold = 0.5f;
-    public GUIStyle textStyle;
 
     private string message;
-    private Vector2 screenPosition;
     private Interactive interactiveObject;
 	private float holdTime;
 	private float holdFrames;
@@ -21,9 +19,12 @@ public class InteractionHandler : MonoBehaviour
 			holdTime = holdActionThershold;
 			hold = true;
 			holdFrames = 0;
-        } else if (hold && (Input.GetKeyUp(KeyCode.E) || Gamepad.instance.justReleasedX()) && interactiveObject != null) {
-			interactiveObject.MomentaryAction();
+        } else if (hold && (Input.GetKeyUp(KeyCode.E) || Gamepad.instance.justReleasedX())){
 			hold = false;
+			holdFrames = 0;
+			if (interactiveObject != null) {
+				interactiveObject.MomentaryAction();
+			}
 		} else if (hold) {
 			++holdFrames;
 			holdTime -= Time.deltaTime;
@@ -32,30 +33,63 @@ public class InteractionHandler : MonoBehaviour
 				hold = false;
 			}
 		}
+
+		if(message != null)
+			HUD.instance.setHintvisible(message, 0.3f);
     }
 
     void FixedUpdate()
     {
-        message = null;
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, touchRadius, transform.forward, touchRange);
-        if (hits.Length > 0)
-        {
-            foreach (var hit in hits)
-            {
-                interactiveObject = hit.collider.GetComponent<Interactive>();
-                if (interactiveObject != null)
-                {
-                    message = interactiveObject.message;
-                    screenPosition = Camera.main.WorldToScreenPoint(interactiveObject.transform.position);
-                    break;
-                }
-            }
-        }
-    }
+		float directionFactor = transform.localEulerAngles.x;
+		if (directionFactor > 90) directionFactor -= 360;
+		directionFactor = 1 + Mathf.Abs(directionFactor / 90 * 1.5f);
+		RaycastHit[] hits = Physics.SphereCastAll(
+			transform.position, 
+			touchRadius * directionFactor, 
+			transform.forward, touchRange * directionFactor);
 
-    void OnGUI()
-    {
-        if (!string.IsNullOrEmpty(message))
-            GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 256, 96), message, textStyle);
+		if (hold) {
+			bool containsExisting = false;
+			if (hits.Length > 0) {
+				Interactive temp;
+				foreach (var hit in hits) {
+					temp = hit.collider.GetComponent<Interactive>();
+					if (temp != null) {
+						if (temp == interactiveObject) {
+							containsExisting = true;
+							break;
+						}
+					}
+				}
+			}
+
+			if (!containsExisting) {
+				interactiveObject = null;
+				message = null;
+				hold = false;
+				holdFrames = 0;
+			}
+		}
+		else {
+			interactiveObject = null;
+			if (hits.Length > 0) {
+				int topPriority = int.MinValue;
+				Interactive temp = null;
+				foreach (var hit in hits) {
+					temp = hit.collider.GetComponent<Interactive>();
+					if (temp != null && temp.priority > topPriority) {
+						topPriority = temp.priority;
+						interactiveObject = temp;
+					}
+				}
+			}
+
+			if (interactiveObject != null) {
+				message = interactiveObject.message;
+			}
+			else {
+				message = null;
+			}
+		}
     }
 }

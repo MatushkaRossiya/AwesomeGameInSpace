@@ -1217,6 +1217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33888d968e035094d9f75ca5d423ec21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: -100
   buildCost: 50
   repairCost: 10
   repairAmount: .100000001
