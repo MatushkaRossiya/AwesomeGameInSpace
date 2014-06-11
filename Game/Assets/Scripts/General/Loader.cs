@@ -29,15 +29,7 @@ public class Loader : MonoSingleton<Loader>
 		//ZAPISANIE INFORMACJI
 		if(saveName != autoSaveStr)	//mozemy tylko zapisywać stan z ostaniego czeckpointu. Nawet jak zapiszemy w dowolnym momencie to po prostu wartosci zostana skopiowane z ostanitego autosave'a
 		{
-			PlayerPrefs.SetInt(anySaves, PlayerPrefs.GetInt(anySaves, 0));
-			PlayerPrefs.SetFloat(healthStr + saveName, PlayerPrefs.GetFloat(healthStr+autoSaveStr));
-			PlayerPrefs.SetInt(syfStr + saveName, PlayerPrefs.GetInt(syfStr+autoSaveStr));
-			PlayerPrefs.SetInt(ammoStr + saveName, PlayerPrefs.GetInt(ammoStr+autoSaveStr));
-			PlayerPrefs.SetInt(roundStr + saveName, PlayerPrefs.GetInt(roundStr+autoSaveStr));
-			PlayerPrefs.SetInt(waveSizeStr + saveName, PlayerPrefs.GetInt(waveSizeStr+autoSaveStr));
-			PlayerPrefs.SetFloat(spawnRateStr + saveName, PlayerPrefs.GetFloat(levelStr+autoSaveStr));
-			PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
-			PlayerPrefs.Save();
+			copyValuesFromLastCheckpoint(saveName);
 		}
         else
 		{
@@ -49,8 +41,8 @@ public class Loader : MonoSingleton<Loader>
        		 PlayerPrefs.SetInt(waveSizeStr + saveName, GameMaster.instance.waveSize);
        		 PlayerPrefs.SetFloat(spawnRateStr + saveName, GameMaster.instance.spawnRate);
        		 PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
-       		 PlayerPrefs.Save();
 		}
+		PlayerPrefs.Save();
 		HUD.instance.setHintvisible("Game Saved", 2);
     }
 
@@ -111,5 +103,17 @@ public class Loader : MonoSingleton<Loader>
         for (i = 0; PlayerPrefs.HasKey(i.ToString()); i++) {}
         PlayerPrefs.SetString(i.ToString(), saveName);
     }
+
+	void copyValuesFromLastCheckpoint(string saveName)
+	{
+		PlayerPrefs.SetInt(anySaves, PlayerPrefs.GetInt(anySaves, 0));
+		PlayerPrefs.SetFloat(healthStr + saveName, PlayerPrefs.GetFloat(healthStr+autoSaveStr));
+		PlayerPrefs.SetInt(syfStr + saveName, PlayerPrefs.GetInt(syfStr+autoSaveStr));
+		PlayerPrefs.SetInt(ammoStr + saveName, PlayerPrefs.GetInt(ammoStr+autoSaveStr));
+		PlayerPrefs.SetInt(roundStr + saveName, PlayerPrefs.GetInt(roundStr+autoSaveStr));
+		PlayerPrefs.SetInt(waveSizeStr + saveName, PlayerPrefs.GetInt(waveSizeStr+autoSaveStr));
+		PlayerPrefs.SetFloat(spawnRateStr + saveName, PlayerPrefs.GetFloat(levelStr+autoSaveStr));
+		PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
+	}
 }
 
