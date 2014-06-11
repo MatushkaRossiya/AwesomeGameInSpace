@@ -24,20 +24,34 @@ public class Loader : MonoSingleton<Loader>
     public void save(string saveName = autoSaveStr)
     {
         Debug.Log("Saving: " + saveName);
-
-        //DODANIE JEZELI NIE ISTENIEJE SAVE DO LISTY SAVE'OW
-        checkandAdd(saveName);
-        //ZAPISANIE INFORMACJI
-        PlayerPrefs.SetInt(anySaves, PlayerPrefs.GetInt(anySaves, 0));
-        PlayerPrefs.SetFloat(healthStr + saveName, PlayerStats.instance.health);
-        PlayerPrefs.SetInt(syfStr + saveName, PlayerStats.instance.syf);
-        PlayerPrefs.SetInt(ammoStr + saveName, LaserRifle.instance.ammo);
-        PlayerPrefs.SetInt(roundStr + saveName, GameMaster.instance.currentRound);
-        PlayerPrefs.SetInt(waveSizeStr + saveName, GameMaster.instance.waveSize);
-        PlayerPrefs.SetFloat(spawnRateStr + saveName, GameMaster.instance.spawnRate);
-        PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
-        PlayerPrefs.Save();
-        HUD.instance.setHintvisible("Game Saved", 2);
+		//DODANIE JEZELI NIE ISTENIEJE SAVE DO LISTY SAVE'OW
+		checkandAdd(saveName);
+		//ZAPISANIE INFORMACJI
+		if(saveName != autoSaveStr)	//mozemy tylko zapisywać stan z ostaniego czeckpointu. Nawet jak zapiszemy w dowolnym momencie to po prostu wartosci zostana skopiowane z ostanitego autosave'a
+		{
+			PlayerPrefs.SetInt(anySaves, PlayerPrefs.GetInt(anySaves, 0));
+			PlayerPrefs.SetFloat(healthStr + saveName, PlayerPrefs.GetFloat(healthStr+autoSaveStr));
+			PlayerPrefs.SetInt(syfStr + saveName, PlayerPrefs.GetInt(syfStr+autoSaveStr));
+			PlayerPrefs.SetInt(ammoStr + saveName, PlayerPrefs.GetInt(ammoStr+autoSaveStr));
+			PlayerPrefs.SetInt(roundStr + saveName, PlayerPrefs.GetInt(roundStr+autoSaveStr));
+			PlayerPrefs.SetInt(waveSizeStr + saveName, PlayerPrefs.GetInt(waveSizeStr+autoSaveStr));
+			PlayerPrefs.SetFloat(spawnRateStr + saveName, PlayerPrefs.GetFloat(levelStr+autoSaveStr));
+			PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
+			PlayerPrefs.Save();
+		}
+        else
+		{
+       	 	 PlayerPrefs.SetInt(anySaves, PlayerPrefs.GetInt(anySaves, 0));
+        	 PlayerPrefs.SetFloat(healthStr + saveName, PlayerStats.instance.health);
+      		 PlayerPrefs.SetInt(syfStr + saveName, PlayerStats.instance.syf);
+      		 PlayerPrefs.SetInt(ammoStr + saveName, LaserRifle.instance.ammo);
+       		 PlayerPrefs.SetInt(roundStr + saveName, GameMaster.instance.currentRound);
+       		 PlayerPrefs.SetInt(waveSizeStr + saveName, GameMaster.instance.waveSize);
+       		 PlayerPrefs.SetFloat(spawnRateStr + saveName, GameMaster.instance.spawnRate);
+       		 PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
+       		 PlayerPrefs.Save();
+		}
+		HUD.instance.setHintvisible("Game Saved", 2);
     }
 
     public void load(string saveName = autoSaveStr) //domyslnie autoLoad
