@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dayLenght: 45
-  changeDuration: 15
+  changeDuration: 10
   waveSize: 10
   spawnRate: 1
   currentRound: 0

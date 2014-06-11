@@ -8,6 +8,8 @@ public abstract class Interactive : MonoBehaviour
         get;
     }
 
+	public int priority = 0;
+
     public virtual void MomentaryAction(){}
 
 	public virtual void HoldAction(){}
