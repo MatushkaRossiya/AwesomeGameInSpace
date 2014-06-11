@@ -1150,7 +1150,7 @@ GameObject:
   - 208: {fileID: 80204766}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1338,7 +1338,7 @@ GameObject:
   - 114: {fileID: 98459041}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1605,6 +1605,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 3e4fde9ac490422418eb7f49a7b6ac0e,
         type: 2}
+    - target: {fileID: 400004, guid: 7aecedbe4719328489d72a97e042e70a, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7aecedbe4719328489d72a97e042e70a, type: 2}
   m_RootGameObject: {fileID: 282209163}
@@ -3500,7 +3504,7 @@ GameObject:
   - 114: {fileID: 282209166}
   m_Layer: 8
   m_Name: Blockade
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5694,7 +5698,7 @@ GameObject:
   - 208: {fileID: 437795538}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5993,7 +5997,7 @@ GameObject:
   - 114: {fileID: 457664163}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6093,7 +6097,7 @@ GameObject:
   - 114: {fileID: 462496556}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6573,7 +6577,7 @@ GameObject:
   - 114: {fileID: 534590314}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7420,7 +7424,7 @@ GameObject:
   - 114: {fileID: 571806787}
   m_Layer: 8
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10829,7 +10833,7 @@ GameObject:
   - 114: {fileID: 985084364}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11043,7 +11047,7 @@ GameObject:
   - 114: {fileID: 994237773}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11584,7 +11588,7 @@ GameObject:
   - 114: {fileID: 1030029225}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11711,7 +11715,7 @@ GameObject:
   - 114: {fileID: 1041714152}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12065,7 +12069,7 @@ GameObject:
   - 82: {fileID: 1082648069}
   m_Layer: 10
   m_Name: Iris
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13399,7 +13403,7 @@ GameObject:
   - 114: {fileID: 1248404292}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13671,7 +13675,7 @@ GameObject:
   - 114: {fileID: 1275559223}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15109,7 +15113,7 @@ GameObject:
   - 114: {fileID: 1404676039}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18576,7 +18580,7 @@ GameObject:
   - 64: {fileID: 1764140270}
   m_Layer: 10
   m_Name: BigFuckingDoor
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19422,7 +19426,7 @@ GameObject:
   - 64: {fileID: 1862633126}
   m_Layer: 10
   m_Name: IrisFrame
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19582,7 +19586,7 @@ GameObject:
   - 114: {fileID: 1876751376}
   m_Layer: 10
   m_Name: FirstAidKit
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19671,7 +19675,7 @@ GameObject:
   - 208: {fileID: 1882902774}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20462,6 +20466,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: -.499999821
       objectReference: {fileID: 0}
+    - target: {fileID: 400100, guid: 35de9c2192a3fe64984ad7898d2519b0, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 35de9c2192a3fe64984ad7898d2519b0, type: 2}
   m_RootGameObject: {fileID: 1876751374}
@@ -20638,7 +20646,7 @@ GameObject:
   - 114: {fileID: 1938481144}
   m_Layer: 10
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20864,7 +20872,7 @@ GameObject:
   - 208: {fileID: 1988995226}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -115,7 +115,7 @@ GameObject:
   - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Mine
-  m_TagString: Untagged
+  m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
