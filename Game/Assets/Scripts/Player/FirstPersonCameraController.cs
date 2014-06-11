@@ -65,10 +65,7 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.deltaTime * 4.0f);
         }
-    }
-    
-    void FixedUpdate()
-    {
+
 #if UNITY_EDITOR
         if (!Input.GetKey(KeyCode.Escape))
         {
@@ -108,7 +105,7 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 
         if (input != Vector2.zero)
         {
-            float speed = input.magnitude / Time.fixedDeltaTime;
+            float speed = input.magnitude / Time.deltaTime;
             speed *= speedCurve.Evaluate(speed);
             input = Time.fixedDeltaTime * speed * effectiveSensitivity * input.normalized;
             input *= effectiveSensitivity;
