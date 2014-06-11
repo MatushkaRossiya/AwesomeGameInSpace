@@ -32,6 +32,9 @@ public class InteractionHandler : MonoBehaviour
 				hold = false;
 			}
 		}
+
+		if(message != null)
+			HUD.instance.setHintvisible(message, 0.3f);
     }
 
     void FixedUpdate()
@@ -52,10 +55,10 @@ public class InteractionHandler : MonoBehaviour
             }
         }
     }
-
+	/*
     void OnGUI()
     {
         if (!string.IsNullOrEmpty(message))
             GUI.Label(new Rect(screenPosition.x, Screen.height - screenPosition.y, 256, 96), message, textStyle);
-    }
+    }*/
 }
