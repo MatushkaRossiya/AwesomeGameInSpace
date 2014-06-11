@@ -2333,6 +2333,7 @@ MonoBehaviour:
   timeBackgroundTex: {fileID: 2800000, guid: eb02af827cc4a1f489038dbf23564c3c, type: 3}
   syfTex: {fileID: 2800000, guid: e34f9981ff5f89643b7754aad8a95872, type: 3}
   hintTex: {fileID: 2800000, guid: b33cda62a8540324a80b7be3159d7b90, type: 3}
+  syringeTex: {fileID: 2800000, guid: eb58ab89b55a90e4f9bc0901d4467c36, type: 3}
   newRoundSound: {fileID: 8300000, guid: 85d1f46fc20110d438ac2e6c98003aa9, type: 3}
   tutorialSound: {fileID: 8300000, guid: 34b662465b6a39d488a023b09082a7fb, type: 3}
 --- !u!114 &11400026
