@@ -266,7 +266,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100030
 GameObject:
   m_ObjectHideFlags: 1
@@ -1753,9 +1753,13 @@ MonoBehaviour:
   grenadeLauncherSound: {fileID: 8300000, guid: 085d2babe8ddc164d9440d2fff0ac3af,
     type: 3}
   shotPeriod: .0599999987
-  maxAmmo: 250
   recoil: .00999999978
   handling: 2
+  GLModel: {fileID: 100028}
+  hasAmmoClipUpgrade: 0
+  hasGrenadeLaucherUpgrade: 0
+  grenades: 0
+  maxGrenades: 3
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

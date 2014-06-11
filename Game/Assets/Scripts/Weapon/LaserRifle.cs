@@ -15,11 +15,21 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public AudioClip outOfAmmoSound;
     public AudioClip grenadeLauncherSound;
     [Range(0.01f, 0.5f)]
-    public float
-        shotPeriod;
-    public int maxAmmo;
+    public float shotPeriod;
+	public int maxAmmo { 
+		get{
+			return hasAmmoClipUpgrade ? 500 : 250;	
+		}
+	}
     public float recoil;
-    public float handling;
+	public float handling;
+	public GameObject GLModel;
+	public bool hasAmmoClipUpgrade;			// TODO Save it
+	public bool hasGrenadeLaucherUpgrade;	// TODO Save it
+	public int grenades;					// TODO Save it
+	public int maxGrenades = 3;
+
+
     private ShootingPhase shootingPhase;
     private float nextShot;
     private int _ammo;
@@ -50,6 +60,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     private Vector3 riflePosition;
     private Vector3 rifleZoomPosition;
 
+	private float HTHduration;
+
     void Start()
     {
         shootingPhase = ShootingPhase.NotShooting;
@@ -68,17 +80,26 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         if (nextGrenade > 0.0f)
             nextGrenade -= Time.deltaTime;
 
-        if ((Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f) && shootingPhase == ShootingPhase.NotShooting)
-        {
-            shootingPhase = ShootingPhase.ShootingStart;
-        }
-        else if (shootingPhase == ShootingPhase.Shooting)
-        {
-            shootingPhase = ShootingPhase.NotShooting;
-        }
+		if ((Input.GetMouseButton(0) || Gamepad.instance.rightTrigger() > 0.75f)) {
+			if (shootingPhase == ShootingPhase.NotShooting) {
+				shootingPhase = ShootingPhase.ShootingStart;
+			}
+		}
+		else if (shootingPhase == ShootingPhase.Shooting) {
+			shootingPhase = ShootingPhase.NotShooting;
+		}
 
-        if (nextGrenade <= 0.0f && (Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
+		if(Input.GetKeyDown(KeyCode.X) && shootingPhase != ShootingPhase.HandToHand){
+			shootingPhase = ShootingPhase.HandToHand;
+			HTHduration = 0.0f;
+		}
+
+        if (hasGrenadeLaucherUpgrade &&
+			grenades > 0 &&
+			nextGrenade <= 0.0f && 
+			(Input.GetMouseButtonDown(2) || Gamepad.instance.justPressedRightShoulder()))
         {
+			--grenades;
             audio.PlayOneShot(grenadeLauncherSound);
             GameObject granade = Instantiate(grenadePrefab, grenadeLauncher.transform.position, grenadeLauncher.transform.rotation * Quaternion.AngleAxis(-90.0f, Vector3.right)) as GameObject;
             granade.rigidbody.velocity = transform.root.rigidbody.velocity + grenadeLauncher.transform.forward * grenadeSpeed;
@@ -112,7 +133,9 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         knockBack *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
         spread *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
         
-        if (Time.fixedTime >= nextShot && shootingPhase != ShootingPhase.NotShooting)
+        if (Time.fixedTime >= nextShot
+			&& (shootingPhase == ShootingPhase.ShootingStart
+			|| shootingPhase == ShootingPhase.Shooting))
         {
             RaycastHit hitInfo;
             Vector3 start = bulletSource.transform.position;
@@ -172,7 +195,33 @@ public class LaserRifle : MonoSingleton<LaserRifle>
                 FirstPersonCameraController.instance.verticalAngle += knockBack * 10.0f;
                 muzzleFlashBrightness += 0.6f;
             }
-        }
+		}
+		else if (shootingPhase == ShootingPhase.HandToHand) {
+			HTHduration += Time.fixedDeltaTime;
+			if (HTHduration > 0.2f) {
+				RaycastHit hit;
+				if(Physics.SphereCast(
+					transform.position,
+					0.3f,
+					transform.forward,
+					out hit,
+					0.5f,
+					Layers.playerAttack))
+				{
+					Damageable dam = hit.collider.GetComponent<Damageable>();
+					if (dam != null) {
+						dam.DealDamage(transform.forward * 10.0f);
+					}
+				}
+				shootingPhase = ShootingPhase.HandToHandEnd;
+			}
+		}
+		else if (shootingPhase == ShootingPhase.HandToHandEnd) {
+			HTHduration += Time.fixedDeltaTime;
+			if (HTHduration > 0.5f) {
+				shootingPhase = ShootingPhase.NotShooting;
+			}
+		}
 
         transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * knockBack, 0, 0));
     }
@@ -208,6 +257,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     {
         NotShooting,
         ShootingStart,
-        Shooting
+        Shooting,
+		HandToHand,
+		HandToHandEnd
     }
 }
