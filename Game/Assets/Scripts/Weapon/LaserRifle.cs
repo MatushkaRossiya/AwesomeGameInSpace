@@ -89,7 +89,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 			shootingPhase = ShootingPhase.NotShooting;
 		}
 
-		if(Input.GetKeyDown(KeyCode.X) && shootingPhase != ShootingPhase.HandToHand){
+		if((Input.GetKeyDown(KeyCode.X) || Gamepad.instance.justPressedLeftShoulder()) && shootingPhase != ShootingPhase.HandToHand){
 			shootingPhase = ShootingPhase.HandToHand;
 			HTHduration = 0.0f;
 		}
