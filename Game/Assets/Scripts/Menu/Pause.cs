@@ -12,6 +12,7 @@ public class Pause : MonoBehaviour
 	float ScrHeight = Screen.height;
 	float ScrWidth = Screen.width;
 	float gamespeed;
+	float timeToWait = 0.0f;
 
 	public Texture2D buttonOnTexture;
 	public Texture2D buttonOffTexture;
@@ -24,7 +25,7 @@ public class Pause : MonoBehaviour
 	{
 		paused = false;
 		setupRects();
-		gamespeed = 1;
+		gamespeed = 1.0f;
 	}
 
 	void setupRects()
@@ -40,25 +41,26 @@ public class Pause : MonoBehaviour
 
 	void pauseGame()
 	{
-		gamespeed = 0;
+		gamespeed = 0.0f;
 		showButtons(-0.65f, 0, 0, continueBtnRect, saveBtnRect, mainMenuBtnRect);
-		Debug.Log("Game Paused");
+		//Debug.Log("Game Paused");
 		paused = true;
+		timeToWait = Time.realtimeSinceStartup;
 	}
 
 	void unPauseGame()
 	{
-		gamespeed = 1;
+		gamespeed = 1.0f;
 		Time.timeScale = gamespeed;
 		hideButtons(0.65f, 0, 0, continueBtnRect, saveBtnRect, mainMenuBtnRect);
-		Debug.Log("Game unPaused");
+		//Debug.Log("Game unPaused");
 		paused = false;
+		timeToWait = Time.realtimeSinceStartup;
 	}
-	// Update is called once per frame
+
 	void Update()
 	{
-	
-		if (Input.GetKeyUp(KeyCode.Delete))
+		if (Input.GetKeyUp(KeyCode.Delete) && timeToWait <= 0.0f)
 		{
 			if (paused)
 			{
@@ -67,6 +69,14 @@ public class Pause : MonoBehaviour
 			else
 			{
 				pauseGame();
+			}
+		}
+
+		if (timeToWait > 0.0f)
+		{
+			if (Time.realtimeSinceStartup - timeToWait > 0.5f)
+			{
+				timeToWait = 0.0f;
 			}
 		}
 	}
@@ -117,8 +127,6 @@ public class Pause : MonoBehaviour
 
 	void playSound()
 	{
-		AudioSource source = GetComponent<AudioSource>();
-		source.clip = click;
-		source.Play();
+		audio.PlayOneShot(click);
 	}
 }
