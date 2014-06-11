@@ -13,7 +13,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: ammoVendingMachine
+  m_Name: grenadeVendingMachine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 2.57879037e-07, y: -.707106888, z: -.707106769, w: -3.22106786e-07}
-  m_LocalPosition: {x: 3.72152591, y: -0, z: -.841006935}
+  m_LocalPosition: {x: .599488497, y: 6.44807727e-08, z: -3.03964138}
   m_LocalScale: {x: .088153705, y: .088153705, z: .088153705}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: e0ee907e82ef34741bdf412376104d00, type: 2}
+  - {fileID: 2100000, guid: 84d32aec36e78524bb1c27de4d16fc6f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -78,12 +78,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c8b542bf6777ca4094c35d12df107ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f13ff1dbe00dbe44b8b33ee3ddb8dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  ammoPrice: 10
-  ammoAmount: 50
+  grenadePrice: 10
+  grenadeAmount: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
