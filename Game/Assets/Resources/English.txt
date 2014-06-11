@@ -1,6 +1,6 @@
 ﻿TUT01 to look around
 TUT02 to move
-TUT03 Press to sprint
+TUT03 press to sprint
 TUT04 to jump
 TUT05 to crouch
 TUT06 to toggle flashlight
@@ -9,7 +9,8 @@ TUT08 to fire weapon
 TUT09 to fire grenade
 TUT10 to aim down the sights
 TUT11 to set mine
-TUT12 to interact with environment
-TUT13 This is Alien. Kill him!
-TUT14 Aliens leave useful Syf
-TUT15 You can use Syf to buy ammo, syringes, build barricades and unlock new sectors
+TUT12 to melee
+TUT13 to interact with environment
+TUT14 This is Alien. Kill him!
+TUT15 Aliens leave useful Syf
+TUT16 You can use Syf to buy ammo, syringes, build barricades and unlock new sectors

@@ -416,6 +416,7 @@ MonoBehaviour:
   grenade: {fileID: 2800000, guid: 8519faa750206e348ae212f400c1b421, type: 3}
   aim: {fileID: 2800000, guid: 73030e5b778e0cf408edd4fdf8900079, type: 3}
   mine: {fileID: 2800000, guid: d9a4cb071bf0e4949bc22d806150c5f9, type: 3}
+  melee: {fileID: 2800000, guid: 483023f0ab80aa24db61f6d4928c2512, type: 3}
   interact: {fileID: 2800000, guid: 37c5e816ad3d6d94e8684c8c529faa75, type: 3}
   lookPC: {fileID: 2800000, guid: 6d1f32eeab249224e91952b401875a1f, type: 3}
   movePC: {fileID: 2800000, guid: 4c704190c496a064490d264c454485f2, type: 3}
@@ -428,6 +429,7 @@ MonoBehaviour:
   grenadePC: {fileID: 2800000, guid: bf9392f637a659944a86124ec0966b91, type: 3}
   aimPC: {fileID: 2800000, guid: 4ffd61c30e3f4d14aac50ad32de6c842, type: 3}
   minePC: {fileID: 2800000, guid: 36979a4d3d38eab46bb941162329adad, type: 3}
+  meleePC: {fileID: 2800000, guid: 4e97954ad584257408d4ba3d8d19ae43, type: 3}
   interactPC: {fileID: 2800000, guid: 36b2b458f945c43469e6d685949658ed, type: 3}
 --- !u!114 &11400026
 MonoBehaviour:

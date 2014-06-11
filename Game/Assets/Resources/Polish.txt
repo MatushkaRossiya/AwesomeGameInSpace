@@ -1,6 +1,6 @@
-﻿TUT01 by rozglądać się
+﻿TUT01 by się rozglądać
 TUT02 by się poruszać
-TUT03 by biec
+TUT03 wciśnij by biec
 TUT04 by skoczyć
 TUT05 by kucnąć
 TUT06 by przełączyć latarkę
@@ -9,7 +9,8 @@ TUT08 by strzelić
 TUT09 by użyć granatnika
 TUT10 by dokładnie celować
 TUT11 by położyć minę
-TUT12 by wchodzić w interakcję
-TUT13 To jest Obcy. Zabij go!
-TUT14 Obcy pozostawiają cenny Syf
-TUT15 Za Syf możesz kupić amunicję, strzykawki, budować barykady i odblokowywać kolejne sektory
+TUT12 by PRZYPIE******
+TUT13 by wchodzić w interakcję
+TUT14 To jest Obcy. Zabij go!
+TUT15 Obcy pozostawiają cenny Syf
+TUT16 Za Syf możesz kupić amunicję, strzykawki, budować barykady i odblokowywać kolejne sektory

@@ -14,6 +14,7 @@ public class Tutorial : MonoSingleton<Tutorial>
     public Texture2D grenade;
     public Texture2D aim;
     public Texture2D mine;
+	public Texture2D melee;
     public Texture2D interact;
 
     public Texture2D lookPC;
@@ -27,6 +28,7 @@ public class Tutorial : MonoSingleton<Tutorial>
     public Texture2D grenadePC;
     public Texture2D aimPC;
     public Texture2D minePC;
+	public Texture2D meleePC;
     public Texture2D interactPC;
 
     private static float time = 0.0f;
@@ -46,6 +48,7 @@ public class Tutorial : MonoSingleton<Tutorial>
     private static bool tut13 = false;
     private static bool tut14 = false;
     private static bool tut15 = false;
+	private static bool tut16 = false;
 
     private static bool _showAlienTutorial = false;
     private static bool _alienTutorialTimerReset = false;
@@ -54,6 +57,7 @@ public class Tutorial : MonoSingleton<Tutorial>
     // Use this for initialization
     public override void Init()
     {
+		//PlayerPrefs.SetInt("tutorial", 1);
         checkIfEnabled();
     }
     
@@ -72,10 +76,24 @@ public class Tutorial : MonoSingleton<Tutorial>
                 _alienTutorialTimerReset = true;
             }
 
-            if (time > 8.0f && !tut15)
+            if (time > 8.0f && !tut16)
+            {
+                tut16 = true;
+                PlayerPrefs.SetInt("tutorial", 0);
+                if (Gamepad.instance.isConnected())
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT16"), 3.0f);
+                }
+                else
+                {
+                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT16"), 3.0f);
+                }
+                Destroy(this);
+                return;
+            }
+            if (time > 4.0f && !tut15)
             {
                 tut15 = true;
-                PlayerPrefs.SetInt("tutorial", 0);
                 if (Gamepad.instance.isConnected())
                 {
                     HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
@@ -84,10 +102,9 @@ public class Tutorial : MonoSingleton<Tutorial>
                 {
                     HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
                 }
-                Destroy(this);
                 return;
             }
-            if (time > 4.0f && !tut14)
+            if (time > 0.0f && !tut14)
             {
                 tut14 = true;
                 if (Gamepad.instance.isConnected())
@@ -100,31 +117,31 @@ public class Tutorial : MonoSingleton<Tutorial>
                 }
                 return;
             }
-            if (time > 0.0f && !tut13)
-            {
-                tut13 = true;
-                if (Gamepad.instance.isConnected())
-                {
-                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), 3.0f);
-                }
-                else
-                {
-                    HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), 3.0f);
-                }
-                return;
-            }
         }
 
+		if (time > 48.0f && !tut13)
+		{
+			tut13 = true;
+			if (Gamepad.instance.isConnected())
+			{
+				HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), interact, 3.0f);
+			}
+			else
+			{
+				HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), interactPC, 3.0f);
+			}
+			return;
+		}
         if (time > 44.0f && !tut12)
         {
             tut12 = true;
             if (Gamepad.instance.isConnected())
             {
-                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), interact, 3.0f);
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), melee, 3.0f);
             }
             else
             {
-                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), interactPC, 3.0f);
+                HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), meleePC, 3.0f);
             }
             return;
         }

@@ -94,14 +94,15 @@ public class HUD : MonoSingleton<HUD>
 		timeTextStyle.fontSize = Screen.height / 18;
 		syfTextStyle.fontSize = Screen.height / 20;
 		hintTextStyle.fontSize = Screen.height / 25;
+		tutorialTextStyle.fontSize = Screen.height / 24;
 		healthbarRect = new Rect(0.1f * w, 0.07f * h, 0.19f * w, 0.11f * h);
 		syringeRect1 = new Rect(0.15f * w, 0.125f * h, 0.025f * w, 0.025f * w);
 		syringeRect2 = new Rect(0.175f * w, 0.125f * h, 0.025f * w, 0.025f * w);
 		syringeRect3 = new Rect(0.2f * w, 0.125f * h, 0.025f * w, 0.025f * w);
 		syfRect = new Rect(0.14f * w, 0.83f * h, 0.23f * w, 0.11f * h);
 		timeBackgroundRect = new Rect(0.74f * w, 0.07f * h, 0.13f * w, 0.055f * h);
-		hintRect = new LTRect(0.5f * (w - (0.3f * w)), 0.075f * (h - (0.075f * h)), 0.3f * w, 0.075f * h);
-		tutorialRect = new LTRect(0.5f * (w - (0.4f * w)), 0.075f * (h - (0.2f * h)), 0.4f * w, 0.2f * h);
+		hintRect = new LTRect(0.5f * (w - (0.35f * w)), 0.075f * (h - (0.075f * h)), 0.35f * w, 0.075f * h);
+		tutorialRect = new LTRect(0.5f * (w - (0.45f * w)), 0.075f * (h - (0.2f * h)), 0.45f * w, 0.2f * h);
 		syfTextRect = syfRect;
 		syfTextRect.x += 0.082f * w;
 		syfTextRect.y -= 0.02f * h;
