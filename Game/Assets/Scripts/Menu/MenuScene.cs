@@ -3,14 +3,14 @@ using System.Collections;
 
 public class MenuScene : MonoBehaviour {
 
-	GameObject kamera;
+	public GameObject kamera;
 	bool left;
 	public float cameraRotationSpeed;
 	// Use this for initialization
 	void Start () {
 		cameraRotationSpeed=3.0f;
 		left = false;
-		kamera = GameObject.FindObjectOfType<Camera> ().gameObject;
+		//kamera = GameObject.FindObjectOfType<Camera> ().gameObject;
 	}
 	
 	// Update is called once per frame
