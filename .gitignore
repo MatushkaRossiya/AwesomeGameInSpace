@@ -226,3 +226,11 @@ Temp
 *.sln
 *.userprefs
 /Game/brainz.dat
+/Game/Assets/Death
+/Game/Assets/Enemies
+/Game/Assets/Location
+/Game/Assets/Menu
+/Game/Assets/Death.meta
+/Game/Assets/Enemies.meta
+/Game/Assets/Location.meta
+/Game/Assets/Menu.meta

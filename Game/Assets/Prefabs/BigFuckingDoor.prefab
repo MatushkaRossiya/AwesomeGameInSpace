@@ -1855,6 +1855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d615cc3fc01d0478731f0d929c9ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   cost: 100
   iris: {fileID: 11400042}
   nextLevelID: -1
@@ -2111,9 +2112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openingTime: 3.29999995
   obstacles:
-  - {fileID: 20800006}
   - {fileID: 20800004}
-  - {fileID: 20800002}
   - {fileID: 20800000}
   curve:
     serializedVersion: 2
