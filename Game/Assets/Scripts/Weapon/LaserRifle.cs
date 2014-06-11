@@ -89,9 +89,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         muzzleFlashLight.intensity = muzzleFlashBrightness * 5.0f;
         muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
 
-        zoomPhase = Mathf.Clamp01(zoomPhase + (isZoomed ? 1 : -1) * Time.deltaTime / zoomTime);
-        float t = MathfX.sinerp(0, 1, zoomPhase);
-        transform.localPosition = Vector3.Lerp(riflePosition, rifleZoomPosition, t);
+		SetPos();
     }
 
     void FixedUpdate()
@@ -110,7 +108,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
             effectiveHandling *= 1.25f;
         }
 
-        spread += PlayerController.instance.speed * 0.001f;
+        spread += PlayerController.instance.speed * 0.006f;
         knockBack *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
         spread *= Mathf.Exp(-Time.fixedDeltaTime * effectiveHandling);
         
@@ -178,6 +176,33 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
         transform.localRotation = Quaternion.Euler(new Vector3(-100.0f * knockBack, 0, 0));
     }
+
+	private float swingPhase = 0;
+	private float swingSpeedMul = 0.15f;
+	private float swingAmplitude = 0.005f;
+
+	void SetPos() {
+		Vector3 pos;
+		zoomPhase = Mathf.Clamp01(zoomPhase + (isZoomed ? 1 : -1) * Time.deltaTime / zoomTime);
+		float t = MathfX.sinerp(0, 1, zoomPhase);
+		pos = Vector3.Lerp(riflePosition, rifleZoomPosition, t);
+
+		float walkSpeed = PlayerController.instance.speed;
+		walkSpeed += 0.08f;
+		swingPhase += walkSpeed * swingSpeedMul;
+
+		Vector3 swing = new Vector3(
+			Mathf.Sin(swingPhase) * 2.0f,
+			Mathf.Sin(swingPhase * 2),
+			0);
+		swing *= swingAmplitude;
+		swing *= walkSpeed;
+
+		pos += swing;
+
+		transform.localPosition = pos;
+	}
+
 
     enum ShootingPhase
     {

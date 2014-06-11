@@ -27,7 +27,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         get
         {
-            return rigidbody.velocity.magnitude;
+            return rigidbody.velocity.magnitude / sprintSpeed;
         }
     }
 
