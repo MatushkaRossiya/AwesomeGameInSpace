@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Reflection;
 
 public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraController>
 {
@@ -7,6 +8,8 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
     public AnimationCurve speedCurve;
     public float gamepadSensitivity = 3.0f;
     private float _horizontalAngle;
+	private Component dof;
+	private PropertyInfo dofEnable;
 
     public float horizontalAngle
     {
@@ -41,6 +44,9 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
     void Start()
     {
         camera.depthTextureMode = DepthTextureMode.Depth;
+		dof = GetComponent("DepthOfFieldScatter");
+		dofEnable = dof.GetType().GetProperty("enabled");
+		dofEnable.SetValue(dof, false, null);
     }
 
     void Update()
@@ -60,10 +66,12 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
         if (isZoomed)
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 25.0f, Time.deltaTime * 4.0f);
+			dofEnable.SetValue(dof, true, null);
         }
         else
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 55.0f, Time.deltaTime * 4.0f);
+			dofEnable.SetValue(dof, false, null);
         }
 
 #if UNITY_EDITOR
