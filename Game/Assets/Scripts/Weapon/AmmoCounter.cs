@@ -8,6 +8,8 @@ public class AmmoCounter : MonoBehaviour {
 	public TextMesh tens;
 	public TextMesh hundreds;
 	public GameObject indicator;
+	public GameObject[] grenadeIndicators;
+
 	private Material indicatorMat;
 	private int ID;
 
@@ -24,6 +26,17 @@ public class AmmoCounter : MonoBehaviour {
 			tens.text = (value / 10 % 10).ToString();
 			hundreds.text = (value / 100 % 10).ToString();
 			_ammo = value;
+		}
+	}
+
+	public int _grenades;
+	public int grenades {
+		get { return _grenades; }
+		set {
+			_grenades = value;
+			for (int i = 0; i < grenadeIndicators.Length; ++i) {
+				grenadeIndicators[i].SetActive(i < value);
+			}
 		}
 	}
 
