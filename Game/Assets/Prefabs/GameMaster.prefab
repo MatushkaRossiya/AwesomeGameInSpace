@@ -22,7 +22,6 @@ GameObject:
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400024}
-  - 114: {fileID: 11400026}
   - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: GameMaster
@@ -219,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbf7d22f38ebc40bf200fea11551c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLenght: 45
+  dayLenght: 60
   changeDuration: 10
   waveSize: 10
   spawnRate: 1
@@ -382,7 +381,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f3cd4e753ce16f74d9d30ee06d3074bb, type: 3}
   - {fileID: 8300000, guid: 50fbf9d2e5746b241b856169214a08ce, type: 3}
   - {fileID: 8300000, guid: 487665a041046624f9d01bb956b8f041, type: 3}
-  tipOffCountdown: 0
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -431,18 +429,6 @@ MonoBehaviour:
   minePC: {fileID: 2800000, guid: 36979a4d3d38eab46bb941162329adad, type: 3}
   meleePC: {fileID: 2800000, guid: 4e97954ad584257408d4ba3d8d19ae43, type: 3}
   interactPC: {fileID: 2800000, guid: 36b2b458f945c43469e6d685949658ed, type: 3}
---- !u!114 &11400026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb2335a8c2bf4df45b20106e5bad9106, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMarkCount: 16
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1

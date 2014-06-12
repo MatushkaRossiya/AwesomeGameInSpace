@@ -31,7 +31,7 @@ public class Alien : CharacterAI
             isDead = true;
             navMeshAgent.enabled = false;
             ragdollAnimation.Kill();
-            StartCoroutine(DelayDie(30.0f));
+            StartCoroutine(DelayDie(60.0f));
             audio.PlayOneShot(scream [Random.Range(0, scream.Length)], 10.0f);
             GameMaster.instance.activeEnemies--;
         }
