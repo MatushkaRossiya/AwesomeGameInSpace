@@ -26,7 +26,16 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 	public GameObject GLModel;
 	public bool hasAmmoClipUpgrade;			// TODO Save it
 	public bool hasGrenadeLaucherUpgrade;	// TODO Save it
-	public int grenades;					// TODO Save it
+	private int _grenades;
+	public int grenades{ 					// TODO Save it
+		get {
+			return _grenades;
+		}
+		set {
+			_grenades = value;
+			ammoCounter.grenades = value;
+		}
+	}
 	public int maxGrenades = 3;
 
 
@@ -68,6 +77,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
         nextShot = Time.fixedTime;
         ammoCounter.maxAmmo = maxAmmo;
         ammo = maxAmmo;
+		grenades = 0;
         muzzleFlashLight = transform.FindChild("MuzzleFlashLight").gameObject.GetComponent<Light>();
         muzzleFlashLight.intensity = 0.0f;
 
