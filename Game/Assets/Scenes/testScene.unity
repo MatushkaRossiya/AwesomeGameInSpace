@@ -7557,7 +7557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  cost: 100
+  cost: 2346456
   iris: {fileID: 1082648068}
   nextLevelID: -1
 --- !u!23 &571806788
@@ -19693,6 +19693,7 @@ GameObject:
   - 33: {fileID: 1764140269}
   - 23: {fileID: 1764140268}
   - 64: {fileID: 1764140270}
+  - 114: {fileID: 1764140271}
   m_Layer: 10
   m_Name: BigFuckingDoor
   m_TagString: movable
@@ -19708,7 +19709,7 @@ Transform:
   m_GameObject: {fileID: 1764140266}
   m_LocalRotation: {x: 8.14603425e-08, y: 0, z: -0, w: 1}
   m_LocalPosition: {x: 2.45020461, y: 1.29999995, z: -7.42197609}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.49999988, y: 1.5, z: 1.49999988}
   m_Children:
   - {fileID: 571806786}
   - {fileID: 1988995225}
@@ -19762,6 +19763,19 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: c0c7ee24a1d77784c923f1c447151cd4, type: 3}
+--- !u!114 &1764140271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400046, guid: c516b05dc6cd2894396b171e1ea1f995,
+    type: 2}
+  m_PrefabInternal: {fileID: 1869463129}
+  m_GameObject: {fileID: 1764140266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialProperties: {fileID: 11400000, guid: 3e4fde9ac490422418eb7f49a7b6ac0e, type: 2}
 --- !u!1 &1767626735
 GameObject:
   m_ObjectHideFlags: 0
@@ -20597,6 +20611,7 @@ GameObject:
   - 33: {fileID: 1862633125}
   - 23: {fileID: 1862633124}
   - 64: {fileID: 1862633126}
+  - 114: {fileID: 1862633127}
   m_Layer: 10
   m_Name: IrisFrame
   m_TagString: movable
@@ -20659,6 +20674,19 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: c0c7ee24a1d77784c923f1c447151cd4, type: 3}
+--- !u!114 &1862633127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: c516b05dc6cd2894396b171e1ea1f995,
+    type: 2}
+  m_PrefabInternal: {fileID: 1869463129}
+  m_GameObject: {fileID: 1862633122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialProperties: {fileID: 11400000, guid: 3e4fde9ac490422418eb7f49a7b6ac0e, type: 2}
 --- !u!1 &1863042849
 GameObject:
   m_ObjectHideFlags: 0
