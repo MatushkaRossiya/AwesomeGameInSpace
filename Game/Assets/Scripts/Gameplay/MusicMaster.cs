@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class MusicMaster : MonoSingleton<MusicMaster>
 {
     public AudioClip[] music;
-    public float tipOffCountdown = 0.0f;
 
+    private float tipOffCountdown = 0.0f;
     private bool musicChange = false;
     private bool musicSet = false;
     private float volume1 = 0.0f;

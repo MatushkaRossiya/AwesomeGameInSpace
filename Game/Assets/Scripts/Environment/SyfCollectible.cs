@@ -18,7 +18,7 @@ public class SyfCollectible : Interactive {
 	}
 
 	IEnumerator DelayDie() {
-		yield return new WaitForSeconds(Random.Range(60.0f, 90.0f));
+		yield return new WaitForSeconds(Random.Range(90.0f, 120.0f));
 		Destroy(gameObject);
 	}
 }
