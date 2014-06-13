@@ -5,9 +5,9 @@ public class RedBarrel : Damageable {
 
     public GameObject explosionParticle;
     private bool exploded = false;
-    public float radius = 3.5f;
+    public float radius = 3.0f;
     public float damageToDeal = 25.0f;
-    public float timeToVanish = 4.0f;
+    public float timeToVanish = 0.01f;
     private float time;
 
     void FixedUpdate()
@@ -17,7 +17,7 @@ public class RedBarrel : Damageable {
             if (Time.time > time)
             {
                 GetComponentInChildren<MeshRenderer>().enabled = false;
-                GetComponent<CapsuleCollider>().enabled = false;
+                GetComponent<MeshCollider>().enabled = false;
                 if (!audio.isPlaying) Destroy(this.gameObject);
             }
         }
