@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  grenadePrice: 10
+  grenadePrice: 50
   grenadeAmount: 1
 --- !u!1001 &100100000
 Prefab:

@@ -3650,7 +3650,7 @@ Transform:
   m_LocalScale: {x: .088153705, y: .088153705, z: .088153705}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &259143208
 GameObject:
   m_ObjectHideFlags: 0
@@ -6105,7 +6105,7 @@ ParticleSystem:
   startDelay: 0
   speed: 1
   randomSeed: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   moveWithTransform: 0
@@ -11114,8 +11114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 100000, guid: 1024686668693e3409e46ab06c54bb63, type: 2}
-  radius: 3
-  damageToDeal: 25
+  radius: 5
+  damageToDeal: 35
   timeToVanish: .00999999978
 --- !u!64 &666708622
 MeshCollider:
@@ -11849,8 +11849,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 100000, guid: 1024686668693e3409e46ab06c54bb63, type: 2}
-  radius: 3
-  damageToDeal: 25
+  radius: 5
+  damageToDeal: 35
   timeToVanish: .00999999978
 --- !u!64 &730378610
 MeshCollider:
@@ -13346,7 +13346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  grenadePrice: 10
+  grenadePrice: 50
   grenadeAmount: 1
 --- !u!65 &886334097
 BoxCollider:
@@ -13401,7 +13401,7 @@ Transform:
   m_LocalScale: {x: .088153705, y: .088153705, z: .088153705}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &893356092
 GameObject:
   m_ObjectHideFlags: 0
@@ -14111,8 +14111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 100000, guid: 1024686668693e3409e46ab06c54bb63, type: 2}
-  radius: 3
-  damageToDeal: 25
+  radius: 5
+  damageToDeal: 35
   timeToVanish: .00999999978
 --- !u!64 &937312748
 MeshCollider:
@@ -14227,7 +14227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &945213008
 GameObject:
   m_ObjectHideFlags: 0
@@ -14442,7 +14442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8739222a87c2bdb4da59a5f0e4eae03d, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8739222a87c2bdb4da59a5f0e4eae03d, type: 2}
@@ -14877,8 +14877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticle: {fileID: 100000, guid: 1024686668693e3409e46ab06c54bb63, type: 2}
-  radius: 3
-  damageToDeal: 25
+  radius: 5
+  damageToDeal: 35
   timeToVanish: .00999999978
 --- !u!64 &974062883
 MeshCollider:
@@ -19208,7 +19208,7 @@ ParticleSystem:
   startDelay: 0
   speed: 1
   randomSeed: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   moveWithTransform: 0
@@ -21590,7 +21590,7 @@ Transform:
   - {fileID: 478409155}
   - {fileID: 1980982473}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!114 &1390164234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23339,7 +23339,7 @@ Transform:
   - {fileID: 1767626736}
   - {fileID: 2075897513}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!65 &1492630236
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25955,7 +25955,7 @@ Transform:
   - {fileID: 1082648067}
   - {fileID: 1862633123}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!23 &1764140268
 Renderer:
   m_ObjectHideFlags: 0
@@ -27179,7 +27179,7 @@ Transform:
   - {fileID: 46912221}
   - {fileID: 1518843511}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &1876751376
 MonoBehaviour:
   m_ObjectHideFlags: 0
