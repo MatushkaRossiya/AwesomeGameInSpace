@@ -73,5 +73,22 @@ public class Alien : CharacterAI
         Kill();
     }
 
+    public void Untrap()
+    {
+        StartCoroutine(untrap());
+    }
+
+    private IEnumerator untrap()
+    {       
+        yield return new WaitForSeconds(5.0f);
+        transform.position = new Vector3(gameObject.transform.FindChild("Bip001").FindChild("Bip001 Pelvis").position.x, 0.0f, gameObject.transform.FindChild("Bip001").FindChild("Bip001 Pelvis").position.z);
+        gameObject.GetComponent<AlienAnimation>().isRagdoll = false;
+        yield return new WaitForSeconds(0.5f);
+
+        navMeshAgent.enabled = true;
+        gameObject.GetComponent<BaseFSM>().enabled = true;
+        yield return null;
+            
+    }
 
 }

@@ -439,7 +439,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100050
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -494,6 +494,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400048}
+  m_RootOrder: 0
 --- !u!4 &400002
 Transform:
   m_ObjectHideFlags: 1
@@ -505,19 +506,22 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: .99999994}
   m_Children: []
   m_Father: {fileID: 400012}
+  m_RootOrder: 0
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .216718197, y: 0, z: -3.92857456}
+  m_LocalRotation: {x: 0, y: -.906523108, z: 0, w: .422156304}
+  m_LocalPosition: {x: 3.24664974, y: 0, z: 5.53170204}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400052}
   - {fileID: 400054}
+  - {fileID: 400050}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -529,6 +533,7 @@ Transform:
   m_LocalScale: {x: -1, y: -1, z: -.99999994}
   m_Children: []
   m_Father: {fileID: 400026}
+  m_RootOrder: 0
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -540,6 +545,7 @@ Transform:
   m_LocalScale: {x: 1, y: .99999994, z: 1}
   m_Children: []
   m_Father: {fileID: 400010}
+  m_RootOrder: 0
 --- !u!4 &400010
 Transform:
   m_ObjectHideFlags: 1
@@ -552,6 +558,7 @@ Transform:
   m_Children:
   - {fileID: 400008}
   m_Father: {fileID: 400020}
+  m_RootOrder: 0
 --- !u!4 &400012
 Transform:
   m_ObjectHideFlags: 1
@@ -564,6 +571,7 @@ Transform:
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 400014}
+  m_RootOrder: 0
 --- !u!4 &400014
 Transform:
   m_ObjectHideFlags: 1
@@ -576,6 +584,7 @@ Transform:
   m_Children:
   - {fileID: 400012}
   m_Father: {fileID: 400016}
+  m_RootOrder: 0
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -588,6 +597,7 @@ Transform:
   m_Children:
   - {fileID: 400014}
   m_Father: {fileID: 400018}
+  m_RootOrder: 0
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -600,6 +610,7 @@ Transform:
   m_Children:
   - {fileID: 400016}
   m_Father: {fileID: 400036}
+  m_RootOrder: 1
 --- !u!4 &400020
 Transform:
   m_ObjectHideFlags: 1
@@ -612,6 +623,7 @@ Transform:
   m_Children:
   - {fileID: 400010}
   m_Father: {fileID: 400040}
+  m_RootOrder: 0
 --- !u!4 &400022
 Transform:
   m_ObjectHideFlags: 1
@@ -623,6 +635,7 @@ Transform:
   m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 400024}
+  m_RootOrder: 0
 --- !u!4 &400024
 Transform:
   m_ObjectHideFlags: 1
@@ -635,6 +648,7 @@ Transform:
   m_Children:
   - {fileID: 400022}
   m_Father: {fileID: 400038}
+  m_RootOrder: 0
 --- !u!4 &400026
 Transform:
   m_ObjectHideFlags: 1
@@ -647,6 +661,7 @@ Transform:
   m_Children:
   - {fileID: 400006}
   m_Father: {fileID: 400028}
+  m_RootOrder: 0
 --- !u!4 &400028
 Transform:
   m_ObjectHideFlags: 1
@@ -659,6 +674,7 @@ Transform:
   m_Children:
   - {fileID: 400026}
   m_Father: {fileID: 400030}
+  m_RootOrder: 0
 --- !u!4 &400030
 Transform:
   m_ObjectHideFlags: 1
@@ -671,6 +687,7 @@ Transform:
   m_Children:
   - {fileID: 400028}
   m_Father: {fileID: 400032}
+  m_RootOrder: 0
 --- !u!4 &400032
 Transform:
   m_ObjectHideFlags: 1
@@ -683,6 +700,7 @@ Transform:
   m_Children:
   - {fileID: 400030}
   m_Father: {fileID: 400036}
+  m_RootOrder: 0
 --- !u!4 &400034
 Transform:
   m_ObjectHideFlags: 1
@@ -695,6 +713,7 @@ Transform:
   m_Children:
   - {fileID: 400036}
   m_Father: {fileID: 400050}
+  m_RootOrder: 0
 --- !u!4 &400036
 Transform:
   m_ObjectHideFlags: 1
@@ -709,6 +728,7 @@ Transform:
   - {fileID: 400018}
   - {fileID: 400046}
   m_Father: {fileID: 400034}
+  m_RootOrder: 0
 --- !u!4 &400038
 Transform:
   m_ObjectHideFlags: 1
@@ -721,6 +741,7 @@ Transform:
   m_Children:
   - {fileID: 400024}
   m_Father: {fileID: 400042}
+  m_RootOrder: 0
 --- !u!4 &400040
 Transform:
   m_ObjectHideFlags: 1
@@ -733,6 +754,7 @@ Transform:
   m_Children:
   - {fileID: 400020}
   m_Father: {fileID: 400044}
+  m_RootOrder: 2
 --- !u!4 &400042
 Transform:
   m_ObjectHideFlags: 1
@@ -745,6 +767,7 @@ Transform:
   m_Children:
   - {fileID: 400038}
   m_Father: {fileID: 400044}
+  m_RootOrder: 1
 --- !u!4 &400044
 Transform:
   m_ObjectHideFlags: 1
@@ -759,6 +782,7 @@ Transform:
   - {fileID: 400042}
   - {fileID: 400040}
   m_Father: {fileID: 400046}
+  m_RootOrder: 0
 --- !u!4 &400046
 Transform:
   m_ObjectHideFlags: 1
@@ -771,6 +795,7 @@ Transform:
   m_Children:
   - {fileID: 400044}
   m_Father: {fileID: 400036}
+  m_RootOrder: 2
 --- !u!4 &400048
 Transform:
   m_ObjectHideFlags: 1
@@ -783,6 +808,7 @@ Transform:
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 400044}
+  m_RootOrder: 0
 --- !u!4 &400050
 Transform:
   m_ObjectHideFlags: 1
@@ -794,7 +820,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400034}
-  m_Father: {fileID: 400054}
+  m_Father: {fileID: 400004}
+  m_RootOrder: 2
 --- !u!4 &400052
 Transform:
   m_ObjectHideFlags: 1
@@ -802,10 +829,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.0387039185, y: 2.8609066, z: .310838699}
+  m_LocalPosition: {x: 24.0049534, y: 2.8609066, z: .310838699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400004}
+  m_RootOrder: 0
 --- !u!4 &400054
 Transform:
   m_ObjectHideFlags: 1
@@ -815,9 +843,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400050}
+  m_Children: []
   m_Father: {fileID: 400004}
+  m_RootOrder: 1
 --- !u!23 &2300004
 Renderer:
   m_ObjectHideFlags: 1
@@ -836,9 +864,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1088,7 +1115,7 @@ AudioSource:
     m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -1097,8 +1124,8 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 6f2a6395d0a3e8242b5f51a03e4a0867, type: 3}
   m_Controller: {fileID: 9100000, guid: 4f6820b9d7a8e8740a4614a40ada9aeb, type: 2}
   m_CullingMode: 1
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
-  m_AnimatePhysics: 1
   m_HasTransformHierarchy: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -1558,9 +1585,8 @@ SkinnedMeshRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1603,7 +1629,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.319502652, y: -.0153243346, z: 6.51868737e-09}
+  m_ConnectedAnchor: {x: -.319502652, y: -.0153243663, z: -1.52164105e-07}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -40
@@ -1627,6 +1653,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400002
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1637,7 +1664,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261507034, y: 4.65362113e-08, z: -1.0341423e-07}
+  m_ConnectedAnchor: {x: -.261507004, y: -1.41190867e-07, z: -4.93278129e-08}
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_LowTwistLimit:
     limit: -90
@@ -1661,6 +1688,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400004
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1671,7 +1699,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261506975, y: 1.3998104e-07, z: 1.49259122e-07}
+  m_ConnectedAnchor: {x: -.261506975, y: 1.98334916e-07, z: 1.74451245e-07}
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_LowTwistLimit:
     limit: -90
@@ -1695,6 +1723,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400006
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1705,7 +1734,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.245637044, y: -.0443527065, z: -.218799427}
+  m_ConnectedAnchor: {x: -.245637044, y: -.0443525724, z: -.218799353}
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_LowTwistLimit:
     limit: -70
@@ -1729,6 +1758,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400008
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1739,7 +1769,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.245637044, y: -.0443539023, z: .218799293}
+  m_ConnectedAnchor: {x: -.245637044, y: -.0443541333, z: .218799278}
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_LowTwistLimit:
     limit: -70
@@ -1763,6 +1793,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400010
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1773,7 +1804,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.344110012, y: -.000194072723, z: 4.77114781e-07}
+  m_ConnectedAnchor: {x: -.344110012, y: -.000193964312, z: 4.89892898e-07}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1797,6 +1828,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400012
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1807,7 +1839,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.435845256, y: -7.10108949e-08, z: -4.67130512e-08}
+  m_ConnectedAnchor: {x: -.435845256, y: -6.90314295e-08, z: -1.70732672e-08}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -80
@@ -1831,6 +1863,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400014
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1841,7 +1874,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.435845375, y: -3.34984591e-08, z: 2.14885638e-08}
+  m_ConnectedAnchor: {x: -.435845405, y: 7.80763116e-08, z: 2.25644392e-08}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -80
@@ -1865,6 +1898,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400016
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1875,7 +1909,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.78813934e-07, y: -1.58422054e-07, z: -.110745043}
+  m_ConnectedAnchor: {x: -1.78813934e-07, y: -6.72771421e-08, z: -.110745184}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1899,6 +1933,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!144 &14400018
 CharacterJoint:
   m_ObjectHideFlags: 1
@@ -1909,7 +1944,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.1920929e-07, y: 1.58422068e-07, z: .110745057}
+  m_ConnectedAnchor: {x: 1.1920929e-07, y: 2.49759864e-07, z: .110745028}
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_LowTwistLimit:
     limit: -20
@@ -1933,6 +1968,7 @@ CharacterJoint:
     damper: 0
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
+  m_EnableCollision: 0
 --- !u!195 &19500000
 NavMeshAgent:
   m_ObjectHideFlags: 1
