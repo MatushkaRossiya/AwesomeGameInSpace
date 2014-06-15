@@ -82,11 +82,11 @@ public class Alien : CharacterAI
     {       
         yield return new WaitForSeconds(5.0f);
         transform.position = new Vector3(gameObject.transform.FindChild("Bip001").FindChild("Bip001 Pelvis").position.x, 0.0f, gameObject.transform.FindChild("Bip001").FindChild("Bip001 Pelvis").position.z);
-        gameObject.GetComponent<AlienAnimation>().isRagdoll = false;
+      if(!isDead) gameObject.GetComponent<AlienAnimation>().isRagdoll = false;
         yield return new WaitForSeconds(0.5f);
 
-        navMeshAgent.enabled = true;
-        gameObject.GetComponent<BaseFSM>().enabled = true;
+        if (!isDead) navMeshAgent.enabled = true;
+        if (!isDead) gameObject.GetComponent<BaseFSM>().enabled = true;
         yield return null;
             
     }

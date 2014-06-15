@@ -37,6 +37,7 @@ public class Trap : MonoBehaviour
 
     internal void OnTriggerEnter(Collider col)
     {
+        Debug.Log(col.name);
         if (activated)
         {
             if (col.gameObject.GetComponentInParent<Alien>()) trapAlien(col.gameObject.GetComponentInParent<Alien>());
@@ -49,6 +50,7 @@ public class Trap : MonoBehaviour
     {
         if (thing.rigidbody)
         {
+            thing.rigidbody.velocity = Vector3.zero;
             thing.rigidbody.useGravity = false;
             trappedRigidbodies.Add(thing.rigidbody);
         }
@@ -56,6 +58,7 @@ public class Trap : MonoBehaviour
         {
             foreach (Rigidbody body in thing.GetComponentsInChildren<Rigidbody>())
             {
+                body.velocity = Vector3.zero;
                 body.useGravity = false;
                 trappedRigidbodies.Add(body);
             }
@@ -64,6 +67,7 @@ public class Trap : MonoBehaviour
         {
             foreach (Rigidbody body in thing.GetComponentsInParent<Rigidbody>())
             {
+                body.velocity = Vector3.zero;
                 body.useGravity = false;
                 trappedRigidbodies.Add(body);
             }
@@ -82,7 +86,8 @@ public class Trap : MonoBehaviour
     private float r = 0.35f;
     void Start()
     {
-        trapParticles.time = activeTime;
+      
+       
     }
 
 
@@ -175,6 +180,7 @@ public class Trap : MonoBehaviour
     IEnumerator turnOff()
     {
         activated = false;
+        trapParticles.Stop();
         for (int i = 100; i >= 0; --i)
         {
             audio.volume = (i / 100.0f);
