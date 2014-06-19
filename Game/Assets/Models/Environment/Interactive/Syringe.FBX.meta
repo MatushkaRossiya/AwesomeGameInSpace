@@ -20,6 +20,8 @@ ModelImporter:
     100028: Cylinder015
     100030: Cylinder016
     100032: //RootNode
+    100034: cryAnimationExportNode
+    100036: cryExporterSettingsNode
     400000: Cylinder001
     400002: Cylinder002
     400004: Cylinder003
@@ -37,6 +39,8 @@ ModelImporter:
     400028: Cylinder015
     400030: Cylinder016
     400032: //RootNode
+    400034: cryAnimationExportNode
+    400036: cryExporterSettingsNode
     2300000: Cylinder001
     2300002: Cylinder002
     2300004: Cylinder003
@@ -91,6 +95,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
