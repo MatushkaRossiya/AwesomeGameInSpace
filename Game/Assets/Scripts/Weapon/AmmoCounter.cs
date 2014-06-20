@@ -9,6 +9,7 @@ public class AmmoCounter : MonoBehaviour {
 	public TextMesh hundreds;
 	public GameObject indicator;
 	public GameObject[] grenadeIndicators;
+	public float blinkPeriod;
 
 	private Material indicatorMat;
 	private int ID;
@@ -43,5 +44,14 @@ public class AmmoCounter : MonoBehaviour {
 	float ThresholdFunc(float input){
 		float output = Mathf.Lerp(0.942f, 0.01f, input / maxAmmo);
 		return output;
+	}
+
+	void Update() {
+		if ((float)ammo / (float)maxAmmo < 0.1f) {
+			indicator.SetActive(Mathf.Repeat(Time.time / blinkPeriod, 1) < 0.5f);
+		}
+		else {
+			indicator.SetActive(true);
+		}
 	}
 }

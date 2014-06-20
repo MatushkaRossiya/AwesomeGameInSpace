@@ -33,22 +33,7 @@ public class Tutorial : MonoSingleton<Tutorial>
 
     private static float time = 0.0f;
 
-    private static bool tut01 = false;
-    private static bool tut02 = false;
-    private static bool tut03 = false;
-    private static bool tut04 = false;
-    private static bool tut05 = false;
-    private static bool tut06 = false;
-    private static bool tut07 = false;
-    private static bool tut08 = false;
-    private static bool tut09 = false;
-    private static bool tut10 = false;
-    private static bool tut11 = false;
-    private static bool tut12 = false;
-    private static bool tut13 = false;
-    private static bool tut14 = false;
-    private static bool tut15 = false;
-	private static bool tut16 = false;
+    private static bool[] tut = new bool[20];
 
     private static bool _showAlienTutorial = false;
     private static bool _alienTutorialTimerReset = false;
@@ -76,9 +61,9 @@ public class Tutorial : MonoSingleton<Tutorial>
                 _alienTutorialTimerReset = true;
             }
 
-            if (time > 8.0f && !tut16)
+            if (time > 8.0f && !tut[16])
             {
-                tut16 = true;
+                tut[16] = true;
                 PlayerPrefs.SetInt("tutorial", 0);
                 if (Gamepad.instance.isConnected())
                 {
@@ -91,9 +76,9 @@ public class Tutorial : MonoSingleton<Tutorial>
                 Destroy(this);
                 return;
             }
-            if (time > 4.0f && !tut15)
+            if (time > 4.0f && !tut[15])
             {
-                tut15 = true;
+                tut[15] = true;
                 if (Gamepad.instance.isConnected())
                 {
                     HUD.instance.setTutorialVisible(Loc.instance.getText("TUT15"), 3.0f);
@@ -104,9 +89,9 @@ public class Tutorial : MonoSingleton<Tutorial>
                 }
                 return;
             }
-            if (time > 0.0f && !tut14)
+            if (time > 0.0f && !tut[14])
             {
-                tut14 = true;
+                tut[14] = true;
                 if (Gamepad.instance.isConnected())
                 {
                     HUD.instance.setTutorialVisible(Loc.instance.getText("TUT14"), 3.0f);
@@ -119,9 +104,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
         }
 
-		if (time > 48.0f && !tut13)
+		if (time > 48.0f && !tut[13])
 		{
-			tut13 = true;
+			tut[13] = true;
 			if (Gamepad.instance.isConnected())
 			{
 				HUD.instance.setTutorialVisible(Loc.instance.getText("TUT13"), interact, 3.0f);
@@ -132,9 +117,9 @@ public class Tutorial : MonoSingleton<Tutorial>
 			}
 			return;
 		}
-        if (time > 44.0f && !tut12)
+        if (time > 44.0f && !tut[12])
         {
-            tut12 = true;
+            tut[12] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT12"), melee, 3.0f);
@@ -145,9 +130,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 40.0f && !tut11)
+        if (time > 40.0f && !tut[11])
         {
-            tut11 = true;
+            tut[11] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT11"), mine, 3.0f);
@@ -158,9 +143,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 36.0f && !tut10)
+        if (time > 36.0f && !tut[10])
         {
-            tut10 = true;
+            tut[10] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT10"), aim, 3.0f);
@@ -171,9 +156,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 32.0f && !tut09)
+        if (time > 32.0f && !tut[9])
         {
-            tut09 = true;
+            tut[9] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT09"), grenade, 3.0f);
@@ -184,9 +169,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 28.0f && !tut08)
+        if (time > 28.0f && !tut[8])
         {
-            tut08 = true;
+            tut[8] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT08"), weapon, 3.0f);
@@ -197,9 +182,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 24.0f && !tut07)
+        if (time > 24.0f && !tut[7])
         {
-            tut07 = true;
+            tut[7] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT07"), syringe, 3.0f);
@@ -210,9 +195,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 20.0f && !tut06)
+        if (time > 20.0f && !tut[6])
         {
-            tut06 = true;
+            tut[6] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT06"), flashlight, 3.0f);
@@ -223,9 +208,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 16.0f && !tut05)
+        if (time > 16.0f && !tut[5])
         {
-            tut05 = true;
+            tut[5] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT05"), crouch, 3.0f);
@@ -236,9 +221,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 12.0f && !tut04)
+        if (time > 12.0f && !tut[4])
         {
-            tut04 = true;
+            tut[4] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT04"), jump, 3.0f);
@@ -249,9 +234,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 8.0f && !tut03)
+        if (time > 8.0f && !tut[3])
         {
-            tut03 = true;
+            tut[3] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT03"), sprint, 3.0f);
@@ -262,9 +247,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 4.0f && !tut02)
+        if (time > 4.0f && !tut[2])
         {
-            tut02 = true;
+            tut[2] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT02"), move, 3.0f);
@@ -275,9 +260,9 @@ public class Tutorial : MonoSingleton<Tutorial>
             }
             return;
         }
-        if (time > 0.0f && !tut01)
+        if (time > 0.0f && !tut[1])
         {
-            tut01 = true;
+            tut[1] = true;
             if (Gamepad.instance.isConnected())
             {
                 HUD.instance.setTutorialVisible(Loc.instance.getText("TUT01"), look, 3.0f);
