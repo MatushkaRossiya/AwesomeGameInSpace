@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Flashlight : MonoBehaviour
+public class Flashlight : MonoSingleton<Flashlight>
 {
     public GameObject playerCamera;
     public GameObject player;

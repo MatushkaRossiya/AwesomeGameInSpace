@@ -147,8 +147,11 @@ public class FirstPersonCameraController : MonoSingleton<FirstPersonCameraContro
 			speed *= speedCurve.Evaluate(speed);
 			input = Time.deltaTime * speed * effectiveSensitivity * input.normalized;
 			input *= effectiveSensitivity;
-			horizontalAngle += input.x;
-			verticalAngle += input.y;
+			if (!float.IsNaN(input.x) && !float.IsNaN(input.y))
+			{
+				horizontalAngle += input.x;
+				verticalAngle += input.y;
+			}
 		}
             
 #if UNITY_EDITOR

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InteractionHandler : MonoBehaviour
+public class InteractionHandler : MonoSingleton<InteractionHandler>
 {
     public float touchRange = 0.7f;
     public float touchRadius = 0.2f;

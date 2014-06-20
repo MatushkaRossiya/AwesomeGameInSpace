@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Pause : MonoBehaviour
+public class Pause : MonoSingleton<Pause>
 {
 	bool paused;
 	LTRect mainMenuBtnRect;
@@ -41,9 +41,16 @@ public class Pause : MonoBehaviour
 
 	void pauseGame()
 	{
+		FirstPersonCameraController.instance.enabled = false;
+		PlayerController.instance.enabled = false;
+		LaserRifle.instance.enabled = false;
+		InteractionHandler.instance.enabled = false;
+		Flashlight.instance.enabled = false;
+		HelmetEffectsManager.instance.enabled = false;
+		PlayerStats.instance.enabled = false;
+		HUD.instance.enabled = false;
 		gamespeed = 0.0f;
 		showButtons(-0.65f, 0, 0, continueBtnRect, saveBtnRect, mainMenuBtnRect);
-		//Debug.Log("Game Paused");
 		paused = true;
 		timeToWait = Time.realtimeSinceStartup;
 	}
@@ -53,9 +60,16 @@ public class Pause : MonoBehaviour
 		gamespeed = 1.0f;
 		Time.timeScale = gamespeed;
 		hideButtons(0.65f, 0, 0, continueBtnRect, saveBtnRect, mainMenuBtnRect);
-		//Debug.Log("Game unPaused");
 		paused = false;
 		timeToWait = Time.realtimeSinceStartup;
+		FirstPersonCameraController.instance.enabled = true;
+		PlayerController.instance.enabled = true;
+		LaserRifle.instance.enabled = true;
+		InteractionHandler.instance.enabled = true;
+		Flashlight.instance.enabled = true;
+		HelmetEffectsManager.instance.enabled = true;
+		PlayerStats.instance.enabled = true;
+		HUD.instance.enabled = true;
 	}
 
 	void Update()
@@ -106,11 +120,13 @@ public class Pause : MonoBehaviour
 	                      float endValY/*o ile przesunac w gore relatywne do ekranu*/, params LTRect[] rectts)
 	{
 		yield return new WaitForSeconds(delay);
+
 		foreach (var rectt in rectts)
 		{
 			LeanTween.move(rectt, new Vector2(rectt.rect.x + ScrWidth * endValX, rectt.rect.y + ScrHeight * endValY), timeToMove).setEase(LeanTweenType.easeOutQuad);
 			yield return new WaitForSeconds(interval);
 		}
+
 		Screen.lockCursor = !paused;
 		Time.timeScale = gamespeed;
 	}
