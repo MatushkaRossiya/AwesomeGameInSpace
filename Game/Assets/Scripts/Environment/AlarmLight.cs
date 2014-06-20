@@ -11,6 +11,6 @@ public class AlarmLight : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		transform.Rotate(0.0f, 45.0f * Time.fixedDeltaTime, 0.0f);
+		transform.Rotate(0.0f, 90.0f * Time.fixedDeltaTime, 0.0f);
 	}
 }
