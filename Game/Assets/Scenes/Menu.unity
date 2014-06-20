@@ -830,8 +830,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 965810914}
-  m_Father: {fileID: 1965544245}
-  m_RootOrder: 0
+  m_Father: {fileID: 876571148}
+  m_RootOrder: 2
 --- !u!1001 &130725665
 Prefab:
   m_ObjectHideFlags: 0
@@ -5662,7 +5662,6 @@ GameObject:
   - 124: {fileID: 750078188}
   - 92: {fileID: 750078187}
   - 81: {fileID: 750078186}
-  - 114: {fileID: 750078185}
   - 114: {fileID: 750078184}
   - 114: {fileID: 750078183}
   - 114: {fileID: 750078182}
@@ -5874,35 +5873,6 @@ MonoBehaviour:
   touchRange: 1.5
   touchRadius: .300000012
   holdActionThershold: .5
---- !u!114 &750078185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400014, guid: 29f6724092b2a6f4884c0ef6d742dca0,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 750078177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10d96c563888ba242962adbec70d3180, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivity: .600000024
-  speedCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: .499393106
-      inSlope: 0
-      outSlope: .00139038463
-      tangentMode: 21
-    - time: 360.049225
-      value: 1
-      inSlope: .00139038463
-      outSlope: 0
-      tangentMode: 21
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  gamepadSensitivity: 3
 --- !u!81 &750078186
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7164,6 +7134,7 @@ Transform:
   m_Children:
   - {fileID: 1386531852}
   - {fileID: 1965544245}
+  - {fileID: 128164499}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &876571149
@@ -10883,7 +10854,7 @@ Transform:
   m_PrefabInternal: {fileID: 849166496}
   m_GameObject: {fileID: 1386531851}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -.0387039185, y: 2.8609066, z: .310838699}
+  m_LocalPosition: {x: 24.0049534, y: 2.8609066, z: .310838699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 876571148}
@@ -14868,6 +14839,8 @@ MonoBehaviour:
   tens: {fileID: 1449982910}
   hundreds: {fileID: 786474819}
   indicator: {fileID: 918148429}
+  grenadeIndicators: []
+  _grenades: 0
 --- !u!1 &1939075833
 GameObject:
   m_ObjectHideFlags: 0
@@ -15290,8 +15263,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 128164499}
+  m_Children: []
   m_Father: {fileID: 876571148}
   m_RootOrder: 1
 --- !u!1 &1972349191
@@ -16120,7 +16092,6 @@ MonoBehaviour:
   GLModel: {fileID: 0}
   hasAmmoClipUpgrade: 0
   hasGrenadeLaucherUpgrade: 0
-  grenades: 0
   maxGrenades: 3
 --- !u!1 &2071876184
 GameObject:
