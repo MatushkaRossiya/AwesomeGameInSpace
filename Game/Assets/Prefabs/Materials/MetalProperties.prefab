@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: MetalProperties
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.33028412, z: -1.89368629}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd416fbe2f5f9549a5cfec6c2e9a092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSounds:
+  - {fileID: 8300000, guid: 84c28f80f8d837c44a35f99f611e9f04, type: 3}
+  - {fileID: 8300000, guid: e61390a085632564b905f81ba5011501, type: 3}
+  - {fileID: 8300000, guid: a5a76ac099d5c344d86a19cf079cce28, type: 3}
+  - {fileID: 8300000, guid: 13313df13597fb3449fbf8583a9ae672, type: 3}
+  - {fileID: 8300000, guid: 3cb32f02dcc69d841bf3adef5f9cbb90, type: 3}
+  - {fileID: 8300000, guid: 18677332132f14f44b51feefcf514da1, type: 3}
+  - {fileID: 8300000, guid: aa6905e2a9497104aa98b45dc8d52dd3, type: 3}
+  - {fileID: 8300000, guid: 83604e037595bed4b8f612543401c524, type: 3}
+  - {fileID: 8300000, guid: ba5541133eacfa346af058074195c306, type: 3}
+  - {fileID: 8300000, guid: fead996334eb75243abde41747a9e132, type: 3}
+  - {fileID: 8300000, guid: e313cc73c8c52854688802694596cc95, type: 3}
+  - {fileID: 8300000, guid: 150b18a38762cfd499d13f9ebe26e305, type: 3}
+  - {fileID: 8300000, guid: d3623d743dd59624c9852149fa188b2f, type: 3}
+  - {fileID: 8300000, guid: 37657994ae0399544ba03b410a6e31d9, type: 3}
+  - {fileID: 8300000, guid: aaa3c715af0363e4ea6adef7643b85ad, type: 3}
+  - {fileID: 8300000, guid: 747604b5d61f09040af580bdd9bb11fa, type: 3}
+  - {fileID: 8300000, guid: ac6d7ff635cf24445a455d109fe4d49e, type: 3}
+  - {fileID: 8300000, guid: c65b9f27ea2a59f44a1d0d88a9bbbdef, type: 3}
+  - {fileID: 8300000, guid: 2112f037f53638440922ae4a9e98bb2f, type: 3}
+  - {fileID: 8300000, guid: 0a3c1d379677c97449766dfe26d30cba, type: 3}
+  - {fileID: 8300000, guid: 44185c8780837f846b59fa760756ede9, type: 3}
+  - {fileID: 8300000, guid: b45d679761019d84b9a9900a34eb1633, type: 3}
+  - {fileID: 8300000, guid: 3a9567483d9d16f4182224f4908c7160, type: 3}
+  - {fileID: 8300000, guid: 09def53935e0000409e82653ae113471, type: 3}
+  - {fileID: 8300000, guid: 6d935279804c4274abd2d7560486d221, type: 3}
+  - {fileID: 8300000, guid: 76da14e97883fce4586146aff2c523f9, type: 3}
+  - {fileID: 8300000, guid: 63488a5afe952d244bee139e2bc30c53, type: 3}
+  - {fileID: 8300000, guid: 56d2a10ca75290f418f2fd367dd00ab6, type: 3}
+  - {fileID: 8300000, guid: 9c6af85c1a8f9aa4885459892d12340c, type: 3}
+  - {fileID: 8300000, guid: 3605cc5ce2a004546a063a020f3e87e9, type: 3}
+  - {fileID: 8300000, guid: dcf054ccbf1706a47ab0f7936eda3479, type: 3}
+  - {fileID: 8300000, guid: 658449cc8df859143b4bcf9e0a405caf, type: 3}
+  - {fileID: 8300000, guid: ae581f1ecc5e06542a468563cd1353d6, type: 3}
+  - {fileID: 8300000, guid: b7b2348ef4b9b034fb8161cd92b9af1a, type: 3}
+  - {fileID: 8300000, guid: c1874a9ef8920f54e99a37aa2854275e, type: 3}
+  - {fileID: 8300000, guid: 0632e4fee2abba34b997110e63227abb, type: 3}
+  - {fileID: 8300000, guid: 2e0ac34fb04dd2641b43fa531e90b10c, type: 3}
+  - {fileID: 8300000, guid: 44e19f5f8aa88134cbb8aad5fcb4d888, type: 3}
+  - {fileID: 8300000, guid: 89c94a7f448d0bd4da43ff83b9c43229, type: 3}
+  bulletHolePrefab: {fileID: 100000, guid: adb587fd926c524428ddfd953617c39e, type: 2}
+  sparksParticlesPrefab: {fileID: 100000, guid: b9af30c11c04d3c43971462bcc02ad18,
+    type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
