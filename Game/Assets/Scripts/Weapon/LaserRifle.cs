@@ -186,7 +186,10 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
                     if (mat != null)
                     {
-                        mat.materialProperties.Hit(hitInfo, dir);
+						if (mat.materialProperties != null)
+						{
+                        	mat.materialProperties.Hit(hitInfo, dir);
+						}
                     }
 
                     hitParticleEffect.transform.position = hitInfo.point;

@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 64: {fileID: 6400000}
   - 114: {fileID: 11400034}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 23: {fileID: 2300002}
   - 64: {fileID: 6400002}
   - 114: {fileID: 11400032}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 4: {fileID: 400004}
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - 23: {fileID: 2300006}
   - 64: {fileID: 6400004}
   - 114: {fileID: 11400030}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 23: {fileID: 2300008}
   - 64: {fileID: 6400006}
   - 114: {fileID: 11400028}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 23: {fileID: 2300010}
   - 64: {fileID: 6400008}
   - 114: {fileID: 11400026}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - 23: {fileID: 2300012}
   - 64: {fileID: 6400010}
   - 114: {fileID: 11400024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   - 23: {fileID: 2300014}
   - 64: {fileID: 6400012}
   - 114: {fileID: 11400022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - 23: {fileID: 2300016}
   - 64: {fileID: 6400014}
   - 114: {fileID: 11400020}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - 23: {fileID: 2300018}
   - 64: {fileID: 6400016}
   - 114: {fileID: 11400018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,7 @@ GameObject:
   - 23: {fileID: 2300020}
   - 64: {fileID: 6400018}
   - 114: {fileID: 11400016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400022}
   - 95: {fileID: 9500000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fusion-Reactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,7 +235,7 @@ GameObject:
   - 23: {fileID: 2300022}
   - 64: {fileID: 6400020}
   - 114: {fileID: 11400014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   - 23: {fileID: 2300024}
   - 64: {fileID: 6400022}
   - 114: {fileID: 11400012}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - 23: {fileID: 2300026}
   - 64: {fileID: 6400024}
   - 114: {fileID: 11400010}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - 23: {fileID: 2300028}
   - 64: {fileID: 6400026}
   - 114: {fileID: 11400008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - 23: {fileID: 2300030}
   - 64: {fileID: 6400028}
   - 114: {fileID: 11400006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ GameObject:
   - 23: {fileID: 2300032}
   - 64: {fileID: 6400030}
   - 114: {fileID: 11400004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400036}
   - 108: {fileID: 10800000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   - 23: {fileID: 2300034}
   - 64: {fileID: 6400032}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - 23: {fileID: 2300036}
   - 64: {fileID: 6400034}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Mesh12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
