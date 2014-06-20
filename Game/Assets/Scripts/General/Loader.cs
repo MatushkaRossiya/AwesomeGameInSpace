@@ -1,9 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System;
+using System.Runtime.Serialization;
+using System.Reflection;
 
 public class Loader : MonoSingleton<Loader>
 {
+	class MovableObject
+	{
+		public Vector3 Pos{ get; set; }
+		public Vector3 Rotation{ get; set; }
+
+
+	}
     //stale nazwy rekordów
     //player
     private const string anySaves = "AnySaves";
@@ -29,7 +43,9 @@ public class Loader : MonoSingleton<Loader>
 		//ZAPISANIE INFORMACJI
 		if(saveName != autoSaveStr)	//mozemy tylko zapisywać stan z ostaniego czeckpointu. Nawet jak zapiszemy w dowolnym momencie to po prostu wartosci zostana skopiowane z ostanitego autosave'a
 		{
+			Debug.Log ("Różny");
 			copyValuesFromLastCheckpoint(saveName);
+			saveMovableObjects(saveName);
 		}
         else
 		{
@@ -41,6 +57,8 @@ public class Loader : MonoSingleton<Loader>
        		 PlayerPrefs.SetInt(waveSizeStr + saveName, GameMaster.instance.waveSize);
        		 PlayerPrefs.SetFloat(spawnRateStr + saveName, GameMaster.instance.spawnRate);
        		 PlayerPrefs.SetInt(levelStr + saveName, Application.loadedLevel);
+			 Debug.Log ("Taki sam");
+			 saveMovableObjects(saveName);
 		}
 		PlayerPrefs.Save();
 		HUD.instance.setHintvisible("Game Saved", 2);
@@ -55,14 +73,12 @@ public class Loader : MonoSingleton<Loader>
         else
             Application.LoadLevel(PlayerPrefs.GetInt(levelStr + saveName));
     }
-
     public void continueLoading()
     {
         if (!isLoading || saveToLoad == null)
         {
             return;
         }
-
         string saveName = saveToLoad;
         Debug.Log("Loaded save :" + saveName);
         Debug.Log("Health = " + PlayerPrefs.GetFloat(healthStr + saveName));
@@ -75,11 +91,34 @@ public class Loader : MonoSingleton<Loader>
         GameMaster.instance.currentRound = PlayerPrefs.GetInt(roundStr + saveName);
         GameMaster.instance.waveSize = PlayerPrefs.GetInt(waveSizeStr + saveName);
         GameMaster.instance.spawnRate = PlayerPrefs.GetFloat(spawnRateStr + saveName);
+		loadMovableObjects(saveName);
         saveToLoad = null;
         isLoading = false;
         HUD.instance.setHintvisible("Game Loaded", 2);
     }
-
+	void loadMovableObjects(string SaveName)
+	{
+		if(LevelSerializer.SavedGames.Count > 0)
+		{
+			//Look for saved games under the given player name
+			foreach(var g in LevelSerializer.SavedGames[LevelSerializer.PlayerName])
+			{
+				if(g.Name==SaveName){
+					foreach(GameObject oldMovableOBJ in GameObject.FindGameObjectsWithTag("movable"))
+					{
+					        Destroy(oldMovableOBJ);
+							Debug.Log("usunieto movable:" + oldMovableOBJ.name);
+					}
+					g.Load();
+					Debug.Log("zaladowano movable");
+				}
+			}
+		}
+	}
+	void saveMovableObjects(string SaveName)
+	{
+		LevelSerializer.SaveGame (SaveName);
+	}
     public bool areThereAnySaves()
     {
         return PlayerPrefs.HasKey(anySaves);
