@@ -183,10 +183,29 @@ public class PlayerController : MonoSingleton<PlayerController>
 
     private float fatigue = 0.0f;
     private float steaminess = 0.0f;
+	private float prevBreath;
     private float nextBreath;
+	
 
     void Breathe()
     {
+
+		if (Time.time > nextBreath) {
+			prevBreath = nextBreath;
+			nextBreath = Time.time;
+			int index = Mathf.FloorToInt(fatigue * breathSounds.Count);
+
+			if (index >= breathSounds.Count)
+				index = breathSounds.Count - 1;
+			else if (index < 0)
+				index = 0;
+
+			AudioClip sound = breathSounds[index];
+			audio.PlayOneShot(sound, 0.5f);
+			nextBreath = Time.time + sound.length * 0.9f;
+		}
+
+
         float targetFatigue = 0.0f;
         if (isSprinting)
         {
@@ -194,22 +213,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         }
         fatigue = (fatigue - targetFatigue) * 0.997f + targetFatigue;
         steaminess = (steaminess - fatigue) * 0.997f + fatigue;
-        HelmetGlassEffects.instance.steaminess = Mathf.Lerp(-0.5f, 1.0f, steaminess);
-
-        if (Time.time > nextBreath)
-        {
-            nextBreath = Time.time;
-            int index = Mathf.FloorToInt(fatigue * breathSounds.Count);
-
-            if (index >= breathSounds.Count)
-                index = breathSounds.Count - 1;
-            else if (index < 0)
-                index = 0;
-
-            AudioClip sound = breathSounds[index];
-            audio.PlayOneShot(sound, 0.5f);
-            nextBreath = Time.time + sound.length * 0.9f;
-        }
+		float temp = (Time.time - prevBreath) / (nextBreath - prevBreath);
+		temp -= 0.35f;
+		temp = -Mathf.Sin(temp * 2 * Mathf.PI) * 0.02f;
+        HelmetGlassEffects.instance.steaminess = Mathf.Lerp(-0.5f, 1.0f, steaminess + temp);
     }
 
     void OnTriggerEnter(Collider other)
