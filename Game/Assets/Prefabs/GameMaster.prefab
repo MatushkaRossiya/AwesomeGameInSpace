@@ -380,7 +380,7 @@ MonoBehaviour:
   music:
   - {fileID: 8300000, guid: f3cd4e753ce16f74d9d30ee06d3074bb, type: 3}
   - {fileID: 8300000, guid: 2da08d251e393f24e9f8e0f8c8d48716, type: 3}
-  - {fileID: 8300000, guid: 487665a041046624f9d01bb956b8f041, type: 3}
+  - {fileID: 8300000, guid: 34f6a5b44d144254aac0255808e00360, type: 3}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
