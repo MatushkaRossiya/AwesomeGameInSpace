@@ -24,7 +24,6 @@ GameObject:
   - 114: {fileID: 11400024}
   - 114: {fileID: 11400028}
   - 114: {fileID: 11400026}
-  - 114: {fileID: 11400030}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -439,14 +438,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac6d84dca7648fab1a3a905dbc55b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d49efd53907b42149a342aa0ce6e3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: f30dd073-3579-4403-a530-0c8c9962fefb
-  StoreAllComponents: 1
-  Components: []
+  requiredObjects: []
+  Reference: {fileID: 0}
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -458,19 +454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f430844346ee3246b40680b74e0b336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d49efd53907b42149a342aa0ce6e3d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredObjects: []
-  Reference: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

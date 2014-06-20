@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 198: {fileID: 19800000}
   - 199: {fileID: 19900000}
-  - 114: {fileID: 11400032}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - 4: {fileID: 400002}
   - 198: {fileID: 19800002}
   - 199: {fileID: 19900002}
-  - 114: {fileID: 11400030}
   m_Layer: 0
   m_Name: TrapParticle
   m_TagString: Untagged
@@ -46,7 +44,6 @@ GameObject:
   - 4: {fileID: 400004}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400028}
   m_Layer: 0
   m_Name: Mesh10_Group7 Model
   m_TagString: Untagged
@@ -64,7 +61,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 33: {fileID: 3300002}
   - 23: {fileID: 2300002}
-  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: Mesh9_Group6 Model
   m_TagString: Untagged
@@ -82,7 +78,6 @@ GameObject:
   - 4: {fileID: 400008}
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
-  - 114: {fileID: 11400024}
   m_Layer: 0
   m_Name: Mesh8_Group5 Model
   m_TagString: Untagged
@@ -100,7 +95,6 @@ GameObject:
   - 4: {fileID: 400010}
   - 33: {fileID: 3300006}
   - 23: {fileID: 2300006}
-  - 114: {fileID: 11400022}
   m_Layer: 0
   m_Name: Mesh7_Group4 Model
   m_TagString: Untagged
@@ -118,7 +112,6 @@ GameObject:
   - 4: {fileID: 400012}
   - 33: {fileID: 3300008}
   - 23: {fileID: 2300008}
-  - 114: {fileID: 11400020}
   m_Layer: 0
   m_Name: Mesh6_Group4 Model
   m_TagString: Untagged
@@ -136,7 +129,6 @@ GameObject:
   - 4: {fileID: 400014}
   - 33: {fileID: 3300010}
   - 23: {fileID: 2300010}
-  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: Mesh5_Group4 Model
   m_TagString: Untagged
@@ -154,7 +146,6 @@ GameObject:
   - 4: {fileID: 400016}
   - 33: {fileID: 3300012}
   - 23: {fileID: 2300012}
-  - 114: {fileID: 11400016}
   m_Layer: 0
   m_Name: Mesh4_Group4 Model
   m_TagString: Untagged
@@ -172,7 +163,6 @@ GameObject:
   - 4: {fileID: 400018}
   - 33: {fileID: 3300014}
   - 23: {fileID: 2300014}
-  - 114: {fileID: 11400014}
   m_Layer: 0
   m_Name: Mesh3_Group1 Model
   m_TagString: Untagged
@@ -190,7 +180,6 @@ GameObject:
   - 4: {fileID: 400020}
   - 33: {fileID: 3300016}
   - 23: {fileID: 2300016}
-  - 114: {fileID: 11400012}
   m_Layer: 0
   m_Name: Mesh2_Group2 Group1 Model
   m_TagString: Untagged
@@ -208,7 +197,6 @@ GameObject:
   - 4: {fileID: 400022}
   - 33: {fileID: 3300018}
   - 23: {fileID: 2300018}
-  - 114: {fileID: 11400010}
   m_Layer: 0
   m_Name: Mesh1_Group3 Group2 Group1 Model
   m_TagString: Untagged
@@ -227,7 +215,6 @@ GameObject:
   - 95: {fileID: 9500000}
   - 65: {fileID: 6500000}
   - 114: {fileID: 11400002}
-  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Untitled
   m_TagString: Untagged
@@ -246,11 +233,9 @@ GameObject:
   - 114: {fileID: 11400004}
   - 136: {fileID: 13600000}
   - 82: {fileID: 8200000}
-  - 114: {fileID: 11400000}
-  - 114: {fileID: 11400006}
   m_Layer: 1
   m_Name: Trap
-  m_TagString: movable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,22 +775,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ac6d84dca7648fab1a3a905dbc55b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: cb6dea6e-8fe4-4eda-8c0a-81f37e49dedc
-  StoreAllComponents: 1
-  Components: []
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,230 +802,6 @@ MonoBehaviour:
   field: {fileID: 100004}
   trapParticles: {fileID: 19800002}
   activeTime: 5
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 6af88706-89a6-4188-a605-364091021cf0
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 5986f7dd-61f4-4a9c-ac4e-9b0de045badd
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 855a6ed0-ecdf-4343-bd55-a3f90f3749c9
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400012
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 300fc8d6-cc27-4778-b340-8b767a135895
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 2ff7ca8b-fac0-4956-8966-a0a5e073695f
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 186fc173-6d61-4457-85eb-64ef35d2d6b5
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400018
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 5d04b162-9770-44f6-ac52-e106318fb8ba
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 9f1dd704-f1b8-4c54-839a-3476a3c80e5a
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400022
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: b2d77969-f17b-4b36-af91-2c1fc71c6f5e
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 60b72275-4dc0-447d-a57b-8c2a5afade2d
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 2de7f25e-d10f-448f-98d3-3a8dec583e16
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 776275d1-31a2-4aa9-bc11-6bb63c2fdab1
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400030
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: 4c7482cc-6b78-42df-b3e8-59f49d39494b
-  StoreAllComponents: 1
-  Components: []
---- !u!114 &11400032
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6fd92df3c974ed690d61989eb183ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsDeserializing: 0
-  _id: 
-  classId: ba9fc85e-b622-441e-845a-f102ffe735aa
-  StoreAllComponents: 1
-  Components: []
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
