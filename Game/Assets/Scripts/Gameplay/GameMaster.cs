@@ -33,6 +33,8 @@ public class GameMaster : MonoSingleton<GameMaster>
     {
         nightBeginTime = Time.time + dayLenght;
         MusicMaster.instance.startDayMusic();
+		LightManager.instance.TurnLightsNight(false);
+		LightManager.instance.TurnLightsDay(true);
     }
 
     public string TimeToDayEnd
@@ -82,6 +84,8 @@ public class GameMaster : MonoSingleton<GameMaster>
             currentRound++;
             HUD.instance.showRoundNumber(currentRound);
             MusicMaster.instance.startExplorationMusic();
+			LightManager.instance.TurnLightsDay(false);
+			LightManager.instance.TurnLightsNight(true);
         }
     }
 
@@ -112,9 +116,11 @@ public class GameMaster : MonoSingleton<GameMaster>
             //totalTime = dayLenght + changeDuration;
             phase = Day;
             dayPhase = 0;
-			Loader.instance.save();//autosave po zakonczeniu ranka
+			Loader.instance.save();
             LightManager.instance.dayPhase = 0;
             MusicMaster.instance.startDayMusic();
+			LightManager.instance.TurnLightsNight(false);
+			LightManager.instance.TurnLightsDay(true);
         }
     }
 

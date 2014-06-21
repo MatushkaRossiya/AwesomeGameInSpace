@@ -2,63 +2,109 @@
 
 public class LightManager : MonoSingleton<LightManager>
 {
-    Light[] lights;
-    public AnimationCurve red;
-    public AnimationCurve green;
-    public AnimationCurve blue;
+	public AnimationCurve red;
+	public AnimationCurve green;
+	public AnimationCurve blue;
 
-    public float dayPhase
-    {
-        set
-        {
-            Color color = new Color(
+	private Light[] lightsDay;
+	private Light[] lightsNight;
+
+	public float dayPhase
+	{
+		set
+		{
+			Color color = new Color(
                 red.Evaluate(value),
                 green.Evaluate(value),
                 blue.Evaluate(value));
 
-            foreach (Light l in lights)
-            {
-                l.color = color;
-            }
+			RenderSettings.ambientLight = color * 0.025f + new Color(0.01f, 0.01f, 0.01f);
+			_dayPhase = value;
+		}
+	}
 
-            RenderSettings.ambientLight = color * 0.025f + new Color(0.01f, 0.01f, 0.01f);
-            _dayPhase = value;
-        }
-    }
+	private float _dayPhase;
 
-    private float _dayPhase;
+	void FixedUpdate()
+	{
+		if (_dayPhase != 0.0f)
+		{
+			foreach (Light light in lightsDay)
+			{
+				if (light.intensity != 1.0f && Random.Range(0, 60) == 0)
+				{
+					light.intensity = 1.0f;
+				}
+				else if (Random.Range(0, 60) == 0)
+				{
+					light.intensity = Random.Range(0.0f, 1.0f);
+				}
+			}
 
-    void FixedUpdate()
-    {
-        if (_dayPhase != 0)
-        {
-            foreach (Light l in lights)
-            {
-                if (l.intensity != 1 && Random.Range(0, 60) == 0)
-                {
-                    l.intensity = 1;
-                } 
-                else if (_dayPhase != 0 && Random.Range(0, 60) == 0)
-                {
-                    l.intensity = Random.Range(0.0f, 1.0f);
-                }
-            }
-        }
-    }
+			foreach (Light light in lightsNight)
+			{
+				if (light.intensity != 1.0f && Random.Range(0, 60) == 0)
+				{
+					light.intensity = 1.0f;
+				}
+				else if (Random.Range(0, 60) == 0)
+				{
+					light.intensity = Random.Range(0.0f, 1.0f);
+				}
+			}
+		}
+	}
 
-    public void FindLights()
-    {
-        var temp = GameObject.FindGameObjectsWithTag("Light");
-        lights = new Light[temp.Length];
-        for (int i = 0; i < temp.Length; ++i)
-        {
-            lights [i] = temp [i].GetComponent<Light>();
-        }
-    }
+	public void FindLights()
+	{
+		GameObject[] tempD = GameObject.FindGameObjectsWithTag("LightDay");
+		if (tempD != null)
+		{
+			lightsDay = new Light[tempD.Length];
+			for (int i = 0; i < tempD.Length; ++i)
+			{
+				Light light = tempD [i].GetComponent<Light>();
+				if (light != null)
+				{
+					lightsDay [i] = light;
+				}
+			}
+		}
 
-    public override void Init()
-    {
-        FindLights();
-        dayPhase = 0;
-    }
+		GameObject[] tempN = GameObject.FindGameObjectsWithTag("LightNight");
+		if (tempN != null)
+		{
+			lightsNight = new Light[tempN.Length];
+			for (int i = 0; i < tempN.Length; ++i)
+			{
+				Light light = tempN [i].GetComponent<Light>();
+				if (light != null)
+				{
+					lightsNight [i] = light;
+				}
+			}
+		}
+	}
+
+	public void TurnLightsDay(bool on)
+	{
+		foreach (Light light in lightsDay)
+		{
+			light.enabled = on;
+		}
+	}
+
+	public void TurnLightsNight(bool on)
+	{
+		foreach (Light light in lightsNight)
+		{
+			light.enabled = on;
+		}
+	}
+
+	public override void Init()
+	{
+		FindLights();
+		dayPhase = 0.0f;
+	}
 }

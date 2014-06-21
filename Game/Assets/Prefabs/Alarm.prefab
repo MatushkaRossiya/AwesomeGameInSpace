@@ -11,7 +11,7 @@ GameObject:
   - 108: {fileID: 10800002}
   m_Layer: 0
   m_Name: Light2
-  m_TagString: Untagged
+  m_TagString: LightNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400010}
-  - 95: {fileID: 9500000}
   m_Layer: 10
   m_Name: Alarm
   m_TagString: Untagged
@@ -138,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -59.4796371, y: -14.8027639, z: 151.289963}
+  m_LocalPosition: {x: -33.2629929, y: 4.99301004, z: -30.1577988}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 400008}
@@ -200,20 +199,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Mesh: {fileID: 4300000, guid: 008cddce7496b9842b35612d8328fae8, type: 3}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100010}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 008cddce7496b9842b35612d8328fae8, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
 --- !u!108 &10800002
 Light:
   m_ObjectHideFlags: 1
