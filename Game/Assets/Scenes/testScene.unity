@@ -418,18 +418,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 768771680}
   m_GameObject: {fileID: 30094822}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &30536734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7debdd6cf0c58417c8b76cf5f31b1c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries: []
 --- !u!1 &32916263
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +669,7 @@ GameObject:
   - 82: {fileID: 54677514}
   - 114: {fileID: 54677513}
   m_Layer: 10
-  m_Name: AmmoVendingMachine
+  m_Name: ammoVendingMachine
   m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5048,7 +5036,7 @@ GameObject:
   - 114: {fileID: 371024892}
   - 82: {fileID: 371024891}
   m_Layer: 10
-  m_Name: GrenadeVendingMachine
+  m_Name: grenadeVendingMachine
   m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24299,6 +24287,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1927473769}
   m_GameObject: {fileID: 1684823960}
   m_Mesh: {fileID: 4300018, guid: 8fea0542d04105042be87f0ac17c4f16, type: 3}
+--- !u!114 &1691355464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7debdd6cf0c58417c8b76cf5f31b1c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries: []
 --- !u!1 &1694525455
 GameObject:
   m_ObjectHideFlags: 0
@@ -27001,76 +27001,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0375a320488eb3248a2f6fe358550332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  red:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: .5
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: .712500095
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-  green:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: .264630646
-      value: .433837503
-      inSlope: -2.97218561
-      outSlope: -2.97218561
-      tangentMode: 0
-    - time: .5
-      value: 0
-      inSlope: -.0159430522
-      outSlope: -.0159430522
-      tangentMode: 0
-    - time: 1
-      value: .100000001
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 0
-    m_PostInfinity: 0
-  blue:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: .25789696
-      value: .427883148
-      inSlope: -2.87637115
-      outSlope: -2.87637115
-      tangentMode: 0
-    - time: .519999981
-      value: 0
-      inSlope: -1.78904372e-06
-      outSlope: -1.78904372e-06
-      tangentMode: 0
-    - time: 1
-      value: .100000001
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 0
-    m_PostInfinity: 0
+  gradient:
+    key0:
+      serializedVersion: 2
+      rgba: 4294967295
+    key1:
+      serializedVersion: 2
+      rgba: 4294967295
+    key2:
+      serializedVersion: 2
+      rgba: 0
+    key3:
+      serializedVersion: 2
+      rgba: 0
+    key4:
+      serializedVersion: 2
+      rgba: 0
+    key5:
+      serializedVersion: 2
+      rgba: 0
+    key6:
+      serializedVersion: 2
+      rgba: 0
+    key7:
+      serializedVersion: 2
+      rgba: 0
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
 --- !u!114 &1891614344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27238,7 +27211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 30536734}
+  Reference: {fileID: 1691355464}
 --- !u!82 &1891614352
 AudioSource:
   m_ObjectHideFlags: 0
