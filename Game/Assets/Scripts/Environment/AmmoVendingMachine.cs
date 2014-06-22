@@ -5,6 +5,11 @@ public class AmmoVendingMachine : Interactive
 {
 	public int ammoPrice;
 	public int ammoAmount;
+	public AudioClip getSound;
+
+	private GameObject door;
+	private float phase;
+	private bool action;
 
 	public override string message
 	{
@@ -23,6 +28,23 @@ public class AmmoVendingMachine : Interactive
 		{
 			LaserRifle.instance.ammo += ammoAmount;
 			PlayerStats.instance.syf -= ammoPrice;
+			action = true;
+			audio.PlayOneShot(getSound);
+		}
+	}
+
+	void Start() {
+		door = transform.FindChild("AmmoDoor").gameObject;
+	}
+
+	void Update() {
+		if (action) {
+			phase += Time.deltaTime;
+			if (phase >= 1.0f) {
+				action = false;
+				phase = 0;
+			}
+			door.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90 * Mathf.Sin(phase * Mathf.PI)));
 		}
 	}
 

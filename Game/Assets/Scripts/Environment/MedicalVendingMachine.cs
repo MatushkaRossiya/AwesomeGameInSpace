@@ -17,8 +17,11 @@ public class MedicalVendingMachine : Interactive {
 			PlayerStats.instance.syringes++;
 			PlayerStats.instance.syf -= syringePrice;
 			action = true;
+			audio.PlayOneShot(getSound);
 		}
 	}
+
+	public AudioClip getSound;
 
 	private GameObject door;
 	private float phase;
@@ -46,11 +49,11 @@ public class MedicalVendingMachine : Interactive {
 			return false;
 		}
 		else if (p.syf < syringePrice) {
-			msg = "Insufficient syf";
+			msg = "Insufficient Syf";
 			return false;
 		}
 		else {
-			msg = "Buy syringe for " + syringePrice + " syf";
+			msg = "Buy syringe for " + syringePrice + " Syf";
 			return true;
 		}
 	}

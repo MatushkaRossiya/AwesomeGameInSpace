@@ -5,6 +5,11 @@ public class GrenadeVendingMachine : Interactive
 {
 	public int grenadePrice;
 	public int grenadeAmount;
+	public AudioClip getSound;
+
+	private GameObject door;
+	private float phase;
+	private bool action;
 
 	public override string message
 	{
@@ -23,6 +28,23 @@ public class GrenadeVendingMachine : Interactive
 		{
 			LaserRifle.instance.grenades += grenadeAmount;
 			PlayerStats.instance.syf -= grenadePrice;
+			action = true;
+			audio.PlayOneShot(getSound);
+		}
+	}
+
+	void Start() {
+		door = transform.FindChild("GrenadeDoor").gameObject;
+	}
+	
+	void Update() {
+		if (action) {
+			phase += Time.deltaTime;
+			if (phase >= 1.0f) {
+				action = false;
+				phase = 0;
+			}
+			door.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 90 * Mathf.Sin(phase * Mathf.PI)));
 		}
 	}
 	
