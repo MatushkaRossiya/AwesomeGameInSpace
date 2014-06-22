@@ -28,9 +28,9 @@
 		void surf (Input IN, inout SurfaceOutput o) {
 			o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb;
 			float2 specular_gloss = tex2D(_Specular, IN.uv_MainTex).rg;
-			o.Gloss = specular_gloss.r * _SpecularMultiplier;
+			o.Gloss = specular_gloss.r * _SpecularMultiplier;			// Really it is Specular
 			o.Alpha = 1;
-			o.Specular = specular_gloss.g * _GlossMultiplier;
+			o.Specular = specular_gloss.g * _GlossMultiplier + 0.01;	// Really it is Gloss
 			o.Normal = UnpackNormal(tex2D(_Normal, IN.uv_MainTex));
 		}
 		ENDCG
