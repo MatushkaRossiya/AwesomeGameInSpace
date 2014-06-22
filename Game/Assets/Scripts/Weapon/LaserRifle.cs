@@ -17,6 +17,9 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 	public AudioClip meleeAttackSound;
 	public AudioClip[] meleeScreamSound;
 	public Animation handsAttack;
+	public GameObject glowingCoils;
+	public Gradient glowColor;
+	public AnimationCurve glow;
 
     [Range(0.01f, 0.5f)]
     public float shotPeriod;
@@ -47,7 +50,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     private float nextShot;
     private int _ammo;
     private float muzzleFlashBrightness;
-    private Light muzzleFlashLight;
+	private Light muzzleFlashLight;
+	private Material glowingCoilsMat;
 
     public int ammo
     {
@@ -84,7 +88,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 		grenades = 0;
         muzzleFlashLight = transform.FindChild("MuzzleFlashLight").gameObject.GetComponent<Light>();
         muzzleFlashLight.intensity = 0.0f;
-
+		glowingCoilsMat = glowingCoils.renderer.material;
         riflePosition = transform.localPosition;
         rifleZoomPosition = new Vector3(0.0195f, -0.075f, 0.0f);
     }
@@ -127,7 +131,13 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
         muzzleFlash.material.SetColor("_TintColor", new Color(muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness, muzzleFlashBrightness));
         muzzleFlashLight.intensity = muzzleFlashBrightness * 5.0f;
+		float ammoPercentage = (float)ammo / (float)maxAmmo;
+		glowingCoilsMat.SetColor("_EmissionColor",
+			(muzzleFlashBrightness + glow.Evaluate(ammoPercentage)) *
+			glowColor.Evaluate(ammoPercentage));
+
         muzzleFlashBrightness = Mathf.Max(0.0f, muzzleFlashBrightness * 0.7f - Time.deltaTime);
+
 
 		SetPos();
     }
