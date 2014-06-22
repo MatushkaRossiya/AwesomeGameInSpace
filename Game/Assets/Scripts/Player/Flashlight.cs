@@ -5,6 +5,8 @@ public class Flashlight : MonoSingleton<Flashlight>
 {
     public GameObject playerCamera;
     public GameObject player;
+	public AudioClip turnOffSound;
+	public AudioClip turnOnSound;
     //private Vector3 offset;
 
     private Light lightComponent;
@@ -28,7 +30,19 @@ public class Flashlight : MonoSingleton<Flashlight>
     {
         if (Input.GetKeyDown(KeyCode.F) || Gamepad.instance.justPressedDPadDown())
         {
-            if (lightComponent) lightComponent.enabled = !lightComponent.enabled;
+            if (lightComponent) 
+			{
+				if (lightComponent.enabled) 
+				{
+					lightComponent.enabled = false;
+					audio.PlayOneShot(turnOffSound);
+				}
+				else 
+				{
+					lightComponent.enabled = true;
+					audio.PlayOneShot(turnOnSound);
+				}
+			}
         }
     }
     
