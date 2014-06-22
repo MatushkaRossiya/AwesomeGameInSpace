@@ -109,7 +109,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 
 		if((Input.GetKeyDown(KeyCode.X) || Gamepad.instance.justPressedLeftShoulder()) && 
 			shootingPhase != ShootingPhase.HandToHand &&
-			shootingPhase != ShootingPhase.HandToHandEnd) 
+			shootingPhase != ShootingPhase.HandToHandEnd &&
+			!isZoomed) 
 		{
 			shootingPhase = ShootingPhase.HandToHand;
 			handsAttack.Play();
@@ -240,9 +241,9 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 					1.0f,
 					Layers.playerAttack))
 				{
+					audio.PlayOneShot(meleeAttackSound);
 					Damageable dam = hit.collider.GetComponent<Damageable>();
 					if (dam != null) {
-						audio.PlayOneShot(meleeAttackSound);
 						dam.DealDamage(transform.forward * 10.0f);
 					}
 				}
