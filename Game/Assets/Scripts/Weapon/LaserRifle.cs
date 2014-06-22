@@ -16,6 +16,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public AudioClip grenadeLauncherSound;
 	public AudioClip meleeAttackSound;
 	public AudioClip[] meleeScreamSound;
+	public Animation handsAttack;
+
     [Range(0.01f, 0.5f)]
     public float shotPeriod;
 	public int maxAmmo { 
@@ -101,11 +103,14 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 			shootingPhase = ShootingPhase.NotShooting;
 		}
 
-		if((Input.GetKeyDown(KeyCode.X) || Gamepad.instance.justPressedLeftShoulder()) && shootingPhase != ShootingPhase.HandToHand){
+		if((Input.GetKeyDown(KeyCode.X) || Gamepad.instance.justPressedLeftShoulder()) && 
+			shootingPhase != ShootingPhase.HandToHand &&
+			shootingPhase != ShootingPhase.HandToHandEnd) 
+		{
 			shootingPhase = ShootingPhase.HandToHand;
+			handsAttack.Play();
 			HTHduration = 0.0f;
 			audio.PlayOneShot(meleeScreamSound[Random.Range(0, meleeScreamSound.Length)]);
-			audio.PlayOneShot(meleeAttackSound);
 		}
 
         if (hasGrenadeLaucherUpgrade &&
@@ -215,18 +220,19 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 		}
 		else if (shootingPhase == ShootingPhase.HandToHand) {
 			HTHduration += Time.fixedDeltaTime;
-			if (HTHduration > 0.2f) {
+			if (HTHduration > 1.0f) {
 				RaycastHit hit;
 				if(Physics.SphereCast(
 					transform.position,
 					0.3f,
 					transform.forward,
 					out hit,
-					0.5f,
+					1.0f,
 					Layers.playerAttack))
 				{
 					Damageable dam = hit.collider.GetComponent<Damageable>();
 					if (dam != null) {
+						audio.PlayOneShot(meleeAttackSound);
 						dam.DealDamage(transform.forward * 10.0f);
 					}
 				}
@@ -235,7 +241,7 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 		}
 		else if (shootingPhase == ShootingPhase.HandToHandEnd) {
 			HTHduration += Time.fixedDeltaTime;
-			if (HTHduration > 0.5f) {
+			if (HTHduration > 1.75f) {
 				shootingPhase = ShootingPhase.NotShooting;
 			}
 		}

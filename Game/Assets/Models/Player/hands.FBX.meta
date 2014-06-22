@@ -101,6 +101,7 @@ ModelImporter:
     4300002: hand001
     7400000: Take 001
     9500000: //RootNode
+    11100000: //RootNode
     13700000: hand
     13700002: hand001
   materials:
@@ -112,7 +113,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5

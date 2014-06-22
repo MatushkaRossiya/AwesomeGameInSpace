@@ -95,6 +95,7 @@ ModelImporter:
     400088: //RootNode
     7400000: Take 001
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -103,13 +104,130 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
+    motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 51
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone002
+        weight: 1
+      - path: Bone001/Bone002/Bone003
+        weight: 1
+      - path: Bone001/Bone002/Bone004
+        weight: 1
+      - path: Bone001/Bone002/Bone004/Bone005
+        weight: 1
+      - path: Bone001/Bone002/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone001/Bone002/Bone007
+        weight: 1
+      - path: Bone001/Bone002/Bone007/Bone008
+        weight: 1
+      - path: Bone001/Bone002/Bone007/Bone008/Bone009
+        weight: 1
+      - path: Bone001/Bone002/Bone007/Bone008/Bone009/Bone010
+        weight: 1
+      - path: Bone001/Bone002/Bone011
+        weight: 1
+      - path: Bone001/Bone002/Bone011/Bone012
+        weight: 1
+      - path: Bone001/Bone002/Bone011/Bone012/Bone013
+        weight: 1
+      - path: Bone001/Bone002/Bone011/Bone012/Bone013/Bone014
+        weight: 1
+      - path: Bone001/Bone002/Bone015
+        weight: 1
+      - path: Bone001/Bone002/Bone015/Bone016
+        weight: 1
+      - path: Bone001/Bone002/Bone015/Bone016/Bone017
+        weight: 1
+      - path: Bone001/Bone002/Bone015/Bone016/Bone017/Bone018
+        weight: 1
+      - path: Bone001/Bone002/Bone019
+        weight: 1
+      - path: Bone001/Bone002/Bone019/Bone020
+        weight: 1
+      - path: Bone001/Bone002/Bone019/Bone020/Bone021
+        weight: 1
+      - path: Bone001/Bone002/Bone019/Bone020/Bone021/Bone022
+        weight: 1
+      - path: Bone024
+        weight: 1
+      - path: Bone024/Bone025
+        weight: 1
+      - path: Bone024/Bone025/Bone023
+        weight: 1
+      - path: Bone024/Bone025/Bone023/Bone035
+        weight: 1
+      - path: Bone024/Bone025/Bone023/Bone035/Bone036
+        weight: 1
+      - path: Bone024/Bone025/Bone023/Bone035/Bone036/Bone037
+        weight: 1
+      - path: Bone024/Bone025/Bone026
+        weight: 1
+      - path: Bone024/Bone025/Bone027
+        weight: 1
+      - path: Bone024/Bone025/Bone027/Bone028
+        weight: 1
+      - path: Bone024/Bone025/Bone027/Bone028/Bone029
+        weight: 1
+      - path: Bone024/Bone025/Bone030
+        weight: 1
+      - path: Bone024/Bone025/Bone030/Bone031
+        weight: 1
+      - path: Bone024/Bone025/Bone030/Bone031/Bone032
+        weight: 1
+      - path: Bone024/Bone025/Bone030/Bone031/Bone032/Bone033
+        weight: 1
+      - path: Bone024/Bone025/Bone038
+        weight: 1
+      - path: Bone024/Bone025/Bone038/Bone039
+        weight: 1
+      - path: Bone024/Bone025/Bone038/Bone039/Bone040
+        weight: 1
+      - path: Bone024/Bone025/Bone038/Bone039/Bone040/Bone041
+        weight: 1
+      - path: Bone024/Bone025/Bone042
+        weight: 1
+      - path: Bone024/Bone025/Bone042/Bone043
+        weight: 1
+      - path: Bone024/Bone025/Bone042/Bone043/Bone044
+        weight: 1
+      - path: Bone024/Bone025/Bone042/Bone043/Bone044/Bone034
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -145,6 +263,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 1
   additionalBone: 0
   userData: 
