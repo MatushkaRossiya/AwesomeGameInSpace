@@ -45,11 +45,11 @@ Material:
       data:
         first:
           name: _SpecularMultiplier
-        second: 1.24000001
+        second: 2
       data:
         first:
           name: _GlossMultiplier
-        second: 4.61000013
+        second: 4
     m_Colors:
       data:
         first:
@@ -58,4 +58,4 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .501960814, g: .501960814, b: .501960814, a: 1}
