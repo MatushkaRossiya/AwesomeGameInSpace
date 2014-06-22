@@ -84,6 +84,7 @@ public class GameMaster : MonoSingleton<GameMaster>
             currentRound++;
             HUD.instance.showRoundNumber(currentRound);
             MusicMaster.instance.startExplorationMusic();
+			LightManager.instance.dayPhase = 0;
 			LightManager.instance.TurnLightsDay(false);
 			LightManager.instance.TurnLightsNight(true);
         }

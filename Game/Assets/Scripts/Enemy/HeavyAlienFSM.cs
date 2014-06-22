@@ -29,7 +29,7 @@ public class HeavyAlienFSM : BaseFSM
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-            if (distanceToPlayer < 10.0f && IsInPlayerFOV())
+            if (distanceToPlayer < 20.0f && IsInPlayerFOV())
             {
                 MusicMaster.instance.startFightMusic();
                 if (Tutorial.isEnabled())

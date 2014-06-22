@@ -8,6 +8,8 @@ public class LightManager : MonoSingleton<LightManager>
 
 	private Light[] lightsDay;
 	private Light[] lightsNight;
+	private float[] lightsDayIntensity;
+	private float[] lightsNightIntensity;
 
 	public float dayPhase
 	{
@@ -24,24 +26,32 @@ public class LightManager : MonoSingleton<LightManager>
 	}
 
 	private float _dayPhase;
+	private float _flickerTime = 0.0f;
+	private float _nextFlicker = 0.1f;
 
 	void FixedUpdate()
 	{
 		if (_dayPhase != 0.0f)
 		{
-			foreach (Light light in lightsDay)
+			_flickerTime += Time.fixedDeltaTime;
+
+			if (_flickerTime > _nextFlicker)
 			{
-				if (light.intensity != 1.0f && Random.Range(0, 60) == 0)
+				for (int i = 0; i < lightsDay.Length; ++i)
 				{
-					light.intensity = 1.0f;
+					lightsDay [i].intensity = lightsDayIntensity [i] * Random.Range(0.0f, 1.0f);
 				}
-				else if (Random.Range(0, 60) == 0)
+
+				/*for (int i = 0; i < lightsNight.Length; ++i)
 				{
-					light.intensity = Random.Range(0.0f, 1.0f);
-				}
+					lightsNight [i].intensity = lightsNightIntensity [i] * Random.Range(0.0f, 1.0f);
+				}*/
+
+				_flickerTime = 0.0f;
+				_nextFlicker = Random.Range(0.25f, 0.5f);
 			}
 
-			foreach (Light light in lightsNight)
+			/*foreach (Light light in lightsNight)
 			{
 				if (light.intensity != 1.0f && Random.Range(0, 60) == 0)
 				{
@@ -51,7 +61,7 @@ public class LightManager : MonoSingleton<LightManager>
 				{
 					light.intensity = Random.Range(0.0f, 1.0f);
 				}
-			}
+			}*/
 		}
 	}
 
@@ -61,12 +71,14 @@ public class LightManager : MonoSingleton<LightManager>
 		if (tempD != null)
 		{
 			lightsDay = new Light[tempD.Length];
+			lightsDayIntensity = new float[tempD.Length];
 			for (int i = 0; i < tempD.Length; ++i)
 			{
 				Light light = tempD [i].GetComponent<Light>();
 				if (light != null)
 				{
 					lightsDay [i] = light;
+					lightsDayIntensity [i] = light.intensity;
 				}
 			}
 		}
@@ -75,12 +87,14 @@ public class LightManager : MonoSingleton<LightManager>
 		if (tempN != null)
 		{
 			lightsNight = new Light[tempN.Length];
+			lightsNightIntensity = new float[tempN.Length];
 			for (int i = 0; i < tempN.Length; ++i)
 			{
 				Light light = tempN [i].GetComponent<Light>();
 				if (light != null)
 				{
 					lightsNight [i] = light;
+					lightsNightIntensity [i] = light.intensity;
 				}
 			}
 		}
@@ -88,17 +102,19 @@ public class LightManager : MonoSingleton<LightManager>
 
 	public void TurnLightsDay(bool on)
 	{
-		foreach (Light light in lightsDay)
+		for (int i = 0; i < lightsDay.Length; ++i)
 		{
-			light.enabled = on;
+			lightsDay [i].enabled = on;
+			lightsDay [i].intensity = lightsDayIntensity [i];
 		}
 	}
 
 	public void TurnLightsNight(bool on)
 	{
-		foreach (Light light in lightsNight)
+		for (int i = 0; i < lightsNight.Length; ++i)
 		{
-			light.enabled = on;
+			lightsNight [i].enabled = on;
+			lightsNight [i].intensity = lightsNightIntensity [i];
 		}
 	}
 
