@@ -14,7 +14,7 @@ GameObject:
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400000}
   m_Layer: 10
-  m_Name: AmmoVendingMachine
+  m_Name: ammoVendingMachine
   m_TagString: movable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,9 +2,7 @@
 
 public class LightManager : MonoSingleton<LightManager>
 {
-	public AnimationCurve red;
-	public AnimationCurve green;
-	public AnimationCurve blue;
+	public Gradient gradient;
 
 	private Light[] lightsDay;
 	private Light[] lightsNight;
@@ -15,10 +13,7 @@ public class LightManager : MonoSingleton<LightManager>
 	{
 		set
 		{
-			Color color = new Color(
-                red.Evaluate(value),
-                green.Evaluate(value),
-                blue.Evaluate(value));
+			Color color = gradient.Evaluate(value);
 
 			RenderSettings.ambientLight = color * 0.025f + new Color(0.01f, 0.01f, 0.01f);
 			_dayPhase = value;
