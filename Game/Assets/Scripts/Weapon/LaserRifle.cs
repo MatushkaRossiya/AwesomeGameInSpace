@@ -14,6 +14,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
     public AudioClip pewSound;
     public AudioClip outOfAmmoSound;
     public AudioClip grenadeLauncherSound;
+	public AudioClip meleeAttackSound;
+	public AudioClip[] meleeScreamSound;
     [Range(0.01f, 0.5f)]
     public float shotPeriod;
 	public int maxAmmo { 
@@ -102,6 +104,8 @@ public class LaserRifle : MonoSingleton<LaserRifle>
 		if((Input.GetKeyDown(KeyCode.X) || Gamepad.instance.justPressedLeftShoulder()) && shootingPhase != ShootingPhase.HandToHand){
 			shootingPhase = ShootingPhase.HandToHand;
 			HTHduration = 0.0f;
+			audio.PlayOneShot(meleeScreamSound[Random.Range(0, meleeScreamSound.Length)]);
+			audio.PlayOneShot(meleeAttackSound);
 		}
 
         if (hasGrenadeLaucherUpgrade &&

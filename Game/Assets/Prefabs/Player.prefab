@@ -688,7 +688,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
   m_LocalRotation: {x: 0, y: .556078017, z: 0, w: .831130087}
-  m_LocalPosition: {x: -14.30756, y: 1, z: 10.928463}
+  m_LocalPosition: {x: -62.6425705, y: -.719366074, z: 1.20409679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -2342,6 +2342,11 @@ MonoBehaviour:
   outOfAmmoSound: {fileID: 8300000, guid: 10544dfdd743f61469b617892b167107, type: 3}
   grenadeLauncherSound: {fileID: 8300000, guid: 085d2babe8ddc164d9440d2fff0ac3af,
     type: 3}
+  meleeAttackSound: {fileID: 8300000, guid: 6987b474cf9813b498be80b71a620c61, type: 3}
+  meleeScreamSound:
+  - {fileID: 8300000, guid: 40f4c1d1cae491a46a04f589b58549ff, type: 3}
+  - {fileID: 8300000, guid: b46cee8b34757fd4b9fc6c94f374ded6, type: 3}
+  - {fileID: 8300000, guid: 13e265676f42a2d4f994ba3f7e1addcb, type: 3}
   shotPeriod: .0599999987
   recoil: .00999999978
   handling: 2
