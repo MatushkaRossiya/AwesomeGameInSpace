@@ -31,6 +31,9 @@ ModelImporter:
     100050: cryAnimationExportNode
     100052: cryExporterSettingsNode
     100054: //RootNode
+    100056: Alien
+    100058: AlienBig
+    100060: Bip001 Footsteps
     400000: Bip001
     400002: Bip001 Head
     400004: Bip001 HeadNub
@@ -59,8 +62,15 @@ ModelImporter:
     400050: cryAnimationExportNode
     400052: cryExporterSettingsNode
     400054: //RootNode
-    7400000: Take 001
+    400056: Alien
+    400058: AlienBig
+    400060: Bip001 Footsteps
+    4300000: Alien
+    4300002: AlienBig
+    7400000: Idle
     9500000: //RootNode
+    13700000: Alien
+    13700002: AlienBig
   materials:
     importMaterials: 1
     materialName: 0
@@ -78,7 +88,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Idle
       takeName: Take 001
       firstFrame: 0
       lastFrame: 100
