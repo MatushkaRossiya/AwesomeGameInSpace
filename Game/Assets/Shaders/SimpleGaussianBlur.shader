@@ -42,7 +42,7 @@
 			float4 frag (v2f i) : COLOR{
 				float4 sum = float4(0, 0, 0, 0);
 
-				float size = _Size * saturate(_Steaminess * 4 - tex2D(_Steam, i.uv).r * 3);
+				float size = _Size * saturate(_Steaminess * 5 - tex2D(_Steam, i.uv).r * 4);
 				sum += tex2D(_MainTex, i.uv + float2(size * -2, 0)) * 0.06136;
 				sum += tex2D(_MainTex, i.uv + float2(size * -1, 0)) * 0.24477;
 				sum += tex2D(_MainTex, i.uv) * 0.38774;
@@ -62,7 +62,7 @@
 			float4 frag (v2f i) : COLOR{
 				float4 sum = float4(0, 0, 0, 0);
 				
-				float size = _Size * saturate(_Steaminess * 4 - tex2D(_Steam, i.uv).r * 3);
+				float size = _Size * saturate(_Steaminess * 5 - tex2D(_Steam, i.uv).r * 4);
 
 				sum += tex2D(_MainTex, i.uv + float2(0, size * -2)) * 0.06136;
 				sum += tex2D(_MainTex, i.uv + float2(0, size * -1)) * 0.24477;

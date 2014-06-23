@@ -73,7 +73,7 @@
 
 				bump *= _Magnitude;
 
-				float steam = saturate(_Steaminess * 4 - tex2D(_Steam, i.uv).r * 3);
+				float steam = saturate(_Steaminess * 5 - tex2D(_Steam, i.uv).r * 4);
 
 				float2 uv = i.uv + bump;
 
