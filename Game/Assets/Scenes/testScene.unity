@@ -836,7 +836,7 @@ Transform:
   - {fileID: 715770669}
   - {fileID: 392959984}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &66668174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5308,6 +5308,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 597258913}
   m_GameObject: {fileID: 362047351}
   m_Mesh: {fileID: 4300002, guid: eb95d2fd723150f47957e39f3adef6b5, type: 3}
+--- !u!84 &363254409
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Width: 881
+  m_Height: 601
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
 --- !u!1 &371024889
 GameObject:
   m_ObjectHideFlags: 0
@@ -9744,6 +9763,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 2000002, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 363254409}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
   m_RootGameObject: {fileID: 1608819035}
@@ -25203,7 +25226,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 2147483648
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 363254409}
   m_TargetDisplay: 0
   m_HDR: 1
   m_OcclusionCulling: 1
@@ -26669,7 +26692,7 @@ Transform:
   - {fileID: 1082648067}
   - {fileID: 1862633123}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!23 &1764140268
 Renderer:
   m_ObjectHideFlags: 0
@@ -27994,7 +28017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c516b05dc6cd2894396b171e1ea1f995, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c516b05dc6cd2894396b171e1ea1f995, type: 2}

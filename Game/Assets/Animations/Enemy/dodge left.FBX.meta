@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f56a08182d9dda449c629e278398460
+guid: 2d80204a11dde9d40851b9f817edd90b
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -28,12 +28,7 @@ ModelImporter:
     100044: Bip001 R UpperArm
     100046: Bip001 Spine
     100048: Bip001 Spine1
-    100050: cryAnimationExportNode
-    100052: cryExporterSettingsNode
-    100054: //RootNode
-    100056: Alien
-    100058: AlienBig
-    100060: Bip001 Footsteps
+    100050: //RootNode
     400000: Bip001
     400002: Bip001 Head
     400004: Bip001 HeadNub
@@ -59,18 +54,9 @@ ModelImporter:
     400044: Bip001 R UpperArm
     400046: Bip001 Spine
     400048: Bip001 Spine1
-    400050: cryAnimationExportNode
-    400052: cryExporterSettingsNode
-    400054: //RootNode
-    400056: Alien
-    400058: AlienBig
-    400060: Bip001 Footsteps
-    4300000: Alien
-    4300002: AlienBig
-    7400000: Idle
+    400050: //RootNode
+    7400000: DodgeLeft
     9500000: //RootNode
-    13700000: Alien
-    13700002: AlienBig
   materials:
     importMaterials: 1
     materialName: 0
@@ -80,7 +66,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -88,17 +74,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: DodgeLeft
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 100
+      lastFrame: 150
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -113,14 +99,8 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
-      - path: Alien
-        weight: 0
-      - path: AlienBig
-        weight: 0
       - path: Bip001
         weight: 1
-      - path: Bip001/Bip001 Footsteps
-        weight: 0
       - path: Bip001/Bip001 Pelvis
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine
@@ -137,7 +117,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Bip001 L Calf/Bip001
           L Foot/Bip001 L Toe0/Bip001 L Toe0Nub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh/Bip001 R Calf
@@ -150,7 +130,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh/Bip001 R Calf/Bip001
           R Foot/Bip001 R Toe0/Bip001 R Toe0Nub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck
@@ -159,7 +139,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 Head/Bip001
           HeadNub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L
           Clavicle
         weight: 1
@@ -184,10 +164,6 @@ ModelImporter:
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 R
           Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand
         weight: 1
-      - path: cryAnimationExportNode
-        weight: 0
-      - path: cryExporterSettingsNode
-        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
     isReadable: 1

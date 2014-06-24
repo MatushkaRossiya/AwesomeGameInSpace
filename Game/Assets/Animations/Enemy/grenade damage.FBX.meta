@@ -1,73 +1,73 @@
 fileFormatVersion: 2
-guid: 1f56a08182d9dda449c629e278398460
+guid: 7cae654bd202a9540bb95d69bdc0ac99
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: Bip001
-    100002: Bip001 Head
-    100004: Bip001 HeadNub
-    100006: Bip001 L Calf
-    100008: Bip001 L Clavicle
-    100010: Bip001 L Foot
-    100012: Bip001 L Forearm
-    100014: Bip001 L Hand
-    100016: Bip001 L Thigh
-    100018: Bip001 L Toe0
-    100020: Bip001 L Toe0Nub
-    100022: Bip001 L UpperArm
-    100024: Bip001 Neck
-    100026: Bip001 Pelvis
-    100028: Bip001 R Calf
-    100030: Bip001 R Clavicle
-    100032: Bip001 R Foot
-    100034: Bip001 R Forearm
-    100036: Bip001 R Hand
-    100038: Bip001 R Thigh
-    100040: Bip001 R Toe0
-    100042: Bip001 R Toe0Nub
-    100044: Bip001 R UpperArm
-    100046: Bip001 Spine
-    100048: Bip001 Spine1
-    100050: cryAnimationExportNode
-    100052: cryExporterSettingsNode
-    100054: //RootNode
-    100056: Alien
-    100058: AlienBig
-    100060: Bip001 Footsteps
-    400000: Bip001
-    400002: Bip001 Head
-    400004: Bip001 HeadNub
-    400006: Bip001 L Calf
-    400008: Bip001 L Clavicle
-    400010: Bip001 L Foot
-    400012: Bip001 L Forearm
-    400014: Bip001 L Hand
-    400016: Bip001 L Thigh
-    400018: Bip001 L Toe0
-    400020: Bip001 L Toe0Nub
-    400022: Bip001 L UpperArm
-    400024: Bip001 Neck
-    400026: Bip001 Pelvis
-    400028: Bip001 R Calf
-    400030: Bip001 R Clavicle
-    400032: Bip001 R Foot
-    400034: Bip001 R Forearm
-    400036: Bip001 R Hand
-    400038: Bip001 R Thigh
-    400040: Bip001 R Toe0
-    400042: Bip001 R Toe0Nub
-    400044: Bip001 R UpperArm
-    400046: Bip001 Spine
-    400048: Bip001 Spine1
-    400050: cryAnimationExportNode
-    400052: cryExporterSettingsNode
-    400054: //RootNode
-    400056: Alien
-    400058: AlienBig
-    400060: Bip001 Footsteps
+    100000: Alien
+    100002: AlienBig
+    100004: Bip001
+    100006: Bip001 Footsteps
+    100008: Bip001 Head
+    100010: Bip001 HeadNub
+    100012: Bip001 L Calf
+    100014: Bip001 L Clavicle
+    100016: Bip001 L Foot
+    100018: Bip001 L Forearm
+    100020: Bip001 L Hand
+    100022: Bip001 L Thigh
+    100024: Bip001 L Toe0
+    100026: Bip001 L Toe0Nub
+    100028: Bip001 L UpperArm
+    100030: Bip001 Neck
+    100032: Bip001 Pelvis
+    100034: Bip001 R Calf
+    100036: Bip001 R Clavicle
+    100038: Bip001 R Foot
+    100040: Bip001 R Forearm
+    100042: Bip001 R Hand
+    100044: Bip001 R Thigh
+    100046: Bip001 R Toe0
+    100048: Bip001 R Toe0Nub
+    100050: Bip001 R UpperArm
+    100052: Bip001 Spine
+    100054: Bip001 Spine1
+    100056: cryAnimationExportNode
+    100058: cryExporterSettingsNode
+    100060: //RootNode
+    400000: Alien
+    400002: AlienBig
+    400004: Bip001
+    400006: Bip001 Footsteps
+    400008: Bip001 Head
+    400010: Bip001 HeadNub
+    400012: Bip001 L Calf
+    400014: Bip001 L Clavicle
+    400016: Bip001 L Foot
+    400018: Bip001 L Forearm
+    400020: Bip001 L Hand
+    400022: Bip001 L Thigh
+    400024: Bip001 L Toe0
+    400026: Bip001 L Toe0Nub
+    400028: Bip001 L UpperArm
+    400030: Bip001 Neck
+    400032: Bip001 Pelvis
+    400034: Bip001 R Calf
+    400036: Bip001 R Clavicle
+    400038: Bip001 R Foot
+    400040: Bip001 R Forearm
+    400042: Bip001 R Hand
+    400044: Bip001 R Thigh
+    400046: Bip001 R Toe0
+    400048: Bip001 R Toe0Nub
+    400050: Bip001 R UpperArm
+    400052: Bip001 Spine
+    400054: Bip001 Spine1
+    400056: cryAnimationExportNode
+    400058: cryExporterSettingsNode
+    400060: //RootNode
     4300000: Alien
     4300002: AlienBig
-    7400000: Idle
+    7400000: GrenadeDamage
     9500000: //RootNode
     13700000: Alien
     13700002: AlienBig
@@ -80,7 +80,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -88,10 +88,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: GrenadeDamage
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 100
+      lastFrame: 190
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -114,13 +114,13 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Alien
-        weight: 0
+        weight: 1
       - path: AlienBig
-        weight: 0
+        weight: 1
       - path: Bip001
         weight: 1
       - path: Bip001/Bip001 Footsteps
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine
@@ -137,7 +137,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 L Thigh/Bip001 L Calf/Bip001
           L Foot/Bip001 L Toe0/Bip001 L Toe0Nub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh/Bip001 R Calf
@@ -150,7 +150,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 R Thigh/Bip001 R Calf/Bip001
           R Foot/Bip001 R Toe0/Bip001 R Toe0Nub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck
@@ -159,7 +159,7 @@ ModelImporter:
         weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 Head/Bip001
           HeadNub
-        weight: 0
+        weight: 1
       - path: Bip001/Bip001 Pelvis/Bip001 Spine/Bip001 Spine1/Bip001 Neck/Bip001 L
           Clavicle
         weight: 1
@@ -185,9 +185,9 @@ ModelImporter:
           Clavicle/Bip001 R UpperArm/Bip001 R Forearm/Bip001 R Hand
         weight: 1
       - path: cryAnimationExportNode
-        weight: 0
+        weight: 1
       - path: cryExporterSettingsNode
-        weight: 0
+        weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
     isReadable: 1
