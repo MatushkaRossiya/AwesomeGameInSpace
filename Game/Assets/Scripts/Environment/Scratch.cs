@@ -12,13 +12,20 @@ public class Scratch : MonoBehaviour
 	private int scratchIndex;
 	private int scratchesLenght;
 
+	private GameObject player;
+	private Vector3 offset;
+
 	void Start()
 	{
 		scratchesLenght = scratches.Length;
+		player = GameObject.FindGameObjectWithTag("Player");
+		offset = new Vector3(0.0f, 5.0f, 0.0f);
 	}
 
 	void FixedUpdate()
 	{
+		transform.position = player.transform.position + offset;
+
 		if (!playing)
 		{
 			time = 0.0f;
