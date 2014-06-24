@@ -811,7 +811,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.14532137, y: 0, z: -12.4606705}
+  m_LocalPosition: {x: 2.8131969, y: 0, z: -10.1383181}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 400052}
@@ -1094,7 +1094,7 @@ Animator:
   m_GameObject: {fileID: 100054}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6f2a6395d0a3e8242b5f51a03e4a0867, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4f6820b9d7a8e8740a4614a40ada9aeb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 98893d9d7ecf69749bb67eb91a4b1a19, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa354bf9ce6088428b9c417888c8b50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materialProperties: {fileID: 11400000, guid: fced7ac785e01be4b98861beaaf3986b, type: 2}
+  materialProperties: {fileID: 11400000, guid: 4176fc8a53dc67b4997c0cdcf5a8b1d0, type: 2}
 --- !u!114 &11400030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1670,7 +1670,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261506021, y: 3.52420919e-08, z: 1.60806252e-07}
+  m_ConnectedAnchor: {x: -.261505932, y: 5.82975019e-08, z: 1.23867906e-07}
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_LowTwistLimit:
     limit: -90

@@ -7620,7 +7620,7 @@ Transform:
   - {fileID: 1778352412}
   - {fileID: 2114546902}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
 --- !u!1 &457464899
 GameObject:
   m_ObjectHideFlags: 0
@@ -11285,6 +11285,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: a6c7c876328c2714a992475ad0c91311, type: 2}
+      propertyPath: dayLenght
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: a6c7c876328c2714a992475ad0c91311, type: 2}
+      propertyPath: changeDuration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6c7c876328c2714a992475ad0c91311, type: 2}
   m_RootGameObject: {fileID: 1891614341}
@@ -14115,18 +14123,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 768771680}
   m_GameObject: {fileID: 945213008}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &946095953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7debdd6cf0c58417c8b76cf5f31b1c12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entries: []
 --- !u!1 &950173668
 GameObject:
   m_ObjectHideFlags: 0
@@ -14632,7 +14628,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!114 &974062888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16477,6 +16473,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1927473769}
   m_GameObject: {fileID: 1067275101}
   m_Mesh: {fileID: 4300008, guid: 2767e09af3aea924fbdb3d99a29f77cd, type: 3}
+--- !u!114 &1072897069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7debdd6cf0c58417c8b76cf5f31b1c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries: []
 --- !u!1 &1080199481
 GameObject:
   m_ObjectHideFlags: 0
@@ -28342,8 +28350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dbf7d22f38ebc40bf200fea11551c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayLenght: 60
-  changeDuration: 10
+  dayLenght: 1
+  changeDuration: 1
   waveSize: 10
   spawnRate: 1
   currentRound: 0
@@ -28497,7 +28505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
-  Reference: {fileID: 946095953}
+  Reference: {fileID: 1072897069}
 --- !u!82 &1891614352
 AudioSource:
   m_ObjectHideFlags: 0
