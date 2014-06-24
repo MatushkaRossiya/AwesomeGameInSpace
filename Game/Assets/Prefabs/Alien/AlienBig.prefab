@@ -1094,7 +1094,7 @@ Animator:
   m_GameObject: {fileID: 100054}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 6f2a6395d0a3e8242b5f51a03e4a0867, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4f6820b9d7a8e8740a4614a40ada9aeb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 98893d9d7ecf69749bb67eb91a4b1a19, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
@@ -1670,7 +1670,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.261506021, y: 3.52420919e-08, z: 1.60806252e-07}
+  m_ConnectedAnchor: {x: -.261505932, y: 5.82975019e-08, z: 1.23867906e-07}
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_LowTwistLimit:
     limit: -90
