@@ -10,24 +10,25 @@ public class Trap : MonoBehaviour
     public GameObject field;
 
     public ParticleSystem trapParticles;
-    public float activeTime = 7.0f;
+    public float trappingTime = 7.0f;
     private float time;
-    private bool used = false;
-    private bool _activated = false;
-    internal bool activated
+    internal bool used = true;
+    private bool _triggered = false;
+    public int price;
+    internal bool triggered
     {
         set
         {
-            _activated = value;
+            _triggered = value;
             if (value)
             {
                 trapParticles.Play();
                 audio.Play();
                 StartCoroutine(turnOn());
-                time = Time.time + activeTime;
+                time = Time.time + trappingTime;
             }
         }
-        get { return _activated; }
+        get { return _triggered; }
     }
 
     private List<GameObject> trappedThings = new List<GameObject>();
@@ -37,8 +38,8 @@ public class Trap : MonoBehaviour
 
     internal void OnTriggerEnter(Collider col)
     {
-        Debug.Log(col.name);
-        if (activated)
+       // Debug.Log(col.name);
+        if (triggered)
         {
             if (col.gameObject.GetComponentInParent<Alien>()) trapAlien(col.gameObject.GetComponentInParent<Alien>());
             else if (col.GetComponent<PlayerController>()) trapPlayer();
@@ -84,9 +85,10 @@ public class Trap : MonoBehaviour
         PlayerController.instance.gameObject.rigidbody.AddForce(Vector3.up * 5.0f, ForceMode.Impulse);
     }
     private float r = 0.35f;
-    void Start()
+    void Awake()
     {
-      
+        field.renderer.material.color = used ? new Color(0.0f, 0.0f, 0.0f, 0.0f) : new Color(1.0f, 0.0f, 0.0f, 0.1f);
+        center.renderer.material.color = used ? new Color(0.5f, 0.5f, 0.5f, 1.0f) : new Color(1.0f, 0.0f, 0.0f, 1.0f);
        
     }
 
@@ -95,10 +97,10 @@ public class Trap : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (!activated && !used) center.renderer.material.color = new Color(0.4f * Mathf.Sin(2.0f * Time.time) + 0.6f, 0.0f, 0.0f);
+        if (!triggered && !used) center.renderer.material.color = new Color(0.4f * Mathf.Sin(2.0f * Time.time) + 0.6f, 0.0f, 0.0f);
 
 
-        if (activated)
+        if (triggered)
         {
             if (Time.time > time)
             {
@@ -162,10 +164,24 @@ public class Trap : MonoBehaviour
     }
 
 
-    void OnBecameInvisible()
+    internal IEnumerator activate()
     {
-        if (used) Destroy(this.gameObject);
+
+
+
+        for (int i = 0; i <= 100;++i )
+        {
+            field.renderer.material.color = new Color((i / 100.0f), 0.0f, 0.0f,  0.1f * (i / 100.0f));
+            //center.renderer.material.color = new Color((i / 100.0f), 0.0f, 0.0f, (i / 100.0f));
+            yield return new WaitForSeconds(0.01f);
+
+        }
+
+            yield return null;
     }
+
+  
+
     IEnumerator turnOn()
     {
         for (int i = 0; i <= 200; ++i)
@@ -179,7 +195,7 @@ public class Trap : MonoBehaviour
 
     IEnumerator turnOff()
     {
-        activated = false;
+        triggered = false;
         trapParticles.Stop();
         for (int i = 100; i >= 0; --i)
         {
@@ -198,7 +214,7 @@ public class Trap : MonoBehaviour
         }
 
         audio.Stop();
-        Destroy(field);
+      //  Destroy(field);
         
         yield return null;
 

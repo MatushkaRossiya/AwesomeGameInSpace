@@ -4,10 +4,16 @@ using System.Collections;
 public class TrapActivator : MonoBehaviour {
 
     public Trap trap;
-	void OnTriggerEnter(Collider col)
+    void OnTriggerEnter(Collider col)
     {
-        trap.activated = true;
-        trap.OnTriggerEnter(col);
-        Destroy(this);
+        if (!trap.triggered && !trap.used)
+        {
+            if ((col.gameObject.GetComponentInParent<Alien>()))
+            {
+                if ((col.gameObject.GetComponentInParent<Alien>()).isDead) return;
+            }
+            trap.triggered = true;
+            trap.OnTriggerEnter(col);
+        }
     }
 }
