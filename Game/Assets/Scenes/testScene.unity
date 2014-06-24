@@ -3856,6 +3856,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 768771680}
   m_GameObject: {fileID: 200601297}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &204563053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7debdd6cf0c58417c8b76cf5f31b1c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entries: []
 --- !u!1 &210877446
 GameObject:
   m_ObjectHideFlags: 0
@@ -9766,7 +9778,11 @@ Prefab:
     - target: {fileID: 2000002, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
       propertyPath: m_TargetTexture
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 483771291}
+=======
+      objectReference: {fileID: 1545951449}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29f6724092b2a6f4884c0ef6d742dca0, type: 2}
   m_RootGameObject: {fileID: 1608819035}
@@ -15440,7 +15456,10 @@ MonoBehaviour:
   field: {fileID: 267495664}
   trapParticles: {fileID: 374786185}
   trappingTime: 7
+<<<<<<< HEAD
   price: 75
+=======
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
 --- !u!136 &1025264672
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23282,6 +23301,25 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1927473769}
   m_GameObject: {fileID: 1544663585}
   m_Mesh: {fileID: 4300004, guid: 8fea0542d04105042be87f0ac17c4f16, type: 3}
+--- !u!84 &1545951449
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_Width: 526
+  m_Height: 435
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_TextureSettings:
+    m_FilterMode: 1
+    m_Aniso: 0
+    m_MipBias: 0
+    m_WrapMode: 1
 --- !u!1 &1554623216
 GameObject:
   m_ObjectHideFlags: 0
@@ -23873,8 +23911,13 @@ MonoBehaviour:
 --- !u!1 &1591572176
 GameObject:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_PrefabParentObject: {fileID: 100028, guid: ed22e65b672ba9e44b68f07a0a0f2a89, type: 2}
   m_PrefabInternal: {fileID: 2060752391}
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1591572177}
@@ -23890,8 +23933,13 @@ GameObject:
 --- !u!4 &1591572177
 Transform:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_PrefabParentObject: {fileID: 400028, guid: ed22e65b672ba9e44b68f07a0a0f2a89, type: 2}
   m_PrefabInternal: {fileID: 2060752391}
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
   m_GameObject: {fileID: 1591572176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .0176501274, y: 4.6049161, z: -.0170170069}
@@ -23902,9 +23950,14 @@ Transform:
 --- !u!114 &1591572178
 MonoBehaviour:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   m_PrefabParentObject: {fileID: 11400000, guid: ed22e65b672ba9e44b68f07a0a0f2a89,
     type: 2}
   m_PrefabInternal: {fileID: 2060752391}
+=======
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
   m_GameObject: {fileID: 1591572176}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -23913,12 +23966,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   priority: 0
   trap: {fileID: 1025264671}
+<<<<<<< HEAD
 --- !u!136 &1591572180
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 13600002, guid: ed22e65b672ba9e44b68f07a0a0f2a89,
     type: 2}
   m_PrefabInternal: {fileID: 2060752391}
+=======
+  TrapActivationPrice: 5
+--- !u!136 &1591572180
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
   m_GameObject: {fileID: 1591572176}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -25225,7 +25287,11 @@ Camera:
     serializedVersion: 2
     m_Bits: 2147483648
   m_RenderingPath: -1
+<<<<<<< HEAD
   m_TargetTexture: {fileID: 483771291}
+=======
+  m_TargetTexture: {fileID: 1545951449}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
   m_TargetDisplay: 0
   m_HDR: 1
   m_OcclusionCulling: 1
@@ -28497,7 +28563,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredObjects: []
+<<<<<<< HEAD
   Reference: {fileID: 553285042}
+=======
+  Reference: {fileID: 204563053}
+>>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
 --- !u!82 &1891614352
 AudioSource:
   m_ObjectHideFlags: 0
