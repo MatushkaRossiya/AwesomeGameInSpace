@@ -46,6 +46,8 @@ public class Grenade : MonoBehaviour
 		foreach (var col in colliders) {
 			Damageable dam = col.gameObject.GetComponent<Damageable>();
 			if (dam != null) {
+				Vector3 colliderToGrenade = transform.position - col.transform.position;
+				if (Physics.Raycast(col.transform.position, colliderToGrenade.normalized, colliderToGrenade.magnitude - 0.2f, Layers.environment)) continue;
 				Vector3 dir = col.transform.position - transform.position;
 				dam.DealDamage(dir.normalized * (1 - dir.magnitude / radius) * damage);
 			}

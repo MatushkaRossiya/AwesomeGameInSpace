@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BloodSplash
+  m_Name: BigAlienBloodSplash
   m_Shader: {fileID: 4800000, guid: 24e4570542eec6347a078ff04c8876ed, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -58,7 +58,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: .501960814, b: 0, a: 1}
+        second: {r: .16911763, g: .965618551, b: 1, a: 1}
       data:
         first:
           name: _SpecColor
