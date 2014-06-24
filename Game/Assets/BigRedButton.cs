@@ -12,12 +12,25 @@ public class BigRedButton : Interactive {
 
 	public ParticleSystem giantExplosionParticles;
 
+	private bool pushed = false;
 
 	public override string message {
-		get { return "PUSH ME!!!!"; }
+		get { 
+			if (!pushed)
+			{
+				return "Do not push!";
+			}
+			else
+			{
+				return null;
+			}
+		}
 	}
 
 	public override void MomentaryAction() {
+		if (pushed)
+			return;
+		pushed = true;
 		StartCoroutine(selfDestruct());
 	}
 
@@ -35,5 +48,6 @@ public class BigRedButton : Interactive {
 		explosionSource.Play();
 		giantExplosionParticles.enableEmission = true;
 		// TODO delete saved games
+		// TODO kill player, show game over screen/go to menu
 	}
 }
