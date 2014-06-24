@@ -4,7 +4,7 @@ using System.Collections;
 public class TrapInteractive : Interactive {
 
     public Trap trap;
-<<<<<<< HEAD
+
     private int TrapActivationPrice
     {
         get
@@ -12,9 +12,8 @@ public class TrapInteractive : Interactive {
             return trap.price;
         }
     }
-=======
-    public int TrapActivationPrice;
->>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
+
+
     public override string message
     {
         get
@@ -51,18 +50,5 @@ public class TrapInteractive : Interactive {
             StartCoroutine(trap.activate());
         }
     }
-<<<<<<< HEAD
-	
 
-=======
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
->>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
 }

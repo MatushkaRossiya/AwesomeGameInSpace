@@ -14,10 +14,9 @@ public class Trap : MonoBehaviour
     private float time;
     internal bool used = true;
     private bool _triggered = false;
-<<<<<<< HEAD
+
     public int price;
-=======
->>>>>>> 1b7534a8dfb5d6db3eb28fc65def62bc9544a0be
+
     internal bool triggered
     {
         set
