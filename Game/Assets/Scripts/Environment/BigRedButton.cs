@@ -34,6 +34,8 @@ public class BigRedButton : Interactive {
 		yield return new WaitForSeconds(voice2.length);
 		explosionSource.Play();
 		giantExplosionParticles.enableEmission = true;
-		// TODO delete saved games
+		LevelSerializer.SavedGames[LevelSerializer.PlayerName].Clear();
+		LevelSerializer.SaveDataToPlayerPrefs();
+		PlayerPrefs.Save();
 	}
 }
