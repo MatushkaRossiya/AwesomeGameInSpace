@@ -21,7 +21,7 @@ public class PlayerStats : MonoSingleton<PlayerStats>
             {
                 HeavyAlienFSM[] heavyAliens = FindObjectsOfType<HeavyAlienFSM>();
                 foreach (HeavyAlienFSM heavyAlien in heavyAliens) heavyAlien.PlayerDied();
-                Application.LoadLevel(1);
+                //Application.LoadLevel(0);
             }
         }
     }

@@ -1224,6 +1224,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400154}
+  - 114: {fileID: 11400032}
+  - 82: {fileID: 8200010}
+  m_Layer: 0
+  m_Name: Scratch
+  m_TagString: Scratch
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -1360,10 +1377,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100062}
   m_LocalRotation: {x: 0, y: .556078017, z: 0, w: .831130087}
-  m_LocalPosition: {x: 1.84119868, y: 1.15155602, z: -9.16720295}
+  m_LocalPosition: {x: 1.22494912, y: 1.08509851, z: -.284854412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
+  - {fileID: 400154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400022
@@ -2224,6 +2242,18 @@ Transform:
   - {fileID: 400144}
   m_Father: {fileID: 400056}
   m_RootOrder: 7
+--- !u!4 &400154
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400020}
+  m_RootOrder: 1
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -2973,6 +3003,64 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &8200010
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100154}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 5
+  MaxDistance: 5.05000019
+  Pan2D: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -3933,6 +4021,35 @@ MonoBehaviour:
   syringeTex: {fileID: 2800000, guid: eb58ab89b55a90e4f9bc0901d4467c36, type: 3}
   newRoundSound: {fileID: 8300000, guid: 85d1f46fc20110d438ac2e6c98003aa9, type: 3}
   tutorialSound: {fileID: 8300000, guid: 34b662465b6a39d488a023b09082a7fb, type: 3}
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c51881cbae70e24c98d54eefa0bf9cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scratches:
+  - {fileID: 8300000, guid: 9ab92a1b5d89dc24abea830ba8ce9c3b, type: 3}
+  - {fileID: 8300000, guid: f8cb5d5a25c4ce54ba3fc8b82a0c9b5c, type: 3}
+  - {fileID: 8300000, guid: 1cf7061d9d9a6ea4eaeeeeb83da05711, type: 3}
+  - {fileID: 8300000, guid: 5c85802c6df1c32478626f550cf72d51, type: 3}
+  - {fileID: 8300000, guid: ee4f7b765e6844d4d9a0d95f3d9bf5cb, type: 3}
+  - {fileID: 8300000, guid: cac4d5fefd0f2434dbb8e8b94618b946, type: 3}
+  - {fileID: 8300000, guid: f04279db9acbecc47a672eb9d6653613, type: 3}
+  - {fileID: 8300000, guid: dcfad272fe8b78e4d9314469ea970587, type: 3}
+  - {fileID: 8300000, guid: 6437b569b631dee41abe7926834fc0bd, type: 3}
+  - {fileID: 8300000, guid: 0da6c94bafcd12a4c988038c5a289267, type: 3}
+  - {fileID: 8300000, guid: 3337888ce3ac5744d8104866a42d4c1b, type: 3}
+  - {fileID: 8300000, guid: ce92eb169f3fbe24799b5b16bdf40b5f, type: 3}
+  - {fileID: 8300000, guid: c8e4662b1cdbfdb46933840848f33b3e, type: 3}
+  - {fileID: 8300000, guid: 629fc79582188ae489fa74649b1e120c, type: 3}
+  - {fileID: 8300000, guid: f87253e89f32d0f49b42e3efbf42d969, type: 3}
+  - {fileID: 8300000, guid: b738f349f8c450947ae1bc230b3b2a29, type: 3}
+  - {fileID: 8300000, guid: 5893798a66690004f8c18172f9fb77ee, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

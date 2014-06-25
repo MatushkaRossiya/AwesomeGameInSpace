@@ -69,7 +69,7 @@ public class Loader : MonoSingleton<Loader>
         saveToLoad = saveName;
         isLoading = true;
         if (saveName == "NewGame")
-            Application.LoadLevel(1); //TO DO CHECK NA KONCU CZY 1 TO TEN LEVEL O KTORY NAM CHODZI
+            Application.LoadLevel(2); //TO DO CHECK NA KONCU CZY 1 TO TEN LEVEL O KTORY NAM CHODZI
         else
             Application.LoadLevel(PlayerPrefs.GetInt(levelStr + saveName));
     }
