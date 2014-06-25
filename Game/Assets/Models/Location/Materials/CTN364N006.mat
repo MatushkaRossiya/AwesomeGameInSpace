@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Color_009
+  m_Name: CTN364N006
   m_Shader: {fileID: 7, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,12 +17,12 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 42b7cb58c4c808b4c90109c2ebad3ca4, type: 3}
-          m_Scale: {x: .00400000019, y: .00899999961}
-          m_Offset: {x: -.0599999987, y: -.129999995}
+          m_Texture: {fileID: 2800000, guid: 052f090a54f999342bc34c376133597d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats: {}
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: .345098048, g: .349019617, b: .360784322, a: 1}
