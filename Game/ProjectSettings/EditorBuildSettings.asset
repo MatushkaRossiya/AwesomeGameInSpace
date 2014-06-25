@@ -10,8 +10,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/testScene.unity
   - enabled: 1
-    path: Assets/Scenes/Location1.unity
+    path: Assets/Scenes/Location1Final.unity
   - enabled: 1
+    path: Assets/Scenes/Location2Final.unity
+  - enabled: 1
+    path: Assets/Scenes/Location3Final.unity
+  - enabled: 1
+    path: Assets/Scenes/Location5Final.unity
+  - enabled: 0
+    path: Assets/Scenes/Location1.unity
+  - enabled: 0
     path: Assets/Scenes/location5.unity
   - enabled: 0
     path: Assets/Scenes/Location.unity
