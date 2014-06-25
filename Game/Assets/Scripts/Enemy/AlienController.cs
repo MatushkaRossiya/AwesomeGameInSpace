@@ -5,13 +5,21 @@ public class AlienController : MonoBehaviour
 {
     private float nextAttack;
 
+    private Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     public void AttackFast(float alien)
     {
+        if (Time.fixedTime > nextAttack) animator.SetBool("FastAttack", true);
         Attack(1.0f, 5.0f * alien);
     }
 
     public void AttackStrong(float alien)
     {
+        if (Time.fixedTime > nextAttack) animator.SetBool("StrongAttack", true);
         Attack(2.0f, 15.0f * alien);
     }
 
@@ -19,11 +27,12 @@ public class AlienController : MonoBehaviour
     {
         if (!GetComponent<Alien>().isDead)
         {          
-            //temporary, until we have animations
+           
             
             bool hit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), 1.0f);
 
-            StartCoroutine(dodging(hit));
+            if (hit) animator.SetBool("DodgeLeft", true);
+            else animator.SetBool("DodgeRight", true);
         }
     }
 
@@ -42,7 +51,7 @@ public class AlienController : MonoBehaviour
         if (Time.fixedTime > nextAttack)
         {
             nextAttack = Time.fixedTime + cooldown;
-            RaycastHit[] hits = Physics.SphereCastAll(transform.position + new Vector3(0, 1.5f, 0), 1.0f, transform.forward, 2.0f, Layers.enemyAttack);
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position + new Vector3(0, 1.5f, 0), 0.5f, transform.forward, 2.0f, Layers.enemyAttack);
             //Debug.DrawRay(transform.position + new Vector3(0, 1.5f, 0), transform.forward, Color.cyan, 1.0f);
             if (hits.Length > 0)
             {
@@ -67,4 +76,9 @@ public class AlienController : MonoBehaviour
 
     }
 
+
+    internal void DodgeBack()
+    {
+        animator.SetBool("DodgeBack", true);
+    }
 }

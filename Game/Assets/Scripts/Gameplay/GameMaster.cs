@@ -35,6 +35,7 @@ public class GameMaster : MonoSingleton<GameMaster>
         MusicMaster.instance.startDayMusic();
 		LightManager.instance.TurnLightsNight(false);
 		LightManager.instance.TurnLightsDay(true);
+		ScratchesManager.instance.TurnScratches(true);
     }
 
     public string TimeToDayEnd
@@ -55,11 +56,13 @@ public class GameMaster : MonoSingleton<GameMaster>
         if (dayPhase < dayLenght)
         {
             dayPhase += Time.fixedDeltaTime;
+			ScratchesManager.instance.dayPhase = dayPhase;
         }
         else
         {
             phase = Evening;
             dayPhase = 0;
+			ScratchesManager.instance.dayPhase = 0;
         }
     }
 
@@ -87,6 +90,7 @@ public class GameMaster : MonoSingleton<GameMaster>
 			LightManager.instance.dayPhase = 0;
 			LightManager.instance.TurnLightsDay(false);
 			LightManager.instance.TurnLightsNight(true);
+			ScratchesManager.instance.TurnScratches(false);
         }
     }
 
@@ -122,6 +126,7 @@ public class GameMaster : MonoSingleton<GameMaster>
             MusicMaster.instance.startDayMusic();
 			LightManager.instance.TurnLightsNight(false);
 			LightManager.instance.TurnLightsDay(true);
+			ScratchesManager.instance.TurnScratches(true);
         }
     }
 

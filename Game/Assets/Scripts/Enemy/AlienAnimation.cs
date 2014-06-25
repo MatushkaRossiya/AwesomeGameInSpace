@@ -61,6 +61,7 @@ public sealed class AlienAnimation : RagdollAnimation
 
     public override void DealDamage(BodyPart bodyPart, float rawDamage)
     {
+       
         float damage;
         switch (bodyPart.type)
         {
@@ -80,6 +81,7 @@ public sealed class AlienAnimation : RagdollAnimation
                 damage = 0;
                 break;
         }
+        animator.SetFloat("Damage", damage);
         characterAI.DealDamage(damage);
     }
 
