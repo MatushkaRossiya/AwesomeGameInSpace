@@ -29,6 +29,11 @@ ModelImporter:
     100046: Bip001 R UpperArm
     100048: Bip001 Spine
     100050: Bip001 Spine1
+    100052: Alien
+    100054: AlienBig
+    100056: Bip001 Footsteps
+    100058: cryAnimationExportNode
+    100060: cryExporterSettingsNode
     400000: //RootNode
     400002: Bip001
     400004: Bip001 Head
@@ -55,8 +60,17 @@ ModelImporter:
     400046: Bip001 R UpperArm
     400048: Bip001 Spine
     400050: Bip001 Spine1
+    400052: Alien
+    400054: AlienBig
+    400056: Bip001 Footsteps
+    400058: cryAnimationExportNode
+    400060: cryExporterSettingsNode
+    4300000: Alien
+    4300002: AlienBig
     7400000: StrongAttack
     9500000: //RootNode
+    13700000: Alien
+    13700002: AlienBig
   materials:
     importMaterials: 1
     materialName: 0

@@ -454,7 +454,7 @@ Transition:
   - m_ConditionMode: 5
     m_ConditionEvent: FastAttack
     m_EventTreshold: 0
-    m_ExitTime: .949999988
+    m_ExitTime: .9359442
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -635,7 +635,7 @@ State:
   m_Motions:
   - {fileID: 7400000, guid: ab7a86bc5b4560e40bfd43daba9c7572, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -228, y: 144, z: 0}
+  m_Position: {x: -204, y: 204, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -675,7 +675,7 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Walk
-  m_Speed: 3
+  m_Speed: 8
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: b36c8f0d6547df44f972a4eceffce61b, type: 3}
@@ -705,12 +705,12 @@ State:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: StrongAttack
-  m_Speed: 4
+  m_Speed: 3
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 5df2aae05b06f734ab8543d11c1d0f39, type: 3}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: -252, y: 60, z: 0}
+  m_Position: {x: -324, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 

@@ -42,7 +42,7 @@ public class AlienFSM : BaseFSM
 
     protected override void UpdateChase()
     {
-        if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9725f)
+        if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9995f)
         {
             agent.Stop();
             controller.Dodge();
@@ -61,11 +61,17 @@ public class AlienFSM : BaseFSM
             else
             {
 
-                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.9725f)
+                if (Mathf.Abs(Quaternion.Angle(transform.rotation, player.transform.rotation) - 180.0f) < 1.0f && Random.Range(0.0f, 1.0f) > 0.95f)
                 {
                     controller.Dodge();
                     StartCoroutine(moment(0.3f));
                 }
+
+                    if(LaserRifle.instance.handsAttack.isPlaying && Random.Range(0.0f, 1.0f) > 0.95f)
+                    {
+                        controller.DodgeBack();
+                        StartCoroutine(moment(0.2f));
+                    }
                 //if (distanceToPlayer > 2.0f)
                 //{
                 //    agent.SetDestination(player.transform.position);

@@ -8,7 +8,7 @@ public abstract class BaseFSM : MonoBehaviour
     protected Alien alienComponent;
     protected AlienController controller;
     protected internal State currentState;
-    protected float distanceChaseToAttack = 3.5f;
+    protected float distanceChaseToAttack = 0.5f;
     protected float distancePatroltoChase = 10.0f;
     protected float distanceAlarm = 8.0f;
     protected float distanceToPlayer;
